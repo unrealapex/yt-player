@@ -1,52 +1,66 @@
+
+// definitions
 var url;
 var videoId;
 var embedURL;
+var player;
 
 function getVideoURL() {
   url = prompt("Insert the URL of the video you want to watch");
-  // TODO: add Vimeo support
-  if (url.substr(0, 5) === "https") {
-    videoId = url.substr(32, 11);
-    loadVideo();
-  } else if (url.substr(0, 4) === "http") {
-    videoId = url.substr(31, 11);
-    loadVideo();
-  } else {
+  validateURL(url);
+}
+
+// TODO: add Vimeo support
+// TODO: add ability to play youtube playlists
+
+function validateURL(url) {
+  // checks if link given is from youtube.com 
+  if (url.includes("youtube.com") && url.length > 30) {
+    getId(url);
+  } 
+  else {
     alert("Please enter a valid URL");
     reset();
   }
-
 }
 
-// only works for youtube videos at the moment
-function urlValidate(testURL) {
-  testURL = null;
-  if (testURL.substr(10, 11) != "youtube.com" || testURL.substr(9, 11) != "youtube.com") {
-    alert("Please enter a valid URL");
-  }
+// strips the video id from our url 
+function getId(url) {
+  videoId = url.substr(url.search("=") + 1, 11);
+  loadVideo(videoId);
 }
 
-
-function loadVideo() {
-  embedURL = (`https://www.youtube.com/embed/${videoId}`);
+function loadVideo(videoId) {
+  embedURL = `https://www.youtube.com/embed/${videoId}`;
   document.getElementById("videoPlayer").src = embedURL;
   alert("Loading video...");
 }
 
-var player = document.getElementById("videoPlayer");
+player = document.getElementById("videoPlayer");
 
-function openFullscreen() {
-  if (player.requestFullscreen) {
-    player.requestFullscreen();
-  } else if (player.webkitRequestFullscreen) {
-    player.webkitRequestFullscreen();
-  } else if (player.msRequestFullscreen) {
-    player.msRequestFullscreen();
-  }
-}
-
+// FIXME: Fix full screen not loading
+ 
+// function openFullscreen() {
+//   if (player.requestFullscreen) {
+//     player.requestFullscreen();
+//   } else if (player.webkitRequestFullscreen) {
+//     player.webkitRequestFullscreen();
+//   } else if (player.msRequestFullscreen) {
+//     player.msRequestFullscreen();
+//   }
+// }
 
 function reset() {
   url = "";
   document.getElementById("videoPlayer").src = "";
 }
+
+// function copyToClipboard(embedURL) {
+//   if (embedURL.length >= 10) {
+//   navigator.clipboard.writeText(embedURL);
+//   alert("Copied to Clipboard!");
+//   }
+//   else {
+//     alert("Unable to copy to clipboard");
+//   }
+// }
