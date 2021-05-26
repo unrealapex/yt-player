@@ -31,9 +31,11 @@ function validateURL(url) {
 
 function getId(url) {
   videoId = url.substr(url.search("=") + 1, 11);
+  loadVideo(videoId);
+  
 }
 
-function loadVideo(embedURL) {
+function loadVideo(videoId) {
   embedURL = `https://www.youtube.com/embed/${videoId}`;
   document.getElementById("videoPlayer").src = embedURL;
   alert("Loading video...");
