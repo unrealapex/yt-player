@@ -1,4 +1,3 @@
-// FIXME: Fix video not playing bug
 
 // definitions
 var url;
@@ -14,10 +13,8 @@ function getVideoURL() {
 // TODO: add Vimeo support
 // TODO: add ability to play youtube playlists
 
-// only works for youtube videos at the moment
-// fix case that user puts in url without protocol
 function validateURL(url) {
-  // checks if link given is from youtube.com
+  // checks if link given is from youtube.com 
   if (url.includes("youtube.com") && url.length > 30) {
     getId(url);
   } 
@@ -27,12 +24,10 @@ function validateURL(url) {
   }
 }
 
-// https://www.youtube.com/watch?v=9No-FiEInLA
-
+// strips the video id from our url 
 function getId(url) {
   videoId = url.substr(url.search("=") + 1, 11);
   loadVideo(videoId);
-  
 }
 
 function loadVideo(videoId) {
@@ -43,16 +38,17 @@ function loadVideo(videoId) {
 
 player = document.getElementById("videoPlayer");
 
-// FIXME: Fix full screen
-function openFullscreen() {
-  if (player.requestFullscreen) {
-    player.requestFullscreen();
-  } else if (player.webkitRequestFullscreen) {
-    player.webkitRequestFullscreen();
-  } else if (player.msRequestFullscreen) {
-    player.msRequestFullscreen();
-  }
-}
+// FIXME: Fix full screen not loading
+ 
+// function openFullscreen() {
+//   if (player.requestFullscreen) {
+//     player.requestFullscreen();
+//   } else if (player.webkitRequestFullscreen) {
+//     player.webkitRequestFullscreen();
+//   } else if (player.msRequestFullscreen) {
+//     player.msRequestFullscreen();
+//   }
+// }
 
 function reset() {
   url = "";
