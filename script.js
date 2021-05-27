@@ -3,10 +3,10 @@
 var url;
 var videoId;
 var embedURL;
-var player;
 
 function getVideoURL() {
-  url = prompt("Insert the URL of the video you want to watch");
+  // gets our url and remove any whitespaces the user may have added
+  url = prompt("Insert the URL of the video you want to watch").replace(/\s/g, "");
   validateURL(url);
 }
 
@@ -15,9 +15,9 @@ function getVideoURL() {
 
 function validateURL(url) {
   // checks if link given is from youtube.com 
-  if (url.includes("youtube.com") && url.length > 30) {
+  if (url.includes("youtube.com/watch?v=") || url.includes("youtu.be/") && url.length >= 20) {
     getId(url);
-  } 
+  }
   else {
     alert("Please enter a valid URL");
     reset();
@@ -26,9 +26,13 @@ function validateURL(url) {
 
 // strips the video id from our url 
 function getId(url) {
-  videoId = url.substr(url.search("=") + 1, 11);
+  // the video id is 11 characters long and is always at the end of the URL so we the the substring from the length minus 11
+  videoId = url.substr(url.length - 11, 11)
   loadVideo(videoId);
+  return videoId;
 }
+
+
 
 function loadVideo(videoId) {
   embedURL = `https://www.youtube.com/embed/${videoId}`;
@@ -36,17 +40,37 @@ function loadVideo(videoId) {
   alert("Loading video...");
 }
 
-player = document.getElementById("videoPlayer");
+var player = document.getElementById("videoPlayer");
 
 // FIXME: Fix full screen not loading
- 
+
 // function openFullscreen() {
-//   if (player.requestFullscreen) {
-//     player.requestFullscreen();
-//   } else if (player.webkitRequestFullscreen) {
-//     player.webkitRequestFullscreen();
-//   } else if (player.msRequestFullscreen) {
-//     player.msRequestFullscreen();
+// var doc = window.document;
+//   var docEl = doc.documentElement.getElementById("videoPlayer");
+
+//   var requestFullScreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullscreen;
+//   var cancelFullScreen = doc.exitFullscreen || doc.mozCancelFullScreen || doc.webkitExitFullscreen || doc.msExitFullscreen;
+
+//   if(!doc.fullscreenElement && !doc.mozFullScreenElement && !doc.webkitFullscreenElement && !doc.msFullscreenElement) {
+//     requestFullScreen.call(docEl);
+//   }
+//   else {
+//     cancelFullScreen.call(doc);
+//   }
+// }
+
+
+// Temporary fix for full screen not working
+// var fullScreen = false;
+// function openFullscreen() {
+//   if (fullScreen == false) {
+//   document.getElementById("videoPlayer").width = "100%";
+//   document.getElementById("videoPlayer").height = "100%";
+//   fullScreen = true;
+//   }
+//   else {
+//     document.getElementById("videoPlayer").width = "75%";
+//     document.getElementById("videoPlayer").height = "75%";
 //   }
 // }
 
@@ -55,12 +79,15 @@ function reset() {
   document.getElementById("videoPlayer").src = "";
 }
 
-// function copyToClipboard(embedURL) {
-//   if (embedURL.length >= 10) {
-//   navigator.clipboard.writeText(embedURL);
-//   alert("Copied to Clipboard!");
+
+
+// function shareVideo(videoId) {
+//   if (true) {
+//     navigator.clipboard.writeText("https://youtu.be/" + videoId);
+//     alert("Copied to Clipboard!");
 //   }
 //   else {
 //     alert("Unable to copy to clipboard");
 //   }
+
 // }
