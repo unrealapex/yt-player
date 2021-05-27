@@ -40,24 +40,24 @@ function loadVideo(videoId) {
   alert("Loading video...");
 }
 
-var player = document.getElementById("videoPlayer");
 
 // FIXME: Fix full screen not loading
 
-// function openFullscreen() {
-// var doc = window.document;
-//   var docEl = doc.documentElement.getElementById("videoPlayer");
 
-//   var requestFullScreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullscreen;
-//   var cancelFullScreen = doc.exitFullscreen || doc.mozCancelFullScreen || doc.webkitExitFullscreen || doc.msExitFullscreen;
+function openFullscreen() {
+  var player = document.getElementById("videoPlayer");
+  if (player.requestFullscreen) {
+    player.requestFullscreen();
+  } else if (player.webkitRequestFullscreen) { /* Safari */
+    player.webkitRequestFullscreen();
+  } else if (player.msRequestFullscreen) { /* IE11 */
+    player.msRequestFullscreen();
+  }
+    else {
+      alert("Unable to open video in full screen");
+    }
+}
 
-//   if(!doc.fullscreenElement && !doc.mozFullScreenElement && !doc.webkitFullscreenElement && !doc.msFullscreenElement) {
-//     requestFullScreen.call(docEl);
-//   }
-//   else {
-//     cancelFullScreen.call(doc);
-//   }
-// }
 
 
 // Temporary fix for full screen not working
