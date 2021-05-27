@@ -62,4 +62,3 @@ function reset() {
   document.getElementById("videoPlayer").src = "";
 }
 
-// https://www.youtube.com/watch?v=AVDQEm08vy4
