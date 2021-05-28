@@ -1,40 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Youtube Player</title>
-  <script src="./script.js"></script>
-  <style src="./style.css"></style>
-  <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet">
-</head>
-<body>
-  <h1>Youtube Player</h1>
-  <!-- FIXME: Fix wonky dimensions when using percentatge based measurements -->
-      <iframe id="videoPlayer" width="1000" height="500" allow="fullscreen"></iframe>
-      <button onclick="getVideoURL()" title="Watch Video"><i class="material-icons">play_arrow</i></button>
-      <button onclick="openFullscreen()" title="Full Screen">
-        <i class="material-icons">fullscreen</i>
-      </button> 
-      <!-- <button onclick="copyToClipboard()">Copy To Clipboard</button> -->
-      <!-- <button onclick="share()" title="share link">Share</button>  -->
-      <button onclick="refresh()" title="Refresh"><i class="material-icons">
-        refresh
-      </i></button>
-      <!-- <div><a href="">Contribute</a></div> -->
-      <div>
-        <br>
-        <span>
-          <button title="Open Source on GitHub"onclick="window.open('https://github.com/UnrealApex/yt-player')"><i class="material-icons">code</i></button>
-          <button title="Report a Bug" onclick="window.open('https://github.com/UnrealApex/yt-player/issues')"><i class="material-icons">report_problem</i></button>
-          <button title="Feedback"onclick="window.open('https://github.com/UnrealApex/yt-player/discussions/new');"><i class="material-icons">feedback</i></button>
-    <button title="About" onclick="about()"><i class="material-icons">info</i></button>
-
-  </span>
-      </div>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Youtube Player</title>
+    <script src="./script.js"></script>
+    <style src="./style.css"></style>
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <h1>Youtube Player</h1>
+    <!-- FIXME: Fix wonky dimensions when using percentatge based measurements -->
+    <iframe
+      id="videoPlayer"
+      width="1000"
+      height="500"
+      allow="fullscreen"
+    ></iframe>
+    <button onclick="getVideoURL()" title="Watch Video">
+      <span class="material-icons-outlined">play_arrow</span>
+    </button>
+    <button onclick="openFullscreen()" title="Full Screen">
+      <span class="material-icons-outlined">fullscreen</span>
+    </button>
+    <!-- <button onclick="copyToClipboard()">Copy To Clipboard</button> -->
+    <!-- <button onclick="share()" title="share link">Share</button>  -->
+    <button onclick="refresh()" title="Refresh">
+      <span class="material-icons-outlined"> refresh </span>
+    </button>
+    <!-- <div><a href="">Contribute</a></div> -->
+    <div>
+      <br />
+      <span>
+        <button
+          title="Open Source on GitHub"
+          onclick="window.open('https://github.com/UnrealApex/yt-player')"
+        >
+          <span class="material-icons-outlined"> code </span>
+        </button>
+        <button
+          title="Report a Bug"
+          onclick="window.open('https://github.com/UnrealApex/yt-player/issues')"
+        >
+          <span class="material-icons-outlined">report_problem</span>
+        </button>
+        <button
+          title="Feedback"
+          onclick="window.open('https://github.com/UnrealApex/yt-player/discussions/new');"
+        >
+          <span class="material-icons-outlined">feedback</span>
+        </button>
+        <button title="About" onclick="about()">
+          <span class="material-icons-outlined">info</span>
+        </button>
+      </span>
+    </div>
+  </body>
 </html>
-
