@@ -18,7 +18,7 @@ function validateURL(url) {
     getId(url);
   } else {
     alert("Invalid URL\nTry Again");
-    reset();
+    refresh();
     getVideoURL();
   }
 }  
@@ -35,11 +35,12 @@ function loadVideo(videoId) {
   embedURL = `https://www.youtube.com/embed/${videoId}`;
   document.getElementById("videoPlayer").src = embedURL;
   alert("Loading video...");
+  openFullscreen();
 }
 
 function openFullscreen() {
   var player = document.getElementById("videoPlayer");
-  if (document.getElementById("videoPlayer").src.length >= 20) {
+  if (player.src.length != 0) {
     if (player.requestFullscreen) {
       player.requestFullscreen();
     } else if (player.webkitRequestFullscreen) {
@@ -57,7 +58,7 @@ function openFullscreen() {
   }
 }
 
-function reset() {
+function refresh() {
   url = "";
   document.getElementById("videoPlayer").src = "";
 }
