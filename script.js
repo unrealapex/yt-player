@@ -35,7 +35,6 @@ function loadVideo(videoId) {
   embedURL = `https://www.youtube.com/embed/${videoId}`;
   document.getElementById("videoPlayer").src = embedURL;
   alert("Loading video...");
-  openFullscreen();
 }
 
 function openFullscreen() {
@@ -63,3 +62,6 @@ function refresh() {
   document.getElementById("videoPlayer").src = "";
 }
 
+function about() {
+	alert("Made with love by UnrealApex\nThank you to all those who gave feedback and helped improve this project");
+}
