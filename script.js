@@ -18,7 +18,7 @@ function validateURL(url) {
     getId(url);
   } else {
     alert("Invalid URL\nTry Again");
-    reset();
+    refresh();
     getVideoURL();
   }
 }  
@@ -58,7 +58,7 @@ function openFullscreen() {
   }
 }
 
-function reset() {
+function refresh() {
   url = "";
   document.getElementById("videoPlayer").src = "";
 }

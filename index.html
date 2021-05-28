@@ -7,24 +7,32 @@
   <title>Youtube Player</title>
   <script src="./script.js"></script>
   <style src="./style.css"></style>
+  <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
 </head>
 <body>
   <h1>Youtube Player</h1>
   <!-- FIXME: Fix wonky dimensions when using percentatge based measurements -->
       <iframe id="videoPlayer" width="1000" height="500" allow="fullscreen"></iframe>
-      <button onclick="getVideoURL()">Watch Video</button>
-      <button onclick="openFullscreen()">
-        Full Screen
+      <button onclick="getVideoURL()" title="Watch Video"><i class="material-icons">play_arrow</i></button>
+      <button onclick="openFullscreen()" title="Full Screen">
+        <i class="material-icons">fullscreen</i>
       </button> 
       <!-- <button onclick="copyToClipboard()">Copy To Clipboard</button> -->
       <!-- <button onclick="share()" title="share link">Share</button>  -->
-      <button onclick="reset()" title="Something went wrong? 
-      Click to reset">Reset</button>
+      <button onclick="refresh()" title="Refresh"><i class="material-icons">
+        refresh
+      </i></button>
       <!-- <div><a href="">Contribute</a></div> -->
       <div>
-      <a href="https://github.com/UnrealApex/yt-player" title="Contribute on GitHub" target="_blank"><img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Logo.png" width="75" height="20" alt="Contribute on GitHub"></a>
+        <br>
+        <span>
+      <a href="https://github.com/UnrealApex/yt-player" title="Contribute on GitHub" target="_blank"><i class="material-icons">code</i></a>
+  <a href="https://github.com/UnrealApex/yt-player/issues" target="_blank" title="Report a Problem"><i class="material-icons">report_problem</i</a>
+    <a href="https://github.com/UnrealApex/yt-player/discussions/new"><i class="material-icons">feedback</i></a>
+  </span>
       </div>
-  <a href="https://github.com/UnrealApex/yt-player/discussions/new" target="_blank">Feature Requests</a>
 </body>
 </html>
 
