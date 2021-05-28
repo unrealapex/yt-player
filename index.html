@@ -10,10 +10,11 @@
 </head>
 <body>
   <h1>Youtube Player</h1>
-      <iframe src="" id="videoPlayer" width="75%" height="75%" allow="fullscreen"></iframe>
+  <!-- FIXME: Fix wonky dimensions when using percentatge based measurements -->
+      <iframe id="videoPlayer" width="1000" height="500" allow="fullscreen"></iframe>
       <button onclick="getVideoURL()">Watch Video</button>
-      <button onclick="openFullscreen()" title="Open Video in Full Screen">
-        View In Full Screen
+      <button onclick="openFullscreen()">
+        Full Screen
       </button> 
       <!-- <button onclick="copyToClipboard()">Copy To Clipboard</button> -->
       <!-- <button onclick="share()" title="share link">Share</button>  -->
