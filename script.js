@@ -1,4 +1,3 @@
-// definitions
 var url;
 var videoId;
 var embedURL;
@@ -34,7 +33,6 @@ function getId(url) {
 function loadVideo(videoId) {
     embedURL = `https://www.youtube.com/embed/${videoId}`;
     document.getElementById("videoPlayer").src = embedURL;
-    alert("Loading video...");
 }
 
 function openFullscreen() {
