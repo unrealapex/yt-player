@@ -60,6 +60,6 @@ function refresh() {
     document.getElementById("videoPlayer").src = "";
 }
 
-function about() {
+function info() {
     alert("Made with love by UnrealApex\nThank you to all those who gave feedback and helped improve this project");
 }
