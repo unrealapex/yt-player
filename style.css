@@ -2,16 +2,27 @@
 TODO: add more styling to website*/
 
 span {
-    transition-duration: 0.5s;
-    padding: 0.25rem;
+  transition-duration: 0.5s;
+  padding: 0.25rem;
 }
 
 span :hover {
-    background-color: #ededed;
-    border-radius: 25%;
+  background-color: #ededed;
+  border-radius: 25%;
 }
 
 .material-icons-outlined {
-    font-size: 2rem;
-    
+  font-size: 2rem;
+}
+
+.header {
+  text-align: center;
+  font-size: 105px;
+}
+
+#URL {
+  align-content: center;
+  text-align: center;
+  border-radius: 1.5rem;
+  font-size: 50px;
 }
