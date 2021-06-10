@@ -18,36 +18,40 @@
 <body>
     <h1>YT Player</h1>
     <!-- FIXME: Fix wonky dimensions when using percentatge based measurements -->
-    <iframe id="videoPlayer" width="1000" height="500" allow="fullscreen"></iframe>
-    <span onclick="getVideoURL()" title="Watch Video">
-        <span class="material-icons-outlined">play_arrow</span>
-    </span>
-    <span onclick="openFullscreen()" title="Full Screen">
-        <span class="material-icons-outlined">fullscreen</span>
-    </span>
-    <!-- <span onclick="copyToClipboard()">Copy To Clipboard</span> -->
-    <!-- <span onclick="share()" title="share link">Share</span>  -->
-    <span onclick="refresh()" title="Refresh">
-        <span class="material-icons-outlined"> refresh </span>
-    </span>
-    <!-- <div><a href="">Contribute</a></div> -->
-    <div>
-        <br/>
-        <span>
-            <span title="Open Source on GitHub" onclick="window.open('https://github.com/UnrealApex/yt-player')">
-                <span class="material-icons-outlined"> code </span>
-            </span>
-            <span title="Report a Bug" onclick="window.open('https://github.com/UnrealApex/yt-player/issues')">
-                <span class="material-icons-outlined">report_problem</span>
-            </span>
-            <span title="Feedback" onclick="window.open('https://github.com/UnrealApex/yt-player/discussions/new');">
-                <span class="material-icons-outlined">feedback</span>
-            </span>
-            <span title="info" onclick="info()">
-                <span class="material-icons-outlined">info</span>
-            </span>
-        </span>
+    <div class="flexbox-container">
+        <div class="flexbox-container-child">
+            <div class="panel">
+                <iframe id="videoPlayer" width="1000" height="500" allow="fullscreen"></iframe>
+            </div>
+            <div class="btns">
+                <span onclick="getVideoURL()" title="Watch Video">
+                    <span class="material-icons-outlined">play_arrow</span>
+                </span>
+                <span onclick="openFullscreen()" title="Full Screen">
+                    <span class="material-icons-outlined">fullscreen</span>
+                </span>
+                <!-- <span onclick="copyToClipboard()">Copy To Clipboard</span> -->
+                <!-- <span onclick="share()" title="share link">Share</span>  -->
+                <span onclick="refresh()" title="Refresh">
+                    <span class="material-icons-outlined"> refresh </span>
+                </span>
+                <span title="Open Source on GitHub" onclick="window.open('https://github.com/UnrealApex/yt-player')">
+                    <span class="material-icons-outlined"> code </span>
+                </span>
+                <span title="Report a Bug" onclick="window.open('https://github.com/UnrealApex/yt-player/issues')">
+                    <span class="material-icons-outlined">report_problem</span>
+                </span>
+                <span title="Feedback"
+                    onclick="window.open('https://github.com/UnrealApex/yt-player/discussions/new');">
+                    <span class="material-icons-outlined">feedback</span>
+                </span>
+                <span title="info" onclick="info()">
+                    <span class="material-icons-outlined">info</span>
+                </span>
+            </div>
+        </div>
     </div>
+    <!-- <div><a href="">Contribute</a></div> -->
 </body>
 
 </html>

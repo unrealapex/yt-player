@@ -1,6 +1,25 @@
 /*no css yet 
 TODO: add more styling to website*/
 
+div.flexbox-container {
+    justify-content: center;
+    display: flex;
+}
+
+div.flexbox-container-child {
+    text-align: center;
+}
+
+div.panel {
+    display: inline-table;    
+}
+
+div.btns {
+    justify-content: center;
+    flex-wrap: wrap;
+    display: flex;
+}
+
 span {
     transition-duration: 0.5s;
     padding: 0.25rem;
