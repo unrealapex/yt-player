@@ -12,8 +12,8 @@ function getVideoURL() {
 // TODO: add ability to play youtube playlists
 
 function validateURL(url) {
-    // checks if link given is from youtube.com
-    if (url.includes("youtube.com/watch?v=") || url.includes("youtu.be/") && url.length >= 20) {
+    // checks if link given is from youtube.com using regex
+    if (url.match(/youtube.com|youtu.be\//) && url.length >= 20) {
         getId(url);
     } else {
         alert("Invalid URL\nTry Again");
