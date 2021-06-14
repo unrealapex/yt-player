@@ -17,8 +17,11 @@
 
 <body>
     <h1>YT Player</h1>
+    <p></p>Welcome to YT-Player! <br/><em>To use YT-Player, click the play icon to play a video, the full screen icon to put the video in full screen, and the reload icon to reset the player if something went wrong.</em></p>
     <!-- FIXME: Fix wonky dimensions when using percentatge based measurements -->
     <iframe id="videoPlayer" width="1000" height="500" allow="fullscreen"></iframe>
+    <br/>
+    <div>
     <span onclick="getVideoURL()" title="Watch Video">
         <span class="material-icons-outlined">play_arrow</span>
     </span>
@@ -30,10 +33,9 @@
     <span onclick="refresh()" title="Refresh">
         <span class="material-icons-outlined"> refresh </span>
     </span>
+
     <!-- <div><a href="">Contribute</a></div> -->
-    <div>
-        <br/>
-        <span>
+        <!-- <br/> -->
             <span title="Open Source on GitHub" onclick="window.open('https://github.com/UnrealApex/yt-player')">
                 <span class="material-icons-outlined"> code </span>
             </span>
@@ -46,7 +48,6 @@
             <span title="info" onclick="info()">
                 <span class="material-icons-outlined">info</span>
             </span>
-        </span>
     </div>
 </body>
 

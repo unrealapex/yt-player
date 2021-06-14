@@ -1,5 +1,4 @@
-/*no css yet 
-TODO: add more styling to website*/
+/*TODO: add more styling to website*/
 
 span {
   transition-duration: 0.5s;
@@ -15,14 +14,8 @@ span :hover {
   font-size: 2rem;
 }
 
-.header {
-  text-align: center;
-  font-size: 105px;
+
+#videoPlayer {
+  margin-bottom: 5px;
 }
 
-#URL {
-  align-content: center;
-  text-align: center;
-  border-radius: 1.5rem;
-  font-size: 50px;
-}
