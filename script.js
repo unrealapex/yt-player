@@ -2,9 +2,17 @@ var url;
 var videoId;
 var embedURL;
 
+const videoIdExtractor = /(http(?: s) ?: \/\/(?:m.)?(?:www\.)?)?youtu(?:\.be\/|be\.com\/(?:watch\?(?:feature=youtu\.be\&)?v=|v\/|embed\/|user\/(?:[\w#]+\/)+))([^&#?\n]+)/;;
+const urlValidator = /((https(?:s):\/\/)?(www\.)?)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?&v=))((?:\w|-){11})((?:\&|\?)\S*)?/;
+const whiteSpaceValidator = /\s/g;
 function getVideoURL() {
-    // gets our url and removes any whitespaces the user may have added
-    url = prompt("Insert the URL of the video you want to watch").replace(/\s/g, "");
+    // gets our url
+    url = prompt("Insert the URL of the video you want to watch");
+    var hasWhiteSpace = whiteSpaceValidator.test(url);
+    if (hasWhiteSpace) {
+        url.replace(/\s/g, "");
+    }
+
     validateURL(url);
 }
 
@@ -13,19 +21,18 @@ function getVideoURL() {
 
 function validateURL(url) {
     // checks if link given is from youtube.com using regex
-    if (url.match(/youtube.com|youtu.be\//) && url.length >= 20) {
-        getId(url);
-    } else {
+    var isValidURL = urlValidator.test(url);
+    if (!isValidURL) {
         alert("Invalid URL\nTry Again");
         refresh();
         getVideoURL();
-    }
+    } 
+    getId(url);
 }
 
 // strips the video id from our url
 function getId(url) {
-    // the video id is 11 characters long and is always at the end of the URL so we the the substring from the length minus 11
-    videoId = url.substr(url.length - 11, 11);
+    videoId = videoIdExtractor.exec(url)[2];
     loadVideo(videoId);
     return videoId;
 }
