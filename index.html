@@ -1,57 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Watch Youtube Videos With Quickly With No Advertisements">
-    <meta name="keywords"
-        content="Youtube Player, Youtube, Youtube Video, Video Player, Ad Free Youtube Videos, No Ads">
+    <meta name="keywords" content="Youtube Player, Youtube, Youtube Video, Video Player, Ad Free Youtube Videos, No Ads">
     <meta name="author" content="UnrealApex">
     <title>YT Player</title>
     <script src="./script.js"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet" />
     <link rel="stylesheet" href="style.css">
-</head>
+  </head>
 
-<body>
-    <h1>YT Player</h1>
-    <p></p>Welcome to YT-Player! <br/><em>To use YT-Player, click the play icon to play a video, the full screen icon to put the video in full screen, and the reload icon to reset the player if something went wrong.</em></p>
+  <body>
+    <h1 id="header">YT Player</h1>
+    <!--<p>Welcome to YT-Player! <br /><em>To use YT-Player, click the play icon to play a video, the full screen icon to put the video in full screen, and the reload icon to reset the player if something went wrong.</em></p>
     <!-- FIXME: Fix wonky dimensions when using percentatge based measurements -->
-    <iframe id="videoPlayer" width="1000" height="500" allow="fullscreen"></iframe>
-    <br/>
-    <div>
-    <span onclick="getVideoURL()" title="Watch Video">
+
+    <br />
+    <div class="container">
+    <div class="child">
+    <input id="url" type="url" required placeholder="Enter a Youtube URL"/>
+        <span onclick="getVideoURL()" title="Watch Video">
         <span class="material-icons-round">play_arrow</span>
     </span>
-    <span onclick="openFullscreen()" title="Full Screen">
-        <span class="material-icons-round">fullscreen</span>
-    </span>
-    <!-- <span onclick="copyToClipboard()">Copy To Clipboard</span> -->
-    <!-- <span onclick="share()" title="share link">Share</span>  -->
-    <span onclick="refresh()" title="Refresh">
-        <span class="material-icons-round"> refresh </span>
-    </span>
-    <span onclick="shareVideo()" title="Share Video">
-        <span class="material-icons-round">share</span>
-      </span>
-
-    <!-- <div><a href="">Contribute</a></div> -->
-        <!-- <br/> -->
-            <span title="Open Source on GitHub" onclick="window.open('https://github.com/UnrealApex/yt-player')">
-                <span class="material-icons-round"> code </span>
-            </span>
-            <span title="Report a Bug" onclick="window.open('https://github.com/UnrealApex/yt-player/issues')">
-                <span class="material-icons-round">report_problem</span>
-            </span>
-            <span title="Feedback" onclick="window.open('https://github.com/UnrealApex/yt-player/discussions/new');">
-                <span class="material-icons-round">feedback</span>
-            </span>
-            <span title="info" onclick="info()">
-                <span class="material-icons-round">info</span>
-            </span>
+    <!-- <button id="myBtn"></button> -->
     </div>
-</body>
+    </div>
+
+
+
+    <!-- The Modal -->
+    <div id="modal" class="modal">
+
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span id="close" onclick="close()">&times;</span>
+     <iframe id="videoPlayer" allow="fullscreen"></iframe>
+      </div>
+
+    </div>
+  </body>
 
 </html>
