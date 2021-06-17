@@ -67,6 +67,17 @@ function refresh() {
     document.getElementById("videoPlayer").src = "";
 }
 
+function shareVideo() {
+    if (videoId != undefined) {
+      navigator.clipboard.writeText("https://youtu.be/ " + videoId);
+      alert("Link copied to clipboard");
+    } else {
+      alert("Play a video before trying to share\nTry Again");
+      getVideoURL();
+    }
+  }
+  
+
 function info() {
     alert("Welcome to YT-Player! To use YT-Player, click the play icon to play a video, the full screen icon to put the video in full screen, and the reload icon to reset the player if something went wrong.\n\nMade with love by UnrealApex\nThank you to all those who gave feedback and helped improve this project");
 }
