@@ -109,26 +109,13 @@ var x = document.getElementById("close");
 
 x.onclick = function() {
   modal.style.display = "none";
-  desertVideo();
 }
 
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
   if (event.target == modal) {
-    desertVideo();
 
   }
 }
 
-
-function desertVideo() {
-  if (confirm("Are you sure you want to close the player?\nThe video will close if you do.\nPress OK to continue")) {
-    modal.style.display = "none";
-    refresh();
-  } else {
-    modal.style.display = "block";
-  }
-
-
-}
