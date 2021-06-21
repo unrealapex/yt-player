@@ -17,5 +17,6 @@ span :hover {
 
 #videoPlayer {
   margin-bottom: 5px;
+  border-radius: 5.5px;
 }
 
