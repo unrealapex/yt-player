@@ -70,7 +70,7 @@ function refresh() {
 
 function shareVideo() {
     if (videoId != undefined) {
-      navigator.clipboard.writeText("https://youtu.be/ " + videoId);
+      navigator.clipboard.writeText("https://youtu.be/" + videoId);
       alert("Link copied to clipboard");
     } else {
       alert("Play a video before trying to share\nTry Again");
