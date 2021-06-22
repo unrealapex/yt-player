@@ -21,6 +21,7 @@ function getVideoURL() {
 
 function validateURL(url) {
     // checks if link given is from youtube.com using regex
+    // TODO: add logic to check if url links to existing video
     var isValidURL = urlValidator.test(url);
     if (!isValidURL && url.length != 0) {
         alert("Invalid URL\nTry Again");
@@ -81,8 +82,3 @@ function shareVideo() {
 function info() {
     alert("Welcome to YT-Player! To use YT-Player, click the play icon to play a video, the full screen icon to put the video in full screen, and the reload icon to reset the player if something went wrong.\n\nMade with love by UnrealApex\nThank you to all those who gave feedback and helped improve this project");
 }
-
-function help() {
-    alert("Welcome to YT-Player! To use YT-Player, click the play icon to play a video, the full screen icon to put the video in full screen, and the reload icon to reset the player if something went wrong.");
-}
-

@@ -1,4 +1,4 @@
-/*TODO: add more styling to website*/
+/* TODO: add more styling to website */
 
 span {
   transition-duration: 0.5s;
@@ -11,12 +11,87 @@ span :hover {
 }
 
 .material-icons-round {
-  font-size: 2rem;
+  font-size: 2.5rem;
+  
 }
 
 
 #videoPlayer {
   margin-bottom: 5px;
   border-radius: 5.5px;
+  display: inline-table;
 }
 
+
+div.container {
+  justify-content: center;
+  display: flex;
+}
+
+div.child {
+  text-align: center;
+}
+
+div.buttons {
+  justify-content: center;
+  flex-wrap: wrap;
+  display: flex;
+
+}
+
+
+h1 {
+  text-align: center;
+  animation-name: rgb;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+
+
+@keyframes rgb {
+  0% {
+    color: #f44336;
+  }
+
+  25% {
+    color: #ffc107;
+  }
+
+  50% {
+    color: #4caf50;
+  }
+
+  75% {
+    color: #3f51b5;
+  }
+
+  100% {
+    color: #f44336;
+  }
+}
+
+@keyframes rgb-bg {
+  0% {
+    background: #f44336;
+  }
+
+  25% {
+    background: #ffc107;
+  }
+
+  50% {
+    background: #4caf50;
+  }
+
+  75% {
+    background: #3f51b5;
+  }
+
+  100% {
+    background: #f44336;
+  }
+}
+
+/* rgb code modified from Monkeytype rgb theme https://github.com/Miodec/monkeytype/blob/590a40b4a908851e7e712b768e7eab50b3866018/static/themes/rgb.css */
