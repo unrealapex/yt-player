@@ -1,4 +1,5 @@
-# yt-player
+![yt-player](https://user-images.githubusercontent.com/79121360/123011395-1f052f80-d375-11eb-8a32-f01148fb416b.gif)
+
 A youtube player that allows you to play your videos with minimized load time and no advertisements* 
 
 TOC
