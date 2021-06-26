@@ -1,25 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Watch Youtube Videos With Quickly With No Advertisements">
-    <meta name="keywords" content="Youtube Player, Youtube, Youtube Video, Video Player, Ad Free Youtube Videos, No Ads">
-    <meta name="author" content="UnrealApex">
+    <meta
+      name="description"
+      content="Watch Youtube Videos With Quickly With No Advertisements"
+    />
+    <meta
+      name="keywords"
+      content="Youtube Player, Youtube, Youtube Video, Video Player, Ad Free Youtube Videos, No Ads"
+    />
+    <meta name="author" content="UnrealApex" />
     <title>YT Player</title>
     <script src="./script.js"></script>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet" />
-    <link rel="stylesheet" href="style.css">
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons+Round"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
   </head>
 
   <body>
     <h1>YT Player</h1>
     <div class="container">
       <div class="child">
-<!-- TODO: make iframe size responsive -->
-        <iframe id="videoPlayer" width="1250" height="500" allow="fullscreen"></iframe>
+        <!-- TODO: make iframe size responsive -->
+        <iframe
+          id="videoPlayer"
+          width="1250"
+          height="500"
+          allow="fullscreen"
+        ></iframe>
 
         <div class="buttons">
           <span onclick="getVideoURL()" title="Watch Video">
@@ -39,13 +52,22 @@
 
           <!-- <div><a href="">Contribute</a></div> -->
           <!-- <br/> -->
-          <span title="Open Source on GitHub" onclick="window.open('https://github.com/UnrealApex/yt-player')">
+          <span
+            title="Open Source on GitHub"
+            onclick="window.open('https://github.com/UnrealApex/yt-player')"
+          >
             <span class="material-icons-round"> code </span>
           </span>
-          <span title="Report a Bug" onclick="window.open('https://github.com/UnrealApex/yt-player/issues')">
+          <span
+            title="Report a Bug"
+            onclick="window.open('https://github.com/UnrealApex/yt-player/issues')"
+          >
             <span class="material-icons-round">report_problem</span>
           </span>
-          <span title="Feedback" onclick="window.open('https://github.com/UnrealApex/yt-player/discussions/new');">
+          <span
+            title="Feedback"
+            onclick="window.open('https://github.com/UnrealApex/yt-player/discussions/new');"
+          >
             <span class="material-icons-round">feedback</span>
           </span>
           <span title="info" onclick="info()">
@@ -55,5 +77,4 @@
       </div>
     </div>
   </body>
-
 </html>

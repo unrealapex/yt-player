@@ -12,16 +12,13 @@ span :hover {
 
 .material-icons-round {
   font-size: 2.5rem;
-  
 }
-
 
 #videoPlayer {
   margin-bottom: 5px;
   border-radius: 5.5px;
   display: inline-table;
 }
-
 
 div.container {
   justify-content: center;
@@ -36,9 +33,7 @@ div.buttons {
   justify-content: center;
   flex-wrap: wrap;
   display: flex;
-
 }
-
 
 h1 {
   text-align: center;
@@ -47,8 +42,6 @@ h1 {
   animation-iteration-count: infinite;
   animation-timing-function: linear;
 }
-
-
 
 @keyframes rgb {
   0% {
