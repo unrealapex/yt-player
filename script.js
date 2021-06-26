@@ -23,12 +23,14 @@ function validateURL(url) {
     // checks if link given is from youtube.com using regex
     // TODO: add logic to check if url links to existing video
     var isValidURL = urlValidator.test(url);
-    if (!isValidURL && url.length != 0) {
+    if (!isValidURL && url.length != 0 && url !== undefined) {
         alert("Invalid URL\nTry Again");
         refresh();
         getVideoURL();
-    } 
+    }
+    else { 
     getId(url);
+    }
 }
 
 // strips the video id from our url
