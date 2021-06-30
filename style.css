@@ -40,6 +40,9 @@ div.buttons {
 h1 {
   font-family: 'Roboto Mono', monospace;
   text-align: center;
+}
+
+h1:hover {
   animation-name: rgb;
   animation-duration: 5s;
   animation-iteration-count: infinite;
