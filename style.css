@@ -7,7 +7,7 @@ span {
   padding: 0.25rem;
 }
 
-span :hover {
+span:hover {
   background-color: #ededed;
   border-radius: 25%;
 }
