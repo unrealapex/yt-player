@@ -96,3 +96,9 @@ function info() {
     "Welcome to YT-Player! To use YT-Player, click the play icon to play a video, the full screen icon to put the video in full screen, and the reload icon to reset the player if something went wrong.\n\nMade with love by UnrealApex\nThank you to all those who gave feedback and helped improve this project"
   );
 }
+
+
+function openVideoInNewTab() {
+  // a little easter egg that enables users to open the video in a new tab for the purpose of liking/disliking, etc... 
+   window.open(url);
+ }
