@@ -1,3 +1,5 @@
+var url;
+var videoId;
 var isLoaded = false;
 
 // regular expressions used in the program, I highly suggest using regex101.com for a detailed explaination of the expression's inner workings 
@@ -11,7 +13,7 @@ const urlValidator =
 const whiteSpaceValidator = /\s/g;
 function getVideoURL() {
   // gets our url from a prompt
-  var url = prompt("Insert the URL of the video you want to watch");
+  url = prompt("Insert the URL of the video you want to watch");
   var hasWhiteSpace = whiteSpaceValidator.test(url);
   if (hasWhiteSpace) {
     url.replace(/\s/g, "");
@@ -39,7 +41,7 @@ function validateURL(url) {
 
 function getId(url) {
   // strips the video id from our url
-  var videoId = videoIdExtractor.exec(url)[2];
+  videoId = videoIdExtractor.exec(url)[2];
   loadVideo(videoId);
   return videoId;
 }
@@ -94,4 +96,13 @@ function info() {
   alert(
     "Welcome to YT-Player! To use YT-Player, click the play icon to play a video, the full screen icon to put the video in full screen, and the reload icon to reset the player if something went wrong.\n\nMade with love by UnrealApex\nThank you to all those who gave feedback and helped improve this project"
   );
+}
+
+function openVideoInNewTab() {
+  // enables users to open the video in a new tab for the purpose of liking/disliking, etc...
+  if (isLoaded) {
+    window.open(url);
+  } else {
+    console.log("Unable to open video in new tab");
+  }
 }
