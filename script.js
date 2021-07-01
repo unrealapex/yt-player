@@ -99,9 +99,10 @@ function info() {
 }
 
 function openVideoInNewTab() {
-  // enables users to open the video in a new tab for the purpose of liking/disliking, etc...
+  // enables users to open the video in a window for the purpose of liking/disliking, etc...
   if (isLoaded) {
-    window.open(url);
+    // TODO: change to responsive size
+    window.open(url, '_blank', 'location=yes, height=950, width=1000, scrollbars=yes, status=yes');
   } else {
     alert("Unable to open video in new tab\nEnter a url first");
     getVideoURL();
