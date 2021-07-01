@@ -1,6 +1,4 @@
-var url;
-var videoId;
-var embedURL;
+var isLoaded = false;
 
 // regular expressions used in the program, I highly suggest using regex101.com for a detailed explaination of the expression's inner workings 
 // gets the video id from the url inputted by the user
@@ -13,7 +11,7 @@ const urlValidator =
 const whiteSpaceValidator = /\s/g;
 function getVideoURL() {
   // gets our url from a prompt
-  url = prompt("Insert the URL of the video you want to watch");
+  var url = prompt("Insert the URL of the video you want to watch");
   var hasWhiteSpace = whiteSpaceValidator.test(url);
   if (hasWhiteSpace) {
     url.replace(/\s/g, "");
@@ -41,19 +39,19 @@ function validateURL(url) {
 
 function getId(url) {
   // strips the video id from our url
-  videoId = videoIdExtractor.exec(url)[2];
+  var videoId = videoIdExtractor.exec(url)[2];
   loadVideo(videoId);
   return videoId;
 }
 
 function loadVideo(videoId) {
   // sets the video player iframe's url to a youtube embed url(explains why there are no video advertisements and why it is completely legal to opperate this website)
-  embedURL = `https://www.youtube.com/embed/${videoId}`;
-  document.getElementById("videoPlayer").src = embedURL;
+  document.getElementById("videoPlayer").src = `https://www.youtube.com/embed/${videoId}`;
+  isLoaded = true;
 }
 
 function openFullscreen() {
-  // puts the play in full screen mode
+  // puts the player in full screen mode
   var player = document.getElementById("videoPlayer");
   if (player.src.length != 0) {
     if (player.requestFullscreen) {
@@ -77,10 +75,11 @@ function refresh() {
   // resets the player if the user entered an invalid url or ran into another problem
   url = "";
   document.getElementById("videoPlayer").src = "";
+  isLoaded = false;
 }
 
 function shareVideo() {
-  // copies shortend youtube url to the user's clipboard
+  // copies shortened youtube url to the user's clipboard
   if (videoId != undefined) {
     navigator.clipboard.writeText("https://youtu.be/" + videoId);
     alert("Link copied to clipboard");
@@ -99,6 +98,10 @@ function info() {
 
 
 function openVideoInNewTab() {
-  // a little easter egg that enables users to open the video in a new tab for the purpose of liking/disliking, etc... 
+  // enables users to open the video in a new tab for the purpose of liking/disliking, etc... 
+  if (isLoaded) {
    window.open(url);
+  } else {
+    console.log("Unable to open video in new tab");
+  }
  }
