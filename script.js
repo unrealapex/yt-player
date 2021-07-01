@@ -103,6 +103,7 @@ function openVideoInNewTab() {
   if (isLoaded) {
     window.open(url);
   } else {
-    console.log("Unable to open video in new tab");
+    alert("Unable to open video in new tab\nEnter a url first");
+    getVideoURL();
   }
 }
