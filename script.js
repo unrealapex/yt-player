@@ -100,14 +100,14 @@ function info() {
 
 
 function openVideoInNewTab() {
-  // enables users to open the video in a window for the purpose of liking/disliking, etc...
+  // opens a window that takes the user to the video on the youtube site for the purpose of liking or disliking the video
   if (isLoaded) {
     // TODO: change to responsive size
     let w = 1000;
     let h = 900;
     var left = (screen.width/2)-(w/2);
     var top = (screen.height/2)-(h/2);
-    window.open(url, document.title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left)
+    window.open("https://www.youtube.com/watch?v=" + videoId, document.title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left)
   } else {
     alert("Unable to open video in new tab\nEnter a url first");
     getVideoURL();
