@@ -11,6 +11,7 @@ TOC
 - Minimalist Design
 - Simple interface
 - Fast Loading Times
+- Videos watched won't be on your youtube watch history
 - Ad Free Video Watching *
 
 # From Idea To Reality 
