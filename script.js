@@ -47,8 +47,8 @@ function getId(url) {
 }
 
 function loadVideo(videoId) {
-  // sets the video player iframe's url to a youtube embed url(explains why there are no video advertisements and why it is completely legal to opperate this website)
-  document.getElementById("videoPlayer").src = `https://www.youtube.com/embed/${videoId}`;
+  // sets the video player iframe's url to a youtube privacy-enhanced url(video doesn't show up on user's youtube search history)
+  document.getElementById("videoPlayer").src = `https://www.youtube-nocookie.com/embed/${videoId}`;
   isLoaded = true;
 }
 
