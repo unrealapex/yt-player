@@ -55,7 +55,7 @@ function loadVideo(videoId) {
 function openFullscreen() {
   // puts the player in full screen mode
   var player = document.getElementById("videoPlayer");
-  if (player.src.length != 0) {
+  if (player.src.length != 0 && isLoaded) {
     if (player.requestFullscreen) {
       player.requestFullscreen();
     } else if (player.webkitRequestFullscreen) {
@@ -74,7 +74,7 @@ function openFullscreen() {
 }
 
 function refresh() {
-  // resets the player if the user entered an invalid url or ran into another problem
+  // allows the user to reset the player if they entered an invalid url or ran into another problem
   url = "";
   document.getElementById("videoPlayer").src = "";
   isLoaded = false;
