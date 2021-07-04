@@ -11,6 +11,7 @@ const urlValidator =
   /((https(?:s)?:\/\/)?(www\.)?)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?&v=))((?:\w|-){11})((?:\&|\?)\S*)?/;
 // expression to test if there are any whitspaces in our url
 const whiteSpaceValidator = /\s/g;
+
 function getVideoURL() {
   // gets our url from a prompt
   url = prompt("Insert the URL of the video you want to watch");
