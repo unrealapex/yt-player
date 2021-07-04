@@ -2,6 +2,10 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500;700&display=swap');
 
+body {
+  font-family: 'Roboto Mono', monospace;
+}
+
 span {
   transition-duration: 0.5s;
   padding: 0.25rem;
@@ -38,7 +42,6 @@ div.buttons {
 }
 
 h1 {
-  font-family: 'Roboto Mono', monospace;
   text-align: center;
   animation-name: rgb;
   animation-duration: 5s;
