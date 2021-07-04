@@ -48,7 +48,22 @@ function getId(url) {
 
 function loadVideo(videoId) {
   // sets the video player iframe's url to a youtube privacy-enhanced url(video doesn't show up on user's youtube search history)
-  document.getElementById("videoPlayer").src = `https://www.youtube-nocookie.com/embed/${videoId}`;
+  // sets the video player iframe's url to a youtube embed url
+  // document.getElementById("videoPlayer").src = `https://www.youtube-nocookie.com/embed/${videoId}`;
+  if (document.getElementById("incognito-mode").checked) {
+    document.getElementById("videoPlayer").src = `https://www.youtube-nocookie.com/embed/${videoId}`;
+
+  } else {
+    document.getElementById("videoPlayer").src = `https://www.youtube.com/embed/${videoId}`;
+  }
+
+  if (document.getElementById("full-screen-playback-by-default").checked) {
+    openFullscreen();
+  }
+  if (document.getElementById("open-video-in-new-tab-by-default").checked) {
+    window.open(url);
+  }
+
   isLoaded = true;
 }
 
@@ -111,5 +126,42 @@ function openVideoInNewTab() {
   } else {
     alert("Unable to open video in new tab\nEnter a url first");
     getVideoURL();
+  }
+}
+
+
+function settings() {
+  // TODO: use cookies to save preferances
+  var modal = document.getElementById("myModal");
+  modal.style.display = "block";
+}
+
+
+// Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  console.log("closed modal with x");
+  modal.style.display = "none";
+
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    console.log("closed modal ");
+    modal.style.display = "none";
   }
 }
