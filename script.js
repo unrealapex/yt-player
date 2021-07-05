@@ -2,7 +2,7 @@ var url;
 var videoId;
 var isLoaded = false;
 
-// regular expressions used in the program, I highly suggest using regex101.com for a detailed explaination of the expression's inner workings 
+// regular expressions used in the program, I highly suggest using regex101.com for a detailed explaination of the expression's inner workings
 // gets the video id from the url inputted by the user
 const videoIdExtractor =
   /(http(?: s) ?: \/\/(?:m.)?(?:www\.)?)?youtu(?:\.be\/|be\.com\/(?:watch\?(?:feature=youtu\.be\&)?v=|v\/|embed\/|user\/(?:[\w#]+\/)+))([^&#?\n]+)/;
@@ -38,7 +38,6 @@ function validateURL(url) {
   }
 }
 
-
 function getId(url) {
   // strips the video id from our url
   videoId = videoIdExtractor.exec(url)[2];
@@ -51,10 +50,13 @@ function loadVideo(videoId) {
   // sets the video player iframe's url to a youtube embed url
   // document.getElementById("videoPlayer").src = `https://www.youtube-nocookie.com/embed/${videoId}`;
   if (document.getElementById("incognito-mode").checked) {
-    document.getElementById("videoPlayer").src = `https://www.youtube-nocookie.com/embed/${videoId}`;
-
+    document.getElementById(
+      "videoPlayer"
+    ).src = `https://www.youtube-nocookie.com/embed/${videoId}`;
   } else {
-    document.getElementById("videoPlayer").src = `https://www.youtube.com/embed/${videoId}`;
+    document.getElementById(
+      "videoPlayer"
+    ).src = `https://www.youtube.com/embed/${videoId}`;
   }
 
   if (document.getElementById("full-screen-playback-by-default").checked) {
@@ -113,22 +115,31 @@ function info() {
   );
 }
 
-
 function openVideoInNewTab() {
   // opens a window that takes the user to the video on the youtube site for the purpose of liking or disliking the video
   if (isLoaded) {
     // TODO: change to responsive size
     let w = 1000;
     let h = 900;
-    var left = (screen.width/2)-(w/2);
-    var top = (screen.height/2)-(h/2);
-    window.open("https://www.youtube.com/watch?v=" + videoId, document.title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left)
+    var left = screen.width / 2 - w / 2;
+    var top = screen.height / 2 - h / 2;
+    window.open(
+      "https://www.youtube.com/watch?v=" + videoId,
+      document.title,
+      "toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=" +
+        w +
+        ", height=" +
+        h +
+        ", top=" +
+        top +
+        ", left=" +
+        left
+    );
   } else {
     alert("Unable to open video in new tab\nEnter a url first");
     getVideoURL();
   }
 }
-
 
 function settings() {
   // TODO: use cookies to save preferances
