@@ -42,7 +42,9 @@ div.buttons {
 }
 
 h1,
-h2 {
+h2, 
+.title
+ {
   text-align: center;
   animation-name: rgb;
   animation-duration: 5s;
