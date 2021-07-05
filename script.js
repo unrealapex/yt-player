@@ -46,22 +46,25 @@ function getId(url) {
 }
 
 function loadVideo(videoId) {
-  // sets the video player iframe's url to a youtube privacy-enhanced url(video doesn't show up on user's youtube search history)
-  // sets the video player iframe's url to a youtube embed url
-  // document.getElementById("videoPlayer").src = `https://www.youtube-nocookie.com/embed/${videoId}`;
+  // loads the video
+  // checks if settings have been enabled, if true, do something else
+  // incognito mode
   if (document.getElementById("incognito-mode").checked) {
+    // sets the video player iframe's url to a youtube privacy-enhanced url(video doesn't show up on user's youtube search history) if the user has enabled the setting for it
     document.getElementById(
       "videoPlayer"
     ).src = `https://www.youtube-nocookie.com/embed/${videoId}`;
   } else {
+      // sets the video player iframe's url to a youtube embed url (default)
     document.getElementById(
       "videoPlayer"
     ).src = `https://www.youtube.com/embed/${videoId}`;
   }
-
+  // full screen by default
   if (document.getElementById("full-screen-playback-by-default").checked) {
     openFullscreen();
   }
+  // open video in new tab by default
   if (document.getElementById("open-video-in-new-tab-by-default").checked) {
     window.open(url);
   }
@@ -70,7 +73,7 @@ function loadVideo(videoId) {
 }
 
 function openFullscreen() {
-  // puts the player in full screen mode
+  // puts the player in full screen
   var player = document.getElementById("videoPlayer");
   if (player.src.length != 0) {
     if (player.requestFullscreen) {
@@ -91,7 +94,7 @@ function openFullscreen() {
 }
 
 function refresh() {
-  // resets the player if the user entered an invalid url or ran into another problem
+  //  allows the user to reset the player if they entered an invalid url or encountered another problem
   url = "";
   document.getElementById("videoPlayer").src = "";
   isLoaded = false;
@@ -109,14 +112,14 @@ function shareVideo() {
 }
 
 function info() {
-  // help if the user is stuck or wants to get info
+  // help if the user is stuck or wants info
   alert(
     "Welcome to YT-Player! To use YT-Player, click the play icon to play a video, the full screen icon to put the video in full screen, and the reload icon to reset the player if something went wrong.\n\nMade with love by UnrealApex\nThank you to all those who gave feedback and helped improve this project"
   );
 }
 
 function openVideoInNewTab() {
-  // opens a window that takes the user to the video on the youtube site for the purpose of liking or disliking the video
+  // opens a window that takes the user to the video on the youtube site for the purpose of liking or disliking videos
   if (isLoaded) {
     // TODO: change to responsive size
     let w = 1000;
@@ -142,13 +145,15 @@ function openVideoInNewTab() {
 }
 
 function settings() {
-  // TODO: use cookies to save preferances
+  // opens settings modal
+  // TODO: use cookies to save preferances if user exits site
   let modal = document.getElementById("modal");
   modal.style.display = "block";
 }
 
 
 window.onclick = function(event) {
+  // if the modal is open and the user clicks outside of it, hide it
   if (event.target == document.getElementById("modal")) {
     document.getElementById("modal").style.display = "none";
   }
