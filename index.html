@@ -88,14 +88,11 @@
     <!-- <button id="myBtn">Open Modal</button> -->
 
     <!-- The Modal -->
-    <div
-      id="myModal"
-      onclick='document.getElementById("myModal").style.display = "none";'
-      class="modal"
-    >
+    <div id="myModal" class="modal">
       <!-- Modal content -->
       <div class="modal-content">
         <span
+          style="background-color: #ffffff"
           class="close"
           onclick='document.getElementById("myModal").style.display = "none";'
           id="x"
@@ -107,10 +104,7 @@
           <label for="full-screen-playback-by-default"
             >Play Videos In Full Screen By Default</label
           >
-          <p>
-            When playing a video, it will always to into full screen when
-            enabled
-          </p>
+          <p>Videos will automatically play in full screen</p>
           <input type="checkbox" id="full-screen-playback-by-default" />
         </div>
 
@@ -119,18 +113,17 @@
             >Video Automatically Opens In New Tab By Default</label
           >
           <p>
-            This feature makes it easy to like and or subscribe for videos when
-            enabled
+            Opens URL given when video loads so you can like/dislike, subscribe,
+            etc....
           </p>
           <input type="checkbox" id="open-video-in-new-tab-by-default" />
         </div>
         <div>
           <label for="Incognito Mode">Incognito Mode </label>
           <p>
-            This feature allows you to play videos without them being ascoiated
-            with your Google account(videos don't appear on your watch history
-            and allowed playback of videos usually blocked by Youtube restricted
-            mode)
+            With Incognito Mode enabled, you will be able to load videos
+            privately(videos won't show up on your Youtube watch history and be
+            associated with your Google account).
           </p>
           <input type="checkbox" id="incognito-mode" />
         </div>
