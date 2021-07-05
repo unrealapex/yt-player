@@ -115,14 +115,14 @@ h2 {
   /* Black w/ opacity */
 }
 
-input[type="checkbox"] + label {
+/* input[type="checkbox"] + label {
   color: #f00;
   font-style: italic;
 }
 input[type="checkbox"]:checked + label {
   color: black;
   font-style: normal;
-}
+} */
 
 .modal {
   display: none; /* Hidden by default */
