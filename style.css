@@ -6,12 +6,12 @@ body {
   font-family: "Roboto Mono", monospace;
 }
 
-span {
+i {
   transition-duration: 0.5s;
   padding: 0.25rem;
 }
 
-span:hover {
+i:hover {
   background-color: #ededed;
   border-radius: 25%;
 }
