@@ -145,7 +145,6 @@ function settings() {
   // TODO: use cookies to save preferances
   let modal = document.getElementById("modal");
   modal.style.display = "block";
-  alert("Warning: settings changed will not save once you exit the site");
 }
 
 
