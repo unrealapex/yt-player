@@ -33,59 +33,57 @@
           height="500"
           allow="fullscreen"
         ></iframe>
-
+<!-- buttons -->
         <div class="buttons">
           <span onclick="getVideoURL()" title="Watch Video">
-            <span class="material-icons-round">play_arrow</span>
+            <i class="material-icons-round">play_arrow</i>
           </span>
           <span onclick="openFullscreen()" title="Full Screen">
-            <span class="material-icons-round">fullscreen</span>
+            <i class="material-icons-round">fullscreen</i>
           </span>
-          <!-- <span onclick="copyToClipboard()">Copy To Clipboard</span> -->
-          <!-- <span onclick="share()" title="share link">Share</span>  -->
+
           <span onclick="refresh()" title="Refresh">
-            <span class="material-icons-round">refresh</span>
+            <i class="material-icons-round">refresh</i>
           </span>
           <span onclick="shareVideo()" title="Copy video url to clipboard">
-            <span class="material-icons-round">content_copy</span>
+            <i class="material-icons-round">content_copy</i>
           </span>
           <span onclick="openVideoInNewTab()">
-            <span class="material-icons-round" title="Open video in window"
+            <i class="material-icons-round" title="i video in window"
               >open_in_new</span
             >
           </span>
           <span onclick="settings()">
-            <span class="material-icons-round">settings</span>
+            <i class="material-icons-round">settings</i>
           </span>
-
-          <!-- <div><a href="">Contribute</a></div> -->
-          <!-- <br/> -->
           <span
             title="Open Source on GitHub"
             onclick="window.open('https://github.com/UnrealApex/yt-player')"
           >
-            <span class="material-icons-round"> code </span>
+            <i class="material-icons-round"> code </i>
           </span>
           <span
             title="Report a Bug"
             onclick="window.open('https://github.com/UnrealApex/yt-player/issues')"
           >
-            <span class="material-icons-round">report_problem</span>
+            <i class="material-icons-round">report_problem</i>
           </span>
           <span
             title="Feedback"
             onclick="window.open('https://github.com/UnrealApex/yt-player/discussions/new');"
           >
-            <span class="material-icons-round">feedback</span>
+            <i class="material-icons-round">feedback</i>
           </span>
           <span title="info" onclick="info()">
-            <span class="material-icons-round">info</span>
+            <i class="material-icons-round">info</i>
           </span>
         </div>
       </div>
     </div>
 
     <!-- <button id="myBtn">Open Modal</button> -->
+
+<!-- settings modal -->
 
     <!-- The Modal -->
     <div id="myModal" class="modal">
@@ -102,9 +100,9 @@
         <hr />
         <div>
           <label for="full-screen-playback-by-default"
-            >Play Videos In Full Screen By Default</label
+            >Load Videos In Full Screen By Default</label
           >
-          <p>Videos will automatically play in full screen</p>
+          <p>Videos automatically play in full screen</p>
           <input type="checkbox" id="full-screen-playback-by-default" />
         </div>
 
@@ -122,8 +120,7 @@
           <label for="Incognito Mode">Incognito Mode </label>
           <p>
             With Incognito Mode enabled, you will be able to load videos
-            privately(videos won't show up on your Youtube watch history and be
-            associated with your Google account).
+            privately(any videos you play won't appear in your YouTube watch history or influence your browsing experience on YouTube).
           </p>
           <input type="checkbox" id="incognito-mode" />
         </div>
