@@ -1,5 +1,5 @@
 # [yt player](https://unrealapex.github.io/yt-player/)
-A youtube player that allows you to play your videos with minimized load time and no video ads
+##### A youtube player that allows you to play your videos with minimized load time and no video ads
 ---- 
 # Features
 - Minimalist Design
