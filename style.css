@@ -41,6 +41,16 @@ div.buttons {
   display: flex;
 }
 
+.help-box {
+  position: relative;
+}
+
+.help {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
 h1 {
   text-align: center;
   animation-name: rgb;

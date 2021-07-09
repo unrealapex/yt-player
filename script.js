@@ -92,7 +92,7 @@ function shareVideo() {
   }
 }
 
-function info() {
+function help() {
   // help if the user is stuck or wants to get info
   alert(
     "Welcome to YT-Player! To use YT-Player, click the play icon to play a video, the full screen icon to put the video in full screen, and the reload icon to reset the player if something went wrong.\n\nMade with love by UnrealApex\nThank you to all those who gave feedback and helped improve this project"
