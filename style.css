@@ -6,6 +6,10 @@ body {
   font-family: "Roboto Mono", monospace;
 }
 
+body {
+  font-family: 'Roboto Mono', monospace;
+}
+
 span {
   transition-duration: 0.5s;
   padding: 0.25rem;
@@ -41,10 +45,20 @@ div.buttons {
   display: flex;
 }
 
+
+.help-box {
+  position: relative;
+}
+
+.help {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
 h1,
 h2, 
-.title
- {
+.title {
   text-align: center;
   animation-name: rgb;
   animation-duration: 5s;

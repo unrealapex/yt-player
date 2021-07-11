@@ -9,9 +9,10 @@
             "command": "echo Hello"
         },
         {
-            "label": "Server",
+            // make sure Python is installed or you will get an error when attempting to run this task
+            "label": "server",
             "type": "shell",
-            "command": "python3 -m http.server 3000",
+            "command": "python3 -m http.server 5000",
             "problemMatcher": []
         }
     ]

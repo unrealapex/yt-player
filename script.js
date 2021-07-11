@@ -11,10 +11,11 @@ const urlValidator =
   /((https(?:s)?:\/\/)?(www\.)?)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?&v=))((?:\w|-){11})((?:\&|\?)\S*)?/;
 // expression to test if there are any whitspaces in our url
 const whiteSpaceValidator = /\s/g;
+
 function getVideoURL() {
   // gets our url from a prompt
-  url = prompt("Insert the URL of the video you want to watch");
   var hasWhiteSpace = whiteSpaceValidator.test(url);
+  url = prompt("Insert the URL of the video you want to watch");
   if (hasWhiteSpace) {
     url.replace(/\s/g, "");
   }
@@ -29,7 +30,7 @@ function validateURL(url) {
   // checks if link given is from youtube.com using regex
   // TODO: add logic to check if url links to existing video
   var isValidURL = urlValidator.test(url);
-  if (!isValidURL && url.length != 0 && url !== undefined) {
+  if (!isValidURL && url.length !== 0 && url !== undefined) {
     alert("Invalid URL\nTry Again");
     refresh();
     getVideoURL();
@@ -75,7 +76,7 @@ function loadVideo(videoId) {
 function openFullscreen() {
   // puts the player in full screen
   var player = document.getElementById("videoPlayer");
-  if (player.src.length != 0) {
+  if (player.src.length !== 0 && isLoaded) {
     if (player.requestFullscreen) {
       player.requestFullscreen();
     } else if (player.webkitRequestFullscreen) {
@@ -95,6 +96,7 @@ function openFullscreen() {
 
 function refresh() {
   //  allows the user to reset the player if they entered an invalid url or encountered another problem
+
   url = "";
   document.getElementById("videoPlayer").src = "";
   isLoaded = false;
@@ -102,7 +104,7 @@ function refresh() {
 
 function shareVideo() {
   // copies shortened youtube url to the user's clipboard
-  if (videoId != undefined) {
+  if (videoId !== undefined) {
     navigator.clipboard.writeText("https://youtu.be/" + videoId);
     alert("Link copied to clipboard");
   } else {
@@ -112,7 +114,8 @@ function shareVideo() {
 }
 
 function help() {
-  // help if the user is stuck or wants info
+  // help if the user is stuck or wants info about the site
+
   alert(
     "Welcome to YT-Player! To use YT-Player, click the play icon to play a video, the full screen icon to put the video in full screen, and the reload icon to reset the player if something went wrong.\n\nMade with love by UnrealApex\nThank you to all those who gave feedback and helped improve this project"
   );
