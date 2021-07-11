@@ -111,7 +111,7 @@ function shareVideo() {
   }
 }
 
-function info() {
+function help() {
   // help if the user is stuck or wants info
   alert(
     "Welcome to YT-Player! To use YT-Player, click the play icon to play a video, the full screen icon to put the video in full screen, and the reload icon to reset the player if something went wrong.\n\nMade with love by UnrealApex\nThank you to all those who gave feedback and helped improve this project"
@@ -119,25 +119,14 @@ function info() {
 }
 
 function openVideoInNewTab() {
-  // opens a window that takes the user to the video on the youtube site for the purpose of liking or disliking videos
+  // opens a window that takes the user to the video on the youtube site for the purpose of liking or disliking the video
   if (isLoaded) {
     // TODO: change to responsive size
     let w = 1000;
     let h = 900;
-    var left = screen.width / 2 - w / 2;
-    var top = screen.height / 2 - h / 2;
-    window.open(
-      "https://www.youtube.com/watch?v=" + videoId,
-      document.title,
-      "toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=" +
-        w +
-        ", height=" +
-        h +
-        ", top=" +
-        top +
-        ", left=" +
-        left
-    );
+    var left = (screen.width/2)-(w/2);
+    var top = (screen.height/2)-(h/2);
+    window.open("https://www.youtube.com/watch?v=" + videoId, document.title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
   } else {
     alert("Unable to open video in new tab\nEnter a url first");
     getVideoURL();
