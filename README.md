@@ -1,6 +1,6 @@
 # [yt player](https://unrealapex.github.io/yt-player/)
 
-A fast beautiful, and simple video player for YouTube videos
+A fast, beautiful, and simple video player for YouTube videos
 
 ## Features
 - Minimalist Design
