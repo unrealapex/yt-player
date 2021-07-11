@@ -2,7 +2,7 @@ var url;
 var videoId;
 var isLoaded = false;
 
-// regular expressions used in the program, I highly suggest using regex101.com for a detailed explaination of the expression's inner workings 
+// regular expressions used in the program, I highly suggest using regex101.com for a detailed explaination of the expression's inner workings
 // gets the video id from the url inputted by the user
 const videoIdExtractor =
   /(http(?: s) ?: \/\/(?:m.)?(?:www\.)?)?youtu(?:\.be\/|be\.com\/(?:watch\?(?:feature=youtu\.be\&)?v=|v\/|embed\/|user\/(?:[\w#]+\/)+))([^&#?\n]+)/;
@@ -14,8 +14,8 @@ const whiteSpaceValidator = /\s/g;
 
 function getVideoURL() {
   // gets our url from a prompt
-  url = prompt("Insert the URL of the video you want to watch");
   var hasWhiteSpace = whiteSpaceValidator.test(url);
+  url = prompt("Insert the URL of the video you want to watch");
   if (hasWhiteSpace) {
     url.replace(/\s/g, "");
   }
@@ -30,7 +30,7 @@ function validateURL(url) {
   // checks if link given is from youtube.com using regex
   // TODO: add logic to check if url links to existing video
   var isValidURL = urlValidator.test(url);
-  if (!isValidURL && url.length != 0 && url !== undefined) {
+  if (!isValidURL && url.length !== 0 && url !== undefined) {
     alert("Invalid URL\nTry Again");
     refresh();
     getVideoURL();
@@ -56,7 +56,7 @@ function loadVideo(videoId) {
 function openFullscreen() {
   // puts the player in full screen mode
   var player = document.getElementById("videoPlayer");
-  if (player.src.length != 0 && isLoaded) {
+  if (player.src.length !== 0 && isLoaded) {
     if (player.requestFullscreen) {
       player.requestFullscreen();
     } else if (player.webkitRequestFullscreen) {
@@ -83,7 +83,7 @@ function refresh() {
 
 function shareVideo() {
   // copies shortened youtube url to the user's clipboard
-  if (videoId != undefined) {
+  if (videoId !== undefined) {
     navigator.clipboard.writeText("https://youtu.be/" + videoId);
     alert("Link copied to clipboard");
   } else {
@@ -108,7 +108,7 @@ function openVideoInNewTab() {
     let h = 900;
     var left = (screen.width/2)-(w/2);
     var top = (screen.height/2)-(h/2);
-    window.open("https://www.youtube.com/watch?v=" + videoId, document.title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left)
+    window.open("https://www.youtube.com/watch?v=" + videoId, document.title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
   } else {
     alert("Unable to open video in new tab\nEnter a url first");
     getVideoURL();
