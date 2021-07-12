@@ -1,68 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="Watch Youtube Videos With Quickly With No Advertisements"
-    />
-    <meta
-      name="keywords"
-      content="Youtube Player, Youtube, Youtube Video, Video Player, Ad Free Youtube Videos, No Ads"
-    />
-    <meta name="author" content="UnrealApex" />
-    <title>YT Player</title>
-    <script src="./script.js"></script>
-    <link
-      href="https://fonts.googleapis.com/icon?family=Material+Icons+Round"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="style.css" />
-  </head>
 
-  <body>
-    <h1>YT Player</h1>
-    <div class="container">
-      <div class="child">
-        <!-- TODO: make iframe size responsive -->
-        <iframe
-          id="videoPlayer"
-          width="1250"
-          height="500"
-          allow="fullscreen"
-        ></iframe>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Watch Youtube Videos With Quickly With No Advertisements" />
+  <meta name="keywords"
+    content="Youtube Player, Youtube, Youtube Video, Video Player, Ad Free Youtube Videos, No Ads" />
+  <meta name="author" content="UnrealApex" />
+  <title>YT Player</title>
+  <script src="./script.js"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
 
-        <div class="buttons">
-          <span onclick="getVideoURL()" title="Watch Video">
-            <span class="material-icons-round">play_arrow</span>
-          </span>
-          <span onclick="openFullscreen()" title="Full Screen">
-            <span class="material-icons-round">fullscreen</span>
-          </span>
-          <span onclick="refresh()" title="Refresh">
-            <span class="material-icons-round">refresh</span>
-          </span>
-          <span onclick="shareVideo()" title="Copy link">
-            <span class="material-icons-round">content_copy</span>
-          </span>
-           <span onclick="openVideoInNewTab()">
-            <span class="material-icons-round" title="Watch on youtube.com">open_in_new</span>
-            </span>
-          <span
-            title="Open Source on GitHub"
-            onclick="window.open('https://github.com/UnrealApex/yt-player')"
-          >
-            <span class="material-icons-round"> code </span>
-          </span>
-          </span>
-          </div>
-        </div>
+<body>
+  <h1>YT Player</h1>
+  <div class="container">
+    <div class="child">
+      <!-- TODO: make iframe size responsive -->
+      <iframe id="videoPlayer" width="1250" height="500" allow="fullscreen"></iframe>
+
+      <div class="buttons">
+        <span onclick="getVideoURL()" title="Watch Video">
+          <span class="material-icons-round">play_arrow</span>
+        </span>
+        <span onclick="openFullscreen()" title="Full Screen">
+          <span class="material-icons-round">fullscreen</span>
+        </span>
+        <span onclick="refresh()" title="Refresh">
+          <span class="material-icons-round">refresh</span>
+        </span>
+        <span onclick="shareVideo()" title="Copy link">
+          <span class="material-icons-round">content_copy</span>
+        </span>
+        <span onclick="openVideoInNewTab()">
+          <span class="material-icons-round" title="Watch on youtube.com">open_in_new</span>
+        </span>
+        <span title="Open Source on GitHub" onclick="window.open('https://github.com/UnrealApex/yt-player')">
+          <span class="material-icons-round"> code </span>
+        </span>
+        </span>
       </div>
     </div>
-    <div class="help-box">
-      <span class="help" title="help" onclick="help()">
-        <span style="font-size: 1.75rem;" class="material-icons-round">help_outline</span>
-  </body>
+  </div>
+  </div>
+  <div class="help-box">
+    <span class="help" title="help" onclick="help()">
+      <span style="font-size: 1.75rem;" class="material-icons-round">help_outline</span>
+</body>
+
 </html>
