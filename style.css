@@ -60,7 +60,7 @@ h1 {
 }
 
 #private-mode {
-  color: grey;
+  opacity: 38%;
 }
 
 @keyframes rgb {

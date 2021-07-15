@@ -143,13 +143,11 @@ function togglePrivateMode() {
   // Next time I would go on the Verge (https://www.theverge.com/) I would be getting dog adverts. 
   // If I played the same video on YT Player with Private Mode on, I wouldn't get any dog ads nor would the video I watched be on my YouTube search history.
   if (!privateMode) {
-    document.getElementById("private-mode").style.color = "black";
-    document.getElementById("private-mode").innerHTML = "lock";
+    document.getElementById("private-mode").style.opacity = "100%";
     privateMode = true;
 
   } else if (privateMode) {
-    document.getElementById("private-mode").style.color = "grey";
-    document.getElementById("private-mode").innerHTML = "lock_open";
+    document.getElementById("private-mode").style.opacity = "38%";
     privateMode = false;
 
   } else {
