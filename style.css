@@ -59,6 +59,10 @@ h1 {
   animation-timing-function: linear;
 }
 
+#private-mode {
+  color: grey;
+}
+
 @keyframes rgb {
   0% {
     color: #f44336;

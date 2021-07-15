@@ -32,9 +32,15 @@
         <span onclick="refresh()" title="Refresh">
           <span class="material-icons-round">refresh</span>
         </span>
-        <span onclick="shareVideo()" title="Copy link">
-          <span class="material-icons-round">content_copy</span>
+        <span>
+          <span title="Private Mode" onclick="togglePrivateMode()" id="private-mode" class="material-icons-round">
+          lock_open
+          </span>
         </span>
+        <!-- Removing video url copy for now -->
+        <!-- <span onclick="shareVideo()" title="Copy link">
+          <span class="material-icons-round">content_copy</span>
+        </span> -->
         <span onclick="openVideoInNewTab()">
           <span class="material-icons-round" title="Watch on youtube.com">open_in_new</span>
         </span>

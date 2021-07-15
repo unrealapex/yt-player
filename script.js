@@ -1,6 +1,7 @@
 var url;
 var videoId;
 var isLoaded = false;
+var privateMode = false;
 
 // regular expressions used in the program, I highly suggest using regex101.com for a detailed explaination of the expression's inner workings
 // gets the video id from the url inputted by the user
@@ -47,10 +48,19 @@ function getId(url) {
 }
 
 function loadVideo(videoId) {
-  // sets the video player iframe's url to a youtube privacy-enhanced url(video doesn't show up on user's youtube search history)
-  document.getElementById(
-    "videoPlayer"
-  ).src = `https://www.youtube-nocookie.com/embed/${videoId}`;
+  if (privateMode) {
+    // sets the video player iframe's url to a youtube privacy-enhanced url(video doesn't show up on user's youtube search history) if the user has enabled Privacy Mode
+    document.getElementById(
+      "videoPlayer"
+    ).src = `https://www.youtube-nocookie.com/embed/${videoId}`;
+  } else {
+    // sets the video player iframe's url to a youtube embed url (default)
+    document.getElementById(
+      "videoPlayer"
+    ).src = `https://www.youtube.com/embed/${videoId}`;
+  }
+
+
   isLoaded = true;
 }
 
@@ -124,4 +134,27 @@ function openVideoInNewTab() {
     alert("Unable to open video in new tab\nEnter a url first");
     getVideoURL();
   }
+}
+
+function togglePrivateMode() {
+	// toggles Private Mode for users
+  // Private Mode allows users to view videos on YT Player without them influening their YouTube and browsing experience.
+  // For example, I'm a cat person and I want cat ads when I browse the internet. Say if I watched a video titled "Top 10 Reasons Why You Should Buy A Dog"
+  // Next time I would go on the Verge (https://www.theverge.com/) I would be getting dog adverts. 
+  // If I played the same video on YT Player with Private Mode on, I wouldn't get any dog ads nor would the video I watched be on my YouTube search history.
+  if (!privateMode) {
+    document.getElementById("private-mode").style.color = "black";
+    document.getElementById("private-mode").innerHTML = "lock";
+    privateMode = true;
+
+  } else if (privateMode) {
+    document.getElementById("private-mode").style.color = "grey";
+    document.getElementById("private-mode").innerHTML = "lock_open";
+    privateMode = false;
+
+  } else {
+    console.log("Unable to toggle private mode");
+  }
+  return privateMode;
+
 }
