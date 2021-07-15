@@ -60,7 +60,8 @@ function loadVideo(videoId) {
     ).src = `https://www.youtube.com/embed/${videoId}`;
   }
 
-
+  document.getElementById("fullscreen").style.opacity = "100%";
+  document.getElementById("open-in-new").style.opacity = "100%";
   isLoaded = true;
 }
 
@@ -90,6 +91,8 @@ function refresh() {
   url = "";
   document.getElementById("videoPlayer").src = "";
   isLoaded = false;
+  document.getElementById("fullscreen").style.opacity = "38%";
+  document.getElementById("open-in-new").style.opacity = "38%";
 }
 
 function shareVideo() {
