@@ -140,7 +140,7 @@ function openVideoInNewTab() {
 }
 
 function togglePrivateMode() {
-	// toggles Private Mode for users
+  // toggles icon state for Private Mode and tells loadVideo function if it should load in Private Mode
   // Private Mode allows users to view videos on YT Player without them influening their YouTube and browsing experience.
   // For example, I'm a cat person and I want cat ads when I browse the internet. Say if I watched a video titled "Top 10 Reasons Why You Should Buy A Dog"
   // Next time I would go on the Verge (https://www.theverge.com/) I would be getting dog adverts. 
