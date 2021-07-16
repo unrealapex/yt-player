@@ -13,7 +13,9 @@ span {
 
 span:hover {
   background-color: #ededed;
-  border-radius: 25%;
+  border-radius: .5em;
+  /* border-radius: 6px; */
+  /* border-radius: 25%; */
 }
 
 .material-icons-round {
