@@ -153,7 +153,7 @@ function togglePrivateMode() {
   } else if (privateMode) {
     document.getElementById("private-mode").style.opacity = "38%";
     privateMode = false;
-    document.getElementById("private-mode").innerHTML = "lock_open"
+    document.getElementById("private-mode").innerHTML = "lock_open";
 
   } else {
     console.log("Unable to toggle private mode");
