@@ -147,11 +147,13 @@ function togglePrivateMode() {
   // If I played the same video on YT Player with Private Mode on, I wouldn't get any dog ads nor would the video I watched be on my YouTube search history.
   if (!privateMode) {
     document.getElementById("private-mode").style.opacity = "100%";
+    document.getElementById("private-mode").innerHTML = "lock";
     privateMode = true;
 
   } else if (privateMode) {
     document.getElementById("private-mode").style.opacity = "38%";
     privateMode = false;
+    document.getElementById("private-mode").innerHTML = "lock_open"
 
   } else {
     console.log("Unable to toggle private mode");
