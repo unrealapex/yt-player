@@ -48,6 +48,7 @@ function getId(url) {
 }
 
 function loadVideo(videoId) {
+  document.querySelector("*").style.cursor = "wait";
   if (privateMode) {
     // sets the video player iframe's url to a youtube privacy-enhanced url(video doesn't show up on user's youtube search history) if the user has enabled Privacy Mode
     document.getElementById(
@@ -59,10 +60,13 @@ function loadVideo(videoId) {
       "videoPlayer"
     ).src = `https://www.youtube.com/embed/${videoId}`;
   }
-
-  document.getElementById("fullscreen").style.opacity = "100%";
-  document.getElementById("open-in-new").style.opacity = "100%";
-  isLoaded = true;
+  // checks if the iframe content (our video) has loaded
+  document.querySelector('iframe'). onload = function()
+  { isLoaded = true;
+    document.querySelector("*").style.cursor = "default";
+    document.getElementById("fullscreen").style.opacity = "100%";
+    document.getElementById("open-in-new").style.opacity = "100%";
+  };
 }
 
 function openFullscreen() {
