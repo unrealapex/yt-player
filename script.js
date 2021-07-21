@@ -97,6 +97,7 @@ function refresh() {
   isLoaded = false;
   document.getElementById("fullscreen").style.opacity = "38%";
   document.getElementById("open-in-new").style.opacity = "38%";
+  return isLoaded;
 }
 
 function shareVideo() {
