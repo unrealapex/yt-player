@@ -59,9 +59,7 @@ h1 {
   animation-timing-function: linear;
 }
 
-#private-mode, 
-#fullscreen, 
-#open-in-new {
+#private-mode {
   opacity: 38%;
 }
 

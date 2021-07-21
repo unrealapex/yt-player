@@ -64,8 +64,6 @@ function loadVideo(videoId) {
   document.querySelector('iframe'). onload = function()
   { isLoaded = true;
     document.querySelector("*").style.cursor = "default";
-    document.getElementById("fullscreen").style.opacity = "100%";
-    document.getElementById("open-in-new").style.opacity = "100%";
   };
 }
 
@@ -94,8 +92,6 @@ function refresh() {
   url = "";
   document.getElementById("videoPlayer").src = "";
   isLoaded = false;
-  document.getElementById("fullscreen").style.opacity = "38%";
-  document.getElementById("open-in-new").style.opacity = "38%";
   return isLoaded;
 }
 
