@@ -14,15 +14,13 @@ span {
 span:hover {
   background-color: #ededed;
   border-radius: .5em;
-  /* border-radius: 6px; */
-  /* border-radius: 25%; */
 }
 
 .material-icons-round {
   font-size: 2.5rem;
 }
 
-#videoPlayer {
+iframe {
   margin-bottom: 5px;
   border-radius: 5.5px;
   display: inline-table;
