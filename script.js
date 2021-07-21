@@ -85,8 +85,7 @@ function openFullscreen() {
       alert("Unable to open video in full screen");
     }
   } else {
-    alert("Please enter a URL first");
-    getVideoURL();
+    console.log("Error: unable to toggle full screen\nReason: no URL found");
   }
 }
 
@@ -106,8 +105,7 @@ function shareVideo() {
     navigator.clipboard.writeText("https://youtu.be/" + videoId);
     alert("Link copied to clipboard");
   } else {
-    alert("Play a video before trying to share\nTry Again");
-    getVideoURL();
+    console.log("Error: unable to copy shortened URL to clipboard\nReason: no URL found");
   }
 }
 
@@ -139,8 +137,7 @@ function openVideoInNewTab() {
         left
     );
   } else {
-    alert("Unable to open video in new tab\nEnter a url first");
-    getVideoURL();
+    console.log("Error: unable to open video in new tab\nReason: no URL found");
   }
 }
 
