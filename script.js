@@ -112,7 +112,7 @@ function shareVideo() {
 function help() {
   // help if the user is stuck or wants to get info
   alert(
-    "Welcome to YT-Player! To use YT-Player, click the play icon to play a video, the full screen icon to put the video in full screen, and the reload icon to reset the player if something went wrong.\n\nMade with love by UnrealApex\nThank you to all those who gave feedback and helped improve this project"
+    "Thanks for using YT Player!\nUse the play icon to start watching videos, the full screen icon to play videos in full screen, the refresh button to reset the player,the lock to play videos in Private Mode, and the open button to open the video in a new tab.\nButtons that are grayed out are disabled and buttons that are black are enabled\nMade with ❤️ by UnrealApex\nThank you to all those who helped improve this project!"
   );
 }
 
