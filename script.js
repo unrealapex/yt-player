@@ -61,8 +61,8 @@ function loadVideo(videoId) {
     ).src = `https://www.youtube.com/embed/${videoId}`;
   }
   // checks if the iframe content (our video) has loaded
-  document.querySelector('iframe'). onload = function()
-  { isLoaded = true;
+  document.querySelector('iframe').onload = function () {
+    isLoaded = true;
     document.querySelector("*").style.cursor = "default";
   };
 }
@@ -128,13 +128,13 @@ function openVideoInNewTab() {
       "https://www.youtube.com/watch?v=" + videoId,
       document.title,
       "toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=" +
-        w +
-        ", height=" +
-        h +
-        ", top=" +
-        top +
-        ", left=" +
-        left
+      w +
+      ", height=" +
+      h +
+      ", top=" +
+      top +
+      ", left=" +
+      left
     );
   } else {
     console.log("Error: unable to open video in new tab\nReason: no URL found");
