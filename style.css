@@ -6,18 +6,15 @@
   font-family: 'Roboto Mono', monospace;
 }
 
-span {
-  transition-duration: 0.5s;
-  padding: 0.25rem;
-}
-
-span:hover {
-  background-color: #ededed;
-  border-radius: .5em;
-}
-
 .material-icons-round {
   font-size: 2.5rem;
+  transition-duration: 0.5s;
+  margin: 0.25rem;
+}
+
+.material-icons-round:hover {
+  background-color: #ededed;
+  border-radius: .5em;
 }
 
 iframe {
