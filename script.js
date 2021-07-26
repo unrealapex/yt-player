@@ -92,7 +92,7 @@ function openFullscreen() {
 function refresh() {
   // allows the user to reset the player if they entered an invalid url or ran into another problem
   url = "";
-  document.getElementById("videoPlayer").src = "";
+  document.getElementById("videoPlayer").removeAttribute("src");
   isLoaded = false;
   return isLoaded;
 }
