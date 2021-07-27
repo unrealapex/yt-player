@@ -165,3 +165,11 @@ function togglePrivateMode() {
   return privateMode;
 
 }
+
+// allows us to sleep for x seconds
+function sleep(duration){
+  var currentTime = new Date().getTime();
+  while(new Date().getTime() < currentTime + (duration * 1000)){ 
+      /* Do nothing */ 
+  }
+}
