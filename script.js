@@ -2,7 +2,6 @@ var url;
 var videoId;
 var isLoaded = false;
 var privateMode = false;
-
 // regular expressions used in the program, I highly suggest using regex101.com for a detailed explaination of the expression's inner workings
 // gets the video id from the url inputted by the user
 const videoIdExtractor =
@@ -49,6 +48,8 @@ function getId(url) {
 
 function loadVideo(videoId) {
   document.querySelector("*").style.cursor = "wait";
+  document.getElementById("overlay").style.display = "block";
+  document.querySelector("#uiLoader1").style.display = "flex";
   if (privateMode) {
     // sets the video player iframe's url to a youtube privacy-enhanced url(video doesn't show up on user's youtube search history) if the user has enabled Privacy Mode
     document.getElementById(
@@ -62,6 +63,7 @@ function loadVideo(videoId) {
   }
   // checks if the iframe content (our video) has loaded
   document.querySelector('iframe').onload = function () {
+    document.getElementById("overlay").style.display = "none";
     isLoaded = true;
     document.querySelector("*").style.cursor = "default";
   };
