@@ -66,6 +66,7 @@ function loadVideo(videoId) {
     document.getElementById("overlay").style.display = "none";
     isLoaded = true;
     document.querySelector("*").style.cursor = "default";
+    document.getElementById("videoPlayer").focus();
   };
 }
 
@@ -94,7 +95,7 @@ function openFullscreen() {
 function refresh() {
   // allows the user to reset the player if they entered an invalid url or ran into another problem
   url = "";
-  document.getElementById("videoPlayer").removeAttribute("src");
+  document.getElementById("videoPlayer").src = "";
   isLoaded = false;
   return isLoaded;
 }
