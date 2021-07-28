@@ -66,6 +66,7 @@ function loadVideo(videoId) {
     document.getElementById("overlay").style.display = "none";
     isLoaded = true;
     document.querySelector("*").style.cursor = "default";
+    document.getElementById("videoPlayer").focus();
   };
 }
 
