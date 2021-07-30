@@ -47,7 +47,6 @@ function getId(url) {
 }
 
 function loadVideo(videoId) {
-  document.querySelector("*").style.cursor = "wait";
   document.getElementById("overlay").style.display = "block";
   document.querySelector("#uiLoader1").style.display = "flex";
   if (privateMode) {
@@ -65,7 +64,6 @@ function loadVideo(videoId) {
   document.querySelector('iframe').onload = function () {
     document.getElementById("overlay").style.display = "none";
     isLoaded = true;
-    document.querySelector("*").style.cursor = "default";
     document.getElementById("videoPlayer").focus();
   };
 }
