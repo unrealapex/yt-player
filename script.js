@@ -53,12 +53,12 @@ function loadVideo(videoId) {
     // sets the video player iframe's url to a youtube privacy-enhanced url(video doesn't show up on user's youtube search history) if the user has enabled Privacy Mode
     document.getElementById(
       "videoPlayer"
-    ).src = `https://www.youtube-nocookie.com/embed/${videoId}`;
+    ).src = "https://www.youtube-nocookie.com/embed/" + videoId;
   } else {
     // sets the video player iframe's url to a youtube embed url (default)
     document.getElementById(
       "videoPlayer"
-    ).src = `https://www.youtube.com/embed/${videoId}`;
+    ).src = "https://www.youtube.com/embed/" + videoId;
   }
   // checks if the iframe content (our video) has loaded
   document.querySelector('iframe').onload = function () {
@@ -123,8 +123,8 @@ function openVideoInNewTab() {
     // TODO: change to responsive size
     let w = 1000;
     let h = 900;
-    var left = screen.width / 2 - w / 2;
-    var top = screen.height / 2 - h / 2;
+    let left = screen.width / 2 - w / 2;
+    let top = screen.height / 2 - h / 2;
     window.open(
       "https://www.youtube.com/watch?v=" + videoId,
       document.title,
