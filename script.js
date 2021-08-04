@@ -21,8 +21,8 @@ if (urlParserRE.exec(url)[1] !== undefined) {
     loadVideo(urlParserRE.exec(url)[1]);
   } else {
     console.log("Video id found in URL not used");
-    }
-	} else {
+  }
+} else {
   console.log("No video id found in URL");
 }
 
