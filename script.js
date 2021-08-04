@@ -1,4 +1,4 @@
-var url;
+var url = "https://unrealapex.github.io/yt-player/pQN-pnXPaVg";
 var videoId;
 var isLoaded = false;
 var privateMode = false;
@@ -11,6 +11,20 @@ const urlValidator =
   /((https(?:s)?:\/\/)?(www\.)?)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?&v=))((?:\w|-){11})((?:\&|\?)\S*)?/;
 // expression to test if there are any whitspaces in our url
 const whiteSpaceValidator = /\s/g;
+const urlParserRE = /(?:\/)?([\w-]{11})/;
+
+
+// checks if user entered a video id in the URL to play
+if (urlParserRE.exec(url)[1] !== undefined) {
+  let x = confirm("We found a video id in your URL, woud you like to use it?");
+  if (x) {
+    loadVideo(urlParserRE.exec(url)[1]);
+  } else {
+    console.log("Video id found in URL not used");
+    }
+	} else {
+  console.log("No video id found in URL");
+}
 
 function getVideoURL() {
   // gets our url from a prompt
