@@ -14,15 +14,15 @@ const whiteSpaceValidator = /\s/g;
 const urlParserRE = /(?:\/)?([\w-]{11})/;
 
 
-// checks if user entered a video id in the URL to play
-if (urlParserRE.exec(url)[1] !== undefined) {
+// "static site server-side URL parameter"
+if (urlParserRE.exec(window.location.href)[1] !== undefined) {
   let x = confirm("We found a video id in your URL, woud you like to use it?");
   if (x) {
-    loadVideo(urlParserRE.exec(url)[1]);
+    loadVideo(urlParserRE.exec(window.location.href)[1]);
   } else {
     console.log("Video id found in URL not used");
-    }
-	} else {
+  }
+} else {
   console.log("No video id found in URL");
 }
 
