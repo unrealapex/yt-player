@@ -1,7 +1,5 @@
 /* TODO: add more styling to website */
 
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500;700&display=swap');
-
 :root {
   font-family: 'Roboto Mono', monospace;
 }
@@ -26,16 +24,16 @@ iframe {
   display: inline-table;
 }
 
-div.container {
+.container {
   justify-content: center;
   display: flex;
 }
 
-div.child {
+.child {
   text-align: center;
 }
 
-div.buttons {
+.buttons {
   justify-content: center;
   flex-wrap: wrap;
   display: flex;
