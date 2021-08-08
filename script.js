@@ -16,10 +16,8 @@ function getVideoURL() {
   // gets our url from a prompt
   var hasWhiteSpace = whiteSpaceValidator.test(url);
   url = prompt("Insert the URL of the video you want to watch");
-  if (hasWhiteSpace) {
-    url.replace(/\s/g, "");
-  }
-
+  // ternary operator: if hasWhitespace: url reassigned to url without whitepace, else: url = url
+  url = (hasWhiteSpace ? url = url.replace(/\s/g, "") : url)
   validateURL(url);
 }
 
