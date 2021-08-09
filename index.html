@@ -1,47 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
-
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Watch Youtube Videos With Quickly With No Advertisements">
-    <meta name="keywords" content="Youtube Player, Youtube, Youtube Video, Video Player, Ad Free Youtube Videos, No Ads">
-    <meta name="author" content="UnrealApex">
-    <title>YT Player</title>
+    <meta
+      name="description"
+      content="A fast and minimalistic video player for YouTube videos"
+    />
+    <meta
+      name="keywords"
+      content="Youtube Player, Youtube, Youtube Video, Video Player, Ad Free Youtube Videos, No Ads, YT Player, Videos, RGB, Beautiful, Simple, minimalistic"
+    />
+    <meta name="author" content="UnrealApex" />
+    <title>yt player</title>
     <script src="./script.js"></script>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet" />
-    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons+Round"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
   </head>
 
   <body>
-    <h1>YT Player</h1>
-    <!--<p>Welcome to YT-Player! <br /><em>To use YT-Player, click the play icon to play a video, the full screen icon to put the video in full screen, and the reload icon to reset the player if something went wrong.</em></p>
-    <!-- FIXME: Fix wonky dimensions when using percentatge based measurements -->
-
-    <br />
+    <h1>yt player</h1>
     <div class="container">
-    <div class="child">
-    <input id="url" type="url" required placeholder="Enter a Youtube URL"/>
-        <span onclick="getVideoURL()" title="Watch Video">
-        <span class="material-icons-round">play_arrow</span>
-    </span>
-    <!-- <button id="myBtn"></button> -->
-    </div>
-    </div>
+      <div class="child">
+        <!-- <form> -->
 
+        <div id="typing-area">
+          <div class="bar">
+            <input
+              id="input-field"
+              type="url"
+              oninput="quickValidate()"
+              autofocus
+              required
+              placeholder="enter a youtube video URL"
+            />
+            <button
+              id="play"
+              onclick="getVideoURL()"
+              title="play video url entered"
+            >
+              play
+            </button>
 
+            <button
+              id="clear"
+              title="clear video url"
+              onclick='document.querySelector("#input-field").value = ""; document.querySelector("#input-field").focus();'
+              title="play video url entered"
+            >
+              x
+            </button>
+          </div>
+          <fieldset>
+            <legend>options</legend>
+            <div>
+              <div title="load video in full screen">
+                <label
+                  ><input type="checkbox" name="" id="load-fullscreen" />load in
+                  full screen</label
+                >
+              </div>
+              <div title="load video in private mode">
+                <label
+                  ><input type="checkbox" name="" id="private-mode" />private
+                  mode</label
+                >
+              </div>
+            </div>
+          </fieldset>
+        </div>
 
-    <!-- The Modal -->
-    <div id="modal" class="modal">
-
-      <!-- Modal content -->
-      <div class="modal-content">
-        <span id="close" onclick="close()">&times;</span>
-     <iframe id="videoPlayer" allow="fullscreen"></iframe>
+        <!-- https://github.com/jslint-org/jslint/blob/5c025b692b740d755937fed1c3c5c8d6bcb9e962/index.html#L254 -->
       </div>
+    </div>
 
+    <div title="click the x to close" id="overlay">
+      <div id="overlay-content">
+        <div>
+          <span
+            class="overlay-buttons material-icons-round"
+            title="close"
+            onclick="closeOverlay()"
+            >close</span
+          >
+          <span
+            class="overlay-buttons material-icons-round"
+            title="maximize"
+            onclick="openFullscreen()"
+          >
+            check_box_outline_blank</span
+          >
+          <span
+            class="overlay-buttons material-icons-round"
+            title="minimize"
+            onclick="minimizeOverlay()"
+            >minimize</span
+          >
+        </div>
+        <iframe
+          id="videoPlayer"
+          loading="eager"
+          allowfullscreen="true"
+        ></iframe>
+      </div>
+    </div>
+    <div id="expand-box">
+      <button
+        id="expand"
+        title="Open minimized video in overlay"
+        onclick='document.getElementById("overlay").style.display = "block";'
+        disabled
+      >
+        minimized video
+      </button>
     </div>
   </body>
-
 </html>
