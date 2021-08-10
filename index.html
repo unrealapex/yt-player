@@ -52,14 +52,21 @@
               play
             </button>
 
+            <!--  onclick same as refresh() with the exception of no changes made to the iframe or expand button, clearing input-field throught onclick instead of refresh() function to prevent whole player from being resetted. -->
+
             <button
               id="clear"
               title="clear video url"
-              onclick='document.querySelector("#input-field").value = ""; document.querySelector("#input-field").focus();'
+              onclick='document.querySelector("#input-field").className = "";
+  document.querySelector("#play").className = "";
+  document.querySelector("#play").style.color = "black";
+  document.querySelector("#input-field").value = "";
+  document.querySelector("#input-field").focus(); '
               title="play video url entered"
             >
               x
             </button>
+            
           </div>
           <fieldset>
             <legend>options</legend>
