@@ -234,15 +234,15 @@ function minimizeOverlay() {
   document.querySelector("#overlay").style.display = "none";
   if (isLoaded) {
     document.querySelector("#expand").disabled = false;
+    document.querySelector("#expand").style.cursor = "pointer";
     document.querySelector("#expand").focus();
   } else {
     document.querySelector("#expand").disabled = true;
+    document.querySelector("#expand").style.cursor = "default";
     document.querySelector("#expand").blur();
   }
 }
 
-
 function off() {
   document.querySelector("#overlay").style.display = "none";
 }
-

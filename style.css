@@ -8,7 +8,6 @@
   line-height: 1.6rem;
 }
 
-
 h1 {
   color: #1a1a1a;
   text-align: center;
@@ -37,7 +36,6 @@ h1 {
 .correct {
   color: #68b723;
 }
-
 
 #typing-area {
   margin-top: 1rem;
@@ -130,13 +128,13 @@ button {
   transition-duration: 0.5s;
   padding: 0.25em;
   float: right;
+  cursor: pointer;
 }
 
 .overlay-buttons:hover {
   color: black !important;
   /* border-radius: 25%; */
 }
-
 
 .material-icons-round {
   font-size: 0.5em;
@@ -160,7 +158,7 @@ button {
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 2;
-  cursor: pointer;
+  cursor: default;
 }
 
 #overlay-content {
@@ -186,7 +184,6 @@ button {
   top: 50%;
 }
 
-
 #expand-box {
   position: absolute;
   bottom: 0;
@@ -195,5 +192,5 @@ button {
 
 #expand {
   opacity: 0%;
+  cursor: default;
 }
-
