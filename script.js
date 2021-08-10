@@ -127,6 +127,7 @@ function refresh() {
   url = "";
   document.querySelector("iframe").src = "";
   document.querySelector("#expand").disabled = true;
+  document.querySelector("#expand").style.cursor = "default";
   document.querySelector("#input-field").className = "";
   document.querySelector("#play").className = "";
   document.querySelector("#play").style.color = "black";
