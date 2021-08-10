@@ -25,6 +25,11 @@ h1 {
   border-radius: 0.2rem;
 }
 
+
+#play:focus {
+  border-color: black;
+}
+
 #input-field.wrong {
   background: rgba(198, 38, 46, 0.3);
 }
@@ -194,3 +199,4 @@ button {
   opacity: 0%;
   cursor: default;
 }
+
