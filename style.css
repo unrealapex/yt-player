@@ -1,64 +1,52 @@
-/* TODO: add more styling to website */
-
 :root {
-  font-family: 'Roboto Mono', monospace;
-}
-
-span {
-  transition-duration: 0.5s;
-  padding: 0.25rem;
-}
-
-span:hover {
-  background-color: #ededed;
-  border-radius: .5em;
-}
-
-.material-icons-round {
-  font-size: 2.5rem;
-}
-
-iframe {
-  margin-bottom: 5px;
-  border-radius: 5.5px;
-  display: inline-table;
-}
-
-.container {
-  justify-content: center;
+  font-family: "Roboto Mono", monospace;
+  margin: 0;
+  min-height: 100vh;
   display: flex;
-}
-
-.child {
-  text-align: center;
-}
-
-.buttons {
-  justify-content: center;
-  flex-wrap: wrap;
-  display: flex;
-}
-
-.help-box {
-  position: relative;
-}
-
-.help {
-  position: absolute;
-  bottom: 0;
-  right: 0;
+  flex-direction: column;
+  justify-content: space-between;
+  line-height: 1.6rem;
 }
 
 h1 {
+  color: #1a1a1a;
   text-align: center;
-  animation-name: rgb;
-  animation-duration: 5s;
-  animation-iteration-count: infinite;
-  animation-timing-function: linear;
+  margin: 1.2rem 0 10.5rem 0;
+  line-height: 2rem;
 }
 
-#private-mode {
-  opacity: 38%;
+#input-field {
+  width: 100%;
+  border: none;
+  font: inherit;
+  padding: 0.4rem 2rem;
+  margin-right: 0.4rem;
+  border-color: black;
+  border-radius: 0.2rem;
+}
+
+
+#play:focus {
+  border-color: black;
+}
+
+#input-field.wrong {
+  background: rgba(198, 38, 46, 0.3);
+}
+
+.wrong {
+  color: #c6262e;
+}
+
+.correct {
+  color: #68b723;
+}
+
+#typing-area {
+  margin-top: 1rem;
+  padding: 1.4rem 1rem;
+  border-radius: 0.4rem;
+  background: #eaeaea;
 }
 
 @keyframes rgb {
@@ -105,85 +93,110 @@ h1 {
   }
 }
 
+.bar {
+  display: flex;
+  justify-content: space-between;
+}
 
+h1:hover {
+  animation-name: rgb;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
 
+legend {
+  text-align: center;
+}
+
+button {
+  /* margin-left: 0.7rem; */
+  border: none;
+  font: inherit;
+  padding: 0.4rem 1rem;
+  margin-right: 0.4rem;
+  border-radius: 0.2rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+  background: #d4d4d4;
+  color: #1a1a1a;
+}
+
+.valid {
+  animation-name: rgb;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+.overlay-buttons {
+  transition-duration: 0.5s;
+  padding: 0.25em;
+  float: right;
+  cursor: pointer;
+}
+
+.overlay-buttons:hover {
+  color: black !important;
+  /* border-radius: 25%; */
+}
+
+.material-icons-round {
+  font-size: 0.5em;
+}
+
+#videoPlayer {
+  /*margin-bottom: 5px; */
+  /* text-align: center; */
+  width: 1000px;
+  height: 500px;
+}
 
 #overlay {
-  position: fixed; /* Sit on top of the page content */
-  display: none; /* Hidden by default */
-  width: 100%; /* Full width (cover the whole page) */
-  height: 100%; /* Full height (cover the whole page) */
+  position: fixed;
+  display: none;
+  width: 100%;
+  height: 100%;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0,0,0,0.5); /* Black background with opacity */
-  z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
-  cursor: none;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 2;
+  cursor: default;
 }
 
-
-#overlay-content{
+#overlay-content {
   position: absolute;
   top: 50%;
   left: 50%;
   font-size: 50px;
   color: white;
-  transform: translate(-50%,-50%);
-  -ms-transform: translate(-50%,-50%);
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
 }
 
-
-
-
-#uiLoader1 {
-    align-items: center;
-    background: lightslategray;
-    color: white;
-    display: flex;
-    height: 50px;
-    justify-content: center;
-    left: 50%;
-    margin: -50px 0 0 -100px;
-    opacity: 0.85;
-    position: fixed;
-    top: 40%;
-    width: 200px;
-    z-index: 1;
+.container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  margin: auto;
 }
 
-
-@keyframes uiLoaderEllipsis1 {
-    from {
-        opacity: 0;
-    }
-    25% {
-        opacity: 1;
-    }
-}
-@keyframes uiLoaderEllipsis2 {
-    from {
-        opacity: 0;
-    }
-    50% {
-        opacity: 1;
-    }
-}
-@keyframes uiLoaderEllipsis3 {
-    from {
-        opacity: 0;
-    }
-    75% {
-        opacity: 1;
-    }
+.child {
+  /* Center vertically */
+  position: absolute;
+  top: 50%;
 }
 
-.uiLoaderEllipsis span {
-    animation: uiLoaderEllipsis1 1s infinite steps(1);
+#expand-box {
+  position: absolute;
+  bottom: 0;
+  right: 0;
 }
-.uiLoaderEllipsis span:first-child + span {
-    animation-name: uiLoaderEllipsis2;
+
+#expand {
+  opacity: 0%;
+  cursor: default;
 }
-.uiLoaderEllipsis span:first-child + span + span {
-    animation-name: uiLoaderEllipsis3;
-}
+

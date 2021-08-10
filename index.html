@@ -1,79 +1,135 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="A fast and minimalistic video player for YouTube videos"
+    />
+    <meta
+      name="keywords"
+      content="Youtube Player, Youtube, Youtube Video, Video Player, Ad Free Youtube Videos, No Ads, YT Player, Videos, RGB, Beautiful, Simple, minimalistic"
+    />
+    <meta name="author" content="UnrealApex" />
+    <title>yt player</title>
+    <script src="./script.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons+Round"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="A fast and minimalistic video player for YouTube videos" />
-  <meta name="keywords"
-    content="Youtube Player, Youtube, Youtube Video, Video Player, Ad Free Youtube Videos, No Ads, YT Player, Videos, RGB, Beautiful, Simple, minimalistic" />
-  <meta name="author" content="UnrealApex" />
-  <title>YT Player</title>
-  <script src="./script.js"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
-</head>
+  <body>
+    <h1>yt player</h1>
+    <div class="container">
+      <div class="child">
+        <!-- <form> -->
 
-<body>
-  <noscript>Hmmmm, it appears you don't have JavaScript enabled or your browser doesn't support it.<br> YT Player will
-    not function without JavaScript.<br></noscript>
-  <h1>YT Player</h1>
-  <div class="container">
-    <div class="child">
-      <!-- TODO: make iframe size responsive -->
-      <iframe id="videoPlayer" loading="eager" width="1250" height="500" allow="fullscreen"></iframe>
+        <div id="typing-area">
+          <div class="bar">
+            <input
+              id="input-field"
+              type="url"
+              oninput="quickValidate()"
+              autofocus
+              required
+              placeholder="enter a youtube video URL"
+            />
+            <button
+              id="play"
+              onclick="getVideoURL()"
+              title="play video url entered"
+            >
+              play
+            </button>
 
-      <div class="buttons">
-        <span onclick="getVideoURL()" title="Watch Video">
-          <span class="material-icons-round">play_arrow</span>
-        </span>
-        <span onclick="openFullscreen()" title="Full Screen">
-          <span id="fullscreen" class="material-icons-round">fullscreen</span>
-        </span>
-        <span onclick="refresh()" title="Refresh">
-          <span class="material-icons-round">refresh</span>
-        </span>
-        <span>
-          <span title="Toggle Private Mode, Private Mode is off, toggling will enable Private Mode"
-            onclick="togglePrivateMode()" id="private-mode" class="material-icons-round">
-            lock
-          </span>
-        </span>
-        <!-- Removing video url copy for now -->
-        <!-- <span onclick="shareVideo()" title="Copy link">
-          <span class="material-icons-round">content_copy</span>
-        </span> -->
-        <span onclick="openVideoInNewTab()">
-          <span id="open-in-new" class="material-icons-round" title="Watch on youtube.com">open_in_new</span>
-        </span>
-        <span title="Open Source on GitHub" onclick="window.open('https://github.com/UnrealApex/yt-player')">
-          <span class="material-icons-round"> code </span>
-        </span>
+            <!--  onclick same as refresh() with the exception of no changes made to the iframe or expand button, clearing input-field throught onclick instead of refresh() function to prevent whole player from being resetted. -->
+
+            <button
+              id="clear"
+              title="clear video url"
+              onclick='document.querySelector("#input-field").className = "";
+  document.querySelector("#play").className = "";
+  document.querySelector("#play").style.color = "black";
+  document.querySelector("#input-field").value = "";
+  document.querySelector("#input-field").focus(); '
+              title="play video url entered"
+            >
+              x
+            </button>
+            
+          </div>
+          <fieldset>
+            <legend>options</legend>
+            <div>
+              <div title="load video in full screen">
+                <label
+                  ><input type="checkbox" name="" id="load-fullscreen" />load in
+                  full screen</label
+                >
+              </div>
+              <div title="load video in private mode">
+                <label
+                  ><input type="checkbox" name="" id="private-mode" />private
+                  mode</label
+                >
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <!-- https://github.com/jslint-org/jslint/blob/5c025b692b740d755937fed1c3c5c8d6bcb9e962/index.html#L254 -->
       </div>
     </div>
-  </div>
-  <div class="help-box">
-    <span class="help" title="help" onclick="help()">
-      <span style="font-size: 1.75rem;" class="material-icons-round">help_outline</span>
-    </span>
-  </div>
-  <div style="cursor: wait;" id="overlay">
-    <div class="overlay-content"></div>
-    <div id="uiLoader1">
-      <div>Loading</div>
-      &nbsp;
-      <span class="uiLoaderEllipsis">
-        <span>.</span>
-        <span>.</span>
-        <span>.</span>
-      </span>
+
+    <div title="click the x to close" id="overlay">
+      <div id="overlay-content">
+        <div>
+          <span
+            class="overlay-buttons material-icons-round"
+            title="close"
+            onclick="closeOverlay()"
+            >close</span
+          >
+          <span
+            class="overlay-buttons material-icons-round"
+            title="maximize"
+            onclick="openFullscreen()"
+          >
+            check_box_outline_blank</span
+          >
+          <span
+            class="overlay-buttons material-icons-round"
+            title="minimize"
+            onclick="minimizeOverlay()"
+            >minimize</span
+          >
+        </div>
+        <iframe
+          id="videoPlayer"
+          loading="eager"
+          allowfullscreen="true"
+        ></iframe>
+      </div>
     </div>
-  </div>
-
-</body>
-
+    <div id="expand-box">
+      <button
+        id="expand"
+        title="Open minimized video in overlay"
+        onclick='document.getElementById("overlay").style.display = "block";'
+        disabled
+      >
+        minimized video
+      </button>
+    </div>
+  </body>
 </html>

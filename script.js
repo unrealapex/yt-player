@@ -2,22 +2,23 @@ var url;
 var videoId;
 var isLoaded = false;
 var privateMode = false;
+// const inputField = document.querySelector('#input-field');
+// const expand = document.querySelector("#expand");
+// const overlay = document.querySelector("#overlay");
 // regular expressions used in the program, I highly suggest using regex101.com for a detailed explaination of the expression's inner workings
 // gets the video id from the url inputted by the user
-const videoIdExtractor =
-  /(http(?: s) ?: \/\/(?:m.)?(?:www\.)?)?youtu(?:\.be\/|be\.com\/(?:watch\?(?:feature=youtu\.be\&)?v=|v\/|embed\/|user\/(?:[\w#]+\/)+))([^&#?\n]+)/;
+const videoIdExtractor = /(http(?: s) ?: \/\/(?:m.)?(?:www\.)?)?youtu(?:\.be\/|be\.com\/(?:watch\?(?:feature=youtu\.be\&)?v=|v\/|embed\/|user\/(?:[\w#]+\/)+))([^&#?\n]+)/;
 // checks if the url is a valid youtube url and is something our player can play
-const urlValidator =
-  /((https(?:s)?:\/\/)?(www\.)?)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?&v=))((?:\w|-){11})((?:\&|\?)\S*)?/;
+const urlValidator = /((http?(?:s)?:\/\/)?(www\.)?)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?&v=))((?:\w|-){11})((?:\&|\?)\S*)?/;
 // expression to test if there are any whitspaces in our url
 const whiteSpaceValidator = /\s/g;
 
 function getVideoURL() {
   // gets our url from a prompt
-  var hasWhiteSpace = whiteSpaceValidator.test(url);
-  url = prompt("Insert the URL of the video you want to watch");
-  // ternary operator: if hasWhitespace: url reassigned to url without whitepace, else: url = url
-  url = (hasWhiteSpace ? url = url.replace(/\s/g, "") : url)
+  url = document.querySelector("#input-field").value;
+  // alert("executed got video url");
+  let hasWhiteSpace = whiteSpaceValidator.test(url);
+  url = hasWhiteSpace ? (url = url.replace(/\s/g, "")) : url;
   validateURL(url);
 }
 
@@ -28,12 +29,41 @@ function validateURL(url) {
   // checks if link given is from youtube.com using regex
   // TODO: add logic to check if url links to existing video
   var isValidURL = urlValidator.test(url);
-  if (!isValidURL && url.length !== 0 && url !== undefined) {
+  if (!isValidURL && url.length !== 0 && url !== null) {
     alert("Invalid URL\nTry Again");
+    console.error("Invalid URL entered");
     refresh();
     getVideoURL();
   } else {
     getId(url);
+  }
+}
+
+// function quickValidate() {
+//   if (urlValidator.test(document.querySelector("#input-field").value) || document.getElementByIdquerySelector("#nput-field").value.length === 0) {
+//     document.querySelector("#input-field").className = "";
+//   } else {
+//     document.querySelector("#input-field").className = "wrong";
+//   }
+// }
+
+function quickValidate() {
+  // allows us to quickly check if the url is valid or not
+  if (document.querySelector("#input-field").value.length === 0) {
+    document.querySelector("#input-field").className = "";
+    document.querySelector("#play").style.color = "black";
+    document.querySelector("#play").className = "";
+  } else if (urlValidator.test(document.querySelector("#input-field").value)) {
+    document.querySelector("#input-field").className = "correct";
+    document.querySelector("#play").className = "valid";
+    document.querySelector("#play").title = "play video url entered";
+    document.querySelector("#play").focus();
+  } else {
+    document.querySelector("#input-field").className = "wrong";
+    document.querySelector("#play").className = "";
+    document.querySelector("#play").style.color = "#c6262e";
+    document.querySelector("#play").title =
+      "invalid url entered, finish the url or double check if it is correct";
   }
 }
 
@@ -45,30 +75,32 @@ function getId(url) {
 }
 
 function loadVideo(videoId) {
-  document.getElementById("overlay").style.display = "block";
-  document.querySelector("#uiLoader1").style.display = "flex";
-  if (privateMode) {
+  isLoaded = true;
+  document.querySelector("#overlay").style.display = "block";
+  if (document.querySelector("#private-mode").checked) {
     // sets the video player iframe's url to a youtube privacy-enhanced url(video doesn't show up on user's youtube search history) if the user has enabled Privacy Mode
-    document.getElementById(
-      "videoPlayer"
-    ).src = "https://www.youtube-nocookie.com/embed/" + videoId;
+    document.querySelector("#videoPlayer").src =
+      "https://www.youtube-nocookie.com/embed/" + videoId;
   } else {
     // sets the video player iframe's url to a youtube embed url (default)
-    document.getElementById(
-      "videoPlayer"
-    ).src = "https://www.youtube.com/embed/" + videoId;
+    document.querySelector("#videoPlayer").src =
+      "https://www.youtube.com/embed/" + videoId;
+  }
+
+  if (document.querySelector("#load-fullscreen").checked) {
+    openFullscreen();
+  } else {
+    return;
   }
   // checks if the iframe content (our video) has loaded
-  document.querySelector('iframe').onload = function () {
-    document.getElementById("overlay").style.display = "none";
-    isLoaded = true;
-    document.getElementById("videoPlayer").focus();
+  document.querySelector("iframe").onload = function() {
+    document.querySelector("#videoPlayer").focus();
   };
 }
 
 function openFullscreen() {
   // puts the player in full screen mode
-  var player = document.getElementById("videoPlayer");
+  var player = document.querySelector("#videoPlayer");
   if (player.src.length !== 0 && isLoaded) {
     if (player.requestFullscreen) {
       player.requestFullscreen();
@@ -83,15 +115,24 @@ function openFullscreen() {
     }
   } else {
     console.log("Error: unable to toggle full screen\nReason: no URL found");
-    alert("We are unable to toggle full screen if a video hasn't been loaded\nPlease enter a URL first");
-    getVideoURL();
+    alert(
+      "We are unable to toggle full screen if a video hasn't been loaded\nPlease enter a URL first"
+    );
+    // getVideoURL();
   }
 }
 
 function refresh() {
   // allows the user to reset the player if they entered an invalid url or ran into another problem
   url = "";
-  document.getElementById("videoPlayer").src = "";
+  document.querySelector("iframe").src = "";
+  document.querySelector("#expand").disabled = true;
+  document.querySelector("#expand").style.cursor = "default";
+  document.querySelector("#input-field").className = "";
+  document.querySelector("#play").className = "";
+  document.querySelector("#play").style.color = "black";
+  document.querySelector("#input-field").value = "";
+  document.querySelector("#input-field").focus();
   isLoaded = false;
   return isLoaded;
 }
@@ -102,7 +143,9 @@ function shareVideo() {
     navigator.clipboard.writeText("https://youtu.be/" + videoId);
     alert("Link copied to clipboard");
   } else {
-    console.log("Error: unable to copy shortened URL to clipboard\nReason: no URL found");
+    console.log(
+      "Error: unable to copy shortened URL to clipboard\nReason: no URL found"
+    );
     alert("You haven't entered a URL to share\nPlay a video and try again");
     getVideoURL();
   }
@@ -127,17 +170,19 @@ function openVideoInNewTab() {
       "https://www.youtube.com/watch?v=" + videoId,
       document.title,
       "toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=" +
-      w +
-      ", height=" +
-      h +
-      ", top=" +
-      top +
-      ", left=" +
-      left
+        w +
+        ", height=" +
+        h +
+        ", top=" +
+        top +
+        ", left=" +
+        left
     );
   } else {
     console.log("Error: unable to open video in new tab\nReason: no URL found");
-    alert("We can't open video in new tab because you haven't entered a URL\n Play a video and try again");
+    alert(
+      "We can't open video in new tab because you haven't entered a URL\n Play a video and try again"
+    );
     getVideoURL();
   }
 }
@@ -146,19 +191,59 @@ function togglePrivateMode() {
   // toggles icon state for Private Mode and tells loadVideo function if it should load in Private Mode
   // Private Mode allows users to view videos on YT Player without them influening their YouTube and browsing experience.
   // For example, I'm a cat person and I want cat ads when I browse the internet. Say if I watched a video titled "Top 10 Reasons Why You Should Buy A Dog"
-  // Next time I would go on the Verge (https://www.theverge.com/) I would be getting dog adverts. 
+  // Next time I would go on the Verge (https://www.theverge.com/) I would be getting dog adverts.
   // If I played the same video on YT Player with Private Mode on, I wouldn't get any dog ads nor would the video I watched be on my YouTube search history.
   if (!privateMode) {
-    document.getElementById("private-mode").style.opacity = "100%";
-    document.getElementById("private-mode").setAttribute("title", "Toggle Private Mode, Private Mode is enabled.");
+    document.getElementByIdquerySelector("#rivate-mode").style.opacity = "100%";
+    document
+      .querySelector("#private-mode")
+      .setAttribute("title", "Toggle Private Mode, Private Mode is enabled.");
     privateMode = true;
   } else if (privateMode) {
-    document.getElementById("private-mode").style.opacity = "38%";
-    document.getElementById("private-mode").setAttribute("title", "Toggle Private Mode, Private Mode is off, toggling will enable Private Mode");
+    document.querySelector("#private-mode").style.opacity = "38%";
+    document
+      .querySelector("#private-mode")
+      .setAttribute(
+        "title",
+        "Toggle Private Mode, Private Mode is off, toggling will enable Private Mode"
+      );
     privateMode = false;
   } else {
     console.log("Unable to toggle private mode");
   }
   return privateMode;
+}
 
+// allows us to sleep for x seconds
+function sleep(duration) {
+  var currentTime = new Date().getTime();
+  while (new Date().getTime() < currentTime + duration * 1000) {
+    /* Do nothing */
+  }
+}
+
+function closeOverlay() {
+  document.querySelector("#expand").style.opacity = "0%";
+  document.querySelector("#overlay").style.display = "none";
+  refresh();
+}
+
+function minimizeOverlay() {
+  // document.querySelector("#input-field").focus();
+  // document.querySelector("#input-field").select();
+  document.querySelector("#expand").style.opacity = "100%";
+  document.querySelector("#overlay").style.display = "none";
+  if (isLoaded) {
+    document.querySelector("#expand").disabled = false;
+    document.querySelector("#expand").style.cursor = "pointer";
+    document.querySelector("#expand").focus();
+  } else {
+    document.querySelector("#expand").disabled = true;
+    document.querySelector("#expand").style.cursor = "default";
+    document.querySelector("#expand").blur();
+  }
+}
+
+function off() {
+  document.querySelector("#overlay").style.display = "none";
 }
