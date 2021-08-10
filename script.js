@@ -229,8 +229,8 @@ function closeOverlay() {
 }
 
 function minimizeOverlay() {
-  // document.querySelector("#text-field").focus();
-  // document.querySelector("#text-field").select();
+  // document.querySelector("#input-field").focus();
+  // document.querySelector("#input-field").select();
   document.querySelector("#expand").style.opacity = "100%";
   document.querySelector("#overlay").style.display = "none";
   if (isLoaded) {
