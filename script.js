@@ -10,7 +10,7 @@ var privateMode = false;
 const videoIdExtractor = /(http(?: s) ?: \/\/(?:m.)?(?:www\.)?)?youtu(?:\.be\/|be\.com\/(?:watch\?(?:feature=youtu\.be\&)?v=|v\/|embed\/|user\/(?:[\w#]+\/)+))([^&#?\n]+)/;
 // checks if the url is a valid youtube url and is something our player can play
 const urlValidator = /((http?(?:s)?:\/\/)?(www\.)?)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?&v=))((?:\w|-){11})((?:\&|\?)\S*)?/;
-// expression to test if there are any whitspaces in our url
+// expression to test if there are any whitespaces in our url
 const whiteSpaceValidator = /\s/g;
 
 function getVideoURL() {
