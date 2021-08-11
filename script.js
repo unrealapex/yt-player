@@ -174,12 +174,13 @@ function openVideoInNewTab() {
   }
 }
 
+
+// Private Mode allows users to view videos on YT Player without them influening their YouTube and browsing experience.
+// For example, I'm a cat person and I want cat ads when I browse the internet. Say if I watched a video titled "Top 10 Reasons Why You Should Buy A Dog"
+// Next time I would go on the Verge (https://www.theverge.com/) I would be getting dog adverts.
+// If I played the same video on YT Player with Private Mode on, I wouldn't get any dog ads nor would the video I watched be on my YouTube search history.
 function togglePrivateMode() {
   // toggles icon state for Private Mode and tells loadVideo function if it should load in Private Mode
-  // Private Mode allows users to view videos on YT Player without them influening their YouTube and browsing experience.
-  // For example, I'm a cat person and I want cat ads when I browse the internet. Say if I watched a video titled "Top 10 Reasons Why You Should Buy A Dog"
-  // Next time I would go on the Verge (https://www.theverge.com/) I would be getting dog adverts.
-  // If I played the same video on YT Player with Private Mode on, I wouldn't get any dog ads nor would the video I watched be on my YouTube search history.
   if (!privateMode) {
     document.querySelector("#private-mode").style.opacity = "100%";
     document
@@ -211,6 +212,7 @@ function sleep(duration) {
 }
 
 function closeOverlay() {
+  // Closes the video overlay and clears its iframe src
   // TODO: Use hidden class to change visibility of expand button
   document.querySelector("#expand").style.opacity = 0;
   document.querySelector("#overlay").style.display = "none";
@@ -218,6 +220,7 @@ function closeOverlay() {
 }
 
 function minimizeOverlay() {
+  // Minimizes video overlay
   // TODO: Use hidden class to change visibility of expand button
   // document.querySelector("#input-field").focus();
   // document.querySelector("#input-field").select();
@@ -234,11 +237,9 @@ function minimizeOverlay() {
   }
 }
 
-function off() {
-  document.querySelector("#overlay").style.display = "none";
-}
 
 function setNotification(message, level = 0) {
+  // sets notification, different notification levels have different text colors, 0 being a normal message, 1 being a "correct message, and -1 being an error messabe
   document.querySelector("#notification").innerHTML = message;
   if (level === 0) {
     document.querySelector("#notification").className = "normal";
@@ -252,6 +253,7 @@ function setNotification(message, level = 0) {
 }
 
 function clearNotification() {
+  // clears notification div 
   document.querySelector("#notification").innerHTML = "";
   document.querySelector("#notification").className = "";
 }
