@@ -19,48 +19,33 @@ function getVideoURL() {
   // alert("executed got video url");
   let hasWhiteSpace = whiteSpaceValidator.test(url);
   url = hasWhiteSpace ? (url = url.replace(/\s/g, "")) : url;
-  validateURL(url);
+  getId(url);
 }
 
 // TODO: add Vimeo support
 // TODO: add ability to play youtube playlists
 
-function validateURL(url) {
-  // checks if link given is from youtube.com using regex
-  // TODO: add logic to check if url links to existing video
-  var isValidURL = urlValidator.test(url);
-  if (!isValidURL && url.length !== 0 && url !== null) {
-    alert("Invalid URL\nTry Again");
-    console.error("Invalid URL entered");
-    refresh();
-    getVideoURL();
-  } else {
-    getId(url);
-  }
-}
 
-// function quickValidate() {
-//   if (urlValidator.test(document.querySelector("#input-field").value) || document.getElementByIdquerySelector("#nput-field").value.length === 0) {
-//     document.querySelector("#input-field").className = "";
-//   } else {
-//     document.querySelector("#input-field").className = "wrong";
-//   }
-// }
-
-function quickValidate() {
-  // allows us to quickly check if the url is valid or not
+function validate() {
+  // checks if url given is valid
   if (document.querySelector("#input-field").value.length === 0) {
+    clearNotification();
     document.querySelector("#input-field").className = "";
-    document.querySelector("#play").style.color = "black";
+    document.querySelector("#play").style.color = "#1a1a1a";
     document.querySelector("#play").className = "";
+    document.querySelector("#play").disabled = true;
   } else if (urlValidator.test(document.querySelector("#input-field").value)) {
+    clearNotification();
     document.querySelector("#input-field").className = "correct";
     document.querySelector("#play").className = "valid";
+    document.querySelector("#play").disabled = false;
     document.querySelector("#play").title = "play video url entered";
     document.querySelector("#play").focus();
   } else {
+    setNotification("enter a valid url", -1);
     document.querySelector("#input-field").className = "wrong";
     document.querySelector("#play").className = "";
+    document.querySelector("#play").disabled = true;
     document.querySelector("#play").style.color = "#c6262e";
     document.querySelector("#play").title =
       "invalid url entered, finish the url or double check if it is correct";
@@ -130,9 +115,11 @@ function refresh() {
   document.querySelector("#expand").style.cursor = "default";
   document.querySelector("#input-field").className = "";
   document.querySelector("#play").className = "";
-  document.querySelector("#play").style.color = "black";
+  document.querySelector("#play").style.color = "#1a1a1a";
+  document.querySelector("#play").disabled = true;
   document.querySelector("#input-field").value = "";
   document.querySelector("#input-field").focus();
+  clearNotification();
   isLoaded = false;
   return isLoaded;
 }
@@ -194,7 +181,7 @@ function togglePrivateMode() {
   // Next time I would go on the Verge (https://www.theverge.com/) I would be getting dog adverts.
   // If I played the same video on YT Player with Private Mode on, I wouldn't get any dog ads nor would the video I watched be on my YouTube search history.
   if (!privateMode) {
-    document.getElementByIdquerySelector("#rivate-mode").style.opacity = "100%";
+    document.querySelector("#private-mode").style.opacity = "100%";
     document
       .querySelector("#private-mode")
       .setAttribute("title", "Toggle Private Mode, Private Mode is enabled.");
@@ -214,6 +201,7 @@ function togglePrivateMode() {
   return privateMode;
 }
 
+// TODO: Delete this function if not in use
 // allows us to sleep for x seconds
 function sleep(duration) {
   var currentTime = new Date().getTime();
@@ -223,12 +211,14 @@ function sleep(duration) {
 }
 
 function closeOverlay() {
-  document.querySelector("#expand").style.opacity = "0%";
+  // TODO: Use hidden class to change visibility of expand button
+  document.querySelector("#expand").style.opacity = 0;
   document.querySelector("#overlay").style.display = "none";
   refresh();
 }
 
 function minimizeOverlay() {
+  // TODO: Use hidden class to change visibility of expand button
   // document.querySelector("#input-field").focus();
   // document.querySelector("#input-field").select();
   document.querySelector("#expand").style.opacity = "100%";
@@ -246,4 +236,22 @@ function minimizeOverlay() {
 
 function off() {
   document.querySelector("#overlay").style.display = "none";
+}
+
+function setNotification(message, level = 0) {
+  document.querySelector("#notification").innerHTML = message;
+  if (level === 0) {
+    document.querySelector("#notification").className = "normal";
+  } else if ((level === 1)) {
+    document.querySelector("#notification").className = "correct";
+  } else if ((level === -1)) {
+    document.querySelector("#notification").className = "wrong";
+  } else {
+    console.error("Error setting notification");
+  }
+}
+
+function clearNotification() {
+  document.querySelector("#notification").innerHTML = "";
+  document.querySelector("#notification").className = "";
 }

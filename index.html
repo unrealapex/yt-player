@@ -33,13 +33,13 @@
     <div class="container">
       <div class="child">
         <!-- <form> -->
-
+        <div id="notification"></div>
         <div id="typing-area">
           <div class="bar">
             <input
               id="input-field"
               type="url"
-              oninput="quickValidate()"
+              oninput="validate()"
               autofocus
               required
               placeholder="enter a youtube video URL"
@@ -48,6 +48,7 @@
               id="play"
               onclick="getVideoURL()"
               title="play video url entered"
+              disabled
             >
               play
             </button>
@@ -60,20 +61,20 @@
               onclick='document.querySelector("#input-field").className = "";
   document.querySelector("#play").className = "";
   document.querySelector("#play").style.color = "black";
+  document.querySelector("#play").disabled = true;
   document.querySelector("#input-field").value = "";
   document.querySelector("#input-field").focus(); '
               title="play video url entered"
             >
               x
             </button>
-            
           </div>
           <fieldset>
             <legend>options</legend>
             <div>
               <div title="load video in full screen">
                 <label
-                  ><input type="checkbox" name="" id="load-fullscreen" />load in
+                  ><input type="checkbox" name="" checked id="load-fullscreen" />load in
                   full screen</label
                 >
               </div>

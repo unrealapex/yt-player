@@ -26,9 +26,15 @@ h1 {
 }
 
 
-#play:focus {
-  border-color: black;
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
+
+#notification {
+  text-align: center;
+}
+
 
 #input-field.wrong {
   background: rgba(198, 38, 46, 0.3);
@@ -40,6 +46,15 @@ h1 {
 
 .correct {
   color: #68b723;
+}
+
+.normal {
+  color: #1a1a1a;
+}
+
+.hidden {
+  opacity: 0;
+  cursor: default;
 }
 
 #typing-area {
