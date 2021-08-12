@@ -39,7 +39,6 @@ function validate() {
     document.querySelector("#input-field").className = "correct";
     document.querySelector("#play").className = "valid";
     document.querySelector("#play").disabled = false;
-    document.querySelector("#play").title = "play video url entered";
     document.querySelector("#play").focus();
   } else {
     setNotification("enter a valid url", -1);
@@ -47,8 +46,6 @@ function validate() {
     document.querySelector("#play").className = "";
     document.querySelector("#play").disabled = true;
     document.querySelector("#play").style.color = "#c6262e";
-    document.querySelector("#play").title =
-      "invalid url entered, finish the url or double check if it is correct";
   }
 }
 
