@@ -1,3 +1,4 @@
+// globals
 var url;
 var videoId;
 var isLoaded = false;
@@ -14,7 +15,7 @@ const urlValidator = /((http?(?:s)?:\/\/)?(www\.)?)?(?:youtu\.be\/|youtube\.com\
 const whiteSpaceValidator = /\s/g;
 
 function getVideoURL() {
-  // gets our url from a prompt
+  // gets our url from the input field
   url = document.querySelector("#input-field").value;
   // alert("executed got video url");
   let hasWhiteSpace = whiteSpaceValidator.test(url);
@@ -237,7 +238,7 @@ function minimizeOverlay() {
 
 
 function setNotification(message, level = 0) {
-  // sets notification, different notification levels have different text colors, 0 being a normal message, 1 being a "correct message, and -1 being an error messabe
+  // sets notification, different notification levels have different text colors, 0 being a normal message, 1 being a "correct" message, and -1 being an "error" message
   document.querySelector("#notification").innerHTML = message;
   if (level === 0) {
     document.querySelector("#notification").className = "normal";
@@ -251,7 +252,7 @@ function setNotification(message, level = 0) {
 }
 
 function clearNotification() {
-  // clears notification div 
+  // clears notification
   document.querySelector("#notification").innerHTML = "";
   document.querySelector("#notification").className = "";
 }
