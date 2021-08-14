@@ -137,10 +137,9 @@ function shareVideo() {
   }
 }
 
-function help() {
-  // help if the user is stuck or wants to get info
+function about() {
   alert(
-    "Thanks for using YT Player!\nUse the play icon to start watching videos, the full screen icon to play videos in full screen, the refresh button to reset the player,the lock to play videos in Private Mode, and the open button to open the video in a new tab.\nButtons that are grayed out are disabled and buttons that are black are enabled\nMade with ❤️ by UnrealApex\nThank you to all those who helped improve this project!"
+    "yt player is a minimalistic video player for youtube videos(more support possibly in the near future). it was created by unrealapex with the aim of being able to watch youtube videos quickly with no interuptions. made with love by unrealapex\nthank you to all those who helped improve this project!"
   );
 }
 
