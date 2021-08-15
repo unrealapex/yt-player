@@ -117,7 +117,6 @@ function refresh() {
   document.querySelector("#play").disabled = true;
   document.querySelector("#input-field").value = "";
   document.querySelector("#input-field").focus();
-  document.querySelector("#private-mode").checked = false;
   clearNotification();
   isLoaded = false;
   return isLoaded;
