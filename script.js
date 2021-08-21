@@ -12,13 +12,13 @@ const videoIdExtractor = /(http(?: s) ?: \/\/(?:m.)?(?:www\.)?)?youtu(?:\.be\/|b
 // checks if the url is a valid youtube url and is something our player can play
 const urlValidator = /((http?(?:s)?:\/\/)?(www\.)?)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?&v=))((?:\w|-){11})((?:\&|\?)\S*)?/;
 // expression to test if there are any whitespaces in our url
-const whiteSpaceValidator = /\s/g;
+const whiteSpaceRE = /\s/g;
 
 function getVideoURL() {
   // gets our url from the input field
   url = document.querySelector("#input-field").value;
   // alert("executed got video url");
-  let hasWhiteSpace = whiteSpaceValidator.test(url);
+  let hasWhiteSpace = whiteSpaceRE.test(url);
   url = hasWhiteSpace ? (url = url.replace(/\s/g, "")) : url;
   getId(url);
 }
