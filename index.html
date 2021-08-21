@@ -29,6 +29,11 @@
   </head>
 
   <body>
+      <noscript>
+    <h1>
+      To use yt player, please enable JavaScript
+    </h1>
+  </noscript>
     <h1 onclick='about(); window.open("https://github.com/UnrealApex/yt-player"); window.focus();'>yt player</h1>
     <div class="container">
       <div class="child">
@@ -72,9 +77,20 @@
           <fieldset>
             <legend>options</legend>
             <div>
+
+              <form action="">
+                <p>play method:</p>
+                  <input type="radio"  id="url-radio" name="play-method" value="HTML" checked>
+                  <label for="url">url</label><br>
+                  <input type="radio" id="queue-radio" name="play-method" value="queue">
+                  <label for="queue">queue</label>
+                
+                  <br>  
+              </form>
+
               <div title="load video in full screen">
                 <label
-                  ><input type="checkbox" name="" checked id="load-fullscreen" />load in
+                  ><input type="checkbox" name="" id="load-fullscreen" />load in
                   full screen</label
                 >
               </div>
@@ -92,7 +108,7 @@
       </div>
     </div>
 
-    <div title="click the x to close" id="overlay">
+    <div id="overlay">
       <div id="overlay-content">
         <div>
           <span
@@ -131,6 +147,21 @@
       >
         minimized video
       </button>
+    </div>
+<div id="queue">
+    <details>
+    <summary onclick='document.querySelector("#myInput").focus()'>queue</summary>
+     <div id="myDIV" class="header">
+ <h3>queue</h3>
+       <div class="bar">
+  <input type="text" id="myInput" placeholder="add video to queue">
+  <button onclick="newElement()" class="">add</button>
+  <button onclick="" class="">clear</button>
+  </div>
+      </div>
+  <ul id="myUL">
+</ul>
+    </details>
     </div>
   </body>
 </html>
