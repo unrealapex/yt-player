@@ -3,7 +3,9 @@ var url;
 var videoId;
 var isLoaded = false;
 var privateMode = false;
-// const inputField = document.querySelector('#input-field');
+var queue = [];
+var queueNumber = 0;
+// const urlInput = document.querySelector('#url-input');
 // const expand = document.querySelector("#expand");
 // const overlay = document.querySelector("#overlay");
 // regular expressions used in the program, I highly suggest using regex101.com for a detailed explaination of the expression's inner workings
@@ -12,13 +14,14 @@ const videoIdExtractor = /(http(?: s) ?: \/\/(?:m.)?(?:www\.)?)?youtu(?:\.be\/|b
 // checks if the url is a valid youtube url and is something our player can play
 const urlValidator = /((http?(?:s)?:\/\/)?(www\.)?)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?&v=))((?:\w|-){11})((?:\&|\?)\S*)?/;
 // expression to test if there are any whitespaces in our url
-const whiteSpaceValidator = /\s/g;
+const whiteSpaceRE = /\s/g;
 
 function getVideoURL() {
-  // gets our url from the input field
-  url = document.querySelector("#input-field").value;
-  // alert("executed got video url");
-  let hasWhiteSpace = whiteSpaceValidator.test(url);
+  // ternary operator which determines whether url should come from the main url bar or the queue
+  url = document.querySelector("#url-radio").checked
+    ? document.querySelector("#url-input").value
+    : queue[queueNumber];
+  let hasWhiteSpace = whiteSpaceRE.test(url);
   url = hasWhiteSpace ? (url = url.replace(/\s/g, "")) : url;
   getId(url);
 }
@@ -26,27 +29,55 @@ function getVideoURL() {
 // TODO: add Vimeo support
 // TODO: add ability to play youtube playlists
 
-
 function validate() {
   // checks if url given is valid
-  if (document.querySelector("#input-field").value.length === 0) {
+  if (document.querySelector("#url-input").value.length === 0) {
     clearNotification();
-    document.querySelector("#input-field").className = "";
+    document.querySelector("#url-input").className = "";
     document.querySelector("#play").style.color = "#1a1a1a";
     document.querySelector("#play").className = "";
-    document.querySelector("#play").disabled = true;
-  } else if (urlValidator.test(document.querySelector("#input-field").value)) {
+    return false;
+    // document.querySelector("#play").disabled = true;
+  } else if (urlValidator.test(document.querySelector("#url-input").value)) {
     clearNotification();
-    document.querySelector("#input-field").className = "correct";
+    document.querySelector("#url-input").className = "correct";
     document.querySelector("#play").className = "valid";
-    document.querySelector("#play").disabled = false;
+    // document.querySelector("#play").disabled = false;
     document.querySelector("#play").focus();
+    return true;
   } else {
     setNotification("enter a valid url", -1);
-    document.querySelector("#input-field").className = "wrong";
+    document.querySelector("#url-input").className = "wrong";
     document.querySelector("#play").className = "";
-    document.querySelector("#play").disabled = true;
+    // document.querySelector("#play").disabled = true;
     document.querySelector("#play").style.color = "#c6262e";
+    return false;
+  }
+}
+
+function validateQueue() {
+  // checks if url given is valid for queue
+  if (document.querySelector("#queue-input").value.length === 0) {
+    clearNotification();
+    document.querySelector("#queue-input").className = "";
+    document.querySelector("#add-queue").style.color = "#1a1a1a";
+    document.querySelector("#add-queue").className = "";
+    return false;
+    // document.querySelector("#play").disabled = true;
+  } else if (urlValidator.test(document.querySelector("#queue-input").value)) {
+    clearNotification();
+    document.querySelector("#queue-input").className = "correct";
+    document.querySelector("#add-queue").className = "valid";
+    document.querySelector("#add-queue").disabled = false;
+    document.querySelector("#add-queue").focus();
+    return true;
+  } else {
+    setNotification("enter a valid url", -1);
+    document.querySelector("#queue-input").className = "wrong";
+    document.querySelector("#add-queue").className = "";
+    document.querySelector("#add-queue").disabled = true;
+    document.querySelector("#add-queue").style.color = "#c6262e";
+    return false;
   }
 }
 
@@ -79,6 +110,11 @@ function loadVideo(videoId) {
   document.querySelector("iframe").onload = function() {
     document.querySelector("#videoPlayer").focus();
   };
+
+  if (document.querySelector("#url-radio").checked) {
+    document.querySelector("#queue-count").innerHTML = "queue: 0/0";
+  } else {
+  }
 }
 
 function openFullscreen() {
@@ -101,7 +137,6 @@ function openFullscreen() {
     alert(
       "We are unable to toggle full screen if a video hasn't been loaded\nPlease enter a URL first"
     );
-    // getVideoURL();
   }
 }
 
@@ -111,12 +146,12 @@ function refresh() {
   document.querySelector("iframe").src = "";
   document.querySelector("#expand").disabled = true;
   document.querySelector("#expand").style.cursor = "default";
-  document.querySelector("#input-field").className = "";
+  document.querySelector("#url-input").className = "";
   document.querySelector("#play").className = "";
   document.querySelector("#play").style.color = "#1a1a1a";
-  document.querySelector("#play").disabled = true;
-  document.querySelector("#input-field").value = "";
-  document.querySelector("#input-field").focus();
+  // document.querySelector("#play").disabled = true;
+  document.querySelector("#url-input").value = "";
+  document.querySelector("#url-input").focus();
   document.querySelector("#private-mode").checked = false;
   clearNotification();
   isLoaded = false;
@@ -172,42 +207,10 @@ function openVideoInNewTab() {
   }
 }
 
-
 // Private Mode allows users to view videos on YT Player without them influening their YouTube and browsing experience.
 // For example, I'm a cat person and I want cat ads when I browse the internet. Say if I watched a video titled "Top 10 Reasons Why You Should Buy A Dog"
 // Next time I would go on the Verge (https://www.theverge.com/) I would be getting dog adverts.
 // If I played the same video on YT Player with Private Mode on, I wouldn't get any dog ads nor would the video I watched be on my YouTube search history.
-function togglePrivateMode() {
-  // toggles icon state for Private Mode and tells loadVideo function if it should load in Private Mode
-  if (!privateMode) {
-    document.querySelector("#private-mode").style.opacity = "100%";
-    document
-      .querySelector("#private-mode")
-      .setAttribute("title", "Toggle Private Mode, Private Mode is enabled.");
-    privateMode = true;
-  } else if (privateMode) {
-    document.querySelector("#private-mode").style.opacity = "38%";
-    document
-      .querySelector("#private-mode")
-      .setAttribute(
-        "title",
-        "Toggle Private Mode, Private Mode is off, toggling will enable Private Mode"
-      );
-    privateMode = false;
-  } else {
-    console.log("Unable to toggle private mode");
-  }
-  return privateMode;
-}
-
-// TODO: Delete this function if not in use
-// allows us to sleep for x seconds
-function sleep(duration) {
-  var currentTime = new Date().getTime();
-  while (new Date().getTime() < currentTime + duration * 1000) {
-    /* Do nothing */
-  }
-}
 
 function closeOverlay() {
   // Closes the video overlay and clears its iframe src
@@ -220,8 +223,8 @@ function closeOverlay() {
 function minimizeOverlay() {
   // Minimizes video overlay
   // TODO: Use hidden class to change visibility of expand button
-  // document.querySelector("#input-field").focus();
-  // document.querySelector("#input-field").select();
+  // document.querySelector("#url-input").focus();
+  // document.querySelector("#url-input").select();
   document.querySelector("#expand").style.opacity = "100%";
   document.querySelector("#overlay").style.display = "none";
   if (isLoaded) {
@@ -235,15 +238,14 @@ function minimizeOverlay() {
   }
 }
 
-
 function setNotification(message, level = 0) {
   // sets notification, different notification levels have different text colors, 0 being a normal message, 1 being a "correct" message, and -1 being an "error" message
   document.querySelector("#notification").innerHTML = message;
   if (level === 0) {
     document.querySelector("#notification").className = "normal";
-  } else if ((level === 1)) {
+  } else if (level === 1) {
     document.querySelector("#notification").className = "correct";
-  } else if ((level === -1)) {
+  } else if (level === -1) {
     document.querySelector("#notification").className = "wrong";
   } else {
     console.error("Error setting notification");
@@ -254,4 +256,67 @@ function clearNotification() {
   // clears notification
   document.querySelector("#notification").innerHTML = "";
   document.querySelector("#notification").className = "";
+}
+
+function addQueue() {
+  // adds video to queue and updates queue ui
+  var linebreak = document.createElement("br");
+  let inputValue = document.querySelector("#queue-input").value;
+  if (inputValue === "" || whiteSpaceRE.test(inputValue)) {
+    document.querySelector("#queue-input").focus();
+    alert("You must write something!");
+  } else {
+    queue[queue.length] = document.querySelector("#queue-input").value;
+    document.querySelector("#queue-input").value = "";
+    document.querySelector("#queue-input").focus();
+    document.querySelector("#queue-list").appendChild(linebreak);
+    document.querySelector("#queue-list").innerHTML +=
+      queue.length + ". " + inputValue;
+    document.querySelector("#queue-count").innerHTML = `queue: ${queueNumber +
+      1} / ${queue.length}`;
+  }
+
+  return queue;
+}
+
+function deleteQueue() {
+  // deletes queue
+  let confirmDelete = confirm("Are you sure you want to delete the queue?");
+  if (confirmDelete) {
+    queue = [];
+    document.querySelector("#queue-list").innerHTML = "";
+    document.querySelector("#queue-count").innerHTML = "queue: 0/0";
+    document.querySelector("#queue-input").value = "";
+    document.querySelector("#queue-input").focus();
+    clearNotification();
+    return queue;
+  } else {
+    confirm.log("Canceled queue delete");
+  }
+}
+
+function nextVideo() {
+  // continues to the next video in the video queue if user isn't on the last video
+  if (queueNumber + 1 !== queue.length) {
+    queueNumber++;
+    loadVideo(videoIdExtractor.exec(queue[queueNumber])[2]);
+    document.querySelector("#queue-count").innerHTML = `queue: ${queueNumber +
+      1} / ${queue.length}`;
+    return queueNumber;
+  } else {
+    alert("You are at the end of the queue");
+  }
+}
+
+function previousVideo() {
+  // goals to the previous video in the video queue if user isn't on the first video
+  if (queueNumber !== 0) {
+    queueNumber--;
+    loadVideo(videoIdExtractor.exec(queue[queueNumber])[2]);
+    document.querySelector("#queue-count").innerHTML = `queue: ${queueNumber +
+      1} / ${queue.length}`;
+    return queueNumber;
+  } else {
+    alert("You are at the beginning of the queue");
+  }
 }
