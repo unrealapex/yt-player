@@ -5,15 +5,18 @@ var isLoaded = false;
 var privateMode = false;
 var queue = [];
 var queueNumber = 0;
+// TODO: find out why using these variables isn't working
 // const urlInput = document.querySelector('#url-input');
 // const expand = document.querySelector("#expand");
 // const overlay = document.querySelector("#overlay");
 // regular expressions used in the program, I highly suggest using regex101.com for a detailed explaination of the expression's inner workings
 // gets the video id from the url inputted by the user
+// extracts any YouTube video id found inside given string
 const videoIdExtractor = /(http(?: s) ?: \/\/(?:m.)?(?:www\.)?)?youtu(?:\.be\/|be\.com\/(?:watch\?(?:feature=youtu\.be\&)?v=|v\/|embed\/|user\/(?:[\w#]+\/)+))([^&#?\n]+)/;
-// checks if the url is a valid youtube url and is something our player can play
+// FIXME: fix expression not catching mistakes in the url protocol or the url subdomain 
+// returns true if string tested is a YouTube video url, note: expression doesn't catch errors in the protocol or subdomain but video plays normally
 const urlValidator = /((http?(?:s)?:\/\/)?(www\.)?)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?&v=))((?:\w|-){11})((?:\&|\?)\S*)?/;
-// expression to test if there are any whitespaces in our url
+// returns true if string tested has whitespace in it 
 const whiteSpaceRE = /\s/g;
 
 function getVideoURL() {
@@ -56,6 +59,7 @@ function validate() {
 }
 
 function validateQueue() {
+  // TODO: if input is blank, remove add queue button class
   // checks if url given is valid for queue
   if (document.querySelector("#queue-input").value.length === 0) {
     clearNotification();
@@ -274,6 +278,7 @@ function addQueue() {
       queue.length + ". " + inputValue;
     document.querySelector("#queue-count").innerHTML = `queue: ${queueNumber +
       1} / ${queue.length}`;
+    document.querySelector("#add-queue").className = "";
   }
 
   return queue;

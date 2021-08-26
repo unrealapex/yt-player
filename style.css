@@ -251,7 +251,6 @@ details[open] summary {
   float: left;
 }
 
-/* FIXME: fix font size of queue count in overlay */
 #queue-count {
   font-size: 0.5em;
   transition-duration: 0.5s;
