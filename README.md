@@ -1,6 +1,6 @@
 # [yt player](https://unrealapex.github.io/yt-player/)
 
-a fast and minimalistic video player for YouTube videos
+yaply terse player(now those aren't words you see everyday) shortened to yt player is a fast and minimalistic video player for YouTube videos and more platforms to come
 
 ## features
 - minimalist design
