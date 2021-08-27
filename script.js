@@ -97,9 +97,9 @@ function openFullscreen() {
       alert("Unable to open video in full screen");
     }
   } else {
-    console.log("Error: unable to toggle full screen\nReason: no URL found");
+    console.log("Error: unable to toggle full screen" + "\n" + "Reason: no URL found");
     alert(
-      "We are unable to toggle full screen if a video hasn't been loaded\nPlease enter a URL first"
+      "We are unable to toggle full screen if a video hasn't been loaded" + "\n" + "Please enter a URL first"
     );
     // getVideoURL();
   }
@@ -130,9 +130,9 @@ function shareVideo() {
     alert("Link copied to clipboard");
   } else {
     console.log(
-      "Error: unable to copy shortened URL to clipboard\nReason: no URL found"
+      "Error: unable to copy shortened URL to clipboard" + "\n" + "Reason: no URL found"
     );
-    alert("You haven't entered a URL to share\nPlay a video and try again");
+    alert("You haven't entered a URL to share" + "\n" + "Play a video and try again");
     getVideoURL();
   }
 }
@@ -164,15 +164,16 @@ function openVideoInNewTab() {
         left
     );
   } else {
-    console.log("Error: unable to open video in new tab\nReason: no URL found");
+    console.log("Error: unable to open video in new tab" + "\n" + "Reason: no URL found");
     alert(
-      "We can't open video in new tab because you haven't entered a URL\n Play a video and try again"
+      "We can't open video in new tab because you haven't entered a URL" + "\n" + "Play a video and try again"
     );
     getVideoURL();
   }
 }
 
 
+// remove this function if not in use
 // Private Mode allows users to view videos on YT Player without them influening their YouTube and browsing experience.
 // For example, I'm a cat person and I want cat ads when I browse the internet. Say if I watched a video titled "Top 10 Reasons Why You Should Buy A Dog"
 // Next time I would go on the Verge (https://www.theverge.com/) I would be getting dog adverts.

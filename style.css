@@ -58,7 +58,7 @@ button:disabled {
   cursor: default;
 }
 
-#typing-area {
+#main-area {
   margin-top: 1rem;
   padding: 1.4rem 1rem;
   border-radius: 0.4rem;
@@ -162,8 +162,6 @@ button {
 }
 
 #videoPlayer {
-  /*margin-bottom: 5px; */
-  /* text-align: center; */
   width: 1000px;
   height: 500px;
 }
