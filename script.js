@@ -265,8 +265,8 @@ function clearNotification() {
 function addQueue() {
   // adds video to queue and updates queue ui
   var linebreak = document.createElement("br");
-  let inputValue = document.querySelector("#queue-input").value;
-  if (inputValue === "" || whiteSpaceRE.test(inputValue)) {
+  let queueValue = document.querySelector("#queue-input").value;
+  if (queueValue === "" || whiteSpaceRE.test(queueValue)) {
     document.querySelector("#queue-input").focus();
     alert("You must write something!");
   } else {
@@ -275,7 +275,7 @@ function addQueue() {
     document.querySelector("#queue-input").focus();
     document.querySelector("#queue-list").appendChild(linebreak);
     document.querySelector("#queue-list").innerHTML +=
-      queue.length + ". " + inputValue;
+      queue.length + ". " + queueValue;
     document.querySelector("#queue-count").innerHTML = `queue: ${queueNumber +
       1} / ${queue.length}`;
     document.querySelector("#add-queue").className = "";
