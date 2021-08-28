@@ -19,7 +19,7 @@ function getVideoURL() {
   url = document.querySelector("#input-field").value;
   // alert("executed got video url");
   let hasWhiteSpace = whiteSpaceRE.test(url);
-  url = hasWhiteSpace ? (url = url.replace(/\s/g, "")) : url;
+  url = (hasWhiteSpace ? url.replace(/\s/g, "") : url);
   getId(url);
 }
 
