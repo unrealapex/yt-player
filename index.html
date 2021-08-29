@@ -115,42 +115,39 @@
     <div id="overlay">
       <div id="overlay-content">
         <div>
-          <span
+          <button
             class="overlay-buttons material-icons-round"
             title="close"
             onclick="closeOverlay()"
-            >close</span
-          >
-          <span
+            >close</button>
+          <button
             class="overlay-buttons material-icons-round"
             title="maximize"
             onclick="openFullscreen()"
           >
-            check_box_outline_blank</span
-          >
-          <span
+            check_box_outline_blank</button>
+          <button
             class="overlay-buttons material-icons-round"
             title="minimize"
             onclick="minimizeOverlay()"
-            >minimize</span
-          >
+            >minimize</button>
           <div id="queue-buttons">
-            <span
+            <button
               class="overlay-buttons material-icons-round"
               id="next-video"
               title="next video"
               onclick="nextVideo()"
             >
               skip_next
-            </span>
-            <span
+            </button>
+            <button
               class="overlay-buttons material-icons-round"
               id="previous-video"
               title="previous video"
               onclick="previousVideo()"
             >
               skip_previous
-            </span>
+            </button>
           </div>
           <div id="queue-count">queue: 0/0</div>
         </div>

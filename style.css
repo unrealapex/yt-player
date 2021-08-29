@@ -176,10 +176,16 @@ button {
 }
 
 .overlay-buttons {
+  color: white !important;
   transition-duration: 0.5s;
   padding: 0.25em;
   float: right;
   cursor: pointer;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  border: none;
+  overflow: hidden;
+  outline: none;
 }
 
 .overlay-buttons:hover {
