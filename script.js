@@ -26,6 +26,7 @@ function getVideoURL() {
     : queue[queueNumber]);
   let hasWhiteSpace = whiteSpaceRE.test(url);
   url = (hasWhiteSpace ? url.replace(/\s/g, "") : url);
+  toggleQueueUI();
   getId(url);
 }
 
@@ -318,5 +319,24 @@ function previousVideo() {
     return queueNumber;
   } else {
     alert("You are at the start of the queue");
+  }
+}
+
+
+function toggleQueueUI() {
+  if (document.querySelector("#url-radio").checked) {
+    document.querySelector("#queue-count").classList.add("hidden");
+    document.querySelector("#next-video").classList.add("hidden");
+    document.querySelector("#previous-video").classList.add("hidden");
+    document.querySelector("#next-video").disabled = true;
+    document.querySelector("#previous-video").disabled = true;
+  } else if (document.querySelector("#queue-radio").checked) {
+    document.querySelector("#queue-count").classList.remove("hidden");
+    document.querySelector("#next-video").classList.remove("hidden");
+    document.querySelector("#previous-video").classList.remove("hidden");
+    document.querySelector("#next-video").disabled = false;
+    document.querySelector("#previous-video").disabled = false;
+  } else {
+    console.error("Unable to toggle queue ui");
   }
 }
