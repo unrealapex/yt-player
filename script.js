@@ -21,11 +21,11 @@ const whiteSpaceRE = /\s/g;
 
 function getVideoURL() {
   // ternary operator which determines whether url should come from the main url bar or the queue
-  url = document.querySelector("#url-radio").checked
+  url = (document.querySelector("#url-radio").checked
     ? document.querySelector("#url-input").value
-    : queue[queueNumber];
+    : queue[queueNumber]);
   let hasWhiteSpace = whiteSpaceRE.test(url);
-  url = hasWhiteSpace ? (url = url.replace(/\s/g, "")) : url;
+  url = (hasWhiteSpace ? url.replace(/\s/g, "") : url);
   getId(url);
 }
 
