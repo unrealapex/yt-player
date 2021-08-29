@@ -53,7 +53,7 @@ button:disabled:not(.overlay-buttons) {
 .hidden,
 .overlay-buttons:disabled {
   opacity: 0;
-  cursor: default;
+  cursor: default !important;
 }
 
 #typing-area {
