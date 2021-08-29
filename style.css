@@ -25,7 +25,7 @@ input[type="url"] {
   border-radius: 0.2rem;
 }
 
-button:disabled {
+button:disabled:not(.overlay-buttons) {
   opacity: 0.5;
   cursor: not-allowed;
 }
@@ -50,7 +50,8 @@ button:disabled {
   color: #1a1a1a;
 }
 
-.hidden {
+.hidden,
+.overlay-buttons:disabled {
   opacity: 0;
   cursor: default;
 }
