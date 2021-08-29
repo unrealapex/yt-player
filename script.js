@@ -114,11 +114,6 @@ function loadVideo(videoId) {
   document.querySelector("iframe").onload = function() {
     document.querySelector("#videoPlayer").focus();
   };
-
-  if (document.querySelector("#url-radio").checked) {
-    document.querySelector("#queue-count").innerHTML = "queue: 0/0";
-  } else {
-  }
 }
 
 function openFullscreen() {
