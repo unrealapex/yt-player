@@ -317,6 +317,6 @@ function previousVideo() {
       1} / ${queue.length}`;
     return queueNumber;
   } else {
-    alert("You are at the beginning of the queue");
+    alert("You are at the start of the queue");
   }
 }
