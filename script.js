@@ -123,6 +123,11 @@ function refresh() {
   return isLoaded;
 }
 
+// reloads video in video player
+function reload() {
+  loadVideo(videoIdExtractor.exec(document.querySelector("#url-input").value)[2]);
+}
+
 function shareVideo() {
   // copies shortened youtube url to the user's clipboard
   if (videoId !== undefined) {
@@ -265,3 +270,14 @@ function clearNotification() {
   document.querySelector("#notification").innerHTML = "";
   document.querySelector("#notification").className = "";
 }
+
+// keyboard shortcuts
+document.addEventListener("keydown", function(event) {
+  if (event.key === "r" && document.querySelector("#overlay").style.display == "block") {
+    reload();
+  }  else if (event.key === "Escape" && document.fullscreenElement === null &&  document.querySelector("#overlay").style.display == "block") {
+    document.querySelector("#overlay").style.display = "none";
+  } else {
+
+  }
+});
