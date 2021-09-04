@@ -278,6 +278,8 @@ document.addEventListener("keydown", function(event) {
   }  else if (event.key === "Escape" && document.fullscreenElement === null &&  document.querySelector("#overlay").style.display == "block") {
     document.querySelector("#overlay").style.display = "none";
     document.querySelector("#input-field").select();
+  } else if (event.key === "f" && document.fullscreenElement === null && document.querySelector("#overlay").style.display == "block") {
+      openFullscreen();
   } else {
 
   }
