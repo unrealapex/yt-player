@@ -275,7 +275,7 @@ function clearNotification() {
 document.addEventListener("keydown", function(event) {
   if (event.key === "r" && document.querySelector("#overlay").style.display == "block") {
     reload();
-  }  else if (event.key === "Escape" && document.fullscreenElement === null &&  document.querySelector("#overlay").style.display == "block") {
+  }  else if (event.key === "Escape" && document.fullscreenElement === null && document.querySelector("#overlay").style.display == "block") {
     document.querySelector("#overlay").style.display = "none";
     document.querySelector("#input-field").select();
   } else if (event.key === "f" && document.fullscreenElement === null && document.querySelector("#overlay").style.display == "block") {
