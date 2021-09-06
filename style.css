@@ -6,7 +6,7 @@
   flex-direction: column;
   justify-content: space-between;
   line-height: 1.6rem;
-  border-radius: 0.2rem;
+  --roundness: 0.2em;
 }
 
 h1 {
@@ -49,7 +49,7 @@ kbd {
   padding: 0.4rem 2rem;
   margin-right: 0.4rem;
   border-color: black;
-  border-radius: 0.2rem;
+  border-radius: var(--roundess);
 }
 
 
@@ -150,7 +150,7 @@ button {
   font: inherit;
   padding: 0.4rem 1rem;
   margin-right: 0.4rem;
-  border-radius: 0.2rem;
+  border-radius: var(--roundness);
   font-size: 1.2rem;
   cursor: pointer;
   background: #d4d4d4;
@@ -173,14 +173,14 @@ button {
 
 .overlay-buttons:hover {
   color: black !important;
-  /* border-radius: 25%; */
+  /* border-radius: var(--roundness); */
 }
 
 #videoPlayer {
   width: 1000px;
   height: 500px;
   border-style: hidden;
-  border-radius: 0.2em;
+  border-radius: var(--roundness);
 }
 
 #overlay {
@@ -251,7 +251,7 @@ button {
   margin: 15% auto; /* 15% from the top and centered */
   padding: 10px;
   border: 1px solid #888;
-  border-radius: 0.2em;
+  border-radius: var(--roundness);
   width: 55%; /* Could be more or less, depending on screen size */
 }
 
