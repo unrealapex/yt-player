@@ -281,7 +281,7 @@ document.addEventListener("keydown", function(event) {
   } else if (event.key === "f" && document.fullscreenElement === null && document.querySelector("#overlay").style.display == "block") {
       openFullscreen();
   } else if (event.key === "?") {
-      if (document.querySelector("#shortcuts-modal").style.display === "none") {
+      if (document.querySelector("#shortcuts-modal").style.display === "" || document.querySelector("#shortcuts-modal").style.display === "none") {
         document.querySelector("#shortcuts-modal").style.display = "block";
       } else {
         document.querySelector("#shortcuts-modal").style.display = "none";
@@ -296,4 +296,4 @@ window.onclick = function(event) {
   if (event.target == document.querySelector("#shortcuts-modal")) {
     document.querySelector("#shortcuts-modal").style.display = "none";
   }
-}
+};
