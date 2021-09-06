@@ -280,7 +280,21 @@ document.addEventListener("keydown", function(event) {
     document.querySelector("#input-field").select();
   } else if (event.key === "f" && document.fullscreenElement === null && document.querySelector("#overlay").style.display == "block") {
       openFullscreen();
+  } else if (event.key === "?") {
+      document.querySelector("#shortcuts-modal").style.display = "block";
   } else {
 
   }
 });
+
+// When the user clicks on <span> (x), close the modal
+document.querySelector("#close").onclick = function() {
+  document.querySelector("#shortcuts-modal").style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == document.querySelector("#shortcuts-modal")) {
+    document.querySelector("#shortcuts-modal").style.display = "none";
+  }
+}
