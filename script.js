@@ -287,11 +287,6 @@ document.addEventListener("keydown", function(event) {
   }
 });
 
-// When the user clicks on <span> (x), close the modal
-document.querySelector("#close").onclick = function() {
-  document.querySelector("#shortcuts-modal").style.display = "none";
-}
-
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
   if (event.target == document.querySelector("#shortcuts-modal")) {
