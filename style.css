@@ -176,7 +176,7 @@ button {
   /* border-radius: var(--roundness); */
 }
 
-#videoPlayer {
+iframe {
   width: 1000px;
   height: 500px;
   border-style: hidden;
