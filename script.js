@@ -281,7 +281,11 @@ document.addEventListener("keydown", function(event) {
   } else if (event.key === "f" && document.fullscreenElement === null && document.querySelector("#overlay").style.display == "block") {
       openFullscreen();
   } else if (event.key === "?") {
-      document.querySelector("#shortcuts-modal").style.display = "block";
+      if (document.querySelector("#shortcuts-modal").style.display === "none") {
+        document.querySelector("#shortcuts-modal").style.display = "block";
+      } else {
+        document.querySelector("#shortcuts-modal").style.display = "none";
+      }
   } else {
 
   }
