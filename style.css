@@ -17,7 +17,8 @@ h1 {
 }
 
 
-:is(h1, h2, h3, h4, h5, h6):hover {
+:is(h1, h2, h3, h4, h5, h6):hover,
+.valid {
   animation-name: rgb;
   animation-duration: 5s;
   animation-iteration-count: infinite;
@@ -89,13 +90,6 @@ button:disabled {
 
 .normal {
   color: #1a1a1a;
-}
-
-.valid {
-  animation-name: rgb;
-  animation-duration: 5s;
-  animation-iteration-count: infinite;
-  animation-timing-function: linear;
 }
 
 .hidden {
