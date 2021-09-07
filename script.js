@@ -35,7 +35,7 @@ function validate() {
     document.querySelector("#play").style.color = "#1a1a1a";
     document.querySelector("#play").className = "";
     document.querySelector("#play").disabled = true;
-  } else if (urlValidator.test(document.querySelector("#input-field").value)) {
+  } else if (urlManipulatorRE.test(document.querySelector("#input-field").value)) {
     clearNotification();
     document.querySelector("#input-field").className = "correct";
     document.querySelector("#play").className = "valid";
