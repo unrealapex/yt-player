@@ -2,7 +2,7 @@
 [![license: MIT](https://img.shields.io/badge/license-MIT-green?style=flat-square)](LICENSE) 
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier) 
 
-yaply terse player(now those aren't words you see everyday) or yt player for short is a fast and minimalistic video player for YouTube videos and more platforms to come
+yaply terse player or yt player for short is a fast and minimalistic video player for YouTube videos and more platforms to come
 
 ## features
 - minimalist design
