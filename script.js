@@ -8,9 +8,9 @@ var privateMode = false;
 // const overlay = document.querySelector("#overlay");
 // regular expressions used in the program, I highly suggest using regex101.com for a detailed explaination of the expression's inner workings
 // gets the video id from the url inputted by the user
-const videoIdExtractor = /(http(?: s) ?: \/\/(?:m.)?(?:www\.)?)?youtu(?:\.be\/|be\.com\/(?:watch\?(?:feature=youtu\.be\&)?v=|v\/|embed\/|user\/(?:[\w#]+\/)+))([^&#?\n]+)/;
-// checks if the url is a valid youtube url and is something our player can play
-const urlValidator = /((http?(?:s)?:\/\/)?(www\.)?)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?&v=))((?:\w|-){11})((?:\&|\?)\S*)?/;
+// const videoIdExtractor = /(http(?: s) ?: \/\/(?:m.)?(?:www\.)?)?youtu(?:\.be\/|be\.com\/(?:watch\?(?:feature=youtu\.be\&)?v=|v\/|embed\/|user\/(?:[\w#]+\/)+))([^&#?\n]+)/;
+// checks if the url is a valid youtube url, is something our player can play, and gets the video id from strings
+const urlManipulatorRE = /((http?(?:s)?:?\/\/)?(www\.)?)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?&v=))((?:\w|-){11})((?:\&|\?)\S*)?|(?:^(\w|-){11}$)|(?:\w|-){11}$/;
 // expression to test if there are any whitespaces in our url
 const whiteSpaceRE = /\s/g;
 
@@ -52,7 +52,7 @@ function validate() {
 
 function getId(url) {
   // strips the video id from our url
-  videoId = videoIdExtractor.exec(url)[2];
+  videoId = urlManipulatorRE.exec(url)[4];
   loadVideo(videoId);
   return videoId;
 }
@@ -125,7 +125,7 @@ function refresh() {
 
 // reloads video in video player
 function reload() {
-  loadVideo(videoIdExtractor.exec(document.querySelector("#url-input").value)[2]);
+  loadVideo(urlManipulatorRE.exec(document.querySelector("#url-input").value)[4]);
 }
 
 function shareVideo() {
