@@ -7,7 +7,7 @@ yaply terse player or yt player for short is a fast and minimalistic video playe
 ## features
 - minimalist design
 - simple interface
-- fast Loading times
+- fast loading times
 - video queue
 
 ## Contributing
