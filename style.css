@@ -1,70 +1,94 @@
-/* TODO: add more styling to website */
-
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500;700&display=swap');
-
-body {
-  font-family: 'Roboto Mono', monospace;
-}
-
-span {
-  transition-duration: 0.5s;
-  padding: 0.25rem;
-}
-
-span:hover {
-  background-color: #ededed;
-  border-radius: .5em;
-  /* border-radius: 6px; */
-  /* border-radius: 25%; */
-}
-
-.material-icons-round {
-  font-size: 2.5rem;
-}
-
-#videoPlayer {
-  margin-bottom: 5px;
-  border-radius: 5.5px;
-  display: inline-table;
-}
-
-div.container {
-  justify-content: center;
+:root {
+  font-family: "Roboto Mono", monospace;
+  margin: 0;
+  min-height: 100vh;
   display: flex;
-}
-
-div.child {
-  text-align: center;
-}
-
-div.buttons {
-  justify-content: center;
-  flex-wrap: wrap;
-  display: flex;
-}
-
-.help-box {
-  position: relative;
-}
-
-.help {
-  position: absolute;
-  bottom: 0;
-  right: 0;
+  flex-direction: column;
+  justify-content: space-between;
+  line-height: 1.6rem;
+  border-radius: 0.2rem;
 }
 
 h1 {
+  color: #1a1a1a;
   text-align: center;
+  margin: 1.2rem 0 10.5rem 0;
+  line-height: 2rem;
+}
+
+
+:is(h1, h2, h3, h4, h5, h6):hover {
   animation-name: rgb;
   animation-duration: 5s;
   animation-iteration-count: infinite;
   animation-timing-function: linear;
 }
 
-#private-mode, 
-#fullscreen, 
-#open-in-new {
-  opacity: 38%;
+kbd {
+  padding: .1em .6em;
+  border: 1px solid #ccc;
+  font-size: 11px;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #f7f7f7;
+  color: #333;
+  -moz-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2), 0 0 0 2px #fff inset;
+  -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2), 0 0 0 2px #fff inset;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2), 0 0 0 2px #fff inset;
+  border-radius: 3px;
+  display: inline-block;
+  margin: 0 .1em;
+  text-shadow: 0 1px 0 #fff;
+  line-height: 1.4;
+  white-space: nowrap
+}
+
+#input-field {
+  width: 100%;
+  border: none;
+  font: inherit;
+  padding: 0.4rem 2rem;
+  margin-right: 0.4rem;
+  border-color: black;
+  border-radius: 0.2rem;
+}
+
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+#notification {
+  text-align: center;
+}
+
+
+#input-field.wrong {
+  background: rgba(198, 38, 46, 0.3);
+}
+
+.wrong {
+  color: #c6262e;
+}
+
+.correct {
+  color: #68b723;
+}
+
+.normal {
+  color: #1a1a1a;
+}
+
+.hidden {
+  opacity: 0;
+  cursor: default;
+}
+
+#main-area {
+  margin-top: 1rem;
+  padding: 1.4rem 1rem;
+  border-radius: 0.4rem;
+  background: #eaeaea;
 }
 
 @keyframes rgb {
@@ -111,3 +135,130 @@ h1 {
   }
 }
 
+.bar {
+  display: flex;
+  justify-content: space-between;
+}
+
+legend {
+  text-align: center;
+}
+
+button {
+  /* margin-left: 0.7rem; */
+  border: none;
+  font: inherit;
+  padding: 0.4rem 1rem;
+  margin-right: 0.4rem;
+  border-radius: 0.2rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+  background: #d4d4d4;
+  color: #1a1a1a;
+}
+
+.valid {
+  animation-name: rgb;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+.overlay-buttons {
+  transition-duration: 0.5s;
+  padding: 0.25em;
+  float: right;
+  cursor: pointer;
+}
+
+.overlay-buttons:hover {
+  color: black !important;
+  /* border-radius: 25%; */
+}
+
+#videoPlayer {
+  width: 1000px;
+  height: 500px;
+  border-style: hidden;
+  border-radius: 0.2em;
+}
+
+#overlay {
+  position: fixed;
+  display: none;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: auto;
+  cursor: default;
+}
+
+#overlay-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 50px;
+  color: white;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+}
+
+.container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  margin: auto;
+}
+
+.child {
+  /* Center vertically */
+  position: absolute;
+  top: 50%;
+}
+
+#expand-box {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+#expand {
+  opacity: 0%;
+  cursor: default;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 10px;
+  border: 1px solid #888;
+  border-radius: 0.2em;
+  width: 55%; /* Could be more or less, depending on screen size */
+}
+
+#close {
+  color: grey;
+}
+
+#close:hover {
+  color: black;
+}
