@@ -72,6 +72,7 @@ button:disabled {
   cursor: not-allowed;
 }
 
+legend, 
 #notification {
   text-align: center;
 }
@@ -152,10 +153,6 @@ button:disabled {
 .bar {
   display: flex;
   justify-content: space-between;
-}
-
-legend {
-  text-align: center;
 }
 
 iframe {
