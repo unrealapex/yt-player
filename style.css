@@ -91,6 +91,15 @@ button:disabled {
   background: #eaeaea;
 }
 
+.loader {
+  border: 2.5px solid;
+  border-radius: 100%;
+  border-top: 2.5px solid transparent !important;
+  width: 20px;
+  height: 20px;
+  animation: spin 0.6s linear infinite, rgb-border 5s linear infinite;
+}
+
 @keyframes rgb {
   0% {
     color: #f44336;
@@ -132,6 +141,38 @@ button:disabled {
 
   100% {
     background: #f44336;
+  }
+}
+
+@keyframes rgb-border {
+  0% {
+    border-color: #f44336;
+  }
+
+  25% {
+    border-color: #ffc107;
+  }
+
+  50% {
+    border-color: #4caf50;
+  }
+
+  75% {
+    border-color: #3f51b5;
+  }
+
+  100% {
+    border-color: #f44336;
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
   }
 }
 

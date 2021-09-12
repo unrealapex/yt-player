@@ -59,6 +59,7 @@ function getId(url) {
 
 function loadVideo(videoId) {
   isLoaded = true;
+  document.querySelector(".loader").classList.remove("hidden");
   document.querySelector("#overlay").style.display = "block";
   if (document.querySelector("#private-mode").checked) {
     // sets the video player iframe's url to a youtube privacy-enhanced url(video doesn't show up on user's youtube search history) if the user has enabled Privacy Mode
@@ -75,10 +76,6 @@ function loadVideo(videoId) {
   } else {
     return;
   }
-  // checks if the iframe content (our video) has loaded
-  document.querySelector("iframe").onload = function() {
-    document.querySelector("#videoPlayer").focus();
-  };
 }
 
 function openFullscreen() {
@@ -118,6 +115,7 @@ function refresh() {
   document.querySelector("#input-field").value = "";
   document.querySelector("#input-field").focus();
   document.querySelector("#private-mode").checked = false;
+  document.querySelector(".loader").classList.remove("hidden");
   clearNotification();
   isLoaded = false;
   return isLoaded;
@@ -220,6 +218,7 @@ function closeOverlay() {
   // TODO: Use hidden class to change visibility of expand button
   document.querySelector("#expand").style.opacity = 0;
   document.querySelector("#overlay").style.display = "none";
+  document.querySelector(".loader").classList.remove("hidden");
   refresh();
 }
 
@@ -297,3 +296,7 @@ window.onclick = function(event) {
     document.querySelector("#shortcuts-modal").style.display = "none";
   }
 };
+
+document.querySelector("iframe").addEventListener("load", function() {
+  document.querySelector(".loader").classList.add("hidden");
+});
