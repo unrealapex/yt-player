@@ -181,6 +181,7 @@ button {
   height: 500px;
   border-style: hidden;
   border-radius: 0.2em;
+  background: url(https://du11hjcvx0uqb.cloudfront.net/br/dist/images/ajax-loader-bar-71e6988298.gif) no-repeat center;
 }
 
 #overlay {
