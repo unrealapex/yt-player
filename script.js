@@ -340,3 +340,8 @@ function toggleQueueUI() {
     console.error("Unable to toggle queue ui");
   }
 }
+
+// focuses input for queue when user opens details
+document.querySelector("details").addEventListener("toggle", function() {
+  document.querySelector("#queue-input").focus();
+});
