@@ -297,3 +297,7 @@ window.onclick = function(event) {
     document.querySelector("#shortcuts-modal").style.display = "none";
   }
 };
+
+document.addEventListener("mouseover", function() {
+  window.focus();
+});
