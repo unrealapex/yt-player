@@ -79,8 +79,22 @@ button:disabled {
   color: #1a1a1a;
 }
 
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .hidden {
   display: none;
+}
+
+.loader {
+  z-index: 9999;
+}
+
+.loader > h3 {
+  animation: rgb 5s linear infinite;
 }
 
 #main-area {

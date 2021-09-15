@@ -60,6 +60,7 @@ function getId(url) {
 function loadVideo(videoId) {
   isLoaded = true;
   document.querySelector("#overlay").style.display = "block";
+  document.querySelector(".loader").classList.remove("hidden");
   if (document.querySelector("#private-mode").checked) {
     // sets the video player iframe's url to a youtube privacy-enhanced url(video doesn't show up on user's youtube search history) if the user has enabled Privacy Mode
     document.querySelector("#videoPlayer").src =
@@ -300,4 +301,8 @@ window.onclick = function(event) {
 
 document.addEventListener("mouseover", function() {
   window.focus();
+});
+
+document.querySelector("iframe").addEventListener("load", function() {
+  document.querySelector(".loader").classList.add("hidden");
 });
