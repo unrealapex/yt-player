@@ -64,7 +64,7 @@ function loadVideo(videoId) {
   if (document.querySelector("#private-mode").checked) {
     // sets the video player iframe's url to a youtube privacy-enhanced url(video doesn't show up on user's youtube search history) if the user has enabled Privacy Mode
     document.querySelector("#videoPlayer").src =
-      "https://www.youtube-nocookie.com/embed/" + videoId;
+      "https://www.youtube-nocookie.com/embed/" + videoId + "?dnt=1";
   } else {
     // sets the video player iframe's url to a youtube embed url (default)
     document.querySelector("#videoPlayer").src =
