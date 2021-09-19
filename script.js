@@ -359,9 +359,9 @@ document.addEventListener("keydown", function(event) {
       minimizeOverlay();
   } else if ((event.key === "o" || event.key === "+") && document.querySelector("#overlay").style.display == "none" && document.querySelector("iframe").src.length != 0) {
       document.querySelector("#overlay").style.display = "block";
-  } else if (event.key === "<" && document.querySelector("#overlay").style.display == "block" && queue.length !== 0) {
+  } else if ((event.key === "<" || (event.key === "P" && event.shiftKey)) && document.querySelector("#overlay").style.display == "block" && queue.length !== 0) {
       previousVideo();
-  } else if (event.key === ">" && document.querySelector("#overlay").style.display == "block" && queue.length !== 0) {
+  } else if ((event.key === ">" || (event.key === "N" && event.shiftKey)) && document.querySelector("#overlay").style.display == "block" && queue.length !== 0) {
       nextVideo();
   } else {
 
