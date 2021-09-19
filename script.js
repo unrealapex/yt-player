@@ -276,11 +276,15 @@ function clearNotification() {
 document.addEventListener("keydown", function(event) {
   if (event.key === "r" && document.querySelector("#overlay").style.display == "block") {
     reload();
-  }  else if (event.key === "Escape" && document.fullscreenElement === null && document.querySelector("#overlay").style.display == "block") {
+  }  else if ((event.key === "Escape" || event.key === "x") && document.fullscreenElement === null && document.querySelector("#overlay").style.display == "block") {
     document.querySelector("#overlay").style.display = "none";
     document.querySelector("#input-field").select();
   } else if (event.key === "f" && document.fullscreenElement === null && document.querySelector("#overlay").style.display == "block") {
       openFullscreen();
+  } else if ((event.key === "m" || event.key === "_") && document.querySelector("#overlay").style.display == "block") {
+      minimizeOverlay();
+  } else if ((event.key === "o" || event.key === "+") && document.querySelector("#overlay").style.display == "none" && document.querySelector("iframe").src.length != 0) {
+      document.querySelector("#overlay").style.display = "block";
   } else if (event.key === "?") {
       if (document.querySelector("#shortcuts-modal").style.display === "" || document.querySelector("#shortcuts-modal").style.display === "none") {
         document.querySelector("#shortcuts-modal").style.display = "block";
