@@ -92,8 +92,7 @@ legend,
 }
 
 .hidden {
-  opacity: 0;
-  cursor: default;
+  display: none;
 }
 
 #main-area {
