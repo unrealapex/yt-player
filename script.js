@@ -367,3 +367,22 @@ document.addEventListener("keydown", function(event) {
 
   }
 });
+
+
+// toggles queue ui elements based on if the queue play option is checked or not
+document.querySelector("form").addEventListener("click", function() {
+  if (document.querySelector("#queue-radio").checked) {
+    document.querySelector("#queue").classList.remove("hidden");
+    document.querySelector("details").open = true;
+    document.querySelector("#queue-input").focus();
+  } else if (document.querySelector("#url-radio").checked) {
+      document.querySelector("#queue").classList.add("hidden");
+      document.querySelector("details").open = false;    
+      document.querySelector("#url-input").focus();
+
+  } else {
+    
+  }
+});
+
+
