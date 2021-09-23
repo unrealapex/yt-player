@@ -284,19 +284,23 @@ function addQueue() {
 
 function deleteQueue() {
   // deletes queue
-  let confirmDelete = confirm("Are you sure you want to delete the queue?");
-  if (confirmDelete) {
-    queue = [];
-    document.querySelector("#queue-list").innerHTML = "";
-    document.querySelector("#queue-count").innerHTML = "queue: 0/0";
-    document.querySelector("#queue-input").value = "";
-    document.querySelector("#queue-input").focus();
-    document.querySelector("#queue-counter-ui").innerHTML = "queue";
-    document.querySelector("#queue-counter-ui").title = "";
-    clearNotification();
-    return queue;
+  if (queue.length != 0) {
+    let confirmDelete = confirm("Are you sure you want to delete the queue?");
+    if (confirmDelete) {
+      queue = [];
+      document.querySelector("#queue-list").innerHTML = "";
+      document.querySelector("#queue-count").innerHTML = "queue: 0/0";
+      document.querySelector("#queue-input").value = "";
+      document.querySelector("#queue-input").focus();
+      document.querySelector("#queue-counter-ui").innerHTML = "queue";
+      document.querySelector("#queue-counter-ui").title = "";
+      clearNotification();
+      return queue;
+    } else {
+      confirm.log("Canceled queue delete");
+    }
   } else {
-    confirm.log("Canceled queue delete");
+    alert("No items in queue");
   }
 }
 
