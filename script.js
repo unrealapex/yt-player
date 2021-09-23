@@ -274,6 +274,8 @@ function addQueue() {
       queue.length + ". " + queueValue;
     document.querySelector("#queue-count").innerHTML = `queue: ${queueNumber +
       1} / ${queue.length}`;
+    document.querySelector("#queue-counter-ui").innerHTML = `queue(${queue.length})`;
+    document.querySelector("#queue-counter-ui").title = (queue.length > 1 ? `${queue.length} items in queue` : `${queue.length} item in queue`);
     document.querySelector("#add-queue").className = "";
   }
 
@@ -289,6 +291,8 @@ function deleteQueue() {
     document.querySelector("#queue-count").innerHTML = "queue: 0/0";
     document.querySelector("#queue-input").value = "";
     document.querySelector("#queue-input").focus();
+    document.querySelector("#queue-counter-ui").innerHTML = "queue";
+    document.querySelector("#queue-counter-ui").title = "";
     clearNotification();
     return queue;
   } else {
