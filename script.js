@@ -73,9 +73,7 @@ function loadVideo(videoId) {
 
   if (document.querySelector("#load-fullscreen").checked) {
     openFullscreen();
-  } else {
-    return;
-  }
+  } else {}
   // checks if the iframe content (our video) has loaded
   document.querySelector("iframe").onload = function() {
     document.querySelector("#videoPlayer").focus();
@@ -291,9 +289,7 @@ document.addEventListener("keydown", function(event) {
       } else {
         document.querySelector("#shortcuts-modal").style.display = "none";
       }
-  } else {
-
-  }
+  } else {}
 });
 
 // When the user clicks anywhere outside of the modal, close it
