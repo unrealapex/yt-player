@@ -13,10 +13,24 @@
       content="yt player, videos, RGB, beautiful, simple, minimalistic"
     />
     <meta name="author" content="UnrealApex" />
-    <link rel="apple-touch-icon" sizes="180x180" href="https://unrealapex.github.io/yt-player/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="https://unrealapex.github.io/yt-player/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="https://unrealapex.github.io/yt-player/favicon-16x16.png">
-    <link rel="manifest" href="/site.webmanifest">
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="https://unrealapex.github.io/yt-player/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="https://unrealapex.github.io/yt-player/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="https://unrealapex.github.io/yt-player/favicon-16x16.png"
+    />
+    <link rel="manifest" href="/site.webmanifest" />
     <title>yt player</title>
     <script src="./script.js" defer></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -33,12 +47,14 @@
   </head>
 
   <body>
-      <noscript>
-    <h1>
-      To use yt player, please enable JavaScript
+    <noscript>
+      <h1>To use yt player, please enable JavaScript</h1>
+    </noscript>
+    <h1
+      onclick='about(); window.open("https://github.com/UnrealApex/yt-player"); window.focus();'
+    >
+      yt player
     </h1>
-  </noscript>
-    <h1 onclick='about(); window.open("https://github.com/UnrealApex/yt-player"); window.focus();'>yt player</h1>
     <div class="container">
       <div class="child">
         <!-- <form> -->
@@ -144,13 +160,17 @@
       </button>
     </div>
     <div id="shortcuts-modal" class="modal">
-
       <!-- Modal content -->
       <div class="modal-content">
-        <span id="close" class="overlay-buttons material-icons-round" onclick='document.querySelector("#shortcuts-modal").style.display = "none"'>close</span>
+        <span
+          id="close"
+          class="overlay-buttons material-icons-round"
+          onclick='document.querySelector("#shortcuts-modal").style.display = "none"'
+          >close</span
+        >
         <h3>Keyboard Shortcuts</h3>
         <p>Press <kbd>?</kbd> to toggle this modal.</p>
-        <hr>
+        <hr />
         <div>
           <p>Full screen <kbd>F</kbd></p>
           <p>Reload video <kbd>R</kbd></p>

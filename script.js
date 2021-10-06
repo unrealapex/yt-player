@@ -10,7 +10,8 @@ var privateMode = false;
 // gets the video id from the url inputted by the user
 // const videoIdExtractor = /(http(?: s) ?: \/\/(?:m.)?(?:www\.)?)?youtu(?:\.be\/|be\.com\/(?:watch\?(?:feature=youtu\.be\&)?v=|v\/|embed\/|user\/(?:[\w#]+\/)+))([^&#?\n]+)/;
 // checks if the url is a valid youtube url, is something our player can play, and gets the video id from strings
-const urlManipulatorRE = /((http?(?:s)?:?\/\/)?(www\.)?)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?&v=))((?:\w|-){11})((?:\&|\?)\S*)?|(?:^(\w|-){11}$)|(?:\w|-){11}$/;
+const urlManipulatorRE =
+  /((http?(?:s)?:?\/\/)?(www\.)?)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?&v=))((?:\w|-){11})((?:\&|\?)\S*)?|(?:^(\w|-){11}$)|(?:\w|-){11}$/;
 // expression to test if there are any whitespaces in our url
 const whiteSpaceRE = /\s/g;
 
@@ -19,13 +20,12 @@ function getVideoURL() {
   url = document.querySelector("#input-field").value;
   // alert("executed got video url");
   let hasWhiteSpace = whiteSpaceRE.test(url);
-  url = (hasWhiteSpace ? url.replace(/\s/g, "") : url);
+  url = hasWhiteSpace ? url.replace(/\s/g, "") : url;
   getId(url);
 }
 
 // TODO: add Vimeo support
 // TODO: add ability to play youtube playlists
-
 
 function validate() {
   // checks if url given is valid
@@ -35,7 +35,9 @@ function validate() {
     document.querySelector("#play").style.color = "#1a1a1a";
     document.querySelector("#play").className = "";
     document.querySelector("#play").disabled = true;
-  } else if (urlManipulatorRE.test(document.querySelector("#input-field").value)) {
+  } else if (
+    urlManipulatorRE.test(document.querySelector("#input-field").value)
+  ) {
     clearNotification();
     document.querySelector("#input-field").className = "correct";
     document.querySelector("#play").className = "valid";
@@ -73,9 +75,10 @@ function loadVideo(videoId) {
 
   if (document.querySelector("#load-fullscreen").checked) {
     openFullscreen();
-  } else {}
+  } else {
+  }
   // checks if the iframe content (our video) has loaded
-  document.querySelector("iframe").onload = function() {
+  document.querySelector("iframe").onload = function () {
     document.querySelector("#videoPlayer").focus();
   };
 }
@@ -96,9 +99,13 @@ function openFullscreen() {
       alert("Unable to open video in full screen");
     }
   } else {
-    console.log("Error: unable to toggle full screen" + "\n" + "Reason: no URL found");
+    console.log(
+      "Error: unable to toggle full screen" + "\n" + "Reason: no URL found"
+    );
     alert(
-      "We are unable to toggle full screen if a video hasn't been loaded" + "\n" + "Please enter a URL first"
+      "We are unable to toggle full screen if a video hasn't been loaded" +
+        "\n" +
+        "Please enter a URL first"
     );
     // getVideoURL();
   }
@@ -124,7 +131,9 @@ function refresh() {
 
 // reloads video in video player
 function reload() {
-  loadVideo(urlManipulatorRE.exec(document.querySelector("#url-input").value)[4]);
+  loadVideo(
+    urlManipulatorRE.exec(document.querySelector("#url-input").value)[4]
+  );
 }
 
 function shareVideo() {
@@ -134,9 +143,13 @@ function shareVideo() {
     alert("Link copied to clipboard");
   } else {
     console.log(
-      "Error: unable to copy shortened URL to clipboard" + "\n" + "Reason: no URL found"
+      "Error: unable to copy shortened URL to clipboard" +
+        "\n" +
+        "Reason: no URL found"
     );
-    alert("You haven't entered a URL to share" + "\n" + "Play a video and try again");
+    alert(
+      "You haven't entered a URL to share" + "\n" + "Play a video and try again"
+    );
     getVideoURL();
   }
 }
@@ -168,14 +181,17 @@ function openVideoInNewTab() {
         left
     );
   } else {
-    console.log("Error: unable to open video in new tab" + "\n" + "Reason: no URL found");
+    console.log(
+      "Error: unable to open video in new tab" + "\n" + "Reason: no URL found"
+    );
     alert(
-      "We can't open video in new tab because you haven't entered a URL" + "\n" + "Play a video and try again"
+      "We can't open video in new tab because you haven't entered a URL" +
+        "\n" +
+        "Play a video and try again"
     );
     getVideoURL();
   }
 }
-
 
 // remove this function if not in use
 // Private Mode allows users to view videos on YT Player without them influening their YouTube and browsing experience.
@@ -240,23 +256,22 @@ function minimizeOverlay() {
   }
 }
 
-
 function setNotification(message, level = 0, duration = 0) {
-  // sets notification, levels show different notification colors, duration determines how long notification appears on screen 
+  // sets notification, levels show different notification colors, duration determines how long notification appears on screen
   // level 0 is a normal message, level 1 is a "correct" message, and level -1 is an "error" message
   document.querySelector("#notification").innerHTML = message;
   if (level === 0) {
     document.querySelector("#notification").className = "normal";
-  } else if ((level === 1)) {
+  } else if (level === 1) {
     document.querySelector("#notification").className = "correct";
-  } else if ((level === -1)) {
+  } else if (level === -1) {
     document.querySelector("#notification").className = "wrong";
   } else {
     console.error("Error setting notification");
   }
 
   if (duration > 0) {
-    setTimeout(clearNotification, duration *= 1000);
+    setTimeout(clearNotification, (duration *= 1000));
   } else if (duration === 0) {
     console.log("No duration given for notification");
   } else {
@@ -271,38 +286,60 @@ function clearNotification() {
 }
 
 // keyboard shortcuts
-document.addEventListener("keydown", function(event) {
-  if (event.key === "r" && document.querySelector("#overlay").style.display == "block") {
+document.addEventListener("keydown", function (event) {
+  if (
+    event.key === "r" &&
+    document.querySelector("#overlay").style.display == "block"
+  ) {
     reload();
-  }  else if ((event.key === "Escape" || event.key === "x") && document.fullscreenElement === null && document.querySelector("#overlay").style.display == "block") {
+  } else if (
+    (event.key === "Escape" || event.key === "x") &&
+    document.fullscreenElement === null &&
+    document.querySelector("#overlay").style.display == "block"
+  ) {
     document.querySelector("#overlay").style.display = "none";
     document.querySelector("#input-field").select();
-  } else if (event.key === "f" && document.fullscreenElement === null && document.querySelector("#overlay").style.display == "block") {
-      openFullscreen();
-  } else if ((event.key === "m" || event.key === "_") && document.querySelector("#overlay").style.display == "block") {
-      minimizeOverlay();
-  } else if ((event.key === "o" || event.key === "+") && document.querySelector("#overlay").style.display == "none" && document.querySelector("iframe").src.length != 0) {
-      document.querySelector("#overlay").style.display = "block";
+  } else if (
+    event.key === "f" &&
+    document.fullscreenElement === null &&
+    document.querySelector("#overlay").style.display == "block"
+  ) {
+    openFullscreen();
+  } else if (
+    (event.key === "m" || event.key === "_") &&
+    document.querySelector("#overlay").style.display == "block"
+  ) {
+    minimizeOverlay();
+  } else if (
+    (event.key === "o" || event.key === "+") &&
+    document.querySelector("#overlay").style.display == "none" &&
+    document.querySelector("iframe").src.length != 0
+  ) {
+    document.querySelector("#overlay").style.display = "block";
   } else if (event.key === "?") {
-      if (document.querySelector("#shortcuts-modal").style.display === "" || document.querySelector("#shortcuts-modal").style.display === "none") {
-        document.querySelector("#shortcuts-modal").style.display = "block";
-      } else {
-        document.querySelector("#shortcuts-modal").style.display = "none";
-      }
-  } else {}
+    if (
+      document.querySelector("#shortcuts-modal").style.display === "" ||
+      document.querySelector("#shortcuts-modal").style.display === "none"
+    ) {
+      document.querySelector("#shortcuts-modal").style.display = "block";
+    } else {
+      document.querySelector("#shortcuts-modal").style.display = "none";
+    }
+  } else {
+  }
 });
 
 // When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
+window.onclick = function (event) {
   if (event.target == document.querySelector("#shortcuts-modal")) {
     document.querySelector("#shortcuts-modal").style.display = "none";
   }
 };
 
-document.addEventListener("mouseover", function() {
+document.addEventListener("mouseover", function () {
   window.focus();
 });
 
-document.querySelector("iframe").addEventListener("load", function() {
+document.querySelector("iframe").addEventListener("load", function () {
   document.querySelector(".loader").classList.add("hidden");
 });
