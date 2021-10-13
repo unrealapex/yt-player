@@ -52,7 +52,7 @@ button:disabled:not(.overlay-buttons) {
 
 .hidden,
 .overlay-buttons:disabled {
-  opacity: 0;
+  display: none;
   cursor: default !important;
 }
 
