@@ -148,6 +148,28 @@ button:disabled {
   }
 }
 
+@keyframes rgb-border {
+  0% {
+    border-color: #f44336;
+  }
+
+  25% {
+    border-color: #ffc107;
+  }
+
+  50% {
+    border-color: #4caf50;
+  }
+
+  75% {
+    border-color: #3f51b5;
+  }
+
+  100% {
+    border-color: #f44336;
+  }
+}
+
 .bar {
   display: flex;
   justify-content: space-between;
@@ -171,10 +193,9 @@ button {
 }
 
 .valid {
-  animation-name: rgb;
-  animation-duration: 5s;
-  animation-iteration-count: infinite;
-  animation-timing-function: linear;
+  border-width: 2px;
+  border-style: solid;
+  animation: rgb-border 5s linear infinite;
 }
 
 .overlay-buttons {
