@@ -108,6 +108,10 @@ button:disabled {
   animation: fade 2s ease-in infinite;
 }
 
+#loader-fade-text {
+  animation: fade 2s ease-in infinite,  rgb 5s linear infinite;  
+}
+
 @keyframes fade {
   0% {
     opacity: 0;
