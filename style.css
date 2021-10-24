@@ -10,7 +10,7 @@
 }
 
 h1 {
-  color: #1a1a1a;
+  color: black;
   text-align: center;
   margin: 1.2rem 0 10.5rem 0;
   line-height: 2rem;
@@ -37,7 +37,7 @@ kbd {
   margin: 0.1em;
   text-shadow: 0 1px 0 #fff;
   line-height: 1.4;
-  white-space: nowrap
+  white-space: nowrap;
 }
 
 #input-field {
@@ -210,7 +210,7 @@ button {
   font-size: 1.2rem;
   cursor: pointer;
   background: #d4d4d4;
-  color: #1a1a1a;
+  color: black;
 }
 
 .valid {
@@ -292,8 +292,8 @@ button {
   width: 100%; /* Full width */
   height: 100%; /* Full height */
   overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
 }
 
 /* Modal Content/Box */
