@@ -231,7 +231,8 @@ button {
   cursor: pointer;
 }
 
-.overlay-buttons:hover {
+.overlay-buttons:hover,
+#close:hover {
   color: black !important;
   /* border-radius: 25%; */
 }
@@ -317,10 +318,6 @@ button {
 
 #close {
   color: grey;
-}
-
-#close:hover {
-  color: black;
 }
 
 .no-select, 
