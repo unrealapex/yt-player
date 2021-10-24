@@ -6,7 +6,7 @@
   flex-direction: column;
   justify-content: space-between;
   line-height: 1.6rem;
-  --roundness: 0.2em;
+  border-radius: 0.2rem;
 }
 
 h1 {
@@ -14,12 +14,11 @@ h1 {
   text-align: center;
   margin: 1.2rem 0 10.5rem 0;
   line-height: 2rem;
-  display: inline;
 }
 
 
-:is(h1, h2, h3, h4, h5, h6):hover,
-.valid {
+h1:first-of-type:hover,
+.loader > h3 {
   animation: rgb 5s linear infinite;
 }
 
@@ -35,7 +34,7 @@ kbd {
   box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2), 0 0 0 2px #fff inset;
   border-radius: 3px;
   display: inline-block;
-  margin: 0 .1em;
+  margin: 0.1em;
   text-shadow: 0 1px 0 #fff;
   line-height: 1.4;
   white-space: nowrap
@@ -48,28 +47,15 @@ kbd {
   padding: 0.4rem 2rem;
   margin-right: 0.4rem;
   border-color: black;
-  border-radius: var(--roundess);
+  border-radius: 0.2rem;
 }
 
-button {
-  /* margin-left: 0.7rem; */
-  border: none;
-  font: inherit;
-  padding: 0.4rem 1rem;
-  margin-right: 0.4rem;
-  border-radius: var(--roundness);
-  font-size: 1.2rem;
-  cursor: pointer;
-  background: #d4d4d4;
-  color: #1a1a1a;
-}
 
-button:disabled {
+button:disabled:not(#expand:disabled) {
   opacity: 0.5;
   cursor: not-allowed;
 }
 
-legend, 
 #notification {
   text-align: center;
 }
@@ -88,11 +74,22 @@ legend,
 }
 
 .normal {
-  color: #1a1a1a;
+  color: black;
 }
 
-.hidden {
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hidden,
+#expand:disabled {
   display: none;
+}
+
+.loader {
+  z-index: 9999;
 }
 
 #main-area {
@@ -100,6 +97,32 @@ legend,
   padding: 1.4rem 1rem;
   border-radius: 0.4rem;
   background: #eaeaea;
+}
+
+.fade {
+  animation: fade 2s ease-in infinite;
+}
+
+#loader-fade-text {
+  animation: fade 2s ease-in infinite,  rgb 5s linear infinite;  
+}
+
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+    25% {
+    opacity: 0.5;
+  }
+    50% {
+    opacity: 1;
+  }
+    75% {
+    opacity: 0.5;
+  }
+    100% {
+    opacity: 0;
+  }
 }
 
 @keyframes rgb {
@@ -126,23 +149,45 @@ legend,
 
 @keyframes rgb-bg {
   0% {
-    background: #f44336;
+    background-color: #f44336;
   }
 
   25% {
-    background: #ffc107;
+    background-color: #ffc107;
   }
 
   50% {
-    background: #4caf50;
+    background-color: #4caf50;
   }
 
   75% {
-    background: #3f51b5;
+    background-color: #3f51b5;
   }
 
   100% {
-    background: #f44336;
+    background-color: #f44336;
+  }
+}
+
+@keyframes rgb-border {
+  0% {
+    border-color: #f44336;
+  }
+
+  25% {
+    border-color: #ffc107;
+  }
+
+  50% {
+    border-color: #4caf50;
+  }
+
+  75% {
+    border-color: #3f51b5;
+  }
+
+  100% {
+    border-color: #f44336;
   }
 }
 
@@ -151,11 +196,47 @@ legend,
   justify-content: space-between;
 }
 
-iframe {
+legend {
+  text-align: center;
+}
+
+button {
+  /* margin-left: 0.7rem; */
+  border: none;
+  font: inherit;
+  padding: 0.4rem 1rem;
+  margin-right: 0.4rem;
+  border-radius: 0.2rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+  background: #d4d4d4;
+  color: #1a1a1a;
+}
+
+.valid {
+  border-width: 2px;
+  border-style: solid;
+  animation: rgb-border 5s linear infinite;
+}
+
+.overlay-buttons {
+  transition-duration: 0.5s;
+  padding: 0.25em;
+  float: right;
+  cursor: pointer;
+}
+
+.overlay-buttons:hover,
+#close:hover {
+  color: black !important;
+  /* border-radius: 25%; */
+}
+
+#videoPlayer {
   width: 1000px;
   height: 500px;
   border-style: hidden;
-  border-radius: var(--roundness);
+  border-radius: 0.2em;
 }
 
 #overlay {
@@ -170,18 +251,6 @@ iframe {
   background-color: rgba(0, 0, 0, 0.5);
   z-index: auto;
   cursor: default;
-}
-
-.overlay-buttons {
-  transition-duration: 0.5s;
-  padding: 0.25em;
-  float: right;
-  cursor: pointer;
-}
-
-.overlay-buttons:hover {
-  color: black !important;
-  /* border-radius: var(--roundness); */
 }
 
 #overlay-content {
@@ -213,11 +282,6 @@ iframe {
   right: 0;
 }
 
-#expand {
-  opacity: 0;
-  cursor: default;
-}
-
 /* The Modal (background) */
 .modal {
   display: none; /* Hidden by default */
@@ -238,7 +302,7 @@ iframe {
   margin: 15% auto; /* 15% from the top and centered */
   padding: 10px;
   border: 1px solid #888;
-  border-radius: var(--roundness);
+  border-radius: 0.2em;
   width: 55%; /* Could be more or less, depending on screen size */
 }
 
@@ -246,6 +310,13 @@ iframe {
   color: grey;
 }
 
-#close:hover {
-  color: black;
+.no-select, 
+.overlay-buttons {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none;   /* Safari */
+    -khtml-user-select: none;    /* Konqueror HTML */
+    -moz-user-select: none;      /* Old versions of Firefox */
+    -ms-user-select: none;       /* Internet Explorer/Edge */
+    user-select: none;           /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
 }

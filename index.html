@@ -10,11 +10,29 @@
     />
     <meta
       name="keywords"
-      content="Youtube Player, Youtube, Youtube Video, Video Player, Ad Free Youtube Videos, No Ads, YT Player, Videos, RGB, Beautiful, Simple, minimalistic"
+      content="yt player, videos, RGB, beautiful, simple, minimalistic"
     />
     <meta name="author" content="UnrealApex" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="https://unrealapex.github.io/yt-player/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="https://unrealapex.github.io/yt-player/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="https://unrealapex.github.io/yt-player/favicon-16x16.png"
+    />
+    <link rel="manifest" href="/site.webmanifest" />
     <title>yt player</title>
-    <script src="./script.js"></script>
+    <script src="./script.js" defer></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -29,12 +47,10 @@
   </head>
 
   <body>
-      <noscript>
-    <h1>
-      To use yt player, please enable JavaScript
-    </h1>
-  </noscript>
-    <h1 onclick='about(); window.open("https://github.com/UnrealApex/yt-player"); window.focus();'>yt player</h1>
+    <noscript>
+      <h1>To use yt player, please enable JavaScript</h1>
+    </noscript>
+    <h1>yt player</h1>
     <div class="container">
       <div class="child">
         <!-- <form> -->
@@ -60,7 +76,7 @@
 
             <!--  onclick same as refresh() with the exception of no changes made to the iframe or expand button, clearing input-field throught onclick instead of refresh() function to prevent whole player from being resetted. -->
 
-            <button
+<!--             <button
               id="clear"
               onclick='document.querySelector("#input-field").className = "";
   document.querySelector("#play").className = "";
@@ -68,10 +84,10 @@
   document.querySelector("#play").disabled = true;
   document.querySelector("#input-field").value = "";
   document.querySelector("#input-field").focus(); clearNotification()'
-              title="play video url entered"
+              title="clear url"
             >
               clear
-            </button>
+            </button> -->
           </div>
           <fieldset>
             <legend>options</legend>
@@ -123,7 +139,9 @@
           id="videoPlayer"
           loading="eager"
           allowfullscreen="true"
-        ></iframe>
+        >
+          <p>Your browser does not support iframes.</p>
+        </iframe>
       </div>
     </div>
     <div id="expand-box">
@@ -137,18 +155,27 @@
       </button>
     </div>
     <div id="shortcuts-modal" class="modal">
-
       <!-- Modal content -->
       <div class="modal-content">
-        <span id="close" class="overlay-buttons material-icons-round" onclick='document.querySelector("#shortcuts-modal").style.display = "none"'>close</span>
+        <span
+          id="close"
+          class="overlay-buttons material-icons-round"
+          onclick='document.querySelector("#shortcuts-modal").style.display = "none"'
+          >close</span
+        >
         <h3>Keyboard Shortcuts</h3>
         <p>Press <kbd>?</kbd> to toggle this modal.</p>
-        <hr>
+        <hr />
         <div>
           <p>Full screen <kbd>F</kbd></p>
           <p>Reload video <kbd>R</kbd></p>
           <p>Close video overlay <kbd>Esc</kbd></p>
         </div>
+      </div>
+    </div>
+    <div class="center">
+      <div class="loader hidden">
+        <h3 id="loader-fade-text">loading...</h3>
       </div>
     </div>
   </body>
