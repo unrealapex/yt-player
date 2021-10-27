@@ -209,31 +209,6 @@ function openVideoInNewTab() {
   }
 }
 
-// remove this function if not in use
-// Private Mode allows users to view videos on YT Player without them influening their YouTube and browsing experience.
-// For example, I'm a cat person and I want cat ads when I browse the internet. Say if I watched a video titled "Top 10 Reasons Why You Should Buy A Dog"
-// Next time I would go on the Verge (https://www.theverge.com/) I would be getting dog adverts.
-// If I played the same video on YT Player with Private Mode on, I wouldn't get any dog ads nor would the video I watched be on my YouTube search history.
-// function togglePrivateMode() {
-//   // toggles icon state for Private Mode and tells loadVideo function if it should load in Private Mode
-//   if (!player.privateMode()) {
-//     player.privateMode().style.opacity = "100%";
-//     player.privateMode().setAttribute("title", "Toggle Private Mode, Private Mode is enabled.");
-//     player.privateMode() = true;
-//   } else if (player.privateMode()) {
-//     player.privateMode().style.opacity = "38%";
-//     player.privateMode().setAttribute(
-//         "title",
-//         "Toggle Private Mode, Private Mode is off, toggling will enable Private Mode"
-//       );
-//     player.privateMode() = false;
-//   } else {
-//     console.log("Unable to toggle private mode");
-//   }
-//   // return privateMode;
-// }
-
-// TODO: Delete this function if not in use
 // allows us to sleep for x seconds
 function sleep(duration) {
   var currentTime = new Date().getTime();
