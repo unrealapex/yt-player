@@ -233,8 +233,8 @@ button {
 }
 
 #videoPlayer {
-  width: 1000px;
-  height: 500px;
+  width: 56rem;
+  height: 31.5rem;
   border-style: hidden;
   border-radius: 0.2em;
 }
