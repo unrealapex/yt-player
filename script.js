@@ -285,7 +285,7 @@ function addQueue() {
     document.querySelector("#queue-counter-ui").innerHTML = `queue(${queue.length})`;
     document.querySelector("#queue-counter-ui").title = (queue.length > 1 ? `${queue.length} items in queue` : `${queue.length} item in queue`);
     document.querySelector("#add-queue").className = "";
-    setNotification("video added to queue", 0, 2);
+    setNotification("video added to queue", 0, 1.5);
   }
 
   return queue;
@@ -303,13 +303,13 @@ function deleteQueue() {
       document.querySelector("#queue-input").focus();
       document.querySelector("#queue-counter-ui").innerHTML = "queue";
       document.querySelector("#queue-counter-ui").title = "";
-      setNotification("queue deleted", 0, 2);
+      setNotification("queue deleted", 0, 1.5);
       return queue;
     } else {
       confirm.log("Canceled queue delete");
     }
   } else {
-    setNotification("no items in queue", -1, 2);
+    setNotification("no items in queue", -1, 1.5);
   }
 }
 
