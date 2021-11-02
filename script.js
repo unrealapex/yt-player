@@ -237,8 +237,9 @@ function minimizeOverlay() {
   }
 }
 
-function setNotification(message, level = 0) {
-  // sets notification, different notification levels have different text colors, 0 being a normal message, 1 being a "correct" message, and -1 being an "error" message
+function setNotification(message, level = 0, duration = 0) {
+  // sets notification, levels show different notification colors, duration determines how long notification appears on screen
+  // level 0 is a normal message, level 1 is a "correct" message, and level -1 is an "error" message
   document.querySelector("#notification").innerHTML = message;
   if (level === 0) {
     document.querySelector("#notification").className = "normal";
@@ -248,6 +249,14 @@ function setNotification(message, level = 0) {
     document.querySelector("#notification").className = "wrong";
   } else {
     console.error("Error setting notification");
+  }
+
+  if (duration > 0) {
+    setTimeout(clearNotification, (duration *= 1000));
+  } else if (duration === 0) {
+    console.log("No duration given for notification");
+  } else {
+    console.error("Invalid duration given!");
   }
 }
 
