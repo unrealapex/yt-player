@@ -10,29 +10,11 @@
     />
     <meta
       name="keywords"
-      content="yt player, videos, RGB, beautiful, simple, minimalistic"
+      content="Youtube Player, Youtube, Youtube Video, Video Player, Ad Free Youtube Videos, No Ads, YT Player, Videos, RGB, Beautiful, Simple, minimalistic"
     />
     <meta name="author" content="UnrealApex" />
-    <link
-      rel="apple-touch-icon"
-      sizes="180x180"
-      href="https://unrealapex.github.io/yt-player/apple-touch-icon.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="https://unrealapex.github.io/yt-player/favicon-32x32.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-      href="https://unrealapex.github.io/yt-player/favicon-16x16.png"
-    />
-    <link rel="manifest" href="/site.webmanifest" />
     <title>yt player</title>
-    <script src="./script.js" defer></script>
+    <script src="./script.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -48,43 +30,108 @@
 
   <body>
     <noscript>
-      <h1>To use yt player, please enable JavaScript</h1>
+      <h1>
+        To use yt player, please enable JavaScript
+      </h1>
     </noscript>
-    <h1>yt player</h1>
-    <div class="container">
-      <div class="child">
-        <!-- <form> -->
-        <div id="notification"></div>
-        <div id="main-area">
+    <div class="hidden" id="queue-div" >
+              <div class="queue">
+          <h3 id="queue-counter-ui">queue</h3>
           <div class="bar">
             <input
-              id="input-field"
+              type="url"
+              id="queue-input"
+              style="margin-bottom: 0.4rem;"
+              oninput="validateQueue()"
+              placeholder="add video to queue"
+            />
+            <button id="add-queue" onclick="addQueue()" disabled>
+              add
+            </button>
+            <button id="delete-queue" onclick="deleteQueue()">
+              clear
+            </button>
+            
+            
+            
+            <button id="delete-queue-items" class="material-icons-round" onclick="showQueueItemRemovalButtons()">
+            <span class="material-icons-round">
+delete
+</span>
+            </button>
+          </div>
+        </div>
+        <div id="queue-list">
+          
+<!--           test thumbnail -->
+     
+<!--      <div class="thumbnail" id="thumbnail-0">
+            <div id="delete-queue-item-div-0" style="position: relative;">
+              <img id="thumbnail-image-0" src="https://i.ytimg.com/vi/dTzuEcZVsHU/mqdefault.jpg">
+              <div class="thumbnail-number" id="thumbnail-number-0"></div>
+            </div>
+            <div class="x" style="position: absolute;">&times;</div>
+          </div>
+           -->
+          
+          
+<!--           <div style="background-color:red;" class="thumbnail">
+            <div class="thumbnail-number">1</div>
+          </div>
+          <div style="background-color:green;" class="thumbnail">
+            <div class="thumbnail-number">2</div>
+          </div>
+          <div style="background-color:blue;" class="thumbnail">
+            <div class="thumbnail-number">3</div>
+          </div>
+          
+                    <div style="background-color:black;" class="thumbnail">
+            <div class="thumbnail-number">4</div>
+          </div>
+          <div style="background-color:white;" class="thumbnail">
+            <div class="thumbnail-number">5</div>
+          </div> -->
+          
+          
+        </div>
+    </div>
+      
+    <div id="dropdown"><button id="queue-button" onclick="document.querySelector('#queue-div').classList.toggle('hidden');" disabled>queue</button></div>
+    <br>
+    <h1
+    >
+      yt player
+    </h1>
+    <div class="container">
+      <div class="child">
+        <div id="notification"></div>
+        <div id="typing-area">
+          <div class="bar">
+            <input
+              id="url-input"
+              class="rgb-border"
               type="url"
               oninput="validate()"
               autofocus
               required
-              placeholder="enter a youtube video URL"
-            />
-            <button
-              id="play"
-              onclick="getVideoURL()"
-              title="play video url"
-              disabled
-            >
+              placeholder="enter youtube video url"
+            />  
+
+           <button id="play" onclick="getVideoURL()" title="play video url">
               play
             </button>
 
-            <!--  onclick same as refresh() with the exception of no changes made to the iframe or expand button, clearing input-field throught onclick instead of refresh() function to prevent whole player from being resetted. -->
 
-            <!--             <button
+            <!--  onclick same as refresh() with the exception of no changes made to the iframe or expand button, clearing url-input throught onclick instead of refresh() function to prevent whole player from being resetted. -->
+<button class="hidden">add to queue</button>
+<!--             <button
               id="clear"
-              onclick='document.querySelector("#input-field").className = "";
+              title="clear video url"
+              onclick='document.querySelector("#url-input").className = "";
   document.querySelector("#play").className = "";
-  document.querySelector("#play").style.color = "black";
-  document.querySelector("#play").disabled = true;
-  document.querySelector("#input-field").value = "";
-  document.querySelector("#input-field").focus(); clearNotification()'
-              title="clear url"
+  document.querySelector("#url-input").value = "";
+  document.querySelector("#url-input").focus(); clearNotification()'
+              title="play video url entered"
             >
               clear
             </button> -->
@@ -92,6 +139,27 @@
           <fieldset>
             <legend>options</legend>
             <div>
+              <form action="">
+                <p>play method:</p>
+                <input
+                  type="radio"
+                  id="url-radio"
+                  name="play-method"
+                  value="HTML"
+                  checked
+                />
+                <label for="url">url</label><br />
+                <input
+                  type="radio"
+                  id="queue-radio"
+                  name="play-method"
+                  value="queue"
+                />
+                <label for="queue">queue</label>
+
+                <br />
+              </form>
+
               <div title="load video in full screen">
                 <label
                   ><input type="checkbox" name="" id="load-fullscreen" />load in
@@ -107,37 +175,56 @@
             </div>
           </fieldset>
         </div>
-
-        <!-- https://github.com/jslint-org/jslint/blob/5c025b692b740d755937fed1c3c5c8d6bcb9e962/index.html#L254 -->
       </div>
     </div>
 
     <div id="overlay">
       <div id="overlay-content">
         <div>
-          <span
+          <button
             class="overlay-buttons material-icons-round"
             title="close"
             onclick="closeOverlay()"
-            >close</span
-          >
-          <span
+            >close</button>
+          <button
             class="overlay-buttons material-icons-round"
             title="maximize"
             onclick="openFullscreen()"
           >
-            check_box_outline_blank</span
-          >
-          <span
+            check_box_outline_blank</button>
+          <button
             class="overlay-buttons material-icons-round"
             title="minimize"
             onclick="minimizeOverlay()"
-            >minimize</span
-          >
+            >minimize</button>
+          <div id="queue-buttons">
+            <button
+              class="overlay-buttons material-icons-round"
+              id="next-video"
+              title="next video"
+              onclick="nextVideo()"
+              disabled
+            >
+              skip_next
+            </button>
+            <button
+              class="overlay-buttons material-icons-round"
+              id="previous-video"
+              title="previous video"
+              onclick="previousVideo()"
+              disabled
+            >
+              skip_previous
+            </button>
+          </div>
+          <div id="queue-count" class="hidden">queue: 0/0</div>
         </div>
-        <iframe id="videoPlayer" loading="eager" allowfullscreen="true">
-          <p>Your browser does not support iframes.</p>
-        </iframe>
+        <!-- TODO: make this responsive -->
+        <iframe
+          id="videoPlayer"
+          loading="eager"
+          allowfullscreen="true"
+        ></iframe>
       </div>
     </div>
     <div id="expand-box">
@@ -150,31 +237,28 @@
         minimized video
       </button>
     </div>
-    <div id="shortcuts-modal" class="modal">
-      <!-- Modal content -->
-      <div class="modal-content">
-        <span
-          id="close"
-          class="overlay-buttons material-icons-round"
-          onclick='document.querySelector("#shortcuts-modal").style.display = "none"'
-          >close</span
-        >
-        <h3>Keyboard Shortcuts</h3>
-        <p>Press <kbd>?</kbd> to toggle this modal.</p>
-        <hr />
-        <div>
-          <p>Full screen <kbd>f</kbd></p>
-          <p>Reload video <kbd>r</kbd></p>
-          <p>Minimize video overlay <kbd>m</kbd> or <kbd>_</kbd></p>
-          <p>Open video overlay <kbd>o</kbd> or <kbd>+</kbd></p>
-          <p>Close video overlay <kbd>Esc</kbd> or <kbd>x</kbd></p>
+<!--     <div id="queue" class="hidden">
+      <details>
+        <summary>queue</summary>
+        <div class="queue">
+          <h3 id="queue-counter-ui">queue</h3>
+          <div class="bar">
+            <input
+              type="url"
+              id="queue-input"
+              oninput="validateQueue()"
+              placeholder="add video to queue"
+            />
+            <button id="add-queue" onclick="addQueue()" class="" disabled>
+              add
+            </button>
+            <button id="delete-queue" onclick="deleteQueue()" class="">
+              clear
+            </button>
+          </div>
         </div>
-      </div>
-    </div>
-    <div class="center">
-      <div class="loader hidden">
-        <h3 id="loader-fade-text">loading...</h3>
-      </div>
-    </div>
+        <div id="queue-list"></div>
+      </details>
+    </div> -->
   </body>
 </html>
