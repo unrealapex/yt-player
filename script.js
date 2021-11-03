@@ -56,7 +56,11 @@ function validate() {
     document.querySelector("#add-queue").classList.add("correct");
     document.querySelector("#add-queue").classList.remove("wrong");
     // document.querySelector("#play").disabled = false;
-    document.querySelector("#play").focus();
+    if (document.querySelector("#url-radio").checked) {
+     document.querySelector("#play").focus();
+    } else {
+     document.querySelector("#add-queue").focus();
+    }
     return true;
   } else {
     setNotification("enter a valid url", -1);
