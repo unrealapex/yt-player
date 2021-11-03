@@ -253,7 +253,7 @@ function minimizeOverlay() {
   }
 }
 
-function setNotification(message, level = 0, duration = 0) {
+function setNotification(message, level = 0, duration = 5) {
   // sets notification, levels show different notification colors, duration determines how long notification appears on screen
   // level 0 is a normal message, level 1 is a "correct" message, and level -1 is an "error" message
   document.querySelector("#notification").innerHTML = message;
@@ -312,7 +312,7 @@ function addQueue() {
     document
       .querySelector("#queue-item-wrapper-" + queueNumber)
       .classList.add("current-video");
-    setNotification("video added to queue", 0, 1.5);
+    setNotification("video added to queue", 0, 5);
   }
 
   return queue;
@@ -330,13 +330,13 @@ function deleteQueue() {
       document.querySelector("input[type=url]").focus();
       document.querySelector("#queue-counter-ui").innerHTML = "queue";
       document.querySelector("#queue-counter-ui").title = "";
-      setNotification("queue deleted", 0, 1.5);
+      setNotification("queue deleted", 1, 5);
       return queue;
     } else {
       confirm.log("Canceled queue delete");
     }
   } else {
-    setNotification("no items in queue", -1, 1.5);
+    setNotification("no items in queue", -1, 5);
   }
 }
 
