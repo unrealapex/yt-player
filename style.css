@@ -30,7 +30,8 @@ button:disabled:not(.overlay-buttons) {
   cursor: not-allowed;
 }
 
-#notification {
+#notification,
+#queue-counter-ui {
   text-align: center;
 }
 
@@ -276,14 +277,6 @@ details[open] summary {
   margin-bottom: 0.5em;
 }
 
-.queue {
-  /* animation: rgb-bg 5s linear infinite; */
-  border-radius: 0.2rem;
-  padding: 10px 20px;
-  color: black;
-  text-align: center;
-}
-
 #queue-buttons {
   float: left;
 }
@@ -321,9 +314,7 @@ details,
   width: max-content;
 }
 
-.queue-item-wrapper:hover {
-  background: #ddd;
-}
+.queue-item-wrapper:hover {background: #ddd;}
 
 /* #queue-list:nth-child(odd) { 
   background: #f9f9f9;
@@ -334,9 +325,7 @@ details,
   color: black;
 }
 
-.current-video:hover {
-  filter: grayscale(0.6);
-}
+.current-video:hover {filter: grayscale(0.6);}
 
 #queue-list {
   overflow: scroll;
@@ -344,3 +333,5 @@ details,
   height: 10rem;
 
 }
+
+#delete-queue {float: right;}
