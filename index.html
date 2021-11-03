@@ -44,17 +44,35 @@
         <div id="notification"></div>
         <div id="typing-area">
           <div class="bar">
-            <input
+            <!-- <input
               id="url-input"
               type="url"
               oninput="validate()"
               autofocus
               required
               placeholder="enter youtube video"
+            /> -->
+            <input
+              type="url"
+              oninput="validate()"
+              autofocus
+              required
+              placeholder="enter youtube video url"
+              size="25"
             />
-            <button id="play" onclick="getVideoURL()" title="play video url">
+
+            <!-- <div class="btn-group"> -->
+              <button id="add-queue" class="hidden" onclick="addQueue()" title="add video to queue">
+               add
+              </button>
+              <button id="play" onclick="getVideoURL()" title="play video url">
+                play
+              </button>
+          <!-- </div> -->
+
+            <!-- <button id="play" onclick="getVideoURL()" title="play video url">
               play
-            </button>
+            </button> -->
 
             <!--  onclick same as refresh() with the exception of no changes made to the iframe or expand button, clearing url-input throught onclick instead of refresh() function to prevent whole player from being resetted. -->
 
@@ -172,28 +190,20 @@
       </button>
     </div>
     <div id="queue" class="hidden">
-      <details>
-        <summary>queue</summary>
         <div class="queue">
 <!--       TODO: when queue is clicked, focus queue input -->
           <h3 id="queue-counter-ui">queue</h3>
-          <div class="bar">
-            <input
-              type="url"
-              id="queue-input"
-              oninput="validateQueue()"
-              placeholder="add video to queue"
-            />
-            <button id="add-queue" onclick="addQueue()" class="" disabled>
+          <!-- <div class="bar"> -->
+            <h5>Added queue items will appear here</h5>
+            <!-- <button id="add-queue" onclick="addQueue()" class="" disabled>
               add
-            </button>
-            <button id="delete-queue" onclick="deleteQueue()" class="">
+            </button> -->
+            <button id="delete-queue" onclick="deleteQueue()" class="hidden">
               clear
             </button>
-          </div>
+          <!-- </div> -->
         </div>
         <div id="queue-list"></div>
-      </details>
     </div>
   </body>
 </html>
