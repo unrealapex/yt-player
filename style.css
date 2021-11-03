@@ -278,7 +278,6 @@ details[open] summary {
 
 .queue {
   /* animation: rgb-bg 5s linear infinite; */
-  /* box-sizing: border-box; */
   border-radius: 0.2rem;
   padding: 10px 20px;
   color: black;
@@ -318,13 +317,8 @@ details,
 
 .queue-item-wrapper {
   white-space: nowrap;
-  /* display: inline-block; */
   padding: 0.4rem;
   width: max-content;
-  /* width: 100%; */
-  /* position: relative; */
-  /* border: 3px solid red; */
-
 }
 
 .queue-item-wrapper:hover {
@@ -337,7 +331,6 @@ details,
 
 .current-video {
   animation: rgb-bg 5s linear infinite;
-  /* background: #888; */
   color: black;
 }
 
