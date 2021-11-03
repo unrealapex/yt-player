@@ -285,7 +285,11 @@ function clearNotification() {
 function addQueue() {
   // adds video to queue and updates queue ui
   var linebreak = document.createElement("br");
+  let queueItemWrapper = document.createElement("div");
   let queueValue = document.querySelector("input[type=url]").value;
+  queueItemWrapper.classList.add("queue-item-wrapper");
+  queueItemWrapper.id = "queue-item-wrapper-" + queue.length;
+  queueItemWrapper.innerHTML = queue.length + 1 + ". " + queueValue;
   if (queueValue === "" || whiteSpaceRE.test(queueValue)) {
     document.querySelector("input[type=url]").focus();
     setNotification("You must enter a url to add to the queue", -1, 2);
@@ -293,9 +297,7 @@ function addQueue() {
     queue[queue.length] = document.querySelector("input[type=url]").value;
     document.querySelector("input[type=url]").value = "";
     document.querySelector("input[type=url]").focus();
-    document.querySelector("#queue-list").appendChild(linebreak);
-    document.querySelector("#queue-list").innerHTML +=
-      queue.length + ". " + queueValue;
+    document.querySelector("#queue-list").appendChild(queueItemWrapper);
     document.querySelector("#queue-count").innerHTML = `queue: ${
       queueNumber + 1
     } / ${queue.length}`;
@@ -307,6 +309,9 @@ function addQueue() {
         ? `${queue.length} items in queue`
         : `${queue.length} item in queue`;
     // document.querySelector("#add-queue").classList.remove("");
+    document
+      .querySelector("#queue-item-wrapper-" + queueNumber)
+      .classList.add("current-video");
     setNotification("video added to queue", 0, 1.5);
   }
 
@@ -343,6 +348,12 @@ function nextVideo() {
     document.querySelector("#queue-count").innerHTML = `queue: ${
       queueNumber + 1
     } / ${queue.length}`;
+    document
+      .querySelector("#queue-item-wrapper-" + (queueNumber - 1))
+      .classList.remove("current-video");
+    document
+      .querySelector("#queue-item-wrapper-" + queueNumber)
+      .classList.add("current-video");
     return queueNumber;
   } else {
     alert("You are at the end of the queue");
@@ -357,6 +368,12 @@ function previousVideo() {
     document.querySelector("#queue-count").innerHTML = `queue: ${
       queueNumber + 1
     } / ${queue.length}`;
+    document
+      .querySelector("#queue-item-wrapper-" + (queueNumber + 1))
+      .classList.remove("current-video");
+    document
+      .querySelector("#queue-item-wrapper-" + queueNumber)
+      .classList.add("current-video");
     return queueNumber;
   } else {
     alert("You are at the start of the queue");
@@ -374,7 +391,7 @@ document.addEventListener("keydown", function (event) {
     event.key === "r" &&
     document.querySelector("#overlay").style.display == "block"
   ) {
-    reload();
+    // reload();
   } else if (
     (event.key === "Escape" || event.key === "x") &&
     document.fullscreenElement === null &&
@@ -445,4 +462,5 @@ document.querySelector("form").addEventListener("click", function () {
       "enter a youtube video url";
   } else {
   }
+  document.querySelector("input[type=url]").focus();
 });
