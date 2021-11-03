@@ -316,7 +316,7 @@ function addQueue() {
     document
       .querySelector("#queue-item-wrapper-" + queueNumber)
       .classList.add("current-video");
-    setNotification("video added to queue", 0, 5);
+    setNotification("video added to queue", 1, 5);
   }
 
   return queue;
