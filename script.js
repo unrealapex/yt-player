@@ -257,9 +257,10 @@ function minimizeOverlay() {
   }
 }
 
-function setNotification(message, level = 0, duration = 5) {
+function setNotification(message, level = 0, duration = 0) {
   // sets notification, levels show different notification colors, duration determines how long notification appears on screen
   // level 0 is a normal message, level 1 is a "correct" message, and level -1 is an "error" message
+  // 5 seconds is the recommended duration of notifications
   document.querySelector("#notification").innerHTML = message;
   if (level === 0) {
     document.querySelector("#notification").className = "normal";
