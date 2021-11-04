@@ -359,6 +359,7 @@ function nextVideo() {
     document
       .querySelector("#queue-item-wrapper-" + queueNumber)
       .classList.add("current-video");
+    document.querySelector("#queue-item-wrapper-" + queueNumber).scrollIntoView();
     return queueNumber;
   } else {
     alert("You are at the end of the queue");
@@ -379,6 +380,7 @@ function previousVideo() {
     document
       .querySelector("#queue-item-wrapper-" + queueNumber)
       .classList.add("current-video");
+    document.querySelector("#queue-item-wrapper-" + queueNumber).scrollIntoView();
     return queueNumber;
   } else {
     alert("You are at the start of the queue");
