@@ -200,6 +200,11 @@ legend {
   text-align: center;
 }
 
+fieldset {
+  border-style: solid;
+  border-radius: 0.4rem;
+}
+
 button {
   /* margin-left: 0.7rem; */
   border: none;
