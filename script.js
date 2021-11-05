@@ -23,9 +23,9 @@ const shortcutsModal = document.querySelector("#shortcuts-modal");
 var isLoaded = false;
 // configs
 // determines if the video should be loaded with a YouTube privacy enhanced URL or a regular YouTube embed url
-const privateMode = document.querySelector("#private-mode").checked;
+var privateMode = document.querySelector("#private-mode").checked;
 // determines if the video should be loaded in full screen when the user plays it
-const loadInFullscreen = document.querySelector("#load-fullscreen").checked;
+var loadInFullscreen = document.querySelector("#load-fullscreen").checked;
 // regex
 // checks if the url is a valid youtube url, is something our player can play, and gets the video id from strings
 const urlManipulatorRE =
