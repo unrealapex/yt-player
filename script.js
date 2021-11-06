@@ -1,14 +1,32 @@
 // globals
-var url;
-var videoId;
+// player URL
+var url = "";
+// player video id
+var videoId = "";
+// player iframe
+const iframe = document.querySelector("iframe");
+// input where user enters YouTube url to play
+const inputField = document.querySelector("#input-field");
+// button to play YouTube video url entered
+const playButton = document.querySelector("#play");
+// overlay that video player iframe is shown
+const overlay = document.querySelector("#overlay");
+// button used to maximize minimized videos
+const expandButton = document.querySelector("#expand");
+// notification that shows errors and information
+const notification = document.querySelector("#notification");
+// loading text that displays when video is loading
+const loader = document.querySelector(".loader");
+// modal that shows all the availible shortcuts in the video player
+const shortcutsModal = document.querySelector("#shortcuts-modal");
+// stores boolean determining if video is loaded or not
 var isLoaded = false;
-var privateMode = false;
-// const inputField = document.querySelector('#input-field');
-// const expand = document.querySelector("#expand");
-// const overlay = document.querySelector("#overlay");
-// regular expressions used in the program, I highly suggest using regex101.com for a detailed explaination of the expression's inner workings
-// gets the video id from the url inputted by the user
-// const videoIdExtractor = /(http(?: s) ?: \/\/(?:m.)?(?:www\.)?)?youtu(?:\.be\/|be\.com\/(?:watch\?(?:feature=youtu\.be\&)?v=|v\/|embed\/|user\/(?:[\w#]+\/)+))([^&#?\n]+)/;
+// configs
+// determines if the video should be loaded with a YouTube privacy enhanced URL or a regular YouTube embed url
+var privateMode = document.querySelector("#private-mode").checked;
+// determines if the video should be loaded in full screen when the user plays it
+var loadInFullscreen = document.querySelector("#load-fullscreen").checked;
+// regex
 // checks if the url is a valid youtube url, is something our player can play, and gets the video id from strings
 const urlManipulatorRE =
   /((http?(?:s)?:?\/\/)?(www\.)?)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?&v=))((?:\w|-){11})((?:\&|\?)\S*)?|(?:^(\w|-){11}$)|(?:\w|-){11}$/;
@@ -17,7 +35,7 @@ const whiteSpaceRE = /\s/g;
 
 function getVideoURL() {
   // gets our url from the input field
-  url = document.querySelector("#input-field").value;
+  url = inputField.value;
   // alert("executed got video url");
   let hasWhiteSpace = whiteSpaceRE.test(url);
   url = hasWhiteSpace ? url.replace(/\s/g, "") : url;
@@ -29,26 +47,26 @@ function getVideoURL() {
 
 function validate() {
   // checks if url given is valid
-  if (document.querySelector("#input-field").value.length === 0) {
+  if (inputField.value.length === 0) {
     clearNotification();
-    document.querySelector("#input-field").className = "";
-    document.querySelector("#play").style.color = "#1a1a1a";
-    document.querySelector("#play").className = "";
-    document.querySelector("#play").disabled = true;
+    inputField.className = "";
+    playButton.style.color = "#1a1a1a";
+    playButton.className = "";
+    playButton.disabled = true;
   } else if (
-    urlManipulatorRE.test(document.querySelector("#input-field").value)
+    urlManipulatorRE.test(inputField.value)
   ) {
     clearNotification();
-    document.querySelector("#input-field").className = "correct";
-    document.querySelector("#play").className = "valid";
-    document.querySelector("#play").disabled = false;
-    document.querySelector("#play").focus();
+    inputField.className = "correct";
+    playButton.className = "valid";
+    playButton.disabled = false;
+    playButton.focus();
   } else {
     setNotification("enter a valid url", -1);
-    document.querySelector("#input-field").className = "wrong";
-    document.querySelector("#play").className = "";
-    document.querySelector("#play").disabled = true;
-    document.querySelector("#play").style.color = "#c6262e";
+    inputField.className = "wrong";
+    playButton.className = "";
+    playButton.disabled = true;
+    playButton.style.color = "#c6262e";
   }
 }
 
@@ -61,31 +79,31 @@ function getId(url) {
 
 function loadVideo(videoId) {
   isLoaded = true;
-  document.querySelector("#overlay").style.display = "block";
-  document.querySelector(".loader").classList.remove("hidden");
-  if (document.querySelector("#private-mode").checked) {
+  overlay.style.display = "block";
+  loader.classList.remove("hidden");
+  if (privateMode) {
     // sets the video player iframe's url to a youtube privacy-enhanced url(video doesn't show up on user's youtube search history) if the user has enabled Privacy Mode
-    document.querySelector("#videoPlayer").src =
+    iframe.src =
       "https://www.youtube-nocookie.com/embed/" + videoId + "?dnt=1";
   } else {
     // sets the video player iframe's url to a youtube embed url (default)
-    document.querySelector("#videoPlayer").src =
+    iframe.src =
       "https://www.youtube.com/embed/" + videoId;
   }
 
-  if (document.querySelector("#load-fullscreen").checked) {
+  if (loadInFullscreen) {
     openFullscreen();
   } else {
   }
   // checks if the iframe content (our video) has loaded
-  document.querySelector("iframe").onload = function () {
-    document.querySelector("#videoPlayer").focus();
+  iframe.onload = function () {
+    iframe.focus();
   };
 }
 
 function openFullscreen() {
   // puts the player in full screen mode
-  var player = document.querySelector("#videoPlayer");
+  var player = iframe;
   if (player.src.length !== 0 && isLoaded) {
     if (player.requestFullscreen) {
       player.requestFullscreen();
@@ -114,16 +132,16 @@ function openFullscreen() {
 function refresh() {
   // allows the user to reset the player if they entered an invalid url or ran into another problem
   url = "";
-  document.querySelector("iframe").src = "";
-  document.querySelector("#expand").disabled = true;
-  document.querySelector("#expand").style.cursor = "default";
-  document.querySelector("#input-field").className = "";
-  document.querySelector("#play").className = "";
-  document.querySelector("#play").style.color = "#1a1a1a";
-  document.querySelector("#play").disabled = true;
-  document.querySelector("#input-field").value = "";
-  document.querySelector("#input-field").focus();
-  document.querySelector("#private-mode").checked = false;
+  iframe.src = "";
+  expandButton.disabled = true;
+  expandButton.style.cursor = "default";
+  inputField.className = "";
+  playButton.className = "";
+  playButton.style.color = "#1a1a1a";
+  playButton.disabled = true;
+  inputField.value = "";
+  inputField.focus();
+  privateMode = false;
   clearNotification();
   isLoaded = false;
   return isLoaded;
@@ -132,7 +150,7 @@ function refresh() {
 // reloads video in video player
 function reload() {
   loadVideo(
-    urlManipulatorRE.exec(document.querySelector("#input-field").value)[4]
+    urlManipulatorRE.exec(document.querySelector("#url-input").value)[4]
   );
 }
 
@@ -233,39 +251,39 @@ function sleep(duration) {
 function closeOverlay() {
   // Closes the video overlay and clears its iframe src
   // TODO: Use hidden class to change visibility of expand button
-  document.querySelector("#expand").style.opacity = 0;
-  document.querySelector("#overlay").style.display = "none";
+  expandButton.style.opacity = 0;
+  overlay.style.display = "none";
   refresh();
 }
 
 function minimizeOverlay() {
   // Minimizes video overlay
   // TODO: Use hidden class to change visibility of expand button
-  // document.querySelector("#input-field").focus();
-  // document.querySelector("#input-field").select();
-  document.querySelector("#expand").style.opacity = "100%";
-  document.querySelector("#overlay").style.display = "none";
+  // inputField.focus();
+  // inputField.select();
+  expandButton.style.opacity = "100%";
+  overlay.style.display = "none";
   if (isLoaded) {
-    document.querySelector("#expand").disabled = false;
-    document.querySelector("#expand").style.cursor = "pointer";
-    document.querySelector("#expand").focus();
+    expandButton.disabled = false;
+    expandButton.style.cursor = "pointer";
+    expandButton.focus();
   } else {
-    document.querySelector("#expand").disabled = true;
-    document.querySelector("#expand").style.cursor = "default";
-    document.querySelector("#expand").blur();
+    expandButton.disabled = true;
+    expandButton.style.cursor = "default";
+    expandButton.blur();
   }
 }
 
 function setNotification(message, level = 0, duration = 0) {
   // sets notification, levels show different notification colors, duration determines how long notification appears on screen
   // level 0 is a normal message, level 1 is a "correct" message, and level -1 is an "error" message
-  document.querySelector("#notification").innerHTML = message;
+  notification.innerHTML = message;
   if (level === 0) {
-    document.querySelector("#notification").className = "normal";
+    notification.className = "normal";
   } else if (level === 1) {
-    document.querySelector("#notification").className = "correct";
+    notification.className = "correct";
   } else if (level === -1) {
-    document.querySelector("#notification").className = "wrong";
+    notification.className = "wrong";
   } else {
     console.error("Error setting notification");
   }
@@ -281,49 +299,49 @@ function setNotification(message, level = 0, duration = 0) {
 
 function clearNotification() {
   // clears notification
-  document.querySelector("#notification").innerHTML = "";
-  document.querySelector("#notification").className = "";
+  notification.innerHTML = "";
+  notification.className = "";
 }
 
 // keyboard shortcuts
 document.addEventListener("keydown", function (event) {
   if (
     event.key === "r" &&
-    document.querySelector("#overlay").style.display == "block"
+    overlay.style.display == "block"
   ) {
     reload();
   } else if (
     (event.key === "Escape" || event.key === "x") &&
     document.fullscreenElement === null &&
-    document.querySelector("#overlay").style.display == "block"
+    overlay.style.display == "block"
   ) {
-    document.querySelector("#overlay").style.display = "none";
-    document.querySelector("#input-field").select();
+    overlay.style.display = "none";
+    inputField.select();
   } else if (
     event.key === "f" &&
     document.fullscreenElement === null &&
-    document.querySelector("#overlay").style.display == "block"
+    overlay.style.display == "block"
   ) {
     openFullscreen();
   } else if (
     (event.key === "m" || event.key === "_") &&
-    document.querySelector("#overlay").style.display == "block"
+    overlay.style.display == "block"
   ) {
     minimizeOverlay();
   } else if (
     (event.key === "o" || event.key === "+") &&
-    document.querySelector("#overlay").style.display == "none" &&
-    document.querySelector("iframe").src.length != 0
+    overlay.style.display == "none" &&
+    iframe.src.length != 0
   ) {
-    document.querySelector("#overlay").style.display = "block";
+    overlay.style.display = "block";
   } else if (event.key === "?") {
     if (
-      document.querySelector("#shortcuts-modal").style.display === "" ||
-      document.querySelector("#shortcuts-modal").style.display === "none"
+      shortcutsModal.style.display === "" ||
+      shortcutsModal.style.display === "none"
     ) {
-      document.querySelector("#shortcuts-modal").style.display = "block";
+      shortcutsModal.style.display = "block";
     } else {
-      document.querySelector("#shortcuts-modal").style.display = "none";
+      shortcutsModal.style.display = "none";
     }
   } else {
   }
@@ -331,8 +349,8 @@ document.addEventListener("keydown", function (event) {
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function (event) {
-  if (event.target == document.querySelector("#shortcuts-modal")) {
-    document.querySelector("#shortcuts-modal").style.display = "none";
+  if (event.target == shortcutsModal) {
+    shortcutsModal.style.display = "none";
   }
 };
 
@@ -340,6 +358,6 @@ document.addEventListener("mouseover", function () {
   window.focus();
 });
 
-document.querySelector("iframe").addEventListener("load", function () {
-  document.querySelector(".loader").classList.add("hidden");
+iframe.addEventListener("load", function () {
+  loader.classList.add("hidden");
 });
