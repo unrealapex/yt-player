@@ -23,9 +23,9 @@ const shortcutsModal = document.querySelector("#shortcuts-modal");
 var isLoaded = false;
 // configs
 // determines if the video should be loaded with a YouTube privacy enhanced URL or a regular YouTube embed url
-var privateMode = document.querySelector("#private-mode").checked;
+var privateMode = () => document.querySelector("#private-mode").checked;
 // determines if the video should be loaded in full screen when the user plays it
-var loadInFullscreen = document.querySelector("#load-fullscreen").checked;
+var loadInFullscreen = () => document.querySelector("#load-fullscreen").checked;
 // regex
 // checks if the url is a valid youtube url, is something our player can play, and gets the video id from strings
 const urlManipulatorRE =
@@ -81,7 +81,7 @@ function loadVideo(videoId) {
   isLoaded = true;
   overlay.style.display = "block";
   loader.classList.remove("hidden");
-  if (privateMode) {
+  if (privateMode()) {
     // sets the video player iframe's url to a youtube privacy-enhanced url(video doesn't show up on user's youtube search history) if the user has enabled Privacy Mode
     iframe.src =
       "https://www.youtube-nocookie.com/embed/" + videoId + "?dnt=1";
@@ -91,7 +91,7 @@ function loadVideo(videoId) {
       "https://www.youtube.com/embed/" + videoId;
   }
 
-  if (loadInFullscreen) {
+  if (loadInFullscreen()) {
     openFullscreen();
   } else {
   }
@@ -141,7 +141,7 @@ function refresh() {
   playButton.disabled = true;
   inputField.value = "";
   inputField.focus();
-  privateMode = false;
+  document.querySelector("#private-mode").checked = false;
   clearNotification();
   isLoaded = false;
   return isLoaded;
@@ -218,13 +218,13 @@ function openVideoInNewTab() {
 // If I played the same video on YT Player with Private Mode on, I wouldn't get any dog ads nor would the video I watched be on my YouTube search history.
 function togglePrivateMode() {
   // toggles icon state for Private Mode and tells loadVideo function if it should load in Private Mode
-  if (!privateMode) {
+  if (!privateMode()) {
     document.querySelector("#private-mode").style.opacity = "100%";
     document
       .querySelector("#private-mode")
       .setAttribute("title", "Toggle Private Mode, Private Mode is enabled.");
-    privateMode = true;
-  } else if (privateMode) {
+    document.querySelector("#private-mode").checked = true;
+  } else if (privateMode()) {
     document.querySelector("#private-mode").style.opacity = "38%";
     document
       .querySelector("#private-mode")
@@ -232,11 +232,11 @@ function togglePrivateMode() {
         "title",
         "Toggle Private Mode, Private Mode is off, toggling will enable Private Mode"
       );
-    privateMode = false;
+    document.querySelector("#private-mode").checked = false;
   } else {
     console.log("Unable to toggle private mode");
   }
-  return privateMode;
+  return privateMode();
 }
 
 // TODO: Delete this function if not in use
