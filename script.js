@@ -38,7 +38,7 @@ function getVideoURL() {
   url = inputField.value;
   // alert("executed got video url");
   let hasWhiteSpace = whiteSpaceRE.test(url);
-  url = hasWhiteSpace ? url.replace(/\s/g, "") : url;
+  url = (hasWhiteSpace ? url.replace(/\s/g, "") : url);
   getId(url);
 }
 
