@@ -210,7 +210,6 @@ button {
   border: none;
   font: inherit;
   padding: 0.4rem 1rem;
-  margin-right: 0.4rem;
   border-radius: 0.2rem;
   font-size: 1.2rem;
   cursor: pointer;
@@ -225,10 +224,10 @@ button {
 }
 
 .overlay-buttons {
+  color: white;
   transition-duration: 0.5s;
   padding: 0.25em;
   float: right;
-  cursor: pointer;
 }
 
 .overlay-buttons:hover,
@@ -324,4 +323,13 @@ button {
     -ms-user-select: none;       /* Internet Explorer/Edge */
     user-select: none;           /* Non-prefixed version, currently
                                   supported by Chrome, Edge, Opera and Firefox */
+}
+
+.transparent-button {
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
 }
