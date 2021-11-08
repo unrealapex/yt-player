@@ -116,24 +116,24 @@
     <div id="overlay">
       <div id="overlay-content">
         <div>
-          <span
-            class="overlay-buttons material-icons-round"
+          <button
+            class="overlay-buttons transparent-button material-icons-round"
             title="close"
             onclick="closeOverlay()"
-            >close</span
+            >close</button
           >
-          <span
-            class="overlay-buttons material-icons-round"
+          <button
+            class="overlay-buttons transparent-button material-icons-round"
             title="maximize"
             onclick="openFullscreen()"
           >
-            check_box_outline_blank</span
+            check_box_outline_blank</button
           >
-          <span
-            class="overlay-buttons material-icons-round"
+          <button
+            class="overlay-buttons transparent-button material-icons-round"
             title="minimize"
             onclick="minimizeOverlay()"
-            >minimize</span
+            >minimize</button
           >
         </div>
         <iframe id="videoPlayer" loading="eager" allowfullscreen="true">
@@ -156,7 +156,7 @@
       <div class="modal-content">
         <span
           id="close"
-          class="overlay-buttons material-icons-round"
+          class="overlay-buttons transparent-button material-icons-round"
           onclick='document.querySelector("#shortcuts-modal").style.display = "none"'
           >close</span
         >
