@@ -151,7 +151,7 @@ function refresh() {
 // reloads video in video player
 function reload() {
   loadVideo(
-    urlManipulatorRE.exec(document.querySelector("#url-input").value)[4]
+    urlManipulatorRE.exec(inputField.value)[4]
   );
 }
 
