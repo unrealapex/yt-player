@@ -28,8 +28,15 @@ var privateMode = () => document.querySelector("#private-mode").checked;
 var loadInFullscreen = () => document.querySelector("#load-fullscreen").checked;
 // regex
 // checks if the url is a valid youtube url, is something our player can play, and gets the video id from strings
-const urlManipulatorRE =
-  /((http?(?:s)?:?\/\/)?(www\.)?)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?&v=))((?:\w|-){11})((?:\&|\?)\S*)?|(?:^(\w|-){11}$)|(?:\w|-){11}$/;
+// const urlManipulatorRE =
+  // /((http?(?:s)?:?\/\/)?(www\.)?)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?&v=))((?:\w|-){11})((?:\&|\?)\S*)?|(?:^(\w|-){11}$)|(?:\w|-){11}$/;
+
+const videoIdExtractor =
+  /(http(?: s) ?: \/\/(?:m.)?(?:www\.)?)?youtu(?:\.be\/|be\.com\/(?:watch\?(?:feature=youtu\.be\&)?v=|v\/|embed\/|user\/(?:[\w#]+\/)+))([^&#?\n]+)/;
+// checks if the url is a valid youtube url and is something our player can play
+const urlValidator =
+  /((http?(?:s)?:\/\/)?(www\.)?)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?&v=))((?:\w|-){11})((?:\&|\?)\S*)?/;
+
 // expression to test if there are any whitespaces in our url
 const whiteSpaceRE = /\s/g;
 
@@ -54,7 +61,7 @@ function validate() {
     playButton.className = "";
     playButton.disabled = true;
   } else if (
-    urlManipulatorRE.test(inputField.value)
+    urlValidator.test(inputField.value)
   ) {
     clearNotification();
     inputField.className = "correct";
@@ -73,7 +80,7 @@ function validate() {
 
 function getId(url) {
   // strips the video id from our url
-  videoId = urlManipulatorRE.exec(url)[4];
+  videoId = videoIdExtractor.exec(url)[2];
   loadVideo(videoId);
   return videoId;
 }
@@ -360,4 +367,8 @@ document.addEventListener("mouseover", function () {
 
 iframe.addEventListener("load", function () {
   loader.classList.add("hidden");
+});
+
+document.querySelector("form").addEventListener("submit", function() {
+  getVideoURL();
 });
