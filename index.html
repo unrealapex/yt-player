@@ -56,24 +56,28 @@
         <!-- <form> -->
         <div id="notification"></div>
         <div id="main-area">
+          <form action="javascript:void(0);">
           <div class="bar">
-            <input
-              id="input-field"
-              type="url"
-              oninput="validate()"
-              autofocus
-              required
-              placeholder="enter youtube video url"
-              size="25"
-            />
-            <button
-              id="play"
-              onclick="getVideoURL()"
-              title="play video url"
-              disabled
-            >
-              play
-            </button>
+              <input
+                id="input-field"
+                type="url"
+                oninput="validate()"
+                autofocus
+                required
+                placeholder="enter youtube video url"
+                title="enter a youtube video url"
+                size="25"
+                minlength="20"
+                maxlength="60"
+              />
+              <button
+                id="play"
+                onclick="document.querySelector('form').submit();"
+                title="play video url"
+                disabled
+              >
+                play
+              </button>
 
             <!--  onclick same as refresh() with the exception of no changes made to the iframe or expand button, clearing input-field throught onclick instead of refresh() function to prevent whole player from being resetted. -->
 
@@ -90,6 +94,7 @@
               clear
             </button> -->
           </div>
+          </form>
           <fieldset>
             <legend>options</legend>
             <div>

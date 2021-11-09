@@ -361,3 +361,7 @@ document.addEventListener("mouseover", function () {
 iframe.addEventListener("load", function () {
   loader.classList.add("hidden");
 });
+
+document.querySelector("form").addEventListener("submit", function() {
+  getVideoURL();
+});
