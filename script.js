@@ -150,6 +150,7 @@ function refresh() {
 
 // reloads video in video player
 function reload() {
+  loader.classList.remove("hidden");
   iframe.src = iframe.src;
 }
 
