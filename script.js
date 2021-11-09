@@ -59,6 +59,7 @@ function validate() {
     clearNotification();
     inputField.className = "correct";
     playButton.className = "valid";
+    playButton.style.color = "#1a1a1a";
     playButton.disabled = false;
     playButton.focus();
   } else {
