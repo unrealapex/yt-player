@@ -150,9 +150,7 @@ function refresh() {
 
 // reloads video in video player
 function reload() {
-  loadVideo(
-    iframe.src
-  );
+  iframe.src = iframe.src;
 }
 
 function shareVideo() {
