@@ -66,6 +66,7 @@ function validate() {
     clearNotification();
     inputField.className = "correct";
     playButton.className = "valid";
+    playButton.style.color = "#1a1a1a";
     playButton.disabled = false;
     playButton.focus();
   } else {
@@ -156,9 +157,8 @@ function refresh() {
 
 // reloads video in video player
 function reload() {
-  loadVideo(
-    videoIdExtractor.exec(inputField.value)[2]
-  );
+  loader.classList.remove("hidden");
+  iframe.src = iframe.src;
 }
 
 function shareVideo() {
