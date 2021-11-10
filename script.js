@@ -89,6 +89,7 @@ function loadVideo(videoId) {
   isLoaded = true;
   overlay.style.display = "block";
   loader.classList.remove("hidden");
+  expandButton.disabled = true;
   if (privateMode()) {
     // sets the video player iframe's url to a youtube privacy-enhanced url(video doesn't show up on user's youtube search history) if the user has enabled Privacy Mode
     iframe.src =
@@ -258,7 +259,7 @@ function sleep(duration) {
 function closeOverlay() {
   // Closes the video overlay and clears its iframe src
   // TODO: Use hidden class to change visibility of expand button
-  expandButton.style.opacity = 0;
+  expandButton.disabled = true;
   overlay.style.display = "none";
   refresh();
 }
@@ -268,7 +269,6 @@ function minimizeOverlay() {
   // TODO: Use hidden class to change visibility of expand button
   // inputField.focus();
   // inputField.select();
-  expandButton.style.opacity = "100%";
   overlay.style.display = "none";
   if (isLoaded) {
     expandButton.disabled = false;
