@@ -143,7 +143,6 @@ function reset() {
   url = "";
   iframe.src = "";
   expandButton.disabled = true;
-  expandButton.style.cursor = "default";
   inputField.className = "";
   playButton.className = "";
   playButton.style.color = "#1a1a1a";
@@ -266,17 +265,14 @@ function closeOverlay() {
 
 function minimizeOverlay() {
   // Minimizes video overlay
-  // TODO: Use hidden class to change visibility of expand button
   // inputField.focus();
   // inputField.select();
   overlay.style.display = "none";
   if (isLoaded) {
     expandButton.disabled = false;
-    expandButton.style.cursor = "pointer";
     expandButton.focus();
   } else {
     expandButton.disabled = true;
-    expandButton.style.cursor = "default";
     expandButton.blur();
   }
 }
