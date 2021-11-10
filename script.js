@@ -27,10 +27,7 @@ var privateMode = () => document.querySelector("#private-mode").checked;
 // determines if the video should be loaded in full screen when the user plays it
 var loadInFullscreen = () => document.querySelector("#load-fullscreen").checked;
 // regex
-// checks if the url is a valid youtube url, is something our player can play, and gets the video id from strings
-// const urlManipulatorRE =
-  // /((http?(?:s)?:?\/\/)?(www\.)?)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?&v=))((?:\w|-){11})((?:\&|\?)\S*)?|(?:^(\w|-){11}$)|(?:\w|-){11}$/;
-
+// gets the youtube video id from strings 
 const videoIdExtractor =
   /(http(?: s) ?: \/\/(?:m.)?(?:www\.)?)?youtu(?:\.be\/|be\.com\/(?:watch\?(?:feature=youtu\.be\&)?v=|v\/|embed\/|user\/(?:[\w#]+\/)+))([^&#?\n]+)/;
 // checks if the url is a valid youtube url and is something our player can play
@@ -43,7 +40,7 @@ const whiteSpaceRE = /\s/g;
 function getVideoURL() {
   // gets our url from the input field
   url = inputField.value;
-  // alert("executed got video url");
+  // checks if there is whitespace in the url, if there is, reassign the url to the string with the whitespace removed
   let hasWhiteSpace = whiteSpaceRE.test(url);
   url = (hasWhiteSpace ? url.replace(/\s/g, "") : url);
   getId(url);
@@ -52,14 +49,16 @@ function getVideoURL() {
 // TODO: add Vimeo support
 // TODO: add ability to play youtube playlists
 
+// checks if url given is valid
 function validate() {
-  // checks if url given is valid
+  // if the input is blank
   if (inputField.value.length === 0) {
     clearNotification();
     inputField.className = "";
     playButton.style.color = "#1a1a1a";
     playButton.className = "";
     playButton.disabled = true;
+    // if the url in the input is valid
   } else if (
     urlValidator.test(inputField.value)
   ) {
@@ -69,6 +68,7 @@ function validate() {
     playButton.style.color = "#1a1a1a";
     playButton.disabled = false;
     playButton.focus();
+    // if the url in the input is invalid
   } else {
     setNotification("enter a valid url", -1);
     inputField.className = "wrong";
@@ -78,6 +78,8 @@ function validate() {
   }
 }
 
+// gets youtube video id of given url
+// takes parameter url(string)
 function getId(url) {
   // strips the video id from our url
   videoId = videoIdExtractor.exec(url)[2];
@@ -85,6 +87,8 @@ function getId(url) {
   return videoId;
 }
 
+// loads the youtube video into the player iframe
+// take parameter videoId(string)
 function loadVideo(videoId) {
   isLoaded = true;
   overlay.style.display = "block";
@@ -110,6 +114,7 @@ function loadVideo(videoId) {
   };
 }
 
+// toggles fullscreen for the iframe
 function openFullscreen() {
   // puts the player in full screen mode
   var player = iframe;
@@ -138,6 +143,7 @@ function openFullscreen() {
   }
 }
 
+// resets numerous things for the player
 function reset() {
   // allows the user to reset the player if they entered an invalid url or ran into another problem
   url = "";
@@ -155,12 +161,13 @@ function reset() {
   return isLoaded;
 }
 
-// reloads video in video player
+// reloads video in player
 function reload() {
   loader.classList.remove("hidden");
   iframe.src = iframe.src;
 }
 
+// copies a youtube share url onto user's clipboard
 function shareVideo() {
   // copies shortened youtube url to the user's clipboard
   if (videoId !== undefined) {
@@ -185,8 +192,8 @@ function about() {
   );
 }
 
+// opens youtube video in a window so the user can like, dislike a video, or subscribe to a youtube channel
 function openVideoInNewTab() {
-  // opens a window that takes the user to the video on the youtube site for the purpose of liking or disliking the video
   if (isLoaded) {
     // TODO: change to responsive size
     let w = 1000;
@@ -218,36 +225,9 @@ function openVideoInNewTab() {
   }
 }
 
-// remove this function if not in use
-// Private Mode allows users to view videos on YT Player without them influening their YouTube and browsing experience.
-// For example, I'm a cat person and I want cat ads when I browse the internet. Say if I watched a video titled "Top 10 Reasons Why You Should Buy A Dog"
-// Next time I would go on the Verge (https://www.theverge.com/) I would be getting dog adverts.
-// If I played the same video on YT Player with Private Mode on, I wouldn't get any dog ads nor would the video I watched be on my YouTube search history.
-function togglePrivateMode() {
-  // toggles icon state for Private Mode and tells loadVideo function if it should load in Private Mode
-  if (!privateMode()) {
-    document.querySelector("#private-mode").style.opacity = "100%";
-    document
-      .querySelector("#private-mode")
-      .setAttribute("title", "Toggle Private Mode, Private Mode is enabled.");
-    document.querySelector("#private-mode").checked = true;
-  } else if (privateMode()) {
-    document.querySelector("#private-mode").style.opacity = "38%";
-    document
-      .querySelector("#private-mode")
-      .setAttribute(
-        "title",
-        "Toggle Private Mode, Private Mode is off, toggling will enable Private Mode"
-      );
-    document.querySelector("#private-mode").checked = false;
-  } else {
-    console.log("Unable to toggle private mode");
-  }
-  return privateMode();
-}
-
 // TODO: Delete this function if not in use
 // allows us to sleep for x seconds
+// takes parameter duration(float)
 function sleep(duration) {
   var currentTime = new Date().getTime();
   while (new Date().getTime() < currentTime + duration * 1000) {
@@ -255,16 +235,15 @@ function sleep(duration) {
   }
 }
 
+// closes player video overlay
 function closeOverlay() {
-  // Closes the video overlay and clears its iframe src
-  // TODO: Use hidden class to change visibility of expand button
   expandButton.disabled = true;
   overlay.style.display = "none";
   reset();
 }
 
+// Minimizes video overlay
 function minimizeOverlay() {
-  // Minimizes video overlay
   // inputField.focus();
   // inputField.select();
   overlay.style.display = "none";
@@ -277,8 +256,9 @@ function minimizeOverlay() {
   }
 }
 
+// sets notification, levels show different notification colors, duration determines how long notification appears on screen
+// takes parameters message(string), level(integer), and duration(float)
 function setNotification(message, level = 0, duration = 0) {
-  // sets notification, levels show different notification colors, duration determines how long notification appears on screen
   // level 0 is a normal message, level 1 is a "correct" message, and level -1 is an "error" message
   notification.innerHTML = message;
   if (level === 0) {
@@ -300,13 +280,13 @@ function setNotification(message, level = 0, duration = 0) {
   }
 }
 
+// clears notification
 function clearNotification() {
-  // clears notification
   notification.innerHTML = "";
   notification.className = "";
 }
 
-// keyboard shortcuts
+// keyboard shortcuts event listener
 document.addEventListener("keydown", function (event) {
   if (
     event.key === "r" &&
@@ -357,14 +337,18 @@ window.onclick = function (event) {
   }
 };
 
+// focus the window when the user is on it
 document.addEventListener("mouseover", function () {
   window.focus();
 });
 
+// hide the loader every time a video loads in the iframe
 iframe.addEventListener("load", function () {
   loader.classList.add("hidden");
 });
 
+// event listener that listens for successful form submissions 
+// if the input field is submitted successfully, get the video url via the getVideoURL() function
 document.querySelector("form").addEventListener("submit", function() {
   getVideoURL();
 });
