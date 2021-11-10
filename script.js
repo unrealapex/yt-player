@@ -27,7 +27,7 @@ var privateMode = () => document.querySelector("#private-mode").checked;
 // determines if the video should be loaded in full screen when the user plays it
 var loadInFullscreen = () => document.querySelector("#load-fullscreen").checked;
 // regex
-// gets the youtube video id from strings 
+// gets the youtube video id from strings
 const videoIdExtractor =
   /(http(?: s) ?: \/\/(?:m.)?(?:www\.)?)?youtu(?:\.be\/|be\.com\/(?:watch\?(?:feature=youtu\.be\&)?v=|v\/|embed\/|user\/(?:[\w#]+\/)+))([^&#?\n]+)/;
 // checks if the url is a valid youtube url and is something our player can play
@@ -42,7 +42,7 @@ function getVideoURL() {
   url = inputField.value;
   // checks if there is whitespace in the url, if there is, reassign the url to the string with the whitespace removed
   let hasWhiteSpace = whiteSpaceRE.test(url);
-  url = (hasWhiteSpace ? url.replace(/\s/g, "") : url);
+  url = hasWhiteSpace ? url.replace(/\s/g, "") : url;
   getId(url);
 }
 
@@ -59,9 +59,7 @@ function validate() {
     playButton.className = "";
     playButton.disabled = true;
     // if the url in the input is valid
-  } else if (
-    urlValidator.test(inputField.value)
-  ) {
+  } else if (urlValidator.test(inputField.value)) {
     clearNotification();
     inputField.className = "correct";
     playButton.className = "valid";
@@ -96,12 +94,10 @@ function loadVideo(videoId) {
   expandButton.disabled = true;
   if (privateMode()) {
     // sets the video player iframe's url to a youtube privacy-enhanced url(video doesn't show up on user's youtube search history) if the user has enabled Privacy Mode
-    iframe.src =
-      "https://www.youtube-nocookie.com/embed/" + videoId + "?dnt=1";
+    iframe.src = "https://www.youtube-nocookie.com/embed/" + videoId + "?dnt=1";
   } else {
     // sets the video player iframe's url to a youtube embed url (default)
-    iframe.src =
-      "https://www.youtube.com/embed/" + videoId;
+    iframe.src = "https://www.youtube.com/embed/" + videoId;
   }
 
   if (loadInFullscreen()) {
@@ -288,10 +284,7 @@ function clearNotification() {
 
 // keyboard shortcuts event listener
 document.addEventListener("keydown", function (event) {
-  if (
-    event.key === "r" &&
-    overlay.style.display == "block"
-  ) {
+  if (event.key === "r" && overlay.style.display == "block") {
     reload();
   } else if (
     (event.key === "Escape" || event.key === "x") &&
@@ -347,8 +340,8 @@ iframe.addEventListener("load", function () {
   loader.classList.add("hidden");
 });
 
-// event listener that listens for successful form submissions 
+// event listener that listens for successful form submissions
 // if the input field is submitted successfully, get the video url via the getVideoURL() function
-document.querySelector("form").addEventListener("submit", function() {
+document.querySelector("form").addEventListener("submit", function () {
   getVideoURL();
 });
