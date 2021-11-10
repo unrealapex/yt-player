@@ -138,7 +138,7 @@ function openFullscreen() {
   }
 }
 
-function refresh() {
+function reset() {
   // allows the user to reset the player if they entered an invalid url or ran into another problem
   url = "";
   iframe.src = "";
@@ -261,7 +261,7 @@ function closeOverlay() {
   // TODO: Use hidden class to change visibility of expand button
   expandButton.disabled = true;
   overlay.style.display = "none";
-  refresh();
+  reset();
 }
 
 function minimizeOverlay() {
