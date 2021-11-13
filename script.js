@@ -292,6 +292,7 @@ document.addEventListener("keydown", function (event) {
     overlay.style.display == "block"
   ) {
     overlay.style.display = "none";
+    expandButton.disabled = true;
     inputField.select();
   } else if (
     event.key === "f" &&
