@@ -336,6 +336,11 @@ document.addEventListener("mouseover", function () {
   window.focus();
 });
 
+// focus input field when it is hovered over
+inputField.addEventListener("mouseover", function () {
+  inputField.focus();
+});
+
 // hide the loader every time a video loads in the iframe
 iframe.addEventListener("load", function () {
   loader.classList.add("hidden");
