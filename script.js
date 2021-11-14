@@ -27,7 +27,8 @@ var privateMode = () => document.querySelector("#private-mode").checked;
 // determines if the video should be loaded in full screen when the user plays it
 var loadInFullscreen = () => document.querySelector("#load-fullscreen").checked;
 // list of all shortcuts keys
-const shortcutKeys = ["r", "Escape", "x", "/", "f", "m", "_", "o", "+", "?"];
+const shortcutKeys = ["r", "Escape", "x", "f", "m", "_", "o", "+", "?"];
+
 // regex
 // gets the youtube video id from strings
 const videoIdExtractor =
@@ -302,9 +303,6 @@ document.addEventListener("keydown", function (event) {
     overlay.style.display = "none";
     expandButton.disabled = true;
     // inputField.select();
-  } else if (event.key === "/") {
-    minimizeOverlay();
-    inputField.select();
   } else if (
     event.key === "f" &&
     document.fullscreenElement === null &&
