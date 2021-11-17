@@ -14,3 +14,5 @@ yaply terse player or yt player for short is a fast and minimalistic video playe
 Read the [CONTRIBUTING.md](https://github.com/UnrealApex/yt-player/blob/main/CONTRIBUTING.md) file.
 
 ui slightly improved from [typings.gg](https://github.com/briano1905/typings)
+
+This project is maintained using the power of [![Vim](https://www.vim.org/images/vim_on_fire.gif)](https://www.vim.org/)
