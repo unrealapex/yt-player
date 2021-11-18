@@ -341,9 +341,9 @@ window.onclick = function (event) {
 };
 
 // focus the window when the user is on it
-document.addEventListener("mouseover", function () {
-  window.focus();
-});
+// document.addEventListener("mouseover", function () {
+//   window.focus();
+// });
 
 // focus input field when it is hovered over
 inputField.addEventListener("mouseover", function () {
