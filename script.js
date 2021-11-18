@@ -360,3 +360,8 @@ iframe.addEventListener("load", function () {
 document.querySelector("form").addEventListener("submit", function () {
   getVideoURL();
 });
+
+expandButton.addEventListener("click", function () {
+  overlay.style.display = "block";
+  expandButton.disabled = "true";
+});
