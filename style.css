@@ -30,7 +30,8 @@ button:disabled:not(.overlay-buttons) {
   cursor: not-allowed;
 }
 
-#notification {
+#notification,
+#queue-counter-ui {
   text-align: center;
 }
 
@@ -136,6 +137,34 @@ button {
   color: #1a1a1a;
 }
 
+.add-queue-queue {
+  /* margin-left: 0.7rem; */
+  border: none;
+  font: inherit;
+  padding: 0.4rem 1rem;
+  margin-right: 0;
+  border-radius: 0.2rem 0 0.2rem 0.2rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+  background: #d4d4d4;
+  color: #1a1a1a;
+}
+
+
+.play-queue {
+    /* margin-left: 0.7rem; */
+  border: none;
+  font: inherit;
+  padding: 0.4rem 1rem;
+  margin-right: 0;
+  border-radius: 0.2rem 0.2rem 0.2rem 0;
+  font-size: 1.2rem;
+  cursor: pointer;
+  background: #d4d4d4;
+  color: #1a1a1a;
+  border-left: 2.5px solid #eaeaea;
+}
+
 .valid {
   animation-name: rgb;
   animation-duration: 5s;
@@ -218,8 +247,14 @@ button {
 }
 
 #queue {
+  color: black;
+  border: 3px solid black;
+  border-radius: 0.4rem;
+  padding: 0.5rem;
   float: right;
   position: relative;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+
 }
 
 details {
@@ -240,18 +275,6 @@ details[open] {
 details[open] summary {
   border-bottom: 1px solid #aaa;
   margin-bottom: 0.5em;
-}
-
-.queue {
-  animation-name: rgb-bg;
-  animation-duration: 5s;
-  animation-iteration-count: infinite;
-  animation-timing-function: linear;
-  box-sizing: border-box;
-  border-radius: 0.2rem;
-  padding: 10px 20px;
-  color: white;
-  text-align: center;
 }
 
 #queue-buttons {
@@ -283,4 +306,38 @@ details,
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+}
+
+.queue-item-wrapper {
+  white-space: nowrap;
+  padding: 0.4rem;
+  width: max-content;
+}
+
+.queue-item-wrapper:hover {
+  background: #ddd;
+}
+
+/* #queue-list:nth-child(odd) { 
+  background: #f9f9f9;
+} */
+
+.current-video {
+  animation: rgb-bg 5s linear infinite;
+  color: black;
+}
+
+.current-video:hover {
+  filter: grayscale(0.6);
+}
+
+#queue-list {
+  overflow: scroll;
+  width: 20rem;
+  height: 10rem;
+
+}
+
+#delete-queue {
+  float: right;
 }
