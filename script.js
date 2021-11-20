@@ -26,6 +26,8 @@ var isLoaded = false;
 var privateMode = () => document.querySelector("#private-mode").checked;
 // determines if the video should be loaded in full screen when the user plays it
 var loadInFullscreen = () => document.querySelector("#load-fullscreen").checked;
+// variable to store last element focused
+var lastFocused;
 // list of all shortcuts keys
 const shortcutKeys = ["r", "Escape", "x", "f", "m", "_", "o", "+", "?"];
 
@@ -364,4 +366,13 @@ document.querySelector("form").addEventListener("submit", function () {
 expandButton.addEventListener("click", function () {
   overlay.style.display = "block";
   expandButton.disabled = "true";
+});
+
+document.addEventListener("blur", function () {
+  lastFocused = document.activeElement;
+  return lastFocused;
+})
+
+document.addEventListener("mouseover", function () {
+  lastFocused.focus();
 });
