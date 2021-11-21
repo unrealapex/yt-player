@@ -368,6 +368,8 @@ expandButton.addEventListener("click", function () {
   expandButton.disabled = "true";
 });
 
+
+// FIXME: fix focus handling
 document.addEventListener("blur", function () {
   lastFocused = document.activeElement;
   return lastFocused;
