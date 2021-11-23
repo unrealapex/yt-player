@@ -303,11 +303,6 @@ details[open] summary {
   max-width: 45%;
 }
 
-#queue-input {
-/*   animation: rgb-border 5s linear infinite; */
-/*   border: 2px solid; */
-}
-
 #queue-buttons {
   float: left;
 }
