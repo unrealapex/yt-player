@@ -26,7 +26,7 @@ input[type="url"] {
   border-radius: 0.2rem;
 }
 
-button:disabled:not(.overlay-buttons) {
+button:disabled:not(.overlay-buttons, #expand) {
   opacity: 0.5;
   cursor: not-allowed;
 }
@@ -260,9 +260,8 @@ button:not(#play, .overlay-buttons) {
   right: 0;
 }
 
-#expand {
+.hide-when-disabled:disabled, #expand:disabled {
   display: none;
-  cursor: default;
 }
 
 #queue {

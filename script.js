@@ -220,7 +220,7 @@ function openVideoInNewTab() {
 function closeOverlay() {
   // Closes the video overlay and clears its iframe src
   // TODO: Use hidden class to change visibility of expand button
-  document.querySelector("#expand").style.opacity = 0;
+  document.querySelector("#expand").disabled = true;
   document.querySelector("#overlay").style.display = "none";
   refresh();
 }
@@ -230,11 +230,10 @@ function minimizeOverlay() {
   // TODO: Use hidden class to change visibility of expand button
   // document.querySelector("#url-input").focus();
   // document.querySelector("#url-input").select();
-  document.querySelector("#expand").style.opacity = "100%";
+  document.querySelector("#expand").disabled = false;
   document.querySelector("#overlay").style.display = "none";
   if (isLoaded) {
     document.querySelector("#expand").disabled = false;
-    document.querySelector("#expand").style.cursor = "pointer";
     document.querySelector("#expand").focus();
   } else {
     document.querySelector("#expand").disabled = true;
