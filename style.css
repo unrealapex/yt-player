@@ -261,7 +261,7 @@ button:not(#play, .overlay-buttons) {
 }
 
 #expand {
-  opacity: 0%;
+  display: none;
   cursor: default;
 }
 
@@ -393,7 +393,7 @@ details,
   margin: 0.4em;
   width: 320px;
   height: 180px;
-    position: relative;
+  position: relative;
   text-align: center;
   background-color: lightgray;
 }
@@ -460,10 +460,10 @@ img {
 }
 
 #queue-list {
-    overflow-x: scroll;
+  overflow-x: scroll;
   display: flex;
 /*   justify-content: space-evenly; */
-    justify-content: flex-start
+  justify-content: flex-start
 /*   max-width: 65%; */
 }
 
@@ -490,7 +490,9 @@ img {
 } 
 
 
-.dropdown-content .dropdown-item:hover {background-color: #ddd}
+.dropdown-content .dropdown-item:hover {
+  background-color: #ddd
+}
 
 .dropdown:hover .dropdown-content {
   display: block;
