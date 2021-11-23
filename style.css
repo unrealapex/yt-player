@@ -296,6 +296,7 @@ details[open] summary {
   background-color: #f9f9f9; 
 /*   animation: rgb-bg 5s linear infinite;  */
 /*   box-sizing: border-box; */
+  border: 2px solid #eee;
   border-radius: 0.2rem;
 /*   padding: 10px 20px; */
   color: black;
