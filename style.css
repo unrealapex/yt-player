@@ -9,7 +9,7 @@
 }
 
 h1 {
-  color: #1a1a1a;
+  color: black;
   text-align: center;
   margin: 1.2rem 0 10.5rem 0;
   line-height: 2rem;
@@ -48,7 +48,7 @@ button:disabled:not(.overlay-buttons) {
 }
 
 .normal {
-  color: #1a1a1a;
+  color: black;
 }
 
 .hidden,
@@ -164,7 +164,7 @@ button:not(#play, .overlay-buttons) {
   font-size: 1.2rem;
   cursor: pointer;
   background: #d4d4d4;
-  color: #1a1a1a;
+  color: black;
 }
 
 #play {
@@ -176,7 +176,7 @@ button:not(#play, .overlay-buttons) {
   font-size: 1.2rem;
   cursor: pointer;
   background: #d4d4d4;
-  color: #1a1a1a;
+  color: black;
 }
 
 .valid {
@@ -318,7 +318,7 @@ details[open] summary {
   color: black !important;
 }
 
-/* prevents accidental selection of some elements like "buttons" and info*/
+/* prevents accidental selection of some elements like "buttons" and info */
 #queue-buttons,
 #queue-count,
 .queue,
