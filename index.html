@@ -231,7 +231,7 @@ delete
       <button
         id="expand"
         title="Open minimized video in overlay"
-        onclick='document.getElementById("overlay").style.display = "block";'
+        onclick='document.getElementById("overlay").style.display = "block"; document.querySelector("#expand").disabled = true;'
         disabled
       >
         minimized video

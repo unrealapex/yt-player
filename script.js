@@ -237,7 +237,6 @@ function minimizeOverlay() {
     document.querySelector("#expand").focus();
   } else {
     document.querySelector("#expand").disabled = true;
-    document.querySelector("#expand").style.cursor = "default";
     document.querySelector("#expand").blur();
   }
 }
