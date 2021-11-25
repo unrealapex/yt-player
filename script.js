@@ -12,21 +12,20 @@ var queueNumber = 0;
 // regular expressions used in the program, I highly suggest using regex101.com for a detailed explaination of the expression's inner workings
 // gets the video id from the url inputted by the user
 // extracts any YouTube video id found inside given string
-const videoIdExtractor =
-  /(http(?: s) ?: \/\/(?:m.)?(?:www\.)?)?youtu(?:\.be\/|be\.com\/(?:watch\?(?:feature=youtu\.be\&)?v=|v\/|embed\/|user\/(?:[\w#]+\/)+))([^&#?\n]+)/;
-// FIXME: fix expression not catching mistakes in the url protocol or the url subdomain
+const videoIdExtractor = /(http(?: s) ?: \/\/(?:m.)?(?:www\.)?)?youtu(?:\.be\/|be\.com\/(?:watch\?(?:feature=youtu\.be\&)?v=|v\/|embed\/|user\/(?:[\w#]+\/)+))([^&#?\n]+)/;
+// FIXME: fix expression not catching mistakes in the url protocol or the url subdomain 
 // returns true if string tested is a YouTube video url, note: expression doesn't catch errors in the protocol or subdomain but video plays normally
-const urlValidator =
-  /((http?(?:s)?:\/\/)?(www\.)?)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?&v=))((?:\w|-){11})((?:\&|\?)\S*)?/;
-// returns true if string tested has whitespace in it
+const urlValidator = /((http?(?:s)?:\/\/)?(www\.)?)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?&v=))((?:\w|-){11})((?:\&|\?)\S*)?/;
+// returns true if string tested has whitespace in it 
 const whiteSpaceRE = /\s/g;
 
 function getVideoURL() {
   // ternary operator which determines whether url should come from the main url bar or the queue
-  url = document.querySelector("#url-radio").checked
-    ? document.querySelector("input[type=url]").value
-    : queue[queueNumber];
-  url = whiteSpaceRE.test(url) ? url.replace(/\s/g, "") : url;
+  url = (document.querySelector("#url-radio").checked
+    ? document.querySelector("#url-input").value
+    : queue[queueNumber]);
+  let hasWhiteSpace = whiteSpaceRE.test(url);
+  url = (hasWhiteSpace ? url.replace(/\s/g, "") : url);
   getId(url);
 }
 
@@ -35,41 +34,24 @@ function getVideoURL() {
 
 function validate() {
   // checks if url given is valid
-  if (document.querySelector("input[type=url]").value.length === 0) {
+  if (document.querySelector("#url-input").value.length === 0) {
     clearNotification();
-    document
-      .querySelector("input[type=url]")
-      .classList.remove("correct", "wrong");
-    document.querySelector("#play").classList.remove("valid", "wrong");
-    document.querySelector("#add-queue").classList.remove("correct", "wrong");
+    document.querySelector("#url-input").className = "";
     document.querySelector("#play").style.color = "#1a1a1a";
+    document.querySelector("#play").className = "";
     return false;
     // document.querySelector("#play").disabled = true;
-  } else if (
-    urlValidator.test(document.querySelector("input[type=url]").value)
-  ) {
+  } else if (urlValidator.test(document.querySelector("#url-input").value)) {
     clearNotification();
-    document.querySelector("input[type=url]").classList.add("correct");
-    document.querySelector("input[type=url]").classList.remove("wrong");
-    document.querySelector("#play").classList.add("valid");
-    document.querySelector("#play").classList.remove("wrong");
-    document.querySelector("#add-queue").classList.add("correct");
-    document.querySelector("#add-queue").classList.remove("wrong");
+    document.querySelector("#url-input").className = "correct";
+    document.querySelector("#play").className = "valid";
     // document.querySelector("#play").disabled = false;
-    if (document.querySelector("#url-radio").checked) {
-     document.querySelector("#play").focus();
-    } else {
-     document.querySelector("#add-queue").focus();
-    }
+    document.querySelector("#play").focus();
     return true;
   } else {
     setNotification("enter a valid url", -1);
-    document.querySelector("input[type=url]").classList.add("wrong");
-    document.querySelector("input[type=url]").classList.remove("correct");
-    document.querySelector("#play").classList.add("wrong");
-    document.querySelector("#play").classList.remove("valid");
-    document.querySelector("#add-queue").classList.add("wrong");
-    document.querySelector("#add-queue").classList.remove("correct");
+    document.querySelector("#url-input").className = "wrong";
+    document.querySelector("#play").className = "";
     // document.querySelector("#play").disabled = true;
     document.querySelector("#play").style.color = "#c6262e";
     return false;
@@ -79,25 +61,23 @@ function validate() {
 function validateQueue() {
   // TODO: if input is blank, remove add queue button class
   // checks if url given is valid for queue
-  if (document.querySelector("input[type=url]").value.length === 0) {
+  if (document.querySelector("#queue-input").value.length === 0) {
     clearNotification();
-    document.querySelector("input[type=url]").className = "";
+    document.querySelector("#queue-input").className = "";
     document.querySelector("#add-queue").style.color = "#1a1a1a";
     document.querySelector("#add-queue").className = "";
     return false;
     // document.querySelector("#play").disabled = true;
-  } else if (
-    urlValidator.test(document.querySelector("input[type=url]").value)
-  ) {
+  } else if (urlValidator.test(document.querySelector("#queue-input").value)) {
     clearNotification();
-    document.querySelector("input[type=url]").className = "correct";
+    document.querySelector("#queue-input").className = "correct";
     document.querySelector("#add-queue").className = "valid";
     document.querySelector("#add-queue").disabled = false;
     document.querySelector("#add-queue").focus();
     return true;
   } else {
     setNotification("enter a valid url", -1);
-    document.querySelector("input[type=url]").className = "wrong";
+    document.querySelector("#queue-input").className = "wrong";
     document.querySelector("#add-queue").className = "";
     document.querySelector("#add-queue").disabled = true;
     document.querySelector("#add-queue").style.color = "#c6262e";
@@ -131,7 +111,7 @@ function loadVideo(videoId) {
     return;
   }
   // checks if the iframe content (our video) has loaded
-  document.querySelector("iframe").onload = function () {
+  document.querySelector("iframe").onload = function() {
     document.querySelector("#videoPlayer").focus();
   };
 }
@@ -165,12 +145,12 @@ function refresh() {
   document.querySelector("iframe").src = "";
   document.querySelector("#expand").disabled = true;
   document.querySelector("#expand").style.cursor = "default";
-  document.querySelector("input[type=url]").className = "";
+  document.querySelector("#url-input").className = "";
   document.querySelector("#play").className = "";
   document.querySelector("#play").style.color = "#1a1a1a";
   // document.querySelector("#play").disabled = true;
-  document.querySelector("input[type=url]").value = "";
-  document.querySelector("input[type=url]").focus();
+  document.querySelector("#url-input").value = "";
+  document.querySelector("#url-input").focus();
   document.querySelector("#private-mode").checked = false;
   clearNotification();
   isLoaded = false;
@@ -242,8 +222,8 @@ function closeOverlay() {
 function minimizeOverlay() {
   // Minimizes video overlay
   // TODO: Use hidden class to change visibility of expand button
-  // document.querySelector("input[type=url]").focus();
-  // document.querySelector("input[type=url]").select();
+  // document.querySelector("#url-input").focus();
+  // document.querySelector("#url-input").select();
   document.querySelector("#expand").style.opacity = "100%";
   document.querySelector("#overlay").style.display = "none";
   if (isLoaded) {
@@ -257,10 +237,9 @@ function minimizeOverlay() {
   }
 }
 
-function setNotification(message, level = 0, duration = 0) {
+function setNotification(message, level = 0, duration = 5) {
   // sets notification, levels show different notification colors, duration determines how long notification appears on screen
   // level 0 is a normal message, level 1 is a "correct" message, and level -1 is an "error" message
-  // 5 seconds is the recommended duration of notifications
   document.querySelector("#notification").innerHTML = message;
   if (level === 0) {
     document.querySelector("#notification").className = "normal";
@@ -290,33 +269,22 @@ function clearNotification() {
 function addQueue() {
   // adds video to queue and updates queue ui
   var linebreak = document.createElement("br");
-  let queueItemWrapper = document.createElement("div");
-  let queueValue = document.querySelector("input[type=url]").value;
-  queueItemWrapper.classList.add("queue-item-wrapper");
-  queueItemWrapper.id = "queue-item-wrapper-" + queue.length;
-  queueItemWrapper.innerHTML = queue.length + 1 + ". " + queueValue;
+  let queueValue = document.querySelector("#queue-input").value;
   if (queueValue === "" || whiteSpaceRE.test(queueValue)) {
-    document.querySelector("input[type=url]").focus();
-    setNotification("You must enter a url to add to the queue", -1, 2);
+    document.querySelector("#queue-input").focus();
+    alert("You must write something!");
   } else {
-    queue[queue.length] = document.querySelector("input[type=url]").value;
-    document.querySelector("input[type=url]").value = "";
-    document.querySelector("input[type=url]").focus();
-    document.querySelector("#queue-list").appendChild(queueItemWrapper);
-    document.querySelector("#queue-count").innerHTML = `queue: ${
-      queueNumber + 1
-    } / ${queue.length}`;
-    document.querySelector(
-      "#queue-counter-ui"
-    ).innerHTML = `queue(${queue.length})`;
-    document.querySelector("#queue-counter-ui").title =
-      queue.length > 1
-        ? `${queue.length} items in queue`
-        : `${queue.length} item in queue`;
-    // document.querySelector("#add-queue").classList.remove("");
-    document
-      .querySelector("#queue-item-wrapper-" + queueNumber)
-      .classList.add("current-video");
+    queue[queue.length] = document.querySelector("#queue-input").value;
+    document.querySelector("#queue-input").value = "";
+    document.querySelector("#queue-input").focus();
+    document.querySelector("#queue-list").appendChild(linebreak);
+    document.querySelector("#queue-list").innerHTML +=
+      queue.length + ". " + queueValue;
+    document.querySelector("#queue-count").innerHTML = `queue: ${queueNumber +
+      1} / ${queue.length}`;
+    document.querySelector("#queue-counter-ui").innerHTML = `queue(${queue.length})`;
+    document.querySelector("#queue-counter-ui").title = (queue.length > 1 ? `${queue.length} items in queue` : `${queue.length} item in queue`);
+    document.querySelector("#add-queue").className = "";
     setNotification("video added to queue", 1, 5);
   }
 
@@ -331,8 +299,8 @@ function deleteQueue() {
       queue = [];
       document.querySelector("#queue-list").innerHTML = "";
       document.querySelector("#queue-count").innerHTML = "queue: 0/0";
-      document.querySelector("input[type=url]").value = "";
-      document.querySelector("input[type=url]").focus();
+      document.querySelector("#queue-input").value = "";
+      document.querySelector("#queue-input").focus();
       document.querySelector("#queue-counter-ui").innerHTML = "queue";
       document.querySelector("#queue-counter-ui").title = "";
       setNotification("queue deleted", 1, 5);
@@ -350,16 +318,8 @@ function nextVideo() {
   if (queueNumber + 1 !== queue.length) {
     queueNumber++;
     loadVideo(videoIdExtractor.exec(queue[queueNumber])[2]);
-    document.querySelector("#queue-count").innerHTML = `queue: ${
-      queueNumber + 1
-    } / ${queue.length}`;
-    document
-      .querySelector("#queue-item-wrapper-" + (queueNumber - 1))
-      .classList.remove("current-video");
-    document
-      .querySelector("#queue-item-wrapper-" + queueNumber)
-      .classList.add("current-video");
-    document.querySelector("#queue-item-wrapper-" + queueNumber).scrollIntoView();
+    document.querySelector("#queue-count").innerHTML = `queue: ${queueNumber +
+      1} / ${queue.length}`;
     return queueNumber;
   } else {
     alert("You are at the end of the queue");
@@ -371,16 +331,8 @@ function previousVideo() {
   if (queueNumber !== 0) {
     queueNumber--;
     loadVideo(videoIdExtractor.exec(queue[queueNumber])[2]);
-    document.querySelector("#queue-count").innerHTML = `queue: ${
-      queueNumber + 1
-    } / ${queue.length}`;
-    document
-      .querySelector("#queue-item-wrapper-" + (queueNumber + 1))
-      .classList.remove("current-video");
-    document
-      .querySelector("#queue-item-wrapper-" + queueNumber)
-      .classList.add("current-video");
-    document.querySelector("#queue-item-wrapper-" + queueNumber).scrollIntoView();
+    document.querySelector("#queue-count").innerHTML = `queue: ${queueNumber +
+      1} / ${queue.length}`;
     return queueNumber;
   } else {
     alert("You are at the start of the queue");
@@ -388,86 +340,56 @@ function previousVideo() {
 }
 
 // focuses input for queue when user opens details
-// document.querySelector("details").addEventListener("toggle", function() {
-//   document.querySelector("input[type=url]").focus();
-// });
+document.querySelector("details").addEventListener("toggle", function() {
+  document.querySelector("#queue-input").focus();
+});
 
 // keyboard shortcuts
-document.addEventListener("keydown", function (event) {
-  if (
-    event.key === "r" &&
-    document.querySelector("#overlay").style.display == "block"
-  ) {
-    // reload();
-  } else if (
-    (event.key === "Escape" || event.key === "x") &&
-    document.fullscreenElement === null &&
-    document.querySelector("#overlay").style.display == "block"
-  ) {
+document.addEventListener("keydown", function(event) {
+  if (event.key === "r" && document.querySelector("#overlay").style.display == "block") {
+    reload();
+  }  else if ((event.key === "Escape" || event.key === "x") && document.fullscreenElement === null && document.querySelector("#overlay").style.display == "block") {
     document.querySelector("#overlay").style.display = "none";
     document.querySelector("#input-field").select();
-  } else if (
-    event.key === "f" &&
-    document.fullscreenElement === null &&
-    document.querySelector("#overlay").style.display == "block"
-  ) {
-    openFullscreen();
-  } else if (
-    (event.key === "m" || event.key === "_") &&
-    document.querySelector("#overlay").style.display == "block"
-  ) {
-    minimizeOverlay();
-  } else if (
-    (event.key === "o" || event.key === "+") &&
-    document.querySelector("#overlay").style.display == "none" &&
-    document.querySelector("iframe").src.length != 0
-  ) {
-    document.querySelector("#overlay").style.display = "block";
-  } else if (
-    (event.key === "<" || (event.key === "P" && event.shiftKey)) &&
-    document.querySelector("#overlay").style.display == "block" &&
-    queue.length !== 0
-  ) {
-    previousVideo();
-  } else if (
-    (event.key === ">" || (event.key === "N" && event.shiftKey)) &&
-    document.querySelector("#overlay").style.display == "block" &&
-    queue.length !== 0
-  ) {
-    nextVideo();
+  } else if (event.key === "f" && document.fullscreenElement === null && document.querySelector("#overlay").style.display == "block") {
+      openFullscreen();
+  } else if ((event.key === "m" || event.key === "_") && document.querySelector("#overlay").style.display == "block") {
+      minimizeOverlay();
+  } else if ((event.key === "o" || event.key === "+") && document.querySelector("#overlay").style.display == "none" && document.querySelector("iframe").src.length != 0) {
+      document.querySelector("#overlay").style.display = "block";
+  } else if ((event.key === "<" || (event.key === "P" && event.shiftKey)) && document.querySelector("#overlay").style.display == "block" && queue.length !== 0) {
+      previousVideo();
+  } else if ((event.key === ">" || (event.key === "N" && event.shiftKey)) && document.querySelector("#overlay").style.display == "block" && queue.length !== 0) {
+      nextVideo();
   } else {
+
   }
 });
 
+
 // toggles queue ui elements based on if the queue play option is checked or not
-document.querySelector("form").addEventListener("click", function () {
+document.querySelector("form").addEventListener("click", function() {
   if (document.querySelector("#queue-radio").checked) {
     document.querySelector("#queue").classList.remove("hidden");
-    document.querySelector("#add-queue").classList.remove("hidden");
-    document.querySelector("#add-queue").classList.add("add-queue-queue");
-    document.querySelector("#play").classList.add("play-queue");
-    // document.querySelector("details").open = true;
+    document.querySelector("details").open = true;
+    document.querySelector("#queue-input").focus();
     document.querySelector("#queue-count").classList.remove("hidden");
     document.querySelector("#next-video").classList.remove("hidden");
     document.querySelector("#previous-video").classList.remove("hidden");
     document.querySelector("#next-video").disabled = false;
     document.querySelector("#previous-video").disabled = false;
-    document.querySelector("input[type=url]").placeholder =
-      "add video to queue";
   } else if (document.querySelector("#url-radio").checked) {
     document.querySelector("#queue").classList.add("hidden");
-    document.querySelector("#add-queue").classList.add("hidden");
-    document.querySelector("#add-queue").classList.remove("add-queue-queue");
-    document.querySelector("#play").classList.remove("play-queue");
-    // document.querySelector("details").open = false;
+    document.querySelector("details").open = false;
+    document.querySelector("#url-input").focus();
     document.querySelector("#queue-count").classList.add("hidden");
     document.querySelector("#next-video").classList.add("hidden");
     document.querySelector("#previous-video").classList.add("hidden");
     document.querySelector("#next-video").disabled = true;
     document.querySelector("#previous-video").disabled = true;
-    document.querySelector("input[type=url]").placeholder =
-      "enter a youtube video url";
   } else {
+
   }
-  document.querySelector("input[type=url]").focus();
 });
+
+

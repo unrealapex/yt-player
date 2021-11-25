@@ -44,31 +44,31 @@
         <div id="notification"></div>
         <div id="typing-area">
           <div class="bar">
-            <!-- <input
+            <input
               id="url-input"
               type="url"
               oninput="validate()"
               autofocus
               required
               placeholder="enter youtube video"
-            /> -->
-            <input
-              type="url"
-              oninput="validate()"
-              autofocus
-              required
-              placeholder="enter youtube video url"
-              size="25"
             />
+            <button id="play" onclick="getVideoURL()" title="play video url">
+              play
+            </button>
 
-              <button id="add-queue" class="hidden" onclick="addQueue()" title="add video to queue">
-               add
-              </button>
-              <button id="play" onclick="getVideoURL()" title="play video url">
-                play
-              </button>
+            <!--  onclick same as refresh() with the exception of no changes made to the iframe or expand button, clearing url-input throught onclick instead of refresh() function to prevent whole player from being resetted. -->
 
-
+<!--             <button
+              id="clear"
+              title="clear video url"
+              onclick='document.querySelector("#url-input").className = "";
+  document.querySelector("#play").className = "";
+  document.querySelector("#url-input").value = "";
+  document.querySelector("#url-input").focus(); clearNotification()'
+              title="play video url entered"
+            >
+              x
+            </button> -->
           </div>
           <fieldset>
             <legend>options</legend>
@@ -172,15 +172,28 @@
       </button>
     </div>
     <div id="queue" class="hidden">
-        <div>
+      <details>
+        <summary>queue</summary>
+        <div class="queue">
 <!--       TODO: when queue is clicked, focus queue input -->
           <h3 id="queue-counter-ui">queue</h3>
-            <h5>Added queue items will appear here</h5>
-            <button id="delete-queue" onclick="deleteQueue()">
+          <div class="bar">
+            <input
+              type="url"
+              id="queue-input"
+              oninput="validateQueue()"
+              placeholder="add video to queue"
+            />
+            <button id="add-queue" onclick="addQueue()" class="" disabled>
+              add
+            </button>
+            <button id="delete-queue" onclick="deleteQueue()" class="">
               clear
             </button>
+          </div>
         </div>
         <div id="queue-list"></div>
+      </details>
     </div>
   </body>
 </html>
