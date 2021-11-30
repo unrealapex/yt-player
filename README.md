@@ -1,6 +1,6 @@
 # [yt player](https://unrealapex.github.io/yt-player/)
-[![license: MIT](https://img.shields.io/badge/license-MIT-green?style=flat-square)](LICENSE) 
-[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier) 
+[![license: Apache](https://img.shields.io/hexpm/l/apa?color=red)](LICENSE) 
+[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=round)](https://github.com/prettier/prettier) 
 
 yaply terse player or yt player for short is a fast and minimalistic video player for YouTube videos and more platforms to come
 
