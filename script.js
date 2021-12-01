@@ -16,8 +16,7 @@ const expandButton = document.querySelector("#expand");
 // notification that shows errors and information
 const notification = document.querySelector("#notification");
 // loading text that displays when video is loading
-// const loader = document.querySelector("#loader");
-const loader = document.querySelector("progress");
+const loader = document.querySelector("#loader");
 // modal that shows all the availible shortcuts in the video player
 const shortcutsModal = document.querySelector("#shortcuts-modal");
 // stores boolean determining if video is loaded or not
