@@ -633,7 +633,6 @@ window.onclick = function (event) {
   }
 };
 
-
 function updateThumbnailNumbers() {
   for (let i = 0; i < document.getElementsByClassName("thumbnail-number").length; i++) {
     document.getElementsByClassName("thumbnail-number")[i].innerHTML = i;
