@@ -400,14 +400,11 @@ details,
 .thumbnail-number {
   font-size: 1rem;
   color: white;
+  background-color: rgba(0, 0, 0, 0.7);
   margin: 0.4rem;
+  padding: 0 0.8rem 0 0.8rem;
+  border-radius: 0.2em;
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-/*   change color to constrast with thumbnail background */
-  mix-blend-mode: difference
-/*   animation: rgb 5s linear infinite; */
 }
 
 
@@ -503,9 +500,15 @@ img {
   left: 16px;
 }
 
-.top-left,
-.thumbnail-number {
+.top-left {
   position: absolute;
   top: 8px;
   left: 16px;
+}
+
+.bottom-right,
+.thumbnail-number {
+  position: absolute;
+  bottom: 8px;
+  right: 16px;
 }
