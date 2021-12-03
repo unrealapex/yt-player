@@ -466,23 +466,23 @@ document.addEventListener("keydown", function (event) {
 // toggles queue ui elements based on if the queue play option is checked or not
 document.querySelector("form").addEventListener("click", function () {
   if (document.querySelector("#queue-radio").checked) {
-    document.querySelector("#queue").classList.remove("hidden");
+    // document.querySelector("#queue").classList.remove("hidden");
     // document.querySelector("details").open = true;
     document.querySelector("#queue-input").focus();
     document.querySelector("#queue-count").classList.remove("hidden");
     document.querySelector("#next-video").classList.remove("hidden");
     document.querySelector("#previous-video").classList.remove("hidden");
-    document.querySelector("#open-queue").disabled = false;
+    document.querySelector("#queue-button").disabled = false;
     document.querySelector("#next-video").disabled = false;
     document.querySelector("#previous-video").disabled = false;
   } else if (document.querySelector("#url-radio").checked) {
-    document.querySelector("#queue").classList.add("hidden");
+    // document.querySelector("#queue").classList.add("hidden");
     // document.querySelector("details").open = false;
     document.querySelector("#url-input").focus();
     document.querySelector("#queue-count").classList.add("hidden");
     document.querySelector("#next-video").classList.add("hidden");
     document.querySelector("#previous-video").classList.add("hidden");
-    document.querySelector("#open-queue").disabled = true;
+    document.querySelector("#queue-button").disabled = true;
     document.querySelector("#next-video").disabled = true;
     document.querySelector("#previous-video").disabled = true;
   } else {
