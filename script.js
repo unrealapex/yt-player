@@ -542,7 +542,7 @@ function getThumbnail(index) {
   // give each thumbnail and its wrapper a numbered id of thumbnail-number
   thumbnail.id = "thumbnail-" + index;
   thumbnailImage.id = "thumbnail-image-" + index;
-  thumbnailNumber.id = "thumbnail-number" + index;
+  thumbnailNumber.id = "thumbnail-number-" + index;
   deleteQueueItemDiv.id = "delete-queue-item-div-" + index;
   x.id = "x-" + index;
   deleteQueueItemDiv.style.position = "relative";
@@ -554,7 +554,7 @@ function getThumbnail(index) {
       deleteQueueItem(index);
       document.querySelector("#thumbnail-" + index).remove();
       document.querySelector("#thumbnail-image-" + index).remove();
-      document.querySelector("#thumbnail-number" + index).remove();
+      document.querySelector("#thumbnail-number-" + index).remove();
       document.querySelector("#delete-queue-item-div-" + index).remove();
       updateThumbnailNumbers();
       alert("change number");
