@@ -403,7 +403,9 @@ details,
   background-color: rgba(0, 0, 0, 0.7);
   margin: 0.4rem;
   padding: 0 0.8rem 0 0.8rem;
+  border: 2px solid;
   border-radius: 0.2em;
+  animation: rgb-border 5s linear infinite;
   position: absolute;
 }
 
@@ -430,9 +432,8 @@ details,
 }
 
 .current-video {
-  border: solid 3px;
-  border-radius: 0.4em;
-  animation: rgb-border 5s linear infinite;
+  border: 3px solid #a56de2;
+  border-radius: 0.2rem;
 }
 
 
