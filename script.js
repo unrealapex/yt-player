@@ -19,6 +19,8 @@ const notification = document.querySelector("#notification");
 const loader = document.querySelector("#loader");
 // modal that shows all the availible shortcuts in the video player
 const shortcutsModal = document.querySelector("#shortcuts-modal");
+// / url submission form
+const form = document.querySelector("form");
 // stores boolean determining if video is loaded or not
 var isLoaded = false;
 // configs
@@ -372,4 +374,10 @@ document.addEventListener("blur", function () {
 
 document.addEventListener("mouseover", function () {
   lastFocused.focus();
+});
+
+inputField.addEventListener("keydown", function (event) {
+  if (event.key === "Enter") {
+    form.submit();
+  }
 });
