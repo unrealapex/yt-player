@@ -72,7 +72,7 @@ function validate() {
     playButton.className = "valid";
     playButton.style.color = "#1a1a1a";
     playButton.disabled = false;
-    playButton.focus();
+    // playButton.focus();
     // if the url in the input is invalid
   } else {
     setNotification("enter a valid url", -1);
