@@ -640,6 +640,7 @@ function updateThumbnailNumbers() {
   }
 }
 
+// when dragging the queue list, scroll(on the x axis); controls dragging behavior of queue list
 document.addEventListener("DOMContentLoaded", function () {
   const ele = document.querySelector("#queue-list");
   ele.style.cursor = "grab";
