@@ -513,3 +513,7 @@ img {
   bottom: 8px;
   right: 16px;
 }
+
+#delete-queue-items {
+  font-size: 3.5rem !important;
+}
