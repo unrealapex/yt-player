@@ -555,6 +555,7 @@ function getThumbnail(index) {
       deleteQueueItem(index);
       document.querySelector("#thumbnail-" + index).remove();
       document.querySelector("#queue-counter-ui").innerHTML = (queue.length > 0 ? `queue(${(queue.length)})` : "queue");
+      document.querySelector("#queue-counter-ui").title = queue.length > 1 ? `${queue.length} items in queue` : `${queue.length} item in queue`;
       // updateThumbnailNumbers();
       // alert("change number");
       // document.querySelector("#x-" + index).remove();
