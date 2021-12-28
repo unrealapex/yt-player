@@ -554,6 +554,7 @@ function getThumbnail(index) {
     if (toggleQueueDeleteWizard) {
       deleteQueueItem(index);
       document.querySelector("#thumbnail-" + index).remove();
+      document.querySelector("#queue-counter-ui").innerHTML = (queue.length > 0 ? `queue(${(queue.length)})` : "queue");
       // updateThumbnailNumbers();
       // alert("change number");
       // document.querySelector("#x-" + index).remove();
