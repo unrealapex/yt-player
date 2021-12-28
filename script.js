@@ -554,11 +554,8 @@ function getThumbnail(index) {
     if (toggleQueueDeleteWizard) {
       deleteQueueItem(index);
       document.querySelector("#thumbnail-" + index).remove();
-      document.querySelector("#thumbnail-image-" + index).remove();
-      document.querySelector("#thumbnail-number-" + index).remove();
-      document.querySelector("#delete-queue-item-div-" + index).remove();
-      updateThumbnailNumbers();
-      alert("change number");
+      // updateThumbnailNumbers();
+      // alert("change number");
       // document.querySelector("#x-" + index).remove();
       // for (let i = 0; i < document.getElementsByClassName("thumbnail-number").length; i++) {
       //   document.querySelector("#thumbnail-number-" + i).innerHTML = i;
