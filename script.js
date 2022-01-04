@@ -11,8 +11,6 @@ const inputField = document.querySelector("#input-field");
 const playButton = document.querySelector("#play");
 // overlay that video player iframe is shown
 const overlay = document.querySelector("#overlay");
-// overlay content
-const overlayContent = document.querySelector("#overlay-content");
 // button used to maximize minimized videos
 const expandButton = document.querySelector("#expand");
 // notification that shows errors and information
@@ -30,8 +28,6 @@ var isLoaded = false;
 var privateMode = () => document.querySelector("#private-mode").checked;
 // determines if the video should be loaded in full screen when the user plays it
 var loadInFullscreen = () => document.querySelector("#load-fullscreen").checked;
-// variable to store last element focused
-var lastFocused = [];
 // list of all shortcuts keys
 const shortcutKeys = ["r", "Escape", "x", "f", "m", "_", "o", "+", "?"];
 
@@ -378,46 +374,12 @@ expandButton.addEventListener("click", function () {
 //   lastFocused.focus();
 // });
 
+document.addEventListener('focusin', function() {
+  window.focus();
+});
+
 inputField.addEventListener("keydown", function (event) {
   if (event.key === "Enter") {
     form.submit();
   }
 });
-
-/* overlay.addEventListener("focus", function () {
-  lastFocused = "overlay";
-  // alert("overlay is focused")
-  return lastFocused
-});
-
-iframe.addEventListener("focus", function () {
-  lastFocused = "iframe";
-  // alert("iframe is focused")
-  return lastFocused
-}); */
-
-document.addEventListener('focusin', function(e) {
-  if (document.activeElement.id == "overlay" || document.activeElement.id == "videoPlayer") {
-  // make sure array length isn't greater than 3
-    while (lastFocused.length > 3) {
-      lastFocused.pop();  
-    }
-    // add new element id to the beginning of the array
-    lastFocused.unshift(document.activeElement.id);
-    return lastFocused;
-  }
-  // console.log('focused: ' + document.activeElement.id)
-}, true);
-
-
-document.addEventListener("mouseenter", function () {
-  if (overlay.style.display == "block") {
-    if (lastFocused[0] == "overlay") {
-      overlay.focus();
-    } else if (lastFocused[0] == "videoPlayer") {
-      iframe.focus();
-    } else {
-      window.focus();
-    } 
-}});
-
