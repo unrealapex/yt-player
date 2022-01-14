@@ -109,7 +109,7 @@ function loadVideo(videoId) {
     openFullscreen();
   } else {
   }
-  // checks if the iframe content (our video) has loaded
+  // focus iframe when it has loaded
   iframe.onload = function () {
     iframe.focus();
   };
