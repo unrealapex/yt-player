@@ -21,6 +21,8 @@ const loader = document.querySelector("#loader");
 const shortcutsModal = document.querySelector("#shortcuts-modal");
 // / url submission form
 const form = document.querySelector("form");
+const expandBox = document.querySelector("#expand-box");
+const thumbnail = document.querySelector("#thumbnail");
 // stores boolean determining if video is loaded or not
 var isLoaded = false;
 // configs
@@ -238,8 +240,9 @@ function sleep(duration) {
 
 // closes player video overlay
 function closeOverlay() {
-  expandButton.disabled = true;
   overlay.style.display = "none";
+  expandBox.classList.add("hidden");
+  thumbnail.src = "";
   reset();
 }
 
@@ -249,11 +252,16 @@ function minimizeOverlay() {
   // inputField.select();
   overlay.style.display = "none";
   if (isLoaded) {
-    expandButton.disabled = false;
-    expandButton.focus();
+    expandBox.classList.remove("hidden");
+    thumbnail.src = "https://i.ytimg.com/vi/" + videoId + "/mqdefault.jpg";
+    // expandButton.disabled = false;
+    // expandButton.focus();
   } else {
-    expandButton.disabled = true;
-    expandButton.blur();
+    expandBox.classList.add("hidden");
+    thumbnail.src = "";
+
+    // expandButton.disabled = true;
+    // expandButton.blur();
   }
 }
 
@@ -358,11 +366,12 @@ document.querySelector("form").addEventListener("submit", function () {
   getVideoURL();
 });
 
-expandButton.addEventListener("click", function () {
+expandBox.addEventListener("click", function () {
   overlay.style.display = "block";
-  expandButton.disabled = "true";
+  // expandButton.disabled = "true";
+  expandBox.classList.add("hidden");
+  thumbnail.src = "";
 });
-
 
 // FIXME: fix focus handling
 // document.addEventListener("blur", function () {
@@ -374,7 +383,7 @@ expandButton.addEventListener("click", function () {
 //   lastFocused.focus();
 // });
 
-document.addEventListener('focusin', function() {
+document.addEventListener("focusin", function () {
   window.focus();
 });
 
