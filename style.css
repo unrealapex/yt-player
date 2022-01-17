@@ -275,9 +275,17 @@ button {
 }
 
 #expand-box {
+  border: 0.15625rem solid black;
+  border-radius: 0.2rem;
+  margin: 1rem;
   position: absolute;
   bottom: 0;
   right: 0;
+}
+
+#expand-hint-text {
+  background-color: #eaeaea;
+  text-align: center;
 }
 
 /* The Modal (background) */
@@ -328,16 +336,6 @@ button {
     outline: none;
 }
 
-#expand-box {
-  border: 0.15625rem solid black;
-  border-radius: 0.2rem;
-  margin: 1rem;
-}
-
-#expand-hint-text {
-  background-color: #eaeaea;
-  text-align: center;
-}
 /* 
 img {
   border: 3px solid red;
