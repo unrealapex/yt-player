@@ -12,7 +12,7 @@ const playButton = document.querySelector("#play");
 // overlay that video player iframe is shown
 const overlay = document.querySelector("#overlay");
 // button used to maximize minimized videos
-const expandButton = document.querySelector("#expand");
+// const expandButton = document.querySelector("#expand");
 // notification that shows errors and information
 const notification = document.querySelector("#notification");
 // loading text that displays when video is loading
@@ -21,6 +21,8 @@ const loader = document.querySelector("#loader");
 const shortcutsModal = document.querySelector("#shortcuts-modal");
 // / url submission form
 const form = document.querySelector("form");
+const expandBox = document.querySelector("#expand-box");
+const thumbnail = document.querySelector("#thumbnail");
 // stores boolean determining if video is loaded or not
 // var isLoaded = false;
 var isLoaded = () => {
@@ -98,8 +100,9 @@ function getId(url) {
 function loadVideo(videoId) {
   // isLoaded = true;
   overlay.style.display = "block";
+  expandBox.classList.add("hidden");
   loader.classList.remove("hidden");
-  expandButton.disabled = true;
+  // expandButton.disabled = true;
   if (privateMode()) {
     // sets the video player iframe's url to a youtube privacy-enhanced url(video doesn't show up on user's youtube search history) if the user has enabled Privacy Mode
     iframe.src = "https://www.youtube-nocookie.com/embed/" + videoId + "?dnt=1";
@@ -152,7 +155,7 @@ function reset() {
   // allows the user to reset the player if they entered an invalid url or ran into another problem
   url = "";
   iframe.src = "";
-  expandButton.disabled = true;
+  // expandButton.disabled = true;
   inputField.className = "";
   playButton.className = "";
   playButton.style.color = "#1a1a1a";
@@ -241,8 +244,9 @@ function sleep(duration) {
 
 // closes player video overlay
 function closeOverlay() {
-  expandButton.disabled = true;
   overlay.style.display = "none";
+  expandBox.classList.add("hidden");
+  thumbnail.src = "";
   reset();
 }
 
@@ -252,11 +256,21 @@ function minimizeOverlay() {
   // inputField.select();
   overlay.style.display = "none";
   if (isLoaded()) {
-    expandButton.disabled = false;
-    expandButton.focus();
+    expandBox.classList.remove("hidden");
+    if (
+      thumbnail.src !==
+      "https://i.ytimg.com/vi/" + videoId + "/mqdefault.jpg"
+    ) {
+      thumbnail.src = "https://i.ytimg.com/vi/" + videoId + "/mqdefault.jpg";
+    }
+    // expandButton.disabled = false;
+    // expandButton.focus();
   } else {
-    expandButton.disabled = true;
-    expandButton.blur();
+    expandBox.classList.add("hidden");
+    thumbnail.src = "";
+
+    // expandButton.disabled = true;
+    // expandButton.blur();
   }
 }
 
@@ -305,8 +319,7 @@ document.addEventListener("keydown", function (event) {
     document.fullscreenElement === null &&
     overlay.style.display == "block"
   ) {
-    overlay.style.display = "none";
-    expandButton.disabled = true;
+    minimizeOverlay();
     inputField.select();
   } else if (
     event.key === "f" &&
@@ -361,11 +374,12 @@ document.querySelector("form").addEventListener("submit", function () {
   getVideoURL();
 });
 
-expandButton.addEventListener("click", function () {
+expandBox.addEventListener("click", function () {
   overlay.style.display = "block";
-  expandButton.disabled = "true";
+  // expandButton.disabled = "true";
+  expandBox.classList.add("hidden");
+  thumbnail.src = "";
 });
-
 
 // FIXME: fix focus handling
 // document.addEventListener("blur", function () {
@@ -377,7 +391,7 @@ expandButton.addEventListener("click", function () {
 //   lastFocused.focus();
 // });
 
-document.addEventListener('focusin', function() {
+document.addEventListener("focusin", function () {
   window.focus();
 });
 

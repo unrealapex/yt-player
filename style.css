@@ -275,9 +275,26 @@ button {
 }
 
 #expand-box {
+  background-color: #d4d4d4; 
+  border: 0.15625rem solid #1a1a1a;
+  border-radius: 0.2rem;
+  margin: 1rem;
   position: absolute;
   bottom: 0;
   right: 0;
+  cursor: pointer;
+}
+
+#expand-hint-text {
+  color: black;
+  background-color: inherit;
+  font-size: 1.2rem;
+  text-align: center;
+  padding: 0.4rem 1rem;
+}
+
+img {
+  background-color: #d4d4d4;
 }
 
 /* The Modal (background) */
@@ -327,3 +344,8 @@ button {
     overflow: hidden;
     outline: none;
 }
+
+/* 
+img {
+  border: 3px solid red;
+} */
