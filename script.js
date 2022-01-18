@@ -253,7 +253,12 @@ function minimizeOverlay() {
   overlay.style.display = "none";
   if (isLoaded) {
     expandBox.classList.remove("hidden");
-    thumbnail.src = "https://i.ytimg.com/vi/" + videoId + "/mqdefault.jpg";
+    if (
+      thumbnail.src !==
+      "https://i.ytimg.com/vi/" + videoId + "/mqdefault.jpg"
+    ) {
+      thumbnail.src = "https://i.ytimg.com/vi/" + videoId + "/mqdefault.jpg";
+    }
     // expandButton.disabled = false;
     // expandButton.focus();
   } else {
