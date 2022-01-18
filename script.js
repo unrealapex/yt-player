@@ -97,6 +97,7 @@ function getId(url) {
 function loadVideo(videoId) {
   isLoaded = true;
   overlay.style.display = "block";
+  expandBox.classList.add("hidden");
   loader.classList.remove("hidden");
   // expandButton.disabled = true;
   if (privateMode()) {
