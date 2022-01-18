@@ -286,8 +286,11 @@ button {
 }
 
 #expand-hint-text {
+  color: black;
   background-color: inherit;
+  font-size: 1.2rem;
   text-align: center;
+  padding: 0.4rem 1rem;
 }
 
 img {
