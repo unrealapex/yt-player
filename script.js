@@ -316,8 +316,7 @@ document.addEventListener("keydown", function (event) {
     document.fullscreenElement === null &&
     overlay.style.display == "block"
   ) {
-    overlay.style.display = "none";
-    // expandButton.disabled = true;
+    minimizeOverlay();
     inputField.select();
   } else if (
     event.key === "f" &&
