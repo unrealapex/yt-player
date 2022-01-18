@@ -168,12 +168,6 @@ function reset() {
   // return isLoaded;
 }
 
-// reloads video in player
-function reload() {
-  loader.classList.remove("hidden");
-  iframe.src = iframe.src;
-}
-
 // copies a youtube share url onto user's clipboard
 function shareVideo() {
   // copies shortened youtube url to the user's clipboard
@@ -313,7 +307,7 @@ document.addEventListener("keydown", function (event) {
     }
   }
   if (event.key === "r" && overlay.style.display == "block") {
-    reload();
+    loadVideo(videoId);
   } else if (
     (event.key === "Escape" || event.key === "x") &&
     document.fullscreenElement === null &&
