@@ -22,7 +22,10 @@ const shortcutsModal = document.querySelector("#shortcuts-modal");
 // / url submission form
 const form = document.querySelector("form");
 // stores boolean determining if video is loaded or not
-var isLoaded = false;
+// var isLoaded = false;
+var isLoaded = () => {
+  return (iframe.readyState == "complete" || "interactive") ? true : false;
+}
 // configs
 // determines if the video should be loaded with a YouTube privacy enhanced URL or a regular YouTube embed url
 var privateMode = () => document.querySelector("#private-mode").checked;
@@ -93,7 +96,7 @@ function getId(url) {
 // loads the youtube video into the player iframe
 // take parameter videoId(string)
 function loadVideo(videoId) {
-  isLoaded = true;
+  // isLoaded = true;
   overlay.style.display = "block";
   loader.classList.remove("hidden");
   expandButton.disabled = true;
@@ -119,7 +122,7 @@ function loadVideo(videoId) {
 function openFullscreen() {
   // puts the player in full screen mode
   var player = iframe;
-  if (player.src.length !== 0 && isLoaded) {
+  if (player.src.length !== 0 && isLoaded()) {
     if (player.requestFullscreen) {
       player.requestFullscreen();
     } else if (player.webkitRequestFullscreen) {
@@ -158,8 +161,8 @@ function reset() {
   inputField.focus();
   document.querySelector("#private-mode").checked = false;
   clearNotification();
-  isLoaded = false;
-  return isLoaded;
+  // isLoaded = false;
+  // return isLoaded;
 }
 
 // reloads video in player
@@ -195,7 +198,7 @@ function about() {
 
 // opens youtube video in a window so the user can like, dislike a video, or subscribe to a youtube channel
 function openVideoInNewTab() {
-  if (isLoaded) {
+  if (isLoaded()) {
     // TODO: change to responsive size
     let w = 1000;
     let h = 900;
@@ -248,7 +251,7 @@ function minimizeOverlay() {
   // inputField.focus();
   // inputField.select();
   overlay.style.display = "none";
-  if (isLoaded) {
+  if (isLoaded()) {
     expandButton.disabled = false;
     expandButton.focus();
   } else {
