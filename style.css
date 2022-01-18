@@ -275,13 +275,14 @@ button {
 }
 
 #expand-box {
-  background-color: #eaeaea; 
+  background-color: #b3b2b2; 
   border: 0.15625rem solid #1a1a1a;
   border-radius: 0.2rem;
   margin: 1rem;
   position: absolute;
   bottom: 0;
   right: 0;
+  cursor: pointer;
 }
 
 #expand-hint-text {
