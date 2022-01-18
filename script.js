@@ -12,7 +12,7 @@ const playButton = document.querySelector("#play");
 // overlay that video player iframe is shown
 const overlay = document.querySelector("#overlay");
 // button used to maximize minimized videos
-const expandButton = document.querySelector("#expand");
+// const expandButton = document.querySelector("#expand");
 // notification that shows errors and information
 const notification = document.querySelector("#notification");
 // loading text that displays when video is loading
@@ -98,7 +98,7 @@ function loadVideo(videoId) {
   isLoaded = true;
   overlay.style.display = "block";
   loader.classList.remove("hidden");
-  expandButton.disabled = true;
+  // expandButton.disabled = true;
   if (privateMode()) {
     // sets the video player iframe's url to a youtube privacy-enhanced url(video doesn't show up on user's youtube search history) if the user has enabled Privacy Mode
     iframe.src = "https://www.youtube-nocookie.com/embed/" + videoId + "?dnt=1";
@@ -151,7 +151,7 @@ function reset() {
   // allows the user to reset the player if they entered an invalid url or ran into another problem
   url = "";
   iframe.src = "";
-  expandButton.disabled = true;
+  // expandButton.disabled = true;
   inputField.className = "";
   playButton.className = "";
   playButton.style.color = "#1a1a1a";
@@ -316,7 +316,7 @@ document.addEventListener("keydown", function (event) {
     overlay.style.display == "block"
   ) {
     overlay.style.display = "none";
-    expandButton.disabled = true;
+    // expandButton.disabled = true;
     inputField.select();
   } else if (
     event.key === "f" &&
