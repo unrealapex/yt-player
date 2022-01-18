@@ -275,7 +275,8 @@ button {
 }
 
 #expand-box {
-  border: 0.15625rem solid black;
+  background-color: #eaeaea; 
+  border: 0.15625rem solid #1a1a1a;
   border-radius: 0.2rem;
   margin: 1rem;
   position: absolute;
@@ -284,8 +285,12 @@ button {
 }
 
 #expand-hint-text {
-  background-color: #eaeaea;
+  background-color: inherit;
   text-align: center;
+}
+
+img {
+  background-color: #d4d4d4;
 }
 
 /* The Modal (background) */
