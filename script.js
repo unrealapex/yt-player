@@ -419,7 +419,8 @@ document.querySelector("#options-div").addEventListener("click", (event) => {
     } else {
       document.querySelector("#private-mode").dataset.enabled = "true";
       document.querySelector("#private-mode").title = "private mode is currently enabled(click to disable)";
-      document.querySelector("#private-mode").style.backgroundColor = "#68b723";
+      // document.querySelector("#private-mode").style.backgroundColor = "#68b723";
+      document.querySelector("#private-mode").style.backgroundColor = "lightgreen";
     }
   }
   loadVideo(videoId);
