@@ -33,7 +33,7 @@ var isLoaded = () => {
 // var privateMode = () => document.querySelector("#private-mode").checked;
 var privateMode = () => JSON.parse(document.querySelector("#private-mode").dataset.enabled);
 // determines if the video should be loaded in full screen when the user plays it
-var loadInFullscreen = () => document.querySelector("#load-fullscreen").checked;
+// var loadInFullscreen = () => document.querySelector("#load-fullscreen").checked;
 // list of all shortcuts keys
 const shortcutKeys = ["r", "Escape", "x", "f", "m", "_", "o", "+", "?"];
 
@@ -121,10 +121,10 @@ function loadVideo(videoId) {
     iframe.src = "https://www.youtube.com/embed/" + videoId;
   }
 
-  if (loadInFullscreen()) {
-    openFullscreen();
-  } else {
-  }
+  // if (loadInFullscreen()) {
+  //   openFullscreen();
+  // } else {
+  // }
   // focus iframe when it has loaded
   iframe.onload = function () {
     iframe.focus();
@@ -173,8 +173,12 @@ function reset() {
   playButton.disabled = true;
   inputField.value = "";
   inputField.focus();
-  document.querySelector("#private-mode").checked = false;
+  // document.querySelector("#private-mode").checked = false;
+  document.querySelector("#private-mode").dataset.enabled = "false";
+  document.querySelector("#private-mode").title = "private mode is currently disabled(click to enable)";
+  document.querySelector("#private-mode").style.backgroundColor = "lightgray";
   clearNotification();
+  
   // isLoaded = false;
   // return isLoaded;
 }
