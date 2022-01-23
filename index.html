@@ -127,11 +127,24 @@
             minimize
           </button>
         </div>
+
+
         <progress id="loader" title="loading video..."></progress>
         <iframe id="videoPlayer" loading="eager" allowfullscreen="true">
           <p>Your browser does not support iframes.</p>
         </iframe>
+
       </div>
+
+          <div id="options-div"> 
+            <button id="options-button" class="overlay-buttons transparent-button material-icons-round">settings</button>
+            <div id="options-dropdown">
+              <a>reload video</a>
+              <a>private mode</a>
+              <a>Link 3</a>
+            </div>
+          </div>
+
     </div>
     <div id="expand-box" class="hidden">
       <img id="thumbnail" title="click to reopen minimized video">

@@ -91,7 +91,15 @@ function validate() {
 function getId(url) {
   // strips the video id from our url
   videoId = videoIdExtractor.exec(url)[2];
+  // let currentValues = [document.querySelector("#load-fullscreen").value, document.querySelector("#private-mode").value];
+
+  // if (iframe.src.length !== 0 && url.includes(videoIdExtractor.exec(iframe.src)[2] && ((currentValues[0] == valuesAtLoad[0]) && (currentValues[1] == valuesAtLoad[1])))) {
+  if (iframe.src.length !== 0 && url.includes(videoIdExtractor.exec(iframe.src)[2])) {
+    expandBox.classList.add("hidden");
+    overlay.style.display = "block";
+  } else {
   loadVideo(videoId);
+  }
   return videoId;
 }
 
@@ -102,6 +110,7 @@ function loadVideo(videoId) {
   overlay.style.display = "block";
   expandBox.classList.add("hidden");
   loader.classList.remove("hidden");
+  // var valuesAtLoad = [document.querySelector("#load-fullscreen").value, document.querySelector("#private-mode").value];
   // expandButton.disabled = true;
   if (privateMode()) {
     // sets the video player iframe's url to a youtube privacy-enhanced url(video doesn't show up on user's youtube search history) if the user has enabled Privacy Mode
@@ -119,6 +128,7 @@ function loadVideo(videoId) {
   iframe.onload = function () {
     iframe.focus();
   };
+  // return valuesAtLoad;
 }
 
 // toggles fullscreen for the iframe
