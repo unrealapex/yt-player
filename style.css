@@ -389,7 +389,9 @@ img {
   display: block;
 }
 
-#options-dropdown .options:hover {background-color: #f1f1f1;}
+#options-dropdown .options:hover {
+  border: 3px solid #a56de2;
+}
 
 #options-div:hover #options-dropdown {
   display: block;
