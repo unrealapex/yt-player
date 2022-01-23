@@ -378,6 +378,7 @@ img {
 }
 
 .options {
+  cursor: pointer;
   border-radius: 0.2rem;
 }
 
