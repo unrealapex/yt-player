@@ -377,18 +377,18 @@ img {
   bottom: 100%;
 }
 
-a {
+.options {
   border-radius: 0.2rem;
 }
 
-#options-dropdown a {
+#options-dropdown .options  {
   color: black;
   padding: 12px 16px;
   text-decoration: none;
   display: block;
 }
 
-#options-dropdown a:hover {background-color: #f1f1f1;}
+#options-dropdown .options:hover {background-color: #f1f1f1;}
 
 #options-div:hover #options-dropdown {
   display: block;
@@ -397,3 +397,7 @@ a {
 #options-div:hover #options-button {
   background-color: lightgray;
 }
+
+/* #private-mode[data-enabled="true"] {
+  background-color: #68b723;
+} */

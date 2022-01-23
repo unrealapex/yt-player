@@ -30,7 +30,8 @@ var isLoaded = () => {
 }
 // configs
 // determines if the video should be loaded with a YouTube privacy enhanced URL or a regular YouTube embed url
-var privateMode = () => document.querySelector("#private-mode").checked;
+// var privateMode = () => document.querySelector("#private-mode").checked;
+var privateMode = () => JSON.parse(document.querySelector("#private-mode").dataset.enabled);
 // determines if the video should be loaded in full screen when the user plays it
 var loadInFullscreen = () => document.querySelector("#load-fullscreen").checked;
 // list of all shortcuts keys
@@ -402,5 +403,17 @@ document.addEventListener("focusin", function () {
 inputField.addEventListener("keydown", function (event) {
   if (event.key === "Enter") {
     form.submit();
+  }
+});
+
+document.querySelector("#private-mode").addEventListener("click", () => {
+  if (privateMode()) {
+    document.querySelector("#private-mode").dataset.enabled = "false";
+    document.querySelector("#private-mode").title = "private mode is currently disabled(click to enable)";
+    document.querySelector("#private-mode").style.backgroundColor = "lightgray";
+  } else {
+    document.querySelector("#private-mode").dataset.enabled = "true";
+    document.querySelector("#private-mode").title = "private mode is currently enabled(click to disable)";
+    document.querySelector("#private-mode").style.backgroundColor = "#68b723";
   }
 });
