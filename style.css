@@ -357,6 +357,14 @@ img {
   right: 0;
 }
 
+#options-button {
+  color: black;
+  transition-duration: 1s;
+  border-radius: 0.4rem;
+  padding: 0.5rem;
+  float: right;
+}
+
 #options-dropdown {
   display: none;
   position: absolute;
@@ -382,5 +390,5 @@ img {
 }
 
 #options-div:hover #options-button {
-  background-color: #3e8e41;
+  background-color: lightgray;
 }
