@@ -410,14 +410,17 @@ inputField.addEventListener("keydown", function (event) {
   }
 });
 
-document.querySelector("#private-mode").addEventListener("click", () => {
-  if (privateMode()) {
-    document.querySelector("#private-mode").dataset.enabled = "false";
-    document.querySelector("#private-mode").title = "private mode is currently disabled(click to enable)";
-    document.querySelector("#private-mode").style.backgroundColor = "lightgray";
-  } else {
-    document.querySelector("#private-mode").dataset.enabled = "true";
-    document.querySelector("#private-mode").title = "private mode is currently enabled(click to disable)";
-    document.querySelector("#private-mode").style.backgroundColor = "#68b723";
+document.querySelector("#options-div").addEventListener("click", (event) => {
+  if (event.target.id === "private-mode") {
+    if (privateMode()) {
+      document.querySelector("#private-mode").dataset.enabled = "false";
+      document.querySelector("#private-mode").title = "private mode is currently disabled(click to enable)";
+      document.querySelector("#private-mode").style.backgroundColor = "lightgray";
+    } else {
+      document.querySelector("#private-mode").dataset.enabled = "true";
+      document.querySelector("#private-mode").title = "private mode is currently enabled(click to disable)";
+      document.querySelector("#private-mode").style.backgroundColor = "#68b723";
+    }
   }
+  loadVideo(videoId);
 });
