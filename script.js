@@ -27,7 +27,8 @@ const thumbnail = document.querySelector("#thumbnail");
 // var isLoaded = false;
 var isLoaded = () => {
   return (iframe.readyState == "complete" || "interactive") ? true : false;
-}
+};
+
 // configs
 // determines if the video should be loaded with a YouTube privacy enhanced URL or a regular YouTube embed url
 // var privateMode = () => document.querySelector("#private-mode").checked;
