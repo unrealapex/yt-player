@@ -404,3 +404,7 @@ img {
 /* #private-mode[data-enabled="true"] {
   background-color: #68b723;
 } */
+
+#private-mode {
+  transition: background-color 1s ease;
+}
