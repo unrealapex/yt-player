@@ -23,6 +23,8 @@ const shortcutsModal = document.querySelector("#shortcuts-modal");
 const form = document.querySelector("form");
 const expandBox = document.querySelector("#expand-box");
 const thumbnail = document.querySelector("#thumbnail");
+const optionsDiv = document.querySelector("#options-div");
+const privateModeButton = document.querySelector("#private-mode");
 // stores boolean determining if video is loaded or not
 // var isLoaded = false;
 var isLoaded = () => {
@@ -411,17 +413,17 @@ inputField.addEventListener("keydown", function (event) {
   }
 });
 
-document.querySelector("#options-div").addEventListener("click", (event) => {
+optionsDiv.addEventListener("click", (event) => {
   if (event.target.id === "private-mode") {
     if (privateMode()) {
-      document.querySelector("#private-mode").dataset.enabled = "false";
-      document.querySelector("#private-mode").title = "private mode is currently disabled(click to enable)";
-      document.querySelector("#private-mode").style.backgroundColor = "lightgray";
+      privateModeButton.dataset.enabled = "false";
+      privateModeButton.title = "private mode is currently disabled(click to enable)";
+      privateModeButton.style.backgroundColor = "lightgray";
     } else {
-      document.querySelector("#private-mode").dataset.enabled = "true";
-      document.querySelector("#private-mode").title = "private mode is currently enabled(click to disable)";
+      privateModeButton.dataset.enabled = "true";
+      privateModeButton.title = "private mode is currently enabled(click to disable)";
       // document.querySelector("#private-mode").style.backgroundColor = "#68b723";
-      document.querySelector("#private-mode").style.backgroundColor = "lightgreen";
+      privateModeButton.style.backgroundColor = "lightgreen";
     }
   }
   loadVideo(videoId);
