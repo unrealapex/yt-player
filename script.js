@@ -418,7 +418,7 @@ optionsDiv.addEventListener("click", (event) => {
     if (privateMode()) {
       privateModeButton.dataset.enabled = "false";
       privateModeButton.title = "private mode is currently disabled(click to enable)";
-      privateModeButton.style.backgroundColor = "lightgray";
+      privateModeButton.style.backgroundColor = "#f9f9f9";
     } else {
       privateModeButton.dataset.enabled = "true";
       privateModeButton.title = "private mode is currently enabled(click to disable)";
