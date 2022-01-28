@@ -384,8 +384,10 @@ expandBox.addEventListener("click", () => {
 //   lastFocused.focus();
 // });
 
-document.addEventListener("focusin", () => {
-  window.focus();
+document.addEventListener("visibilitychange", () => {
+  if (document.visibilityState == "visible") {
+      window.focus();
+  }
 });
 
 inputField.addEventListener("keydown", (event) => {
