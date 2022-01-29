@@ -433,7 +433,7 @@ optionsDiv.addEventListener("click", (event) => {
       break;
     case "open-video":
       if (privateMode()) {
-        if (confirm("Warning, this video is playing in private mode\nIf you open the video, it will show up as you viewing it or will be restricted\nDo you wish to still open it?")) {
+        if (confirm("Warning, this video is playing in private mode. If you open the video, it will show up as you viewing it and will not load if restricted mode is enabled for your YouTube account.\nDo you wish to still open the video?")) {
           openVideo();
         }
       } else {
