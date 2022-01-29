@@ -212,7 +212,7 @@ function about() {
 }
 
 // opens youtube video in a window so the user can like, dislike a video, or subscribe to a youtube channel
-function openVideoInNewTab() {
+function openVideo() {
   if (isLoaded()) {
     // TODO: change to responsive size
     let w = 1000;
@@ -427,4 +427,28 @@ optionsDiv.addEventListener("click", (event) => {
     }
   }
   loadVideo(videoId);
+
+  switch (event.target.id) {
+    case "private-mode":
+      if (privateMode()) {
+        privateModeButton.dataset.enabled = "false";
+        privateModeButton.title = "private mode is currently disabled(click to enable)";
+        privateModeButton.style.backgroundColor = "#f9f9f9";
+      } else {
+        privateModeButton.dataset.enabled = "true";
+        privateModeButton.title = "private mode is currently enabled(click to disable)";
+        // document.querySelector("#private-mode").style.backgroundColor = "#68b723";
+        privateModeButton.style.backgroundColor = "lightgreen";
+      }
+      loadVideo(videoId);
+      break;
+    case "reload":  
+      loadVideo(videoId);
+      break;
+    case "open-video":
+      openVideo();
+      break;
+    default:  
+      console.error("error: unknown button clicked in options dropdown");
+  }
 });
