@@ -240,7 +240,7 @@ function openVideo() {
         "\n" +
         "Play a video and try again"
     );
-    getVideoURL();
+    // getVideoURL();
   }
 }
 
@@ -414,20 +414,6 @@ inputField.addEventListener("keydown", function (event) {
 });
 
 optionsDiv.addEventListener("click", (event) => {
-  if (event.target.id === "private-mode") {
-    if (privateMode()) {
-      privateModeButton.dataset.enabled = "false";
-      privateModeButton.title = "private mode is currently disabled(click to enable)";
-      privateModeButton.style.backgroundColor = "#f9f9f9";
-    } else {
-      privateModeButton.dataset.enabled = "true";
-      privateModeButton.title = "private mode is currently enabled(click to disable)";
-      // document.querySelector("#private-mode").style.backgroundColor = "#68b723";
-      privateModeButton.style.backgroundColor = "lightgreen";
-    }
-  }
-  loadVideo(videoId);
-
   switch (event.target.id) {
     case "private-mode":
       if (privateMode()) {
@@ -446,7 +432,13 @@ optionsDiv.addEventListener("click", (event) => {
       loadVideo(videoId);
       break;
     case "open-video":
-      openVideo();
+      if (privateMode()) {
+        if (confirm("Warning, this video is playing in private mode\nIf you open the video, it will show up as you viewing it or will be restricted\nDo you wish to still open it?")) {
+          openVideo();
+        }
+      } else {
+        openVideo();
+      }
       break;
     default:  
       console.error("error: unknown button clicked in options dropdown");
