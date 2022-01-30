@@ -19,16 +19,17 @@ const notification = document.querySelector("#notification");
 const loader = document.querySelector("#loader");
 // modal that shows all the availible shortcuts in the video player
 const shortcutsModal = document.querySelector("#shortcuts-modal");
-// / url submission form
+// url submission form
 const form = document.querySelector("form");
+// parent for button and video thumbnail that appear when a video is minimized
 const expandBox = document.querySelector("#expand-box");
 const thumbnail = document.querySelector("#thumbnail");
+// parent div of options dropdown
 const optionsDiv = document.querySelector("#options-div");
+// button that toggles private mode
 const privateModeButton = document.querySelector("#private-mode");
 // checks if the video is loaded or not
 var isLoaded = () => (iframe.readyState == "complete" || "interactive") ? true : false;
-
-// configs
 // determines if the video should be loaded with a YouTube privacy enhanced URL or a regular YouTube embed url
 // var privateMode = () => document.querySelector("#private-mode").checked;
 var privateMode = () => JSON.parse(document.querySelector("#private-mode").dataset.enabled);
@@ -118,15 +119,10 @@ function loadVideo(videoId) {
     iframe.src = "https://www.youtube.com/embed/" + videoId;
   }
 
-  // if (loadInFullscreen()) {
-  //   openFullscreen();
-  // } else {
-  // }
   // focus iframe when it has loaded
   iframe.onload = () => {
     iframe.focus();
   };
-  // return valuesAtLoad;
 }
 
 // toggles fullscreen for the iframe
@@ -154,7 +150,6 @@ function openFullscreen() {
         "\n" +
         "Please enter a URL first"
     );
-    // getVideoURL();
   }
 }
 
@@ -175,9 +170,6 @@ function reset() {
   privateModeButton.title = "private mode is currently disabled(click to enable)";
   privateModeButton.style.backgroundColor = "lightgray";
   clearNotification();
-  
-  // isLoaded = false;
-  // return isLoaded;
 }
 
 // copies a youtube share url onto user's clipboard
@@ -238,7 +230,6 @@ function openVideo() {
   }
 }
 
-// TODO: Delete this function if not in use
 // allows us to sleep for x seconds
 // takes parameter duration(float)
 function sleep(duration) {
@@ -274,9 +265,6 @@ function minimizeOverlay() {
   } else {
     expandBox.classList.add("hidden");
     thumbnail.src = "";
-
-    // expandButton.disabled = true;
-    // expandButton.blur();
   }
 }
 
@@ -364,11 +352,6 @@ window.onclick = (event) => {
   }
 };
 
-// focus the window when the user is on it
-// document.addEventListener("mouseover", () => {
-//   window.focus();
-// });
-
 // hide the loader every time a video loads in the iframe
 iframe.addEventListener("load", () => {
   loader.classList.add("hidden");
@@ -387,16 +370,6 @@ expandBox.addEventListener("click", () => {
   thumbnail.src = "";
 });
 
-// FIXME: fix focus handling
-// document.addEventListener("blur", () => {
-//   lastFocused = document.activeElement;
-//   return lastFocused;
-// })
-
-// document.addEventListener("mouseover", () => {
-//   lastFocused.focus();
-// });
-
 document.addEventListener("visibilitychange", () => {
   if (document.visibilityState == "visible") {
       window.focus();
@@ -409,6 +382,7 @@ inputField.addEventListener("keydown", (event) => {
   }
 });
 
+// option click handler
 optionsDiv.addEventListener("click", (event) => {
   switch (event.target.id) {
     case "private-mode":
