@@ -27,9 +27,11 @@ const optionsDiv = document.querySelector("#options-div");
 // button that toggles private mode
 const privateModeButton = document.querySelector("#private-mode");
 // checks if the video is loaded or not
-var isLoaded = () => (iframe.readyState == "complete" || "interactive") ? true : false;
+var isLoaded = () =>
+  iframe.readyState == "complete" || "interactive" ? true : false;
 // determines if the video should be loaded with a YouTube privacy enhanced URL or a regular YouTube embed url
-var privateMode = () => JSON.parse(document.querySelector("#private-mode").dataset.enabled);
+var privateMode = () =>
+  JSON.parse(document.querySelector("#private-mode").dataset.enabled);
 // list of all shortcuts keys
 const shortcutKeys = ["r", "Escape", "x", "f", "m", "_", "o", "+", "?"];
 
@@ -88,7 +90,7 @@ function validate() {
 function getId(url) {
   // strips the video id from our url
   videoId = videoIdExtractor.exec(url)[2];
-  if (iframe.src.length !== undefined && (iframe.src.includes(videoId))) {
+  if (iframe.src.length !== undefined && iframe.src.includes(videoId)) {
     expandBox.classList.add("hidden");
     overlay.style.display = "block";
   } else {
@@ -162,7 +164,8 @@ function reset() {
   inputField.focus();
   // document.querySelector("#private-mode").checked = false;
   privateModeButton.dataset.enabled = "false";
-  privateModeButton.title = "private mode is currently disabled(click to enable)";
+  privateModeButton.title =
+    "private mode is currently disabled(click to enable)";
   privateModeButton.style.backgroundColor = "lightgray";
   clearNotification();
 }
@@ -367,7 +370,7 @@ expandBox.addEventListener("click", () => {
 
 document.addEventListener("visibilitychange", () => {
   if (document.visibilityState == "visible") {
-      window.focus();
+    window.focus();
   }
 });
 
@@ -383,29 +386,35 @@ optionsDiv.addEventListener("click", (event) => {
     case "private-mode":
       if (privateMode()) {
         privateModeButton.dataset.enabled = "false";
-        privateModeButton.title = "private mode is currently disabled(click to enable)";
+        privateModeButton.title =
+          "private mode is currently disabled(click to enable)";
         privateModeButton.style.backgroundColor = "#f9f9f9";
       } else {
         privateModeButton.dataset.enabled = "true";
-        privateModeButton.title = "private mode is currently enabled(click to disable)";
+        privateModeButton.title =
+          "private mode is currently enabled(click to disable)";
         // document.querySelector("#private-mode").style.backgroundColor = "#68b723";
         privateModeButton.style.backgroundColor = "lightgreen";
       }
       loadVideo(videoId);
       break;
-    case "reload":  
+    case "reload":
       loadVideo(videoId);
       break;
     case "open-video":
       if (privateMode()) {
-        if (confirm("Warning, this video is playing in private mode. If you open the video, it will show up as you viewing it and will not load if restricted mode is enabled for your YouTube account.\nDo you wish to still open the video?")) {
+        if (
+          confirm(
+            "Warning, this video is playing in private mode. If you open the video, it will show up as you viewing it and will not load if restricted mode is enabled for your YouTube account.\nDo you wish to still open the video?"
+          )
+        ) {
           openVideo();
         }
       } else {
         openVideo();
       }
       break;
-    default:  
+    default:
       console.error("error: unknown button clicked in options dropdown");
   }
 });
