@@ -25,11 +25,8 @@ const expandBox = document.querySelector("#expand-box");
 const thumbnail = document.querySelector("#thumbnail");
 const optionsDiv = document.querySelector("#options-div");
 const privateModeButton = document.querySelector("#private-mode");
-// stores boolean determining if video is loaded or not
-// var isLoaded = false;
-var isLoaded = () => {
-  return (iframe.readyState == "complete" || "interactive") ? true : false;
-};
+// checks if the video is loaded or not
+var isLoaded = () => (iframe.readyState == "complete" || "interactive") ? true : false;
 
 // configs
 // determines if the video should be loaded with a YouTube privacy enhanced URL or a regular YouTube embed url
@@ -126,7 +123,7 @@ function loadVideo(videoId) {
   // } else {
   // }
   // focus iframe when it has loaded
-  iframe.onload = function () {
+  iframe.onload = () => {
     iframe.focus();
   };
   // return valuesAtLoad;
@@ -314,7 +311,7 @@ function clearNotification() {
 }
 
 // keyboard shortcuts event listener
-document.addEventListener("keydown", function (event) {
+document.addEventListener("keydown", (event) => {
   for (let i in shortcutKeys) {
     if (event.key === shortcutKeys[i]) {
       event.preventDefault();
@@ -361,29 +358,29 @@ document.addEventListener("keydown", function (event) {
 });
 
 // When the user clicks anywhere outside of the modal, close it
-window.onclick = function (event) {
+window.onclick = (event) => {
   if (event.target == shortcutsModal) {
     shortcutsModal.style.display = "none";
   }
 };
 
 // focus the window when the user is on it
-// document.addEventListener("mouseover", function () {
+// document.addEventListener("mouseover", () => {
 //   window.focus();
 // });
 
 // hide the loader every time a video loads in the iframe
-iframe.addEventListener("load", function () {
+iframe.addEventListener("load", () => {
   loader.classList.add("hidden");
 });
 
 // event listener that listens for successful form submissions
 // if the input field is submitted successfully, get the video url via the getVideoURL() function
-document.querySelector("form").addEventListener("submit", function () {
+document.querySelector("form").addEventListener("submit", () => {
   getVideoURL();
 });
 
-expandBox.addEventListener("click", function () {
+expandBox.addEventListener("click", () => {
   overlay.style.display = "block";
   // expandButton.disabled = "true";
   expandBox.classList.add("hidden");
@@ -391,20 +388,22 @@ expandBox.addEventListener("click", function () {
 });
 
 // FIXME: fix focus handling
-// document.addEventListener("blur", function () {
+// document.addEventListener("blur", () => {
 //   lastFocused = document.activeElement;
 //   return lastFocused;
 // })
 
-// document.addEventListener("mouseover", function () {
+// document.addEventListener("mouseover", () => {
 //   lastFocused.focus();
 // });
 
-document.addEventListener("focusin", function () {
-  window.focus();
+document.addEventListener("visibilitychange", () => {
+  if (document.visibilityState == "visible") {
+      window.focus();
+  }
 });
 
-inputField.addEventListener("keydown", function (event) {
+inputField.addEventListener("keydown", (event) => {
   if (event.key === "Enter") {
     form.submit();
   }
