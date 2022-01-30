@@ -174,9 +174,9 @@ function reset() {
   inputField.value = "";
   inputField.focus();
   // document.querySelector("#private-mode").checked = false;
-  document.querySelector("#private-mode").dataset.enabled = "false";
-  document.querySelector("#private-mode").title = "private mode is currently disabled(click to enable)";
-  document.querySelector("#private-mode").style.backgroundColor = "lightgray";
+  privateModeButton.dataset.enabled = "false";
+  privateModeButton.title = "private mode is currently disabled(click to enable)";
+  privateModeButton.style.backgroundColor = "lightgray";
   clearNotification();
   
   // isLoaded = false;
