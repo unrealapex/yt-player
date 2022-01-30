@@ -95,14 +95,11 @@ function validate() {
 function getId(url) {
   // strips the video id from our url
   videoId = videoIdExtractor.exec(url)[2];
-  // let currentValues = [document.querySelector("#load-fullscreen").value, document.querySelector("#private-mode").value];
-
-  // if (iframe.src.length !== 0 && url.includes(videoIdExtractor.exec(iframe.src)[2] && ((currentValues[0] == valuesAtLoad[0]) && (currentValues[1] == valuesAtLoad[1])))) {
-  if (iframe.src.length !== 0 && url.includes(videoIdExtractor.exec(iframe.src)[2])) {
+  if (iframe.src.length !== undefined && (iframe.src.includes(videoId))) {
     expandBox.classList.add("hidden");
     overlay.style.display = "block";
   } else {
-  loadVideo(videoId);
+    loadVideo(videoId);
   }
   return videoId;
 }
