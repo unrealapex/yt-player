@@ -11,8 +11,6 @@ const inputField = document.querySelector("#input-field");
 const playButton = document.querySelector("#play");
 // overlay that video player iframe is shown
 const overlay = document.querySelector("#overlay");
-// button used to maximize minimized videos
-// const expandButton = document.querySelector("#expand");
 // notification that shows errors and information
 const notification = document.querySelector("#notification");
 // loading text that displays when video is loading
@@ -31,10 +29,7 @@ const privateModeButton = document.querySelector("#private-mode");
 // checks if the video is loaded or not
 var isLoaded = () => (iframe.readyState == "complete" || "interactive") ? true : false;
 // determines if the video should be loaded with a YouTube privacy enhanced URL or a regular YouTube embed url
-// var privateMode = () => document.querySelector("#private-mode").checked;
 var privateMode = () => JSON.parse(document.querySelector("#private-mode").dataset.enabled);
-// determines if the video should be loaded in full screen when the user plays it
-// var loadInFullscreen = () => document.querySelector("#load-fullscreen").checked;
 // list of all shortcuts keys
 const shortcutKeys = ["r", "Escape", "x", "f", "m", "_", "o", "+", "?"];
 
