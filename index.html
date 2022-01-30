@@ -79,7 +79,7 @@
               </button>
             </div>
           </form>
-          <fieldset>
+          <!-- <fieldset>
             <legend>options</legend>
             <div>
               <div title="load video in full screen">
@@ -95,7 +95,7 @@
                 >
               </div>
             </div>
-          </fieldset>
+          </fieldset> -->
         </div>
 
         <!-- https://github.com/jslint-org/jslint/blob/5c025b692b740d755937fed1c3c5c8d6bcb9e962/index.html#L254 -->
@@ -127,11 +127,32 @@
             minimize
           </button>
         </div>
+
+
         <progress id="loader" title="loading video..."></progress>
         <iframe id="videoPlayer" loading="eager" allowfullscreen="true">
           <p>Your browser does not support iframes.</p>
         </iframe>
+
       </div>
+
+          <div id="options-div"> 
+            <button id="options-button" class="transparent-button material-icons-round">settings</button>
+            <div id="options-dropdown">
+              <div id="reload" class="options">reload video</div>
+
+              <!-- <div class="options" title="load video in private mode">
+                <label
+                  ><input type="checkbox" name="" id="private-mode" />private
+                  mode</label
+                >
+              </div> -->
+              <div id="private-mode" class="options" data-enabled="false" title="private mode is currently disabled(click to enable)">private mode</div>
+              <div id="open-video" class="options">open video on youtube</div>
+              <!-- <div>Link 3</a> -->
+            </div>
+          </div>
+
     </div>
     <div id="expand-box" class="hidden">
       <img id="thumbnail" title="click to reopen minimized video">

@@ -11,27 +11,25 @@ const inputField = document.querySelector("#input-field");
 const playButton = document.querySelector("#play");
 // overlay that video player iframe is shown
 const overlay = document.querySelector("#overlay");
-// button used to maximize minimized videos
-// const expandButton = document.querySelector("#expand");
 // notification that shows errors and information
 const notification = document.querySelector("#notification");
 // loading text that displays when video is loading
 const loader = document.querySelector("#loader");
 // modal that shows all the availible shortcuts in the video player
 const shortcutsModal = document.querySelector("#shortcuts-modal");
-// / url submission form
+// url submission form
 const form = document.querySelector("form");
+// parent for button and video thumbnail that appear when a video is minimized
 const expandBox = document.querySelector("#expand-box");
 const thumbnail = document.querySelector("#thumbnail");
-// stores boolean determining if video is loaded or not
-// var isLoaded = false;
+// parent div of options dropdown
+const optionsDiv = document.querySelector("#options-div");
+// button that toggles private mode
+const privateModeButton = document.querySelector("#private-mode");
+// checks if the video is loaded or not
 var isLoaded = () => (iframe.readyState == "complete" || "interactive") ? true : false;
-
-// configs
 // determines if the video should be loaded with a YouTube privacy enhanced URL or a regular YouTube embed url
-var privateMode = () => document.querySelector("#private-mode").checked;
-// determines if the video should be loaded in full screen when the user plays it
-var loadInFullscreen = () => document.querySelector("#load-fullscreen").checked;
+var privateMode = () => JSON.parse(document.querySelector("#private-mode").dataset.enabled);
 // list of all shortcuts keys
 const shortcutKeys = ["r", "Escape", "x", "f", "m", "_", "o", "+", "?"];
 
@@ -90,7 +88,12 @@ function validate() {
 function getId(url) {
   // strips the video id from our url
   videoId = videoIdExtractor.exec(url)[2];
-  loadVideo(videoId);
+  if (iframe.src.length !== undefined && (iframe.src.includes(videoId))) {
+    expandBox.classList.add("hidden");
+    overlay.style.display = "block";
+  } else {
+    loadVideo(videoId);
+  }
   return videoId;
 }
 
@@ -101,6 +104,7 @@ function loadVideo(videoId) {
   overlay.style.display = "block";
   expandBox.classList.add("hidden");
   loader.classList.remove("hidden");
+  // var valuesAtLoad = [document.querySelector("#load-fullscreen").value, document.querySelector("#private-mode").value];
   // expandButton.disabled = true;
   if (privateMode()) {
     // sets the video player iframe's url to a youtube privacy-enhanced url(video doesn't show up on user's youtube search history) if the user has enabled Privacy Mode
@@ -110,10 +114,6 @@ function loadVideo(videoId) {
     iframe.src = "https://www.youtube.com/embed/" + videoId;
   }
 
-  if (loadInFullscreen()) {
-    openFullscreen();
-  } else {
-  }
   // focus iframe when it has loaded
   iframe.onload = () => {
     iframe.focus();
@@ -145,7 +145,6 @@ function openFullscreen() {
         "\n" +
         "Please enter a URL first"
     );
-    // getVideoURL();
   }
 }
 
@@ -161,10 +160,11 @@ function reset() {
   playButton.disabled = true;
   inputField.value = "";
   inputField.focus();
-  document.querySelector("#private-mode").checked = false;
+  // document.querySelector("#private-mode").checked = false;
+  privateModeButton.dataset.enabled = "false";
+  privateModeButton.title = "private mode is currently disabled(click to enable)";
+  privateModeButton.style.backgroundColor = "lightgray";
   clearNotification();
-  // isLoaded = false;
-  // return isLoaded;
 }
 
 // copies a youtube share url onto user's clipboard
@@ -193,7 +193,7 @@ function about() {
 }
 
 // opens youtube video in a window so the user can like, dislike a video, or subscribe to a youtube channel
-function openVideoInNewTab() {
+function openVideo() {
   if (isLoaded()) {
     // TODO: change to responsive size
     let w = 1000;
@@ -221,11 +221,10 @@ function openVideoInNewTab() {
         "\n" +
         "Play a video and try again"
     );
-    getVideoURL();
+    // getVideoURL();
   }
 }
 
-// TODO: Delete this function if not in use
 // allows us to sleep for x seconds
 // takes parameter duration(float)
 function sleep(duration) {
@@ -261,9 +260,6 @@ function minimizeOverlay() {
   } else {
     expandBox.classList.add("hidden");
     thumbnail.src = "";
-
-    // expandButton.disabled = true;
-    // expandButton.blur();
   }
 }
 
@@ -351,11 +347,6 @@ window.onclick = (event) => {
   }
 };
 
-// focus the window when the user is on it
-// document.addEventListener("mouseover", () => {
-//   window.focus();
-// });
-
 // hide the loader every time a video loads in the iframe
 iframe.addEventListener("load", () => {
   loader.classList.add("hidden");
@@ -374,16 +365,6 @@ expandBox.addEventListener("click", () => {
   thumbnail.src = "";
 });
 
-// FIXME: fix focus handling
-// document.addEventListener("blur", () => {
-//   lastFocused = document.activeElement;
-//   return lastFocused;
-// })
-
-// document.addEventListener("mouseover", () => {
-//   lastFocused.focus();
-// });
-
 document.addEventListener("visibilitychange", () => {
   if (document.visibilityState == "visible") {
       window.focus();
@@ -393,5 +374,38 @@ document.addEventListener("visibilitychange", () => {
 inputField.addEventListener("keydown", (event) => {
   if (event.key === "Enter") {
     form.submit();
+  }
+});
+
+// option click handler
+optionsDiv.addEventListener("click", (event) => {
+  switch (event.target.id) {
+    case "private-mode":
+      if (privateMode()) {
+        privateModeButton.dataset.enabled = "false";
+        privateModeButton.title = "private mode is currently disabled(click to enable)";
+        privateModeButton.style.backgroundColor = "#f9f9f9";
+      } else {
+        privateModeButton.dataset.enabled = "true";
+        privateModeButton.title = "private mode is currently enabled(click to disable)";
+        // document.querySelector("#private-mode").style.backgroundColor = "#68b723";
+        privateModeButton.style.backgroundColor = "lightgreen";
+      }
+      loadVideo(videoId);
+      break;
+    case "reload":  
+      loadVideo(videoId);
+      break;
+    case "open-video":
+      if (privateMode()) {
+        if (confirm("Warning, this video is playing in private mode. If you open the video, it will show up as you viewing it and will not load if restricted mode is enabled for your YouTube account.\nDo you wish to still open the video?")) {
+          openVideo();
+        }
+      } else {
+        openVideo();
+      }
+      break;
+    default:  
+      console.error("error: unknown button clicked in options dropdown");
   }
 });
