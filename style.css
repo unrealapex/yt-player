@@ -44,17 +44,15 @@ kbd {
   border-radius: 0.2rem;
 }
 
-
 button:disabled:not(#expand:disabled) {
   opacity: 0.5;
   cursor: not-allowed;
 }
 
-legend, 
+legend,
 #notification {
   text-align: center;
 }
-
 
 #input-field.wrong {
   background: rgba(198, 38, 46, 0.3);
@@ -103,23 +101,23 @@ legend,
 }
 
 #loader-fade-text {
-  animation: fade 2s ease-in infinite,  rgb 5s linear infinite;  
+  animation: fade 2s ease-in infinite, rgb 5s linear infinite;
 }
 
 @keyframes fade {
   0% {
     opacity: 0;
   }
-    25% {
+  25% {
     opacity: 0.5;
   }
-    50% {
+  50% {
     opacity: 1;
   }
-    75% {
+  75% {
     opacity: 0.5;
   }
-    100% {
+  100% {
     opacity: 0;
   }
 }
@@ -275,7 +273,7 @@ button {
 }
 
 #expand-box {
-  background-color: #d4d4d4; 
+  background-color: #d4d4d4;
   border: 0.15625rem solid #1a1a1a;
   border-radius: 0.2rem;
   margin: 1rem;
@@ -325,24 +323,24 @@ img {
   color: grey;
 }
 
-.no-select, 
+.no-select,
 .overlay-buttons {
-    -webkit-touch-callout: none; /* iOS Safari */
-    -webkit-user-select: none;   /* Safari */
-    -khtml-user-select: none;    /* Konqueror HTML */
-    -moz-user-select: none;      /* Old versions of Firefox */
-    -ms-user-select: none;       /* Internet Explorer/Edge */
-    user-select: none;           /* Non-prefixed version, currently
+  -webkit-touch-callout: none;    /* iOS Safari */
+  -webkit-user-select: none;      /* Safari */
+  -khtml-user-select: none;       /* Konqueror HTML */
+  -moz-user-select: none;         /* Old versions of Firefox */
+  -ms-user-select: none;          /* Internet Explorer/Edge */
+  user-select: none;              /* Non-prefixed version, currently
                                   supported by Chrome, Edge, Opera and Firefox */
 }
 
 .transparent-button {
-    background-color: transparent;
-    background-repeat: no-repeat;
-    border: none;
-    cursor: pointer;
-    overflow: hidden;
-    outline: none;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
 }
 
 /* 
@@ -382,7 +380,7 @@ img {
   border-radius: 0.2rem;
 }
 
-#options-dropdown .options  {
+#options-dropdown .options {
   color: black;
   padding: 12px 16px;
   text-decoration: none;
