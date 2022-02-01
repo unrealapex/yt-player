@@ -286,7 +286,7 @@ function setNotification(message, level = 0, duration = 0) {
   } else if (duration === 0) {
     console.log("No duration given for notification");
   } else {
-    console.warn("Invalid duration given!");
+    console.warn("Invalid notification duration given!");
   }
 }
 
