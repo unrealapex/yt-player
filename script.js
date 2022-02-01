@@ -26,6 +26,7 @@ const thumbnail = document.querySelector("#thumbnail");
 const optionsDiv = document.querySelector("#options-div");
 // button that toggles private mode
 const privateModeButton = document.querySelector("#private-mode");
+// const debugDiv = document.querySelector("#debug-div");
 // checks if the video is loaded or not
 var isLoaded = () =>
   iframe.readyState == "complete" || "interactive" ? true : false;
@@ -35,6 +36,7 @@ var privateMode = () =>
 // list of all shortcuts keys
 const shortcutKeys = ["r", "Escape", "x", "f", "m", "_", "o", "+", "?"];
 
+var lastFocused = [];
 // regex
 // gets the youtube video id from strings
 const videoIdExtractor =
@@ -368,11 +370,35 @@ expandBox.addEventListener("click", () => {
   thumbnail.src = "";
 });
 
+// focus handling
 document.addEventListener("visibilitychange", () => {
-  if (document.visibilityState == "visible") {
-    window.focus();
+  // check if the iframe or the body focused
+  if (document.activeElement.tagName.toLowerCase() == "iframe" || "body") {
+    // if the iframe or the body is focused, insert it at the start of the array
+    lastFocused.unshift(document.activeElement.tagName);
   }
+  if (document.visibilityState == "visible") {
+    // window.focus();
+    // focus the overlay or the iframe
+    // debugDiv.innerHTML = lastFocused[0];
+    // alert(lastFocused[0]);
+    // document.querySelector("#" + lastFocused[0]).focus();
+    // focus either the iframe or body(which one was focused last) when the document is visible
+    document.getElementsByTagName(lastFocused[0]).focus();
+    // focus handling
+
+  }
+
+  // make sure that the array doesn't have more than 3 indexes
+  if (lastFocused.length > 3) {
+    // if there are more than three indexes, pop the array until there are only three
+    while (lastFocused.length > 3) {
+      lastFocused.pop();
+    }
+  }
+  return lastFocused;
 });
+
 
 inputField.addEventListener("keydown", (event) => {
   if (event.key === "Enter") {
