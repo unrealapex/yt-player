@@ -166,7 +166,7 @@ function reset() {
   privateModeButton.dataset.enabled = "false";
   privateModeButton.title =
     "private mode is currently disabled(click to enable)";
-  privateModeButton.style.backgroundColor = "lightgray";
+  privateModeButton.style.backgroundColor = "rgb(249, 249, 249)";
   clearNotification();
 }
 
@@ -388,7 +388,7 @@ optionsDiv.addEventListener("click", (event) => {
         privateModeButton.dataset.enabled = "false";
         privateModeButton.title =
           "private mode is currently disabled(click to enable)";
-        privateModeButton.style.backgroundColor = "#f9f9f9";
+        privateModeButton.style.backgroundColor = "rgb(249, 249, 249)";
       } else {
         privateModeButton.dataset.enabled = "true";
         privateModeButton.title =
