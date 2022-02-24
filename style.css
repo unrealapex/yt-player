@@ -459,6 +459,7 @@ img {
 
 #queue-list {
   overflow-x: scroll;
+  overflow-y: none;
   display: flex;
 /*   justify-content: space-evenly; */
   justify-content: flex-start
