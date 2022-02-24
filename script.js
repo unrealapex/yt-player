@@ -2,6 +2,7 @@
 // TODO: use overlay instead of modal for queue
 // FIXME: make current queue item automatically select the first item in queue a the video to be played
 // TODO: redesign queue layout and functioning
+// FIXME: fix queue number updating
 
 // globals
 var url;
@@ -568,7 +569,7 @@ function getThumbnail(index) {
 
   // thumbnailImage.loading = "lazy";
   thumbnail.title = queue[index];
-  x.title = "delete video from queue";
+  x.title = "remove video from queue";
   // sets the thumbnail image's source to the url of the thumbnail image
   thumbnailImage.src =
     "https://i.ytimg.com/vi/" +
