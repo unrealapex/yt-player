@@ -429,6 +429,7 @@ details,
 
 .x:hover {
   color: rgba(255,0,0,1);
+  font-size: 15rem;
 }
 
 .current-video {
