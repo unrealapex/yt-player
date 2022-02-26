@@ -298,12 +298,6 @@ function clearNotification() {
 
 // keyboard shortcuts event listener
 document.addEventListener("keydown", (event) => {
-  for (let i in shortcutKeys) {
-    if (event.key === shortcutKeys[i]) {
-      event.preventDefault();
-      break;
-    }
-  }
   if (event.key === "r" && overlay.style.display == "block") {
     loadVideo(videoId);
   } else if (
