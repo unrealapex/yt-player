@@ -297,34 +297,34 @@ function clearNotification() {
 }
 
 // keyboard shortcuts event listener
-document.addEventListener("keydown", (event) => {
-  if (event.key === "r" && overlay.style.display == "block") {
+document.addEventListener("keydown", (e) => {
+  if (e.key === "r" && overlay.style.display == "block") {
     loadVideo(videoId);
   } else if (
-    (event.key === "Escape" || event.key === "x") &&
+    (e.key === "Escape" || e.key === "x") &&
     document.fullscreenElement === null &&
     overlay.style.display == "block"
   ) {
     minimizeOverlay();
     inputField.select();
   } else if (
-    event.key === "f" &&
+    e.key === "f" &&
     document.fullscreenElement === null &&
     overlay.style.display == "block"
   ) {
     openFullscreen();
   } else if (
-    (event.key === "m" || event.key === "_") &&
+    (e.key === "m" || e.key === "_") &&
     overlay.style.display == "block"
   ) {
     minimizeOverlay();
   } else if (
-    (event.key === "o" || event.key === "+") &&
+    (e.key === "o" || e.key === "+") &&
     overlay.style.display == "none" &&
     iframe.src.length != 0
   ) {
     overlay.style.display = "block";
-  } else if (event.key === "?") {
+  } else if (e.key === "?") {
     if (
       shortcutsModal.style.display === "" ||
       shortcutsModal.style.display === "none"
@@ -338,8 +338,8 @@ document.addEventListener("keydown", (event) => {
 });
 
 // When the user clicks anywhere outside of the modal, close it
-window.onclick = (event) => {
-  if (event.target == shortcutsModal) {
+window.onclick = (e) => {
+  if (e.target == shortcutsModal) {
     shortcutsModal.style.display = "none";
   }
 };
@@ -368,15 +368,15 @@ document.addEventListener("visibilitychange", () => {
   }
 });
 
-inputField.addEventListener("keydown", (event) => {
-  if (event.key === "Enter") {
+inputField.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") {
     form.submit();
   }
 });
 
 // option click handler
-optionsDiv.addEventListener("click", (event) => {
-  switch (event.target.id) {
+optionsDiv.addEventListener("click", (e) => {
+  switch (e.target.id) {
     case "private-mode":
       if (privateMode()) {
         privateModeButton.dataset.enabled = "false";
