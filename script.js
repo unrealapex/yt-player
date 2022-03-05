@@ -415,5 +415,5 @@ $(function() {
       default:
         console.error("error: unknown button clicked in options dropdown");
     }
-});
+  });
 });
