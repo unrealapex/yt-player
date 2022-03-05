@@ -1,4 +1,5 @@
-// import jquery from 'https://cdn.skypack.dev/jquery';
+// TODO: use jQuery hide and show methods instead of adding and removing hidden class
+
 $(function() {
   // globals
   // player URL
@@ -66,24 +67,24 @@ $(function() {
     if ($inputField.value.length === 0) {
       clearNotification();
       $inputField.className = "";
-      playButton.style.color = "#1a1a1a";
-      playButton.className = "";
-      playButton.disabled = true;
+      $playButton.css("color", "#1a1a1a");
+      $playButton.className = "";
+      $playButton.disabled = true;
       // if the url in the input is valid
     } else if (urlValidator.test($inputField.value)) {
       clearNotification();
       $inputField.className = "correct";
-      playButton.className = "valid";
-      playButton.style.color = "#1a1a1a";
-      playButton.disabled = false;
-      // playButton.focus();
+      $playButton.className = "valid";
+      $playButton.css("color", "#1a1a1a");
+      $playButton.disabled = false;
+      // $playButton.focus();
       // if the url in the input is invalid
     } else {
       setNotification("enter a valid url", -1);
       $inputField.className = "wrong";
-      playButton.className = "";
-      playButton.disabled = true;
-      playButton.style.color = "#c6262e";
+      $playButton.className = "";
+      $playButton.disabled = true;
+      $playButton.css("color", "#c6262e");
     }
   }
 
@@ -95,6 +96,7 @@ $(function() {
     if ($iframe.src.length !== undefined && $iframe.src.includes(videoId)) {
       $expandBox.classList.add("hidden");
       $overlay.style.display = "block";
+      // $overlay.css("display", "block");
     } else {
       loadVideo(videoId);
     }
@@ -105,7 +107,7 @@ $(function() {
   // take parameter videoId(string)
   function loadVideo(videoId) {
     // isLoaded = true;
-    $overlay.style.display = "block";
+    $overlay.css("display", "block");
     $expandBox.classList.add("hidden");
     $loader.classList.remove("hidden");
     // var valuesAtLoad = [document.querySelector("#load-fullscreen").value, document.querySelector("#private-mode").value];
@@ -159,16 +161,16 @@ $(function() {
     $iframe.src = "";
     // expandButton.disabled = true;
     $inputField.className = "";
-    playButton.className = "";
-    playButton.style.color = "#1a1a1a";
-    playButton.disabled = true;
+    $playButton.className = "";
+    $playButton.css("color", "#1a1a1a");
+    $playButton.disabled = true;
     $inputField.value = "";
     $inputField.focus();
     // document.querySelector("#private-mode").checked = false;
     $privateModeButton.dataset.enabled = "false";
     $privateModeButton.title =
       "private mode is currently disabled(click to enable)";
-    $privateModeButton.style.backgroundColor = "rgb(249, 249, 249)";
+    $privateModeButton.css("background-color", "rgb(249, 249, 249)");
     clearNotification();
   }
 
@@ -272,7 +274,7 @@ $(function() {
   // takes parameters message(string), level(integer), and duration(float)
   function setNotification(message, level = 0, duration = 0) {
     // level 0 is a normal message, level 1 is a "correct" message, and level -1 is an "error" message
-    $notification.innerHTML = message;
+    $notification.text(message);
     if (level === 0) {
       $notification.className = "normal";
     } else if (level === 1) {
@@ -294,7 +296,7 @@ $(function() {
 
   // clears notification
   function clearNotification() {
-    $notification.innerHTML = "";
+    $notification.text("");
     $notification.className = "";
   }
 
@@ -384,13 +386,13 @@ $(function() {
           $privateModeButton.dataset.enabled = "false";
           $privateModeButton.title =
             "private mode is currently disabled(click to enable)";
-          $privateModeButton.style.backgroundColor = "rgb(249, 249, 249)";
+          $privateModeButton.css("background-color", "rgb(249, 249, 249)");
         } else {
           $privateModeButton.dataset.enabled = "true";
           $privateModeButton.title =
             "private mode is currently enabled(click to disable)";
           // document.querySelector("#private-mode").style.backgroundColor = "#68b723";
-          $privateModeButton.style.backgroundColor = "lightgreen";
+          $privateModeButton.css("background-color", "lightgreen");
         }
         loadVideo(videoId);
         break;
