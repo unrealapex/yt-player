@@ -5,31 +5,31 @@ var url = "";
 // player video id
 var videoId = "";
 // player iframe
-const iframe = document.querySelector("iframe");
+const $iframe = $("iframe");
 // input where user enters YouTube url to play
-const inputField = document.querySelector("#input-field");
+const $inputField = $("#input-field");
 // button to play YouTube video url entered
-const playButton = document.querySelector("#play");
+const $playButton = $("#play");
 // overlay that video player iframe is shown
-const overlay = document.querySelector("#overlay");
+const $overlay = $("#overlay");
 // notification that shows errors and information
-const notification = document.querySelector("#notification");
+const $notification = $("#notification");
 // loading text that displays when video is loading
-const loader = document.querySelector("#loader");
+const $loader = $("#loader");
 // modal that shows all the availible shortcuts in the video player
-const shortcutsModal = document.querySelector("#shortcuts-modal");
+const $shortcutsModal = $("#shortcuts-modal");
 // url submission form
-const form = document.querySelector("form");
+const $form = $("form");
 // parent for button and video thumbnail that appear when a video is minimized
-const expandBox = document.querySelector("#expand-box");
-const thumbnail = document.querySelector("#thumbnail");
+const $expandBox = $("#expand-box");
+const $thumbnail = $("#thumbnail");
 // parent div of options dropdown
-const optionsDiv = document.querySelector("#options-div");
+const $optionsDiv = $("#options-div");
 // button that toggles private mode
-const privateModeButton = document.querySelector("#private-mode");
+const $privateModeButton = $("#private-mode");
 // checks if the video is loaded or not
 var isLoaded = () =>
-  iframe.readyState == "complete" || "interactive" ? true : false;
+  $iframe.readyState == "complete" || "interactive" ? true : false;
 // determines if the video should be loaded with a YouTube privacy enhanced URL or a regular YouTube embed url
 var privateMode = () =>
   JSON.parse(document.querySelector("#private-mode").dataset.enabled);
@@ -49,7 +49,7 @@ const whiteSpaceRE = /\s/g;
 
 function getVideoURL() {
   // gets our url from the input field
-  url = inputField.value;
+  url = $inputField.value;
   // checks if there is whitespace in the url, if there is, reassign the url to the string with the whitespace removed
   let hasWhiteSpace = whiteSpaceRE.test(url);
   url = hasWhiteSpace ? url.replace(/\s/g, "") : url;
@@ -62,16 +62,16 @@ function getVideoURL() {
 // checks if url given is valid
 function validate() {
   // if the input is blank
-  if (inputField.value.length === 0) {
+  if ($inputField.value.length === 0) {
     clearNotification();
-    inputField.className = "";
+    $inputField.className = "";
     playButton.style.color = "#1a1a1a";
     playButton.className = "";
     playButton.disabled = true;
     // if the url in the input is valid
-  } else if (urlValidator.test(inputField.value)) {
+  } else if (urlValidator.test($inputField.value)) {
     clearNotification();
-    inputField.className = "correct";
+    $inputField.className = "correct";
     playButton.className = "valid";
     playButton.style.color = "#1a1a1a";
     playButton.disabled = false;
@@ -79,7 +79,7 @@ function validate() {
     // if the url in the input is invalid
   } else {
     setNotification("enter a valid url", -1);
-    inputField.className = "wrong";
+    $inputField.className = "wrong";
     playButton.className = "";
     playButton.disabled = true;
     playButton.style.color = "#c6262e";
@@ -91,9 +91,9 @@ function validate() {
 function getId(url) {
   // strips the video id from our url
   videoId = videoIdExtractor.exec(url)[2];
-  if (iframe.src.length !== undefined && iframe.src.includes(videoId)) {
-    expandBox.classList.add("hidden");
-    overlay.style.display = "block";
+  if ($iframe.src.length !== undefined && $iframe.src.includes(videoId)) {
+    $expandBox.classList.add("hidden");
+    $overlay.style.display = "block";
   } else {
     loadVideo(videoId);
   }
@@ -104,29 +104,29 @@ function getId(url) {
 // take parameter videoId(string)
 function loadVideo(videoId) {
   // isLoaded = true;
-  overlay.style.display = "block";
-  expandBox.classList.add("hidden");
-  loader.classList.remove("hidden");
+  $overlay.style.display = "block";
+  $expandBox.classList.add("hidden");
+  $loader.classList.remove("hidden");
   // var valuesAtLoad = [document.querySelector("#load-fullscreen").value, document.querySelector("#private-mode").value];
   // expandButton.disabled = true;
   if (privateMode()) {
     // sets the video player iframe's url to a youtube privacy-enhanced url(video doesn't show up on user's youtube search history) if the user has enabled Privacy Mode
-    iframe.src = `https://www.youtube-nocookie.com/embed/${videoId}?dnt=1`;
+    $iframe.src = `https://www.youtube-nocookie.com/embed/${videoId}?dnt=1`;
   } else {
     // sets the video player iframe's url to a youtube embed url (default)
-    iframe.src = `https://www.youtube.com/embed/${videoId}`;
+    $iframe.src = `https://www.youtube.com/embed/${videoId}`;
   }
 
   // focus iframe when it has loaded
-  iframe.onload = () => {
-    iframe.focus();
+  $iframe.onload = () => {
+    $iframe.focus();
   };
 }
 
 // toggles fullscreen for the iframe
 function openFullscreen() {
   // puts the player in full screen mode
-  var player = iframe;
+  var player = $iframe;
   if (player.src.length !== 0 && isLoaded()) {
     if (player.requestFullscreen) {
       player.requestFullscreen();
@@ -155,19 +155,19 @@ function openFullscreen() {
 function reset() {
   // allows the user to reset the player if they entered an invalid url or ran into another problem
   url = "";
-  iframe.src = "";
+  $iframe.src = "";
   // expandButton.disabled = true;
-  inputField.className = "";
+  $inputField.className = "";
   playButton.className = "";
   playButton.style.color = "#1a1a1a";
   playButton.disabled = true;
-  inputField.value = "";
-  inputField.focus();
+  $inputField.value = "";
+  $inputField.focus();
   // document.querySelector("#private-mode").checked = false;
-  privateModeButton.dataset.enabled = "false";
-  privateModeButton.title =
+  $privateModeButton.dataset.enabled = "false";
+  $privateModeButton.title =
     "private mode is currently disabled(click to enable)";
-  privateModeButton.style.backgroundColor = "rgb(249, 249, 249)";
+  $privateModeButton.style.backgroundColor = "rgb(249, 249, 249)";
   clearNotification();
 }
 
@@ -240,9 +240,9 @@ function sleep(duration) {
 
 // closes player video overlay
 function closeOverlay() {
-  overlay.style.display = "none";
-  expandBox.classList.add("hidden");
-  thumbnail.src = "";
+  $overlay.style.display = "none";
+  $expandBox.classList.add("hidden");
+  $thumbnail.src = "";
   reset();
 }
 
@@ -250,34 +250,34 @@ function closeOverlay() {
 function minimizeOverlay() {
   // inputField.focus();
   // inputField.select();
-  overlay.style.display = "none";
+  $overlay.style.display = "none";
   if (isLoaded()) {
-    expandBox.classList.remove("hidden");
+    $expandBox.classList.remove("hidden");
     if (
-      thumbnail.src !==
+      $thumbnail.src !==
       "https://i.ytimg.com/vi/" + videoId + "/mqdefault.jpg"
     ) {
-      thumbnail.src = "https://i.ytimg.com/vi/" + videoId + "/mqdefault.jpg";
+      $thumbnail.src = "https://i.ytimg.com/vi/" + videoId + "/mqdefault.jpg";
     }
     // expandButton.disabled = false;
     // expandButton.focus();
   } else {
-    expandBox.classList.add("hidden");
-    thumbnail.src = "";
+    $expandBox.classList.add("hidden");
+    $thumbnail.src = "";
   }
 }
 
-// sets notification, levels show different notification colors, duration determines how long notification appears on screen
+// sets $notification, levels show different $notification colors, duration determines how long $notification appears on screen
 // takes parameters message(string), level(integer), and duration(float)
 function setNotification(message, level = 0, duration = 0) {
   // level 0 is a normal message, level 1 is a "correct" message, and level -1 is an "error" message
-  notification.innerHTML = message;
+  $notification.innerHTML = message;
   if (level === 0) {
-    notification.className = "normal";
+    $notification.className = "normal";
   } else if (level === 1) {
-    notification.className = "correct";
+    $notification.className = "correct";
   } else if (level === -1) {
-    notification.className = "wrong";
+    $notification.className = "wrong";
   } else {
     console.error("Error setting notification");
   }
@@ -293,46 +293,46 @@ function setNotification(message, level = 0, duration = 0) {
 
 // clears notification
 function clearNotification() {
-  notification.innerHTML = "";
-  notification.className = "";
+  $notification.innerHTML = "";
+  $notification.className = "";
 }
 
 // keyboard shortcuts event listener
 document.addEventListener("keydown", (e) => {
-  if (e.key === "r" && overlay.style.display == "block") {
+  if (e.key === "r" && $overlay.style.display == "block") {
     loadVideo(videoId);
   } else if (
     (e.key === "Escape" || e.key === "x") &&
     document.fullscreenElement === null &&
-    overlay.style.display == "block"
+    $overlay.style.display == "block"
   ) {
     minimizeOverlay();
-    inputField.select();
+    $inputField.select();
   } else if (
     e.key === "f" &&
     document.fullscreenElement === null &&
-    overlay.style.display == "block"
+    $overlay.style.display == "block"
   ) {
     openFullscreen();
   } else if (
     (e.key === "m" || e.key === "_") &&
-    overlay.style.display == "block"
+    $overlay.style.display == "block"
   ) {
     minimizeOverlay();
   } else if (
     (e.key === "o" || e.key === "+") &&
-    overlay.style.display == "none" &&
-    iframe.src.length != 0
+    $overlay.style.display == "none" &&
+    $iframe.src.length != 0
   ) {
-    overlay.style.display = "block";
+    $overlay.style.display = "block";
   } else if (e.key === "?") {
     if (
-      shortcutsModal.style.display === "" ||
-      shortcutsModal.style.display === "none"
+      $shortcutsModal.style.display === "" ||
+      $shortcutsModal.style.display === "none"
     ) {
-      shortcutsModal.style.display = "block";
+      $shortcutsModal.style.display = "block";
     } else {
-      shortcutsModal.style.display = "none";
+      $shortcutsModal.style.display = "none";
     }
   } else {
   }
@@ -340,14 +340,14 @@ document.addEventListener("keydown", (e) => {
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = (e) => {
-  if (e.target == shortcutsModal) {
-    shortcutsModal.style.display = "none";
+  if (e.target == $shortcutsModal) {
+    $shortcutsModal.style.display = "none";
   }
 };
 
 // hide the loader every time a video loads in the iframe
-iframe.addEventListener("load", () => {
-  loader.classList.add("hidden");
+$iframe.addEventListener("load", () => {
+  $loader.classList.add("hidden");
 });
 
 // event listener that listens for successful form submissions
@@ -356,11 +356,11 @@ document.querySelector("form").addEventListener("submit", () => {
   getVideoURL();
 });
 
-expandBox.addEventListener("click", () => {
-  overlay.style.display = "block";
+$expandBox.addEventListener("click", () => {
+  $overlay.style.display = "block";
   // expandButton.disabled = "true";
-  expandBox.classList.add("hidden");
-  thumbnail.src = "";
+  $expandBox.classList.add("hidden");
+  $thumbnail.src = "";
 });
 
 document.addEventListener("visibilitychange", () => {
@@ -369,27 +369,27 @@ document.addEventListener("visibilitychange", () => {
   }
 });
 
-inputField.addEventListener("keydown", (e) => {
+$inputField.addEventListener("keydown", (e) => {
   if (e.key === "Enter") {
-    form.submit();
+    $form.submit();
   }
 });
 
 // option click handler
-optionsDiv.addEventListener("click", (e) => {
+$optionsDiv.addEventListener("click", (e) => {
   switch (e.target.id) {
     case "private-mode":
       if (privateMode()) {
-        privateModeButton.dataset.enabled = "false";
-        privateModeButton.title =
+        $privateModeButton.dataset.enabled = "false";
+        $privateModeButton.title =
           "private mode is currently disabled(click to enable)";
-        privateModeButton.style.backgroundColor = "rgb(249, 249, 249)";
+        $privateModeButton.style.backgroundColor = "rgb(249, 249, 249)";
       } else {
-        privateModeButton.dataset.enabled = "true";
-        privateModeButton.title =
+        $privateModeButton.dataset.enabled = "true";
+        $privateModeButton.title =
           "private mode is currently enabled(click to disable)";
         // document.querySelector("#private-mode").style.backgroundColor = "#68b723";
-        privateModeButton.style.backgroundColor = "lightgreen";
+        $privateModeButton.style.backgroundColor = "lightgreen";
       }
       loadVideo(videoId);
       break;
