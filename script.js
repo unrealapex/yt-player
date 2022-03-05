@@ -1,4 +1,4 @@
-import jquery from 'https://cdn.skypack.dev/jquery';
+// import jquery from 'https://cdn.skypack.dev/jquery';
 // globals
 // player URL
 var url = "";
