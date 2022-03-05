@@ -95,7 +95,7 @@ $(function() {
     videoId = videoIdExtractor.exec(url)[2];
     if ($iframe.src.length !== undefined && $iframe.src.includes(videoId)) {
       $expandBox.classList.add("hidden");
-      $overlay.style.display = "block";
+      $overlay.show();
       // $overlay.css("display", "block");
     } else {
       loadVideo(videoId);
@@ -243,7 +243,7 @@ $(function() {
 
   // closes player video overlay
   function closeOverlay() {
-    $overlay.style.display = "none";
+    $overlay.hide();
     $expandBox.classList.add("hidden");
     $thumbnail.src = "";
     reset();
@@ -253,7 +253,7 @@ $(function() {
   function minimizeOverlay() {
     // inputField.focus();
     // inputField.select();
-    $overlay.style.display = "none";
+    $overlay.hide();
     if (isLoaded()) {
       $expandBox.classList.remove("hidden");
       if (
@@ -327,15 +327,15 @@ $(function() {
       $overlay.style.display == "none" &&
       $iframe.src.length != 0
     ) {
-      $overlay.style.display = "block";
+      $overlay.show();
     } else if (e.key === "?") {
       if (
         $shortcutsModal.style.display === "" ||
         $shortcutsModal.style.display === "none"
       ) {
-        $shortcutsModal.style.display = "block";
+        $shortcutsModal.show();
       } else {
-        $shortcutsModal.style.display = "none";
+        $shortcutsModal.hide();
       }
     } else {
     }
@@ -344,7 +344,7 @@ $(function() {
   // When the user clicks anywhere outside of the modal, close it
   window.onclick = (e) => {
     if (e.target == $shortcutsModal) {
-      $shortcutsModal.style.display = "none";
+      $shortcutsModal.hide();
     }
   };
 
@@ -360,7 +360,7 @@ $(function() {
   });
 
   $expandBox.addEventListener("click", () => {
-    $overlay.style.display = "block";
+    $overlay.show();
     // expandButton.disabled = "true";
     $expandBox.classList.add("hidden");
     $thumbnail.src = "";
