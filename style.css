@@ -325,12 +325,12 @@ img {
 
 .no-select,
 .overlay-buttons {
-  -webkit-touch-callout: none;    /* iOS Safari */
-  -webkit-user-select: none;      /* Safari */
-  -khtml-user-select: none;       /* Konqueror HTML */
-  -moz-user-select: none;         /* Old versions of Firefox */
-  -ms-user-select: none;          /* Internet Explorer/Edge */
-  user-select: none;              /* Non-prefixed version, currently
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
                                   supported by Chrome, Edge, Opera and Firefox */
 }
 
@@ -356,13 +356,17 @@ img {
 }
 
 #options-button {
-  color: black;
+  color: white;
   transition-duration: 1s;
+  border: 3px solid #a56de2;
   border-radius: 0.4rem;
   padding: 0.5rem;
   float: right;
 }
 
+/* #options-button:hover {
+  color: black;
+} */
 #options-dropdown {
   border-radius: 0.2rem;
   display: none;
@@ -396,7 +400,7 @@ img {
 }
 
 #options-div:hover #options-button {
-  background-color: lightgray;
+  color: black;
 }
 
 /* #private-mode[data-enabled="true"] {
