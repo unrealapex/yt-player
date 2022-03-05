@@ -94,7 +94,7 @@ $(function() {
     // strips the video id from our url
     videoId = videoIdExtractor.exec(url)[2];
     if ($iframe.src.length !== undefined && $iframe.src.includes(videoId)) {
-      $expandBox.classList.add("hidden");
+      $expandBox.hide();
       $overlay.show();
       // $overlay.css("display", "block");
     } else {
@@ -108,8 +108,8 @@ $(function() {
   function loadVideo(videoId) {
     // isLoaded = true;
     $overlay.css("display", "block");
-    $expandBox.classList.add("hidden");
-    $loader.classList.remove("hidden");
+    $expandBox.hide();
+    $loader.show();
     // var valuesAtLoad = [document.querySelector("#load-fullscreen").value, document.querySelector("#private-mode").value];
     // expandButton.disabled = true;
     if (privateMode()) {
@@ -244,7 +244,7 @@ $(function() {
   // closes player video overlay
   function closeOverlay() {
     $overlay.hide();
-    $expandBox.classList.add("hidden");
+    $expandBox.hide();
     $thumbnail.src = "";
     reset();
   }
@@ -255,7 +255,7 @@ $(function() {
     // inputField.select();
     $overlay.hide();
     if (isLoaded()) {
-      $expandBox.classList.remove("hidden");
+      $expandBox.show();
       if (
         $thumbnail.src !==
         "https://i.ytimg.com/vi/" + videoId + "/mqdefault.jpg"
@@ -265,7 +265,7 @@ $(function() {
       // expandButton.disabled = false;
       // expandButton.focus();
     } else {
-      $expandBox.classList.add("hidden");
+      $expandBox.hide();
       $thumbnail.src = "";
     }
   }
@@ -350,7 +350,7 @@ $(function() {
 
   // hide the loader every time a video loads in the iframe
   $iframe.addEventListener("load", () => {
-    $loader.classList.add("hidden");
+    $loader.hide();
   });
 
   // event listener that listens for successful form submissions
@@ -362,7 +362,7 @@ $(function() {
   $expandBox.addEventListener("click", () => {
     $overlay.show();
     // expandButton.disabled = "true";
-    $expandBox.classList.add("hidden");
+    $expandBox.hide();
     $thumbnail.src = "";
   });
 
