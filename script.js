@@ -301,7 +301,7 @@ $(function() {
   }
 
   // keyboard shortcuts event listener
-  document.addEventListener("keydown", (e) => {
+  $(document).addEventListener("keydown", (e) => {
     if (e.key === "r" && $overlay.style.display == "block") {
       loadVideo(videoId);
     } else if (
@@ -366,7 +366,7 @@ $(function() {
     $thumbnail.src = "";
   });
 
-  document.addEventListener("visibilitychange", () => {
+  $(document).addEventListener("visibilitychange", () => {
     if (document.visibilityState == "visible") {
       window.focus();
     }
