@@ -351,7 +351,7 @@ iframe.addEventListener("load", () => {
 
 // event listener that listens for successful form submissions
 // if the input field is submitted successfully, get the video url via the getVideoURL() function
-document.querySelector("form").addEventListener("submit", () => {
+form.addEventListener("submit", () => {
   getVideoURL();
 });
 
