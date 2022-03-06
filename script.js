@@ -1,5 +1,4 @@
-// TODO: use jQuery hide and show methods instead of adding and removing hidden class
-
+// WARNING: CODE HAS NOT BEEN TESTED
 $(function() {
   // globals
   // player URL
@@ -301,7 +300,7 @@ $(function() {
   }
 
   // keyboard shortcuts event listener
-  $(document).addEventListener("keydown", (e) => {
+  $(document).on("keydown", function(e) { 
     if (e.key === "r" && $overlay.style.display == "block") {
       loadVideo(videoId);
     } else if (
@@ -349,37 +348,37 @@ $(function() {
   };
 
   // hide the loader every time a video loads in the iframe
-  $iframe.addEventListener("load", () => {
+  $iframe.on("load", function() {
     $loader.hide();
   });
 
   // event listener that listens for successful form submissions
   // if the input field is submitted successfully, get the video url via the getVideoURL() function
-  document.querySelector("form").addEventListener("submit", () => {
+  $("form").on("submit", function() {
     getVideoURL();
   });
 
-  $expandBox.addEventListener("click", () => {
+  $expandBox.on("click", function() {
     $overlay.show();
     // expandButton.disabled = "true";
     $expandBox.hide();
     $thumbnail.src = "";
   });
 
-  $(document).addEventListener("visibilitychange", () => {
+  $(document).on("visibilitychange", function() {
     if (document.visibilityState == "visible") {
       window.focus();
     }
   });
 
-  $inputField.addEventListener("keydown", (e) => {
+  $inputField.on("keydown", function(e) {
     if (e.key === "Enter") {
       $form.submit();
     }
   });
 
   // option click handler
-  $optionsDiv.addEventListener("click", (e) => {
+  $optionsDiv.on("click", function(e) {
     switch (e.target.id) {
       case "private-mode":
         if (privateMode()) {
