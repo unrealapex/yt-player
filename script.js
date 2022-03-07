@@ -72,15 +72,15 @@ $(function() {
       // if the url in the input is valid
     } else if (urlValidator.test($inputField.val())) {
       clearNotification();
-      $inputField.className = "correct";
-      $playButton.className = "valid";
+      $inputField.addClass("correct");
+      $playButton.addClass("valid");
       $playButton.css("color", "#1a1a1a");
       $playButton.prop("disabled", false);
       // $playButton.focus();
       // if the url in the input is invalid
     } else {
       setNotification("enter a valid url", -1);
-      $inputField.className = "wrong";
+      $inputField.addClass("wrong");
       $playButton.removeClass();
       $playButton.prop("disabled", true);
       $playButton.css("color", "#c6262e");
@@ -276,11 +276,11 @@ $(function() {
     // level 0 is a normal message, level 1 is a "correct" message, and level -1 is an "error" message
     $notification.text(message);
     if (level === 0) {
-      $notification.className = "normal";
+      $notification.addClass("normal");
     } else if (level === 1) {
-      $notification.className = "correct";
+      $notification.addClass("correct");
     } else if (level === -1) {
-      $notification.className = "wrong";
+      $notification.addClass("wrong");
     } else {
       console.error("Error setting notification");
     }
