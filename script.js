@@ -65,24 +65,24 @@ $(function() {
     // if the input is blank
     if ($inputField.val().length === 0) {
       clearNotification();
-      $inputField.className = "";
+      $inputField.removeClass();
       $playButton.css("color", "#1a1a1a");
-      $playButton.className = "";
-      $playButton.disabled = true;
+      $playButton.removeClass();
+      $playButton.prop("disabled", true);
       // if the url in the input is valid
     } else if (urlValidator.test($inputField.val())) {
       clearNotification();
       $inputField.className = "correct";
       $playButton.className = "valid";
       $playButton.css("color", "#1a1a1a");
-      $playButton.disabled = false;
+      $playButton.prop("disabled", false);
       // $playButton.focus();
       // if the url in the input is invalid
     } else {
       setNotification("enter a valid url", -1);
       $inputField.className = "wrong";
-      $playButton.className = "";
-      $playButton.disabled = true;
+      $playButton.removeClass();
+      $playButton.prop("disabled", true);
       $playButton.css("color", "#c6262e");
     }
   }
@@ -159,10 +159,10 @@ $(function() {
     url = "";
     $iframe.src = "";
     // expandButton.disabled = true;
-    $inputField.className = "";
-    $playButton.className = "";
+    $inputField.removeClass();
+    $playButton.removeClass();
     $playButton.css("color", "#1a1a1a");
-    $playButton.disabled = true;
+    $playButton.prop("disabled", true);
     $inputField.val("");
     $inputField.focus();
     // document.querySelector("#private-mode").checked = false;
@@ -296,7 +296,7 @@ $(function() {
   // clears notification
   function clearNotification() {
     $notification.text("");
-    $notification.className = "";
+    $notification.removeClass();
   }
 
   // keyboard shortcuts event listener
@@ -415,4 +415,32 @@ $(function() {
         console.error("error: unknown button clicked in options dropdown");
     }
   });
+
+  $inputField.on("input", function() {
+    validate();
+  })
+
+  $playButton.on("click", function() {
+    $form.submit();
+  });
+
+  $("button:contains('close')").on("click", function() {
+    closeOverlay();
+  });
+
+  $("button:contains('check_box_outline_blank')").on("click", function() {
+    openFullscreen();
+  });
+
+  $("button:contains('minimize')").on("click", function() {
+    minimizeOverlay();
+    });
+
+  $("#close").on("click", function() {
+    $shortcutsModal.hide();
+  });
+
+  // $("#").on("click", function() {
+
+  // });
 });

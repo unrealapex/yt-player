@@ -61,7 +61,6 @@
               <input
                 id="input-field"
                 type="url"
-                oninput="validate()"
                 autofocus
                 required
                 placeholder="enter youtube video url"
@@ -72,7 +71,6 @@
               />
               <button
                 id="play"
-                onclick="document.querySelector('form').submit();"
                 title="play video url"
                 disabled
               >
@@ -109,21 +107,18 @@
           <button
             class="overlay-buttons transparent-button material-icons-round"
             title="close"
-            onclick="closeOverlay()"
           >
             close
           </button>
           <button
             class="overlay-buttons transparent-button material-icons-round"
             title="maximize"
-            onclick="openFullscreen()"
           >
             check_box_outline_blank
           </button>
           <button
             class="overlay-buttons transparent-button material-icons-round"
             title="minimize"
-            onclick="minimizeOverlay()"
           >
             minimize
           </button>
@@ -165,7 +160,6 @@
         <span
           id="close"
           class="overlay-buttons transparent-button material-icons-round"
-          onclick='document.querySelector("#shortcuts-modal").style.display = "none"'
           >close</span
         >
         <h3>Keyboard Shortcuts</h3>
