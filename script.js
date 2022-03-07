@@ -106,7 +106,8 @@ $(function() {
   // take parameter videoId(string)
   function loadVideo(videoId) {
     // isLoaded = true;
-    $overlay.css("display", "block");
+    // $overlay.css("display", "block");
+    $overlay.show();
     $expandBox.hide();
     $loader.show();
     // var valuesAtLoad = [document.querySelector("#load-fullscreen").value, document.querySelector("#private-mode").value];
@@ -301,7 +302,7 @@ $(function() {
 
   // keyboard shortcuts event listener
   $(document).on("keydown", function(e) { 
-    if (e.key === "r" && $overlay.style.display == "block") {
+    if (e.key === "r" && $overlay.css("display") == "block") {
       loadVideo(videoId);
     } else if (
       (e.key === "Escape" || e.key === "x") &&
