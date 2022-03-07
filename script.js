@@ -50,7 +50,7 @@ $(function() {
 
   function getVideoURL() {
     // gets our url from the input field
-    url = $inputField.value;
+    url = $inputField.val();
     // checks if there is whitespace in the url, if there is, reassign the url to the string with the whitespace removed
     let hasWhiteSpace = whiteSpaceRE.test(url);
     url = hasWhiteSpace ? url.replace(/\s/g, "") : url;
@@ -63,14 +63,14 @@ $(function() {
   // checks if url given is valid
   function validate() {
     // if the input is blank
-    if ($inputField.value.length === 0) {
+    if ($inputField.val().length === 0) {
       clearNotification();
       $inputField.className = "";
       $playButton.css("color", "#1a1a1a");
       $playButton.className = "";
       $playButton.disabled = true;
       // if the url in the input is valid
-    } else if (urlValidator.test($inputField.value)) {
+    } else if (urlValidator.test($inputField.val())) {
       clearNotification();
       $inputField.className = "correct";
       $playButton.className = "valid";
@@ -163,7 +163,7 @@ $(function() {
     $playButton.className = "";
     $playButton.css("color", "#1a1a1a");
     $playButton.disabled = true;
-    $inputField.value = "";
+    $inputField.val("");
     $inputField.focus();
     // document.querySelector("#private-mode").checked = false;
     $privateModeButton.dataset.enabled = "false";
