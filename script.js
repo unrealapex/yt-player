@@ -94,7 +94,8 @@ $(function() {
   function getId(url) {
     // strips the video id from our url
     videoId = videoIdExtractor.exec(url)[2];
-    if ($iframe.src.length !== undefined && $iframe.src.includes(videoId)) {
+    alert($iframe.attr("src"));
+    if ($iframe.attr("src") !== undefined && $iframe.attr("src").includes(videoId)) {
       $expandBox.hide();
       $overlay.show();
       // $overlay.css("display", "block");
@@ -116,10 +117,10 @@ $(function() {
     // expandButton.disabled = true;
     if ($privateMode()) {
       // sets the video player iframe's url to a youtube privacy-enhanced url(video doesn't show up on user's youtube search history) if the user has enabled Privacy Mode
-      $iframe.src = `https://www.youtube-nocookie.com/embed/${videoId}?dnt=1`;
+      $iframe.attr("src", `https://www.youtube-nocookie.com/embed/${videoId}?dnt=1`);
     } else {
       // sets the video player iframe's url to a youtube embed url (default)
-      $iframe.src = `https://www.youtube.com/embed/${videoId}`;
+      $iframe.attr("src", `https://www.youtube.com/embed/${videoId}`);
     }
 
     // focus iframe when it has loaded
@@ -160,7 +161,7 @@ $(function() {
   function reset() {
     // allows the user to reset the player if they entered an invalid url or ran into another problem
     url = "";
-    $iframe.src = "";
+    $iframe.attr("src", "")
     // expandButton.disabled = true;
     $inputField.removeClass();
     $playButton.removeClass();
@@ -327,7 +328,7 @@ $(function() {
     } else if (
       (e.key === "o" || e.key === "+") &&
       $overlay.style.display == "none" &&
-      $iframe.src.length != 0
+      $iframe.attr("src").length != 0
     ) {
       $overlay.show();
     } else if (e.key === "?") {
