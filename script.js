@@ -32,8 +32,8 @@ $(function() {
   var isLoaded = () =>
     $iframe.readyState == "complete" || "interactive" ? true : false;
   // determines if the video should be loaded with a YouTube privacy enhanced URL or a regular YouTube embed url
-  var privateMode = () =>
-    JSON.parse(document.querySelector("#private-mode").dataset.enabled);
+  var $privateMode = () =>
+    JSON.parse($("#private-mode").dataset.enabled);
   // list of all shortcuts keys
   const shortcutKeys = ["r", "Escape", "x", "f", "m", "_", "o", "+", "?"];
 
@@ -112,7 +112,7 @@ $(function() {
     $loader.show();
     // var valuesAtLoad = [document.querySelector("#load-fullscreen").value, document.querySelector("#private-mode").value];
     // expandButton.disabled = true;
-    if (privateMode()) {
+    if ($privateMode()) {
       // sets the video player iframe's url to a youtube privacy-enhanced url(video doesn't show up on user's youtube search history) if the user has enabled Privacy Mode
       $iframe.src = `https://www.youtube-nocookie.com/embed/${videoId}?dnt=1`;
     } else {
@@ -382,7 +382,7 @@ $(function() {
   $optionsDiv.on("click", function(e) {
     switch (e.target.id) {
       case "private-mode":
-        if (privateMode()) {
+        if ($privateMode()) {
           $privateModeButton.dataset.enabled = "false";
           $privateModeButton.title =
             "private mode is currently disabled(click to enable)";
@@ -400,7 +400,7 @@ $(function() {
         loadVideo(videoId);
         break;
       case "open-video":
-        if (privateMode()) {
+        if ($privateMode()) {
           if (
             confirm(
               "Warning, this video is playing in private mode. If you open the video, it will show up as you viewing it and will not load if restricted mode is enabled for your YouTube account.\nDo you wish to still open the video?"
