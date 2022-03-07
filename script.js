@@ -29,11 +29,13 @@ $(function() {
   // button that toggles private mode
   const $privateModeButton = $("#private-mode");
   // checks if the video is loaded or not
-  var isLoaded = () =>
-    $iframe.readyState == "complete" || "interactive" ? true : false;
+  var isLoaded = function() {
+    return ($iframe.readyState == "complete" || "interactive" ? true : false);
+  }
   // determines if the video should be loaded with a YouTube privacy enhanced URL or a regular YouTube embed url
-  var $privateMode = () =>
+  var $privateMode = function() {
     JSON.parse($("#private-mode").dataset.enabled);
+  }
   // list of all shortcuts keys
   const shortcutKeys = ["r", "Escape", "x", "f", "m", "_", "o", "+", "?"];
 
@@ -121,7 +123,7 @@ $(function() {
     }
 
     // focus iframe when it has loaded
-    $iframe.onload = () => {
+    $iframe.onload = function() {
       $iframe.focus();
     };
   }
