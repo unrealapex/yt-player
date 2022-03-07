@@ -34,7 +34,7 @@ $(function() {
   }
   // determines if the video should be loaded with a YouTube privacy enhanced URL or a regular YouTube embed url
   var $privateMode = function() {
-    JSON.parse($("#private-mode").dataset.enabled);
+    JSON.parse($("#private-mode").data("enabled"));
   }
   // list of all shortcuts keys
   const shortcutKeys = ["r", "Escape", "x", "f", "m", "_", "o", "+", "?"];
@@ -94,7 +94,6 @@ $(function() {
   function getId(url) {
     // strips the video id from our url
     videoId = videoIdExtractor.exec(url)[2];
-    alert($iframe.attr("src"));
     if ($iframe.attr("src") !== undefined && $iframe.attr("src").includes(videoId)) {
       $expandBox.hide();
       $overlay.show();
