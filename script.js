@@ -169,7 +169,7 @@ $(function() {
     $inputField.val("");
     $inputField.focus();
     // document.querySelector("#private-mode").checked = false;
-    $privateModeButton.dataset.enabled = "false";
+    $privateModeButton.data("enabled", false);
     $privateModeButton.title =
       "private mode is currently disabled(click to enable)";
     $privateModeButton.css("background-color", "rgb(249, 249, 249)");
@@ -385,12 +385,12 @@ $(function() {
     switch (e.target.id) {
       case "private-mode":
         if ($privateMode()) {
-          $privateModeButton.dataset.enabled = "false";
+          $privateModeButton.data("enabled", false);
           $privateModeButton.title =
             "private mode is currently disabled(click to enable)";
           $privateModeButton.css("background-color", "rgb(249, 249, 249)");
         } else {
-          $privateModeButton.dataset.enabled = "true";
+          $privateModeButton.data("enabled", true);
           $privateModeButton.title =
             "private mode is currently enabled(click to disable)";
           // document.querySelector("#private-mode").style.backgroundColor = "#68b723";
