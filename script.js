@@ -304,37 +304,35 @@ $(function() {
 
   // keyboard shortcuts event listener
   $(document).on("keydown", function(e) { 
-    if (e.key === "r" && $overlay.css("display") == "block") {
+    if (e.key === "r" && $overlay.is(":visible")) {
       loadVideo(videoId);
     } else if (
       (e.key === "Escape" || e.key === "x") &&
       document.fullscreenElement === null &&
-      $overlay.style.display == "block"
+      $overlay.is(":visible")
     ) {
       minimizeOverlay();
       $inputField.select();
     } else if (
       e.key === "f" &&
       document.fullscreenElement === null &&
-      $overlay.style.display == "block"
+      $overlay.is(":visible")
     ) {
       openFullscreen();
     } else if (
       (e.key === "m" || e.key === "_") &&
-      $overlay.style.display == "block"
+      $overlay.is(":visible")
     ) {
       minimizeOverlay();
     } else if (
       (e.key === "o" || e.key === "+") &&
-      $overlay.style.display == "none" &&
+      $overlay.is(":hidden") &&
       $iframe.attr("src").length != 0
     ) {
       $overlay.show();
     } else if (e.key === "?") {
       if (
-        $shortcutsModal.style.display === "" ||
-        $shortcutsModal.style.display === "none"
-      ) {
+        $shortcutsModal.is(":hidden")) {
         $shortcutsModal.show();
       } else {
         $shortcutsModal.hide();
