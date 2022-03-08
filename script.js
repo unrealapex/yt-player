@@ -259,16 +259,16 @@ $(function() {
     if (isLoaded()) {
       $expandBox.show();
       if (
-        $thumbnail.src !==
-        "https://i.ytimg.com/vi/" + videoId + "/mqdefault.jpg"
+        $thumbnail.attr("src") !==
+        `https://i.ytimg.com/vi/${videoId}/mqdefault.jpg`
       ) {
-        $thumbnail.src = "https://i.ytimg.com/vi/" + videoId + "/mqdefault.jpg";
+        $thumbnail.attr("src", `https://i.ytimg.com/vi/${videoId}/mqdefault.jpg`);
       }
       // expandButton.disabled = false;
       // expandButton.focus();
     } else {
       $expandBox.hide();
-      $thumbnail.src = "";
+      $thumbnail.attr("src", "");
     }
   }
 
