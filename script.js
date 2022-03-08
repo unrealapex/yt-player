@@ -1,4 +1,3 @@
-// WARNING: CODE HAS NOT BEEN TESTED
 $(function() {
   // globals
   // player URL
@@ -440,8 +439,4 @@ $(function() {
   $("#close").on("click", function() {
     $shortcutsModal.hide();
   });
-
-  // $("#").on("click", function() {
-
-  // });
 });
