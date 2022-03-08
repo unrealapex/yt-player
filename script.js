@@ -61,14 +61,14 @@ $(function () {
 
   // checks if url given is valid
   function validate() {
-    // if the input is blank
+    // if the input field is blank
     if ($inputField.val().length === 0) {
       clearNotification();
       $inputField.removeClass();
       $playButton.css("color", "#1a1a1a");
       $playButton.removeClass();
       $playButton.prop("disabled", true);
-      // if the url in the input is valid
+      // if the url in the input field is valid
     } else if (urlValidator.test($inputField.val())) {
       clearNotification();
       $inputField.addClass("correct");
@@ -76,7 +76,7 @@ $(function () {
       $playButton.css("color", "#1a1a1a");
       $playButton.prop("disabled", false);
       // $playButton.focus();
-      // if the url in the input is invalid
+      // if the url in the input field is invalid
     } else {
       setNotification("enter a valid url", -1);
       $inputField.addClass("wrong");
@@ -107,8 +107,6 @@ $(function () {
   // loads the youtube video into the player iframe
   // take parameter videoId(string)
   function loadVideo(videoId) {
-    // isLoaded = true;
-    // $overlay.css("display", "block");
     $overlay.show();
     $expandBox.hide();
     $loader.show();
@@ -365,6 +363,7 @@ $(function () {
     getVideoURL();
   });
 
+  // show the overlay whe the user clicks on the video expand thumbnail
   $expandBox.on("click", function () {
     $overlay.show();
     // expandButton.disabled = "true";
@@ -372,12 +371,13 @@ $(function () {
     $thumbnail.attr("src", "");
   });
 
-  $(document).on("visibilitychange", function () {
-    if (document.visibilityState == "visible") {
-      window.focus();
-    }
-  });
+  // $(document).on("visibilitychange", function () {
+  //   if (document.visibilityState == "visible") {
+  //     window.focus();
+  //   }
+  // });
 
+  // submit URL form when the user presses enter in the input field
   $inputField.on("keydown", function (e) {
     if (e.key === "Enter") {
       $form.submit();
@@ -426,27 +426,33 @@ $(function () {
         console.error("error: unknown button clicked in options dropdown");
     }
   });
-
+  
+  // validate user input when they type or paste into the input field
   $inputField.on("input", function () {
     validate();
   });
 
+  // submit the URL form when the user clicks on the play button
   $playButton.on("click", function () {
     $form.submit();
   });
 
+  // overlay close overlay button
   $("button:contains('close')").on("click", function () {
     closeOverlay();
   });
 
+  // overlay fullscreen button
   $("button:contains('check_box_outline_blank')").on("click", function () {
     openFullscreen();
   });
 
+  // overlay minimize video button
   $("button:contains('minimize')").on("click", function () {
     minimizeOverlay();
   });
 
+  // close shortcuts modal button
   $("#close").on("click", function () {
     $shortcutsModal.hide();
   });
