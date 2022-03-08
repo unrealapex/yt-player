@@ -1,4 +1,4 @@
-$(function() {
+$(function () {
   // globals
   // player URL
   var url = "";
@@ -28,13 +28,13 @@ $(function() {
   // button that toggles private mode
   const $privateModeButton = $("#private-mode");
   // checks if the video is loaded or not
-  var isLoaded = function() {
-    return ($iframe.readyState == "complete" || "interactive" ? true : false);
-  }
+  var isLoaded = function () {
+    return $iframe.readyState == "complete" || "interactive" ? true : false;
+  };
   // determines if the video should be loaded with a YouTube privacy enhanced URL or a regular YouTube embed url
-  var $privateMode = function() {
+  var $privateMode = function () {
     return JSON.parse($("#private-mode").data("enabled"));
-  }
+  };
   // list of all shortcuts keys
   const shortcutKeys = ["r", "Escape", "x", "f", "m", "_", "o", "+", "?"];
 
@@ -93,7 +93,10 @@ $(function() {
   function getId(url) {
     // strips the video id from our url
     videoId = videoIdExtractor.exec(url)[2];
-    if ($iframe.attr("src") !== undefined && $iframe.attr("src").includes(videoId)) {
+    if (
+      $iframe.attr("src") !== undefined &&
+      $iframe.attr("src").includes(videoId)
+    ) {
       $expandBox.hide();
       $overlay.show();
       // $overlay.css("display", "block");
@@ -115,14 +118,17 @@ $(function() {
     // expandButton.disabled = true;
     if ($privateMode()) {
       // sets the video player iframe's url to a youtube privacy-enhanced url(video doesn't show up on user's youtube search history) if the user has enabled Privacy Mode
-      $iframe.attr("src", `https://www.youtube-nocookie.com/embed/${videoId}?dnt=1`);
+      $iframe.attr(
+        "src",
+        `https://www.youtube-nocookie.com/embed/${videoId}?dnt=1`
+      );
     } else {
       // sets the video player iframe's url to a youtube embed url (default)
       $iframe.attr("src", `https://www.youtube.com/embed/${videoId}`);
     }
 
     // focus iframe when it has loaded
-    $iframe.onload = function() {
+    $iframe.onload = function () {
       $iframe.focus();
     };
   }
@@ -159,7 +165,7 @@ $(function() {
   function reset() {
     // allows the user to reset the player if they entered an invalid url or ran into another problem
     url = "";
-    $iframe.attr("src", "")
+    $iframe.attr("src", "");
     // expandButton.disabled = true;
     $inputField.removeClass();
     $playButton.removeClass();
@@ -169,8 +175,10 @@ $(function() {
     $inputField.focus();
     // document.querySelector("#private-mode").checked = false;
     $privateModeButton.data("enabled", false);
-    $privateModeButton.attr("title", 
-      "private mode is currently disabled(click to enable)");
+    $privateModeButton.attr(
+      "title",
+      "private mode is currently disabled(click to enable)"
+    );
     $privateModeButton.css("background-color", "rgb(249, 249, 249)");
     clearNotification();
   }
@@ -188,7 +196,9 @@ $(function() {
           "Reason: no URL found"
       );
       alert(
-        "You haven't entered a URL to share" + "\n" + "Play a video and try again"
+        "You haven't entered a URL to share" +
+          "\n" +
+          "Play a video and try again"
       );
       getVideoURL();
     }
@@ -261,7 +271,10 @@ $(function() {
         $thumbnail.attr("src") !==
         `https://i.ytimg.com/vi/${videoId}/mqdefault.jpg`
       ) {
-        $thumbnail.attr("src", `https://i.ytimg.com/vi/${videoId}/mqdefault.jpg`);
+        $thumbnail.attr(
+          "src",
+          `https://i.ytimg.com/vi/${videoId}/mqdefault.jpg`
+        );
       }
       // expandButton.disabled = false;
       // expandButton.focus();
@@ -302,7 +315,7 @@ $(function() {
   }
 
   // keyboard shortcuts event listener
-  $(document).on("keydown", function(e) { 
+  $(document).on("keydown", function (e) {
     if (e.key === "r" && $overlay.is(":visible")) {
       loadVideo(videoId);
     } else if (
@@ -318,10 +331,7 @@ $(function() {
       $overlay.is(":visible")
     ) {
       openFullscreen();
-    } else if (
-      (e.key === "m" || e.key === "_") &&
-      $overlay.is(":visible")
-    ) {
+    } else if ((e.key === "m" || e.key === "_") && $overlay.is(":visible")) {
       minimizeOverlay();
     } else if (
       (e.key === "o" || e.key === "+") &&
@@ -330,8 +340,7 @@ $(function() {
     ) {
       $overlay.show();
     } else if (e.key === "?") {
-      if (
-        $shortcutsModal.is(":hidden")) {
+      if ($shortcutsModal.is(":hidden")) {
         $shortcutsModal.show();
       } else {
         $shortcutsModal.hide();
@@ -348,48 +357,52 @@ $(function() {
   };
 
   // hide the loader every time a video loads in the iframe
-  $iframe.on("load", function() {
+  $iframe.on("load", function () {
     $loader.hide();
   });
 
   // event listener that listens for successful form submissions
   // if the input field is submitted successfully, get the video url via the getVideoURL() function
-  $("form").on("submit", function() {
+  $("form").on("submit", function () {
     getVideoURL();
   });
 
-  $expandBox.on("click", function() {
+  $expandBox.on("click", function () {
     $overlay.show();
     // expandButton.disabled = "true";
     $expandBox.hide();
     $thumbnail.src = "";
   });
 
-  $(document).on("visibilitychange", function() {
+  $(document).on("visibilitychange", function () {
     if (document.visibilityState == "visible") {
       window.focus();
     }
   });
 
-  $inputField.on("keydown", function(e) {
+  $inputField.on("keydown", function (e) {
     if (e.key === "Enter") {
       $form.submit();
     }
   });
 
   // option click handler
-  $optionsDiv.on("click", function(e) {
+  $optionsDiv.on("click", function (e) {
     switch (e.target.id) {
       case "private-mode":
         if ($privateMode()) {
           $privateModeButton.data("enabled", false);
-          $privateModeButton.attr("title",
-            "private mode is currently disabled(click to enable)");
+          $privateModeButton.attr(
+            "title",
+            "private mode is currently disabled(click to enable)"
+          );
           $privateModeButton.css("background-color", "rgb(249, 249, 249)");
         } else {
           $privateModeButton.data("enabled", true);
-          $privateModeButton.attr("title",
-            "private mode is currently enabled(click to disable)");
+          $privateModeButton.attr(
+            "title",
+            "private mode is currently enabled(click to disable)"
+          );
           // document.querySelector("#private-mode").style.backgroundColor = "#68b723";
           $privateModeButton.css("background-color", "lightgreen");
         }
@@ -416,27 +429,27 @@ $(function() {
     }
   });
 
-  $inputField.on("input", function() {
+  $inputField.on("input", function () {
     validate();
-  })
+  });
 
-  $playButton.on("click", function() {
+  $playButton.on("click", function () {
     $form.submit();
   });
 
-  $("button:contains('close')").on("click", function() {
+  $("button:contains('close')").on("click", function () {
     closeOverlay();
   });
 
-  $("button:contains('check_box_outline_blank')").on("click", function() {
+  $("button:contains('check_box_outline_blank')").on("click", function () {
     openFullscreen();
   });
 
-  $("button:contains('minimize')").on("click", function() {
+  $("button:contains('minimize')").on("click", function () {
     minimizeOverlay();
-    });
+  });
 
-  $("#close").on("click", function() {
+  $("#close").on("click", function () {
     $shortcutsModal.hide();
   });
 });
