@@ -431,6 +431,11 @@ $(function () {
   $inputField.on("input", function () {
     validate();
   });
+  
+  // select the input field when the user clicks on it
+  $inputField.on("click", function () {
+    $inputField.select();
+  });
 
   // submit the URL form when the user clicks on the play button
   $playButton.on("click", function () {
