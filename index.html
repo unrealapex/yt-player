@@ -32,6 +32,7 @@
     />
     <link rel="manifest" href="/site.webmanifest" />
     <title>yt player</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="./script.js" defer></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -60,7 +61,6 @@
               <input
                 id="input-field"
                 type="url"
-                oninput="validate()"
                 autofocus
                 required
                 placeholder="enter youtube video url"
@@ -71,7 +71,6 @@
               />
               <button
                 id="play"
-                onclick="document.querySelector('form').submit();"
                 title="play video url"
                 disabled
               >
@@ -108,21 +107,18 @@
           <button
             class="overlay-buttons transparent-button material-icons-round"
             title="close"
-            onclick="closeOverlay()"
           >
             close
           </button>
           <button
             class="overlay-buttons transparent-button material-icons-round"
             title="maximize"
-            onclick="openFullscreen()"
           >
             check_box_outline_blank
           </button>
           <button
             class="overlay-buttons transparent-button material-icons-round"
             title="minimize"
-            onclick="minimizeOverlay()"
           >
             minimize
           </button>
@@ -164,7 +160,6 @@
         <span
           id="close"
           class="overlay-buttons transparent-button material-icons-round"
-          onclick='document.querySelector("#shortcuts-modal").style.display = "none"'
           >close</span
         >
         <h3>Keyboard Shortcuts</h3>
