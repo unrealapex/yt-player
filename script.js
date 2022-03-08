@@ -35,8 +35,6 @@ $(function () {
   var $privateMode = function () {
     return JSON.parse($("#private-mode").data("enabled"));
   };
-  // list of all shortcuts keys
-  const shortcutKeys = ["r", "Escape", "x", "f", "m", "_", "o", "+", "?"];
 
   // regex
   // gets the youtube video id from strings
@@ -150,7 +148,7 @@ $(function () {
         alert("Unable to open video in full screen");
       }
     } else {
-      console.log(
+      console.warn(
         "Error: unable to toggle full screen" + "\n" + "Reason: no URL found"
       );
       alert(
@@ -231,7 +229,7 @@ $(function () {
           left
       );
     } else {
-      console.log(
+      console.warn(
         "Error: unable to open video in new tab" + "\n" + "Reason: no URL found"
       );
       alert(
@@ -256,7 +254,7 @@ $(function () {
   function closeOverlay() {
     $overlay.hide();
     $expandBox.hide();
-    $thumbnail.src = "";
+    $thumbnail.attr("str", "");
     reset();
   }
 
@@ -371,7 +369,7 @@ $(function () {
     $overlay.show();
     // expandButton.disabled = "true";
     $expandBox.hide();
-    $thumbnail.src = "";
+    $thumbnail.attr("src", "");
   });
 
   $(document).on("visibilitychange", function () {
