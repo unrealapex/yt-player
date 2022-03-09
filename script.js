@@ -65,13 +65,14 @@ $(function () {
     if ($inputField.val().length === 0) {
       clearNotification();
       $inputField.removeClass();
-      $playButton.css("color", "#1a1a1a");
       $playButton.removeClass();
+      $playButton.css("color", "#1a1a1a");
       $playButton.prop("disabled", true);
       // if the url in the input field is valid
     } else if (urlValidator.test($inputField.val())) {
       clearNotification();
       $inputField.addClass("correct");
+      $inputField.removeClass("wrong");
       $playButton.addClass("valid");
       $playButton.css("color", "#1a1a1a");
       $playButton.prop("disabled", false);
@@ -80,6 +81,7 @@ $(function () {
     } else {
       setNotification("enter a valid url", -1);
       $inputField.addClass("wrong");
+      $inputField.removeClass("correct");
       $playButton.removeClass();
       $playButton.prop("disabled", true);
       $playButton.css("color", "#c6262e");
