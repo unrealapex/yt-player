@@ -118,11 +118,11 @@ $(function () {
       // sets the video player iframe's url to a youtube privacy-enhanced url(video doesn't show up on user's youtube search history) if the user has enabled Privacy Mode
       $iframe.attr(
         "src",
-        `https://www.youtube-nocookie.com/embed/${videoId}?dnt=1`
+        `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&dnt=1`
       );
     } else {
       // sets the video player iframe's url to a youtube embed url (default)
-      $iframe.attr("src", `https://www.youtube.com/embed/${videoId}`);
+      $iframe.attr("src", `https://www.youtube.com/embed/${videoId}?autoplay=1`);
     }
 
     // focus iframe when it has loaded
