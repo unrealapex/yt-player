@@ -254,7 +254,7 @@ $(function () {
   function closeOverlay() {
     $overlay.hide();
     $expandBox.hide();
-    $thumbnail.attr("str", "");
+    $thumbnail.attr("src", "");
     reset();
   }
 
