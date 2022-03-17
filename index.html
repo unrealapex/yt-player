@@ -45,19 +45,18 @@
               type="url"
               id="queue-input"
               style="margin-bottom: 0.4rem;"
-              oninput="validateQueue()"
               placeholder="add video to queue"
             />
-            <button id="add-queue" onclick="addQueue()" disabled>
+            <button id="add-queue" disabled>
               add
             </button>
-            <button id="delete-queue" onclick="deleteQueue()">
+            <button id="delete-queue">
               clear
             </button>
             
             
             
-            <button id="delete-queue-items" class="material-icons-round" onclick="showQueueItemRemovalButtons()">
+            <button id="delete-queue-items" class="material-icons-round">
             <span class="material-icons-round">
 delete
 </span>
@@ -100,7 +99,7 @@ delete
         </div>
     </div>
       
-    <div id="dropdown"><button id="queue-button" onclick="document.querySelector('#queue-div').classList.toggle('hidden'); document.querySelector('#queue-input').focus();" disabled>queue</button></div>
+    <div id="dropdown"><button id="queue-button" disabled>queue</button></div>
     <br>
     <h1
     >
@@ -114,13 +113,12 @@ delete
             <input
               id="url-input"
               type="url"
-              oninput="validate()"
               autofocus
               required
               placeholder="enter youtube video url"
             />  
 
-           <button id="play" onclick="getVideoURL()" title="play video url">
+           <button id="play" title="play video url">
               play
             </button>
 
@@ -187,25 +185,21 @@ delete
           <button
             class="overlay-buttons material-icons-round"
             title="close"
-            onclick="closeOverlay()"
             >close</button>
           <button
             class="overlay-buttons material-icons-round"
             title="maximize"
-            onclick="openFullscreen()"
           >
             check_box_outline_blank</button>
           <button
             class="overlay-buttons material-icons-round"
             title="minimize"
-            onclick="minimizeOverlay()"
             >minimize</button>
           <div id="queue-buttons">
             <button
               class="overlay-buttons material-icons-round"
               id="next-video"
               title="next video"
-              onclick="nextVideo()"
               disabled
             >
               skip_next
@@ -214,7 +208,6 @@ delete
               class="overlay-buttons material-icons-round"
               id="previous-video"
               title="previous video"
-              onclick="previousVideo()"
               disabled
             >
               skip_previous
