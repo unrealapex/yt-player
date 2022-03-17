@@ -436,7 +436,7 @@ $(function() {
   // });
 
   // keyboard shortcuts
-  document.on("keydown", function (event) {
+  $(document).on("keydown", function (event) {
     if (
       event.key === "r" &&
       $overlay.css("display") == "block"
@@ -448,7 +448,7 @@ $(function() {
       $overlay.css("display") == "block"
     ) {
       $overlay.hide();
-      $inputField.select();
+      $urlInput.select();
     } else if (
       event.key === "f" &&
       document.fullscreenElement === null &&
@@ -710,7 +710,7 @@ $(function() {
   $playButton.on("click", function () {
     getVideoURL();
   });
-  $inputField.on("input", function () {
+  $urlInput.on("input", function () {
     validate();
   });
 
