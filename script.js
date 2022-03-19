@@ -50,10 +50,10 @@ $(function() {
 
     // regex
     // gets the youtube video id from strings
-    const videoIdExtractor =
-      /(http(?: s) ?: \/\/(?:m.)?(?:www\.)?)?youtu(?:\.be\/|be\.com\/(?:watch\?(?:feature=youtu\.be\&)?v=|v\/|embed\/|user\/(?:[\w#]+\/)+))([^&#?\n]+)/;
-    // checks if the url is a valid youtube url and is something our player can play
-    const urlValidator =
+    // const videoIdExtractor =
+    //   /(http(?: s) ?: \/\/(?:m.)?(?:www\.)?)?youtu(?:\.be\/|be\.com\/(?:watch\?(?:feature=youtu\.be\&)?v=|v\/|embed\/|user\/(?:[\w#]+\/)+))([^&#?\n]+)/;
+    // main regex we can use to disect parts of a youtube url
+    const urlDissector  =
       /((http?(?:s)?:\/\/)?(www\.)?)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?&v=))((?:\w|-){11})((?:\&|\?)\S*)?/;
 
     // expression to test if there are any whitespaces in our url
@@ -81,7 +81,7 @@ $(function() {
       $playButton.removeClass();
       return false;
       // $playButton.prop("disabled", true);
-    } else if (urlValidator.test($urlInput.val())) {
+    } else if (urlDissector.test($urlInput.val())) {
       clearNotification();
       $urlInput.addClass("correct");
       $playButton.addClass("valid");
@@ -108,7 +108,7 @@ $(function() {
       $("#add-queue").removeClass();
       return false;
       // $playButton.prop("disabled", true);
-    } else if (urlValidator.test($queueInput.val())) {
+    } else if (urlDissector.test($queueInput.val())) {
       clearNotification();
       $queueInput.addClass("correct");
       $("#add-queue").addClass("valid");
@@ -127,7 +127,7 @@ $(function() {
 
   function getId(url) {
     // strips the video id from our url
-    videoId = videoIdExtractor.exec(url)[2];
+    videoId = urlDissector.exec(url)[4];
     loadVideo(videoId);
     return videoId;
   }
@@ -370,7 +370,7 @@ $(function() {
     // continues to the next video in the video queue if user isn't on the last video
     if (queueNumber + 1 !== queue.length) {
       queueNumber++;
-      loadVideo(videoIdExtractor.exec(queue[queueNumber])[2]);
+      loadVideo(urlDissector.exec(queue[queueNumber])[4]);
       $("#thumbnail-" + (queueNumber - 1))
         .removeClass("current-video");
       $("#thumbnail-" + queueNumber)
@@ -397,7 +397,7 @@ $(function() {
     // goals to the previous video in the video queue if user isn't on the first video
     if (queueNumber !== 0) {
       queueNumber--;
-      loadVideo(videoIdExtractor.exec(queue[queueNumber])[2]);
+      loadVideo(urlDissector.exec(queue[queueNumber])[4]);
       $("#thumbnail-" + (queueNumber + 1))
         .removeClass("current-video");
       $("#thumbnail-" + queueNumber)
@@ -536,12 +536,12 @@ $(function() {
   //   rectangle.addClass("rectangle");
   //   rectangle.loading = "lazy";
   //   // with url parameter DO NOT USE
-  //   // rectangle.css("backgroundImage = "url('https://i.ytimg.com/vi/" + videoIdExtractor.exec(url)[2] + "/mqdefault.jpg')";
+  //   // rectangle.css("backgroundImage = "url('https://i.ytimg.com/vi/" + urlDissector.exec(url)[2] + "/mqdefault.jpg')";
 
   //   // maximum resolution thumbnail
-  //   // rectangle.css("backgroundImage = "url('https://i.ytimg.com/vi/" + videoIdExtractor.exec(queue[index])[2] + "/maxresdefault.jpg')";
+  //   // rectangle.css("backgroundImage = "url('https://i.ytimg.com/vi/" + urlDissector.exec(queue[index])[2] + "/maxresdefault.jpg')";
   //   // Default thumbnail
-  //   rectangle.css("backgroundImage = "url('https://i.ytimg.com/vi/" + videoIdExtractor.exec(queue[index])[2] + "/mqdefault.jpg')";
+  //   rectangle.css("backgroundImage = "url('https://i.ytimg.com/vi/" + urlDissector.exec(queue[index])[2] + "/mqdefault.jpg')";
   //   $("#queue-list").append(rectangle);
   // }
 
@@ -553,7 +553,7 @@ $(function() {
     <div id="thumbnail-${index}" class="thumbnail" title="${queue[index]}">
       <div id="delete-queue-item-div-${index}" style="position:relative;">
         <img id="thumbnail-image-${index}" src="https://i.ytimg.com/vi/${
-      videoIdExtractor.exec(queue[index])[2]}/mqdefault.jpg">
+      urlDissector.exec(queue[index])[4]}/mqdefault.jpg">
         <div id="x-${index}" class="x" data-index="${index}" title="remove video from queue" style="position:absolute;">
           &times;
         </div>
@@ -588,7 +588,7 @@ $(function() {
     // sets the thumbnail image's source to the url of the thumbnail image
     // thumbnailImage.attr("src",
     //   "https://i.ytimg.com/vi/" +
-    //   videoIdExtractor.exec(queue[index])[2] +
+    //   urlDissector.exec(queue[index])[2] +
     //   "/mqdefault.jpg");
     // appends thumbnail image in thumbnail wrapper
     // thumbnailNumber.text(index + 1);
