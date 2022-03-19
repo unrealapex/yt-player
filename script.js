@@ -359,7 +359,7 @@ $(function() {
         clearNotification();
         return queue;
       } else {
-        confirm.log("Canceled queue delete");
+        console.log("Canceled queue delete");
       }
     } else {
       alert("No items in queue");
