@@ -549,7 +549,7 @@ $(function() {
   function getThumbnail(index) {
     // create div as thumbnail wrapper
     // var thumbnail = document.createElement("div");
-    var thumbnail = $(`
+    let thumbnail = $(`
     <div id="thumbnail-${index}" class="thumbnail" title="${queue[index]}">
       <div id="delete-queue-item-div-${index}" style="position:relative;">
         <img id="thumbnail-image-${index}" src="https://i.ytimg.com/vi/${
