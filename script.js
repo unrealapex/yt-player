@@ -603,25 +603,12 @@ $(function() {
   }
 
   function showQueueItemRemovalButtons() {
-    let removalButtons = $(".x");
     if (!toggleQueueDeleteWizard) {
       toggleQueueDeleteWizard = true;
-      for (let i = 0; i < removalButtons.length; i++) {
-        let s = removalButtons[i].style;
-        s.show();
-      }
-      // for (let i = 0; i < document.getElementsByClass("x").length; i++) {
-      //   $("x" + i).show();
-      // }
-      // $(".x").removeClass("hidden");
+      $(".x").show();
     } else {
-      // $(".x").addClass("hidden");
-      // document.querySelectorAll('.x').forEach(el => el.addClass('hidden'));
       toggleQueueDeleteWizard = false;
-      for (let i = 0; i < removalButtons.length; i++) {
-        let s = removalButtons[i].style;
-        s.hide();
-      }
+      $(".x").hide();
     }
     return toggleQueueDeleteWizard;
   }
