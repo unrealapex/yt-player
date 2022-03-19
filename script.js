@@ -117,6 +117,7 @@ $(function() {
       return true;
     } else {
       setNotification("enter a valid url", -1);
+      $queueInput.removeClass("correct");
       $queueInput.addClass("wrong");
       $("#add-queue").removeClass();
       $("#add-queue").prop("disabled", true);
