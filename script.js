@@ -303,7 +303,7 @@ $(function() {
       queue[queue.length] = $queueInput.val();
       $queueInput.val();
       $queueInput.focus();
-      // $("#queue-list").appendChild(linebreak);
+      // $("#queue-list").append(linebreak);
       // $("#queue-list").innerHTML +=
       //   queue.length + ". " + queueValue;
       $("#queue-count").text(`queue: ${
@@ -542,65 +542,65 @@ $(function() {
   //   // rectangle.css("backgroundImage = "url('https://i.ytimg.com/vi/" + videoIdExtractor.exec(queue[index])[2] + "/maxresdefault.jpg')";
   //   // Default thumbnail
   //   rectangle.css("backgroundImage = "url('https://i.ytimg.com/vi/" + videoIdExtractor.exec(queue[index])[2] + "/mqdefault.jpg')";
-  //   $("#queue-list").appendChild(rectangle);
+  //   $("#queue-list").append(rectangle);
   // }
 
   // retrieves the thumbnail image of youtube video url in queue
   function getThumbnail(index) {
     // create div as thumbnail wrapper
-    var thumbnail = document.createElement("div");
+    // var thumbnail = document.createElement("div");
+    var thumbnail = $(`
+    <div id="thumbnail-${index}" class="thumbnail" title="${queue[index]}">
+      <div id="delete-queue-item-div-${index}" style="position:relative;">
+        <img id="thumbnail-image-${index}" src="https://i.ytimg.com/vi/${
+      videoIdExtractor.exec(queue[index])[2]}
+      /mqdefault.jpg")>
+        <div id="x-${index}" class="x" data-index="${index}" title="remove video from queue" style="position:absolute;">
+          &times;
+        </div>
+      </div>
+      <div id="thumbnail-number-${index}" class="thumbnail-number">${index + 1}</div>
+    </div>
+    `);
     // create div that shows video number
-    var thumbnailNumber = document.createElement("div");
+    // var thumbnailNumber = document.createElement("div");
     // create image which thumbnail will be loaded
-    var thumbnailImage = document.createElement("img");
-    var deleteQueueItemDiv = document.createElement("div");
-    var x = document.createElement("div");
-    thumbnail.addClass("thumbnail");
-    thumbnailNumber.addClass("thumbnail-number");
-    x.addClass("x");
+    // var thumbnailImage = document.createElement("img");
+    // var deleteQueueItemDiv = document.createElement("div");
+    // var x = document.createElement("div");
+    // thumbnail.addClass("thumbnail");
+    // thumbnailNumber.addClass("thumbnail-number");
+    // x.addClass("x");
     // give each thumbnail and its wrapper a numbered id of thumbnail-number
-    thumbnail.id = "thumbnail-" + index;
-    thumbnailImage.id = "thumbnail-image-" + index;
-    thumbnailNumber.id = "thumbnail-number-" + index;
-    deleteQueueItemDiv.id = "delete-queue-item-div-" + index;
-    x.id = "x-" + index;
-    deleteQueueItemDiv.css("position",  "relative");
-    x.css("position",  "absolute");
-    thumbnailImage.draggable = false;
+    // thumbnail.id = "thumbnail-" + index;
+    // thumbnailImage.id = "thumbnail-image-" + index;
+    // thumbnailNumber.id = "thumbnail-number-" + index;
+    // deleteQueueItemDiv.id = "delete-queue-item-div-" + index;
+    // x.id = "x-" + index;
+    // deleteQueueItemDiv.css("position",  "relative");
+    // x.css("position", "absolute");
+    // x.data("index", index);
+    // thumbnailImage.attr("draggable", false);
     // TODO: Make sure that when videos are deleted, current video in player is changed
-    $("#queue-list").appendChild(thumbnail);
-    x.onclick = function () {
-      if (toggleQueueDeleteWizard) {
-        deleteQueueItem(index);
-        $("#thumbnail-" + index).remove();
-        $("#queue-counter-ui").text((queue.length > 0 ? `queue(${(queue.length)})` : "queue"));
-        $("#queue-counter-ui").attr("title", queue.length > 1 ? `${queue.length} items in queue` : `${queue.length} item in queue`);
-        // updateThumbnailNumbers();
-        // alert("change number");
-        // $("#x-" + index).remove();
-        // for (let i = 0; i < $(".thumbnail-number").length; i++) {
-        //   $("#thumbnail-number-" + i).text(i);
-        // }
-      } else {
-      }
-    };
 
     // thumbnailImage.loading = "lazy";
-    thumbnail.attr("title", queue[index]);
-    x.attr("title", "remove video from queue");
+    // thumbnail.attr("title", queue[index]);
+    // x.attr("title", "remove video from queue");
     // sets the thumbnail image's source to the url of the thumbnail image
-    thumbnailImage.attr("src",
-      "https://i.ytimg.com/vi/" +
-      videoIdExtractor.exec(queue[index])[2] +
-      "/mqdefault.jpg");
+    // thumbnailImage.attr("src",
+    //   "https://i.ytimg.com/vi/" +
+    //   videoIdExtractor.exec(queue[index])[2] +
+    //   "/mqdefault.jpg");
     // appends thumbnail image in thumbnail wrapper
-    thumbnailNumber.text(index + 1);
-    x.text("&times");
-    deleteQueueItemDiv.appendChild(thumbnailImage);
-    deleteQueueItemDiv.appendChild(x);
-    thumbnail.appendChild(deleteQueueItemDiv);
-    thumbnail.appendChild(thumbnailNumber);
+    // thumbnailNumber.text(index + 1);
+    // x.text("&times");
+    // deleteQueueItemDiv.append(thumbnailImage);
+    // deleteQueueItemDiv.append(x);
+    // thumbnail.append(deleteQueueItemDiv);
+    // thumbnail.append(thumbnailNumber);
     // appends thumbnail image and wrapper into queue list div
+
+    $("#queue-list").append(thumbnail);
   }
 
   function showQueueItemRemovalButtons() {
@@ -759,17 +759,34 @@ $(function() {
     $("#queue-input").focus();
   });
 
-  $("#").on("click", function () {});
+  // $("#").on("click", function () {});
 
-  $("#").on("click", function () {});
+  // $("#").on("click", function () {});
 
-  $("#").on("click", function () {});
+  // $("#").on("click", function () {});
 
-  $("#").on("click", function () {});
+  // $("#").on("click", function () {});
 
-  $("#").on("click", function () {});
+  // $("#").on("click", function () {});
 
-  $("#").on("click", function () {});
+  // $("#").on("click", function () {});
 
+
+    $(".x").on("click", function (event) {
+      let index = $(event.target).data("index");
+      if (toggleQueueDeleteWizard) {
+        deleteQueueItem(index);
+        $("#thumbnail-" + index).remove();
+        $("#queue-counter-ui").text((queue.length > 0 ? `queue(${(queue.length)})` : "queue"));
+        $("#queue-counter-ui").attr("title", queue.length > 1 ? `${queue.length} items in queue` : `${queue.length} item in queue`);
+        // updateThumbnailNumbers();
+        // alert("change number");
+        // $("#x-" + index).remove();
+        // for (let i = 0; i < $(".thumbnail-number").length; i++) {
+        //   $("#thumbnail-number-" + i).text(i);
+        // }
+      } else {
+      }
+    });
 
 });
