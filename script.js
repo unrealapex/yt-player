@@ -553,8 +553,7 @@ $(function() {
     <div id="thumbnail-${index}" class="thumbnail" title="${queue[index]}">
       <div id="delete-queue-item-div-${index}" style="position:relative;">
         <img id="thumbnail-image-${index}" src="https://i.ytimg.com/vi/${
-      videoIdExtractor.exec(queue[index])[2]}
-      /mqdefault.jpg")>
+      videoIdExtractor.exec(queue[index])[2]}/mqdefault.jpg">
         <div id="x-${index}" class="x" data-index="${index}" title="remove video from queue" style="position:absolute;">
           &times;
         </div>
