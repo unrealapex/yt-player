@@ -301,7 +301,7 @@ $(function() {
       alert("You must write something!");
     } else {
       queue[queue.length] = $queueInput.val();
-      $queueInput.val();
+      $queueInput.val("");
       $queueInput.focus();
       // $("#queue-list").append(linebreak);
       // $("#queue-list").innerHTML +=
