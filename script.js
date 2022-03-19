@@ -600,6 +600,17 @@ $(function() {
     // appends thumbnail image and wrapper into queue list div
 
     $("#queue-list").append(thumbnail);
+
+    $(".x").on("click", function (event) {
+      let index = $(event.target).data("index");
+      if (toggleQueueDeleteWizard) {
+        deleteQueueItem(index);
+        $("#thumbnail-" + index).remove();
+        $("#queue-counter-ui").text((queue.length > 0 ? `queue(${(queue.length)})` : "queue"));
+        $("#queue-counter-ui").attr("title", queue.length > 1 ? `${queue.length} items in queue` : `${queue.length} item in queue`);
+      } else {
+      }
+    });
   }
 
   function showQueueItemRemovalButtons() {
@@ -756,23 +767,5 @@ $(function() {
   // $("#").on("click", function () {});
 
   // $("#").on("click", function () {});
-
-
-    $(".x").on("click", function (event) {
-      let index = $(event.target).data("index");
-      if (toggleQueueDeleteWizard) {
-        deleteQueueItem(index);
-        $("#thumbnail-" + index).remove();
-        $("#queue-counter-ui").text((queue.length > 0 ? `queue(${(queue.length)})` : "queue"));
-        $("#queue-counter-ui").attr("title", queue.length > 1 ? `${queue.length} items in queue` : `${queue.length} item in queue`);
-        // updateThumbnailNumbers();
-        // alert("change number");
-        // $("#x-" + index).remove();
-        // for (let i = 0; i < $(".thumbnail-number").length; i++) {
-        //   $("#thumbnail-number-" + i).text(i);
-        // }
-      } else {
-      }
-    });
 
 });
