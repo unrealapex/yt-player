@@ -77,23 +77,23 @@ $(function() {
     if ($urlInput.val().length === 0) {
       clearNotification();
       $urlInput.removeClass();
-      $("#play").css("color",  "#1a1a1a");
-      $("#play").removeClass();
+      $playButton.css("color",  "#1a1a1a");
+      $playButton.removeClass();
       return false;
-      // $("#play").prop("disabled", true);
+      // $playButton.prop("disabled", true);
     } else if (urlValidator.test($urlInput.val())) {
       clearNotification();
       $urlInput.addClass("correct");
-      $("#play").addClass("valid");
-      // $("#play").prop("disabled", false);
-      $("#play").focus();
+      $playButton.addClass("valid");
+      // $playButton.prop("disabled", false);
+      $playButton.focus();
       return true;
     } else {
       setNotification("enter a valid url", -1);
       $urlInput.addClass("wrong");
-      $("#play").removeClass();
-      // $("#play").prop("disabled", true);
-      $("#play").css("color",  "#c6262e");
+      $playButton.removeClass();
+      // $playButton.prop("disabled", true);
+      $playButton.css("color",  "#c6262e");
       return false;
     }
   }
@@ -107,7 +107,7 @@ $(function() {
       $("#add-queue").css("color", "#1a1a1a");
       $("#add-queue").removeClass();
       return false;
-      // $("#play").prop("disabled", true);
+      // $playButton.prop("disabled", true);
     } else if (urlValidator.test($queueInput.val())) {
       clearNotification();
       $queueInput.addClass("correct");
@@ -185,9 +185,9 @@ $(function() {
     $("#expand").prop("disabled", true);
     $("#expand").css("cursor",  "default");
     $urlInput.removeClass();
-    $("#play").removeClass();
-    $("#play").css("color",  "#1a1a1a");
-    // $("#play").prop("disabled", true);
+    $playButton.removeClass();
+    $playButton.css("color",  "#1a1a1a");
+    // $playButton.prop("disabled", true);
     $urlInput.val();
     $urlInput.focus();
     $("#private-mode").prop("checked", false);
