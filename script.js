@@ -67,6 +67,7 @@ $(function() {
     let hasWhiteSpace = whiteSpaceRE.test(url);
     url = hasWhiteSpace ? url.replace(/\s/g, "") : url;
     getId(url);
+    return url;
   }
 
   // TODO: add Vimeo support
@@ -121,7 +122,7 @@ $(function() {
       $queueInput.addClass("wrong");
       $("#add-queue").removeClass();
       $("#add-queue").prop("disabled", true);
-      $("#add-queue").css("color",  "#c6262e");
+      $("#add-queue").css("color", "#c6262e");
       return false;
     }
   }
@@ -187,7 +188,7 @@ $(function() {
     $("#expand").css("cursor",  "default");
     $urlInput.removeClass();
     $playButton.removeClass();
-    $playButton.css("color",  "#1a1a1a");
+    $playButton.css("color", "#1a1a1a");
     // $playButton.prop("disabled", true);
     $urlInput.val();
     $urlInput.focus();
