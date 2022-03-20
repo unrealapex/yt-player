@@ -735,12 +735,12 @@ $(function() {
   });
 
   // overlay next video button
-  $("button:contains('skip-next')").on("click", function () {
+  $("#next-video").on("click", function () {
     nextVideo();
   });
 
   // overlay previous video button
-  $("button:contains('skip-previous')").on("click", function () {
+  $("#previous-video").on("click", function () {
     previousVideo();
   });
 
