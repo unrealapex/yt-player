@@ -61,9 +61,12 @@ $(function() {
 
   function getVideoURL() {
     // ternary operator which determines whether url should come from the main url bar or the queue
-    url = $urlRadio.attr("checked")
-      ? $urlInput.val()
-      : queue[queueNumber];
+    // url = ($urlRadio.is(":checked")) ? $urlInput.val() : queue[queueNumber];
+    if ($urlRadio.is(":checked")) {
+      url = $urlInput.val();
+    } else {
+      url = queue[queueNumber];
+    }
     let hasWhiteSpace = whiteSpaceRE.test(url);
     url = hasWhiteSpace ? url.replace(/\s/g, "") : url;
     getId(url);
@@ -296,7 +299,7 @@ $(function() {
 
   function addQueue() {
     // adds video to queue and updates queue ui
-    var linebreak = document.createElement("br");
+    // var linebreak = document.createElement("br");
     let queueValue = $queueInput.val();
     if (queueValue === "" || whiteSpaceRE.test(queueValue)) {
       $queueInput.focus();
