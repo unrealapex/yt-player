@@ -334,6 +334,7 @@ $(function() {
           .attr("title").replace(/^/, "current video" + "\n"));
       } else {
       }
+      updateThumbnailNumbers()
     }
 
     return queue;
@@ -611,6 +612,7 @@ $(function() {
         $("#thumbnail-" + index).remove();
         $("#queue-counter-ui").text((queue.length > 0 ? `queue(${(queue.length)})` : "queue"));
         $("#queue-counter-ui").attr("title", queue.length > 1 ? `${queue.length} items in queue` : `${queue.length} item in queue`);
+        updateThumbnailNumbers();
       } else {
       }
     });
@@ -653,9 +655,9 @@ $(function() {
   };
 
   function updateThumbnailNumbers() {
-    for (let i = 0; i < $(".thumbnail-number").length; i++) {
-      $(".thumbnail-number")[i].text(i);
-    }
+    $(".thumbnail-number").each(function (index) {
+      $(this).text(index + 1);
+    });
   }
 
   // // when dragging the queue list, scroll(on the x axis); controls dragging behavior of queue list
