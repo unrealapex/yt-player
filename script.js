@@ -187,7 +187,7 @@ $(function() {
     // allows the user to reset the player if they entered an invalid url or ran into another problem
     url = "";
     $iframe.attr("src", "");
-    $("#expand").prop("disabled", true);
+    $("#expand").hide();
     $("#expand").css("cursor",  "default");
     $urlInput.removeClass();
     $playButton.removeClass();
@@ -256,7 +256,7 @@ $(function() {
   function closeOverlay() {
     // Closes the video overlay and clears its iframe src
     // TODO: Use hidden class to change visibility of expand button
-    $("#expand").prop("disabled", true);
+    $("#expand").hide();
     $overlay.hide();
     refresh();
   }
@@ -266,14 +266,12 @@ $(function() {
     // TODO: Use hidden class to change visibility of expand button
     // $urlInput.focus();
     // $urlInput.select();
-    $("#expand").prop("disabled", false);
     $overlay.hide();
     if (isLoaded()) {
-      $("#expand").prop("disabled", false);
+      $("#expand").show();
       $("#expand").focus();
     } else {
-      $("#expand").prop("disabled", true);
-      $("#expand").blur();
+      $("#expand").hide();
     }
   }
 
@@ -761,7 +759,10 @@ $(function() {
     $("#queue-input").focus();
   });
 
-  // $("#").on("click", function () {});
+  $("#expand").on("click", function () {
+    $(this).hide();
+    $overlay.show();
+  });
 
   // $("#").on("click", function () {});
 

@@ -260,6 +260,10 @@ button:not(#play, .overlay-buttons) {
   right: 0;
 }
 
+#expand {
+  display: none;
+}
+
 .hide-when-disabled:disabled, #expand:disabled {
   display: none;
 }
@@ -292,7 +296,7 @@ details[open] summary {
 .queue {
   padding: 0 0.5rem 0.5rem 0.5rem;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  background-color: #f9f9f9; 
+  background-color: #f9f9f9;
 /*   animation: rgb-bg 5s linear infinite;  */
 /*   box-sizing: border-box; */
   border: 2px solid #eee;
@@ -415,7 +419,7 @@ details,
   font-size: 10rem;
   color: rgba(255,0,0,0.8);
   cursor: pointer;
-  
+
 /*   position: absolute; */
   top: 50%;
   left: 50%;
@@ -486,7 +490,7 @@ img {
   padding: 16px 20px;
   text-decoration: none;
   display: block;
-} 
+}
 
 
 .dropdown-content .dropdown-item:hover {
