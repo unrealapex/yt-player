@@ -463,4 +463,7 @@ $(function () {
   $("#close").on("click", function () {
     $shortcutsModal.hide();
   });
+  
+ // validate when the page loads to allow video playing if a url is present 
+ validate(); 
 });
