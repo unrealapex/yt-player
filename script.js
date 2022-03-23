@@ -50,10 +50,10 @@ $(function() {
 
     // regex
     // gets the youtube video id from strings
-    const videoIdExtractor =
-      /(http(?: s) ?: \/\/(?:m.)?(?:www\.)?)?youtu(?:\.be\/|be\.com\/(?:watch\?(?:feature=youtu\.be\&)?v=|v\/|embed\/|user\/(?:[\w#]+\/)+))([^&#?\n]+)/;
-    // checks if the url is a valid youtube url and is something our player can play
-    const urlValidator =
+    // const videoIdExtractor =
+    //   /(http(?: s) ?: \/\/(?:m.)?(?:www\.)?)?youtu(?:\.be\/|be\.com\/(?:watch\?(?:feature=youtu\.be\&)?v=|v\/|embed\/|user\/(?:[\w#]+\/)+))([^&#?\n]+)/;
+    // main regex we can use to disect parts of a youtube url
+    const urlDissector  =
       /((http?(?:s)?:\/\/)?(www\.)?)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?&v=))((?:\w|-){11})((?:\&|\?)\S*)?/;
 
     // expression to test if there are any whitespaces in our url
@@ -61,12 +61,16 @@ $(function() {
 
   function getVideoURL() {
     // ternary operator which determines whether url should come from the main url bar or the queue
-    url = $urlRadio.attr("checked")
-      ? $urlInput.val()
-      : queue[queueNumber];
+    // url = ($urlRadio.is(":checked")) ? $urlInput.val() : queue[queueNumber];
+    if ($urlRadio.is(":checked")) {
+      url = $urlInput.val();
+    } else {
+      url = queue[queueNumber];
+    }
     let hasWhiteSpace = whiteSpaceRE.test(url);
     url = hasWhiteSpace ? url.replace(/\s/g, "") : url;
     getId(url);
+    return url;
   }
 
   // TODO: add Vimeo support
@@ -77,23 +81,23 @@ $(function() {
     if ($urlInput.val().length === 0) {
       clearNotification();
       $urlInput.removeClass();
-      $("#play").css("color",  "#1a1a1a");
-      $("#play").removeClass();
+      $playButton.css("color",  "#1a1a1a");
+      $playButton.removeClass();
       return false;
-      // $("#play").prop("disabled", true);
-    } else if (urlValidator.test($urlInput.val())) {
+      // $playButton.prop("disabled", true);
+    } else if (urlDissector.test($urlInput.val())) {
       clearNotification();
       $urlInput.addClass("correct");
-      $("#play").addClass("valid");
-      // $("#play").prop("disabled", false);
-      $("#play").focus();
+      $playButton.addClass("valid");
+      // $playButton.prop("disabled", false);
+      $playButton.focus();
       return true;
     } else {
       setNotification("enter a valid url", -1);
       $urlInput.addClass("wrong");
-      $("#play").removeClass();
-      // $("#play").prop("disabled", true);
-      $("#play").css("color",  "#c6262e");
+      $playButton.removeClass();
+      // $playButton.prop("disabled", true);
+      $playButton.css("color",  "#c6262e");
       return false;
     }
   }
@@ -107,8 +111,8 @@ $(function() {
       $("#add-queue").css("color", "#1a1a1a");
       $("#add-queue").removeClass();
       return false;
-      // $("#play").prop("disabled", true);
-    } else if (urlValidator.test($queueInput.val())) {
+      // $playButton.prop("disabled", true);
+    } else if (urlDissector.test($queueInput.val())) {
       clearNotification();
       $queueInput.addClass("correct");
       $("#add-queue").addClass("valid");
@@ -117,24 +121,25 @@ $(function() {
       return true;
     } else {
       setNotification("enter a valid url", -1);
+      $queueInput.removeClass("correct");
       $queueInput.addClass("wrong");
       $("#add-queue").removeClass();
       $("#add-queue").prop("disabled", true);
-      $("#add-queue").css("color",  "#c6262e");
+      $("#add-queue").css("color", "#c6262e");
       return false;
     }
   }
 
   function getId(url) {
     // strips the video id from our url
-    videoId = videoIdExtractor.exec(url)[2];
+    videoId = urlDissector.exec(url)[4];
     loadVideo(videoId);
     return videoId;
   }
 
   function loadVideo(videoId) {
     $overlay.show();
-    if ($("#private-mode").prop("checked")) {
+    if ($("#private-mode").is(":checked")) {
       // sets the video player iframe's url to a youtube privacy-enhanced url(video doesn't show up on user's youtube search history) if the user has enabled Privacy Mode
       $("#videoPlayer").attr("src",
         "https://www.youtube-nocookie.com/embed/" + videoId);
@@ -144,7 +149,7 @@ $(function() {
         "https://www.youtube.com/embed/" + videoId);
     }
 
-    if ($("#load-fullscreen").prop("checked")) {
+    if ($("#load-fullscreen").is(":checked")) {
       openFullscreen();
     } else {
       return;
@@ -158,7 +163,7 @@ $(function() {
   function openFullscreen() {
     // puts the player in full screen mode
     var player = document.querySelector("iframe");
-    if (player.attr("src").length !== 0 && isLoaded()) {
+    if (player.src.length !== 0 && isLoaded()) {
       if (player.requestFullscreen) {
         player.requestFullscreen();
       } else if (player.webkitRequestFullscreen) {
@@ -182,12 +187,12 @@ $(function() {
     // allows the user to reset the player if they entered an invalid url or ran into another problem
     url = "";
     $iframe.attr("src", "");
-    $("#expand").prop("disabled", true);
+    $("#expand").hide();
     $("#expand").css("cursor",  "default");
     $urlInput.removeClass();
-    $("#play").removeClass();
-    $("#play").css("color",  "#1a1a1a");
-    // $("#play").prop("disabled", true);
+    $playButton.removeClass();
+    $playButton.css("color", "#1a1a1a");
+    // $playButton.prop("disabled", true);
     $urlInput.val();
     $urlInput.focus();
     $("#private-mode").prop("checked", false);
@@ -251,7 +256,7 @@ $(function() {
   function closeOverlay() {
     // Closes the video overlay and clears its iframe src
     // TODO: Use hidden class to change visibility of expand button
-    $("#expand").prop("disabled", true);
+    $("#expand").hide();
     $overlay.hide();
     refresh();
   }
@@ -261,14 +266,12 @@ $(function() {
     // TODO: Use hidden class to change visibility of expand button
     // $urlInput.focus();
     // $urlInput.select();
-    $("#expand").prop("disabled", false);
     $overlay.hide();
     if (isLoaded()) {
-      $("#expand").prop("disabled", false);
+      $("#expand").show();
       $("#expand").focus();
     } else {
-      $("#expand").prop("disabled", true);
-      $("#expand").blur();
+      $("#expand").hide();
     }
   }
 
@@ -294,16 +297,16 @@ $(function() {
 
   function addQueue() {
     // adds video to queue and updates queue ui
-    var linebreak = document.createElement("br");
+    // var linebreak = document.createElement("br");
     let queueValue = $queueInput.val();
     if (queueValue === "" || whiteSpaceRE.test(queueValue)) {
       $queueInput.focus();
       alert("You must write something!");
     } else {
       queue[queue.length] = $queueInput.val();
-      $queueInput.val();
+      $queueInput.val("");
       $queueInput.focus();
-      // $("#queue-list").appendChild(linebreak);
+      // $("#queue-list").append(linebreak);
       // $("#queue-list").innerHTML +=
       //   queue.length + ". " + queueValue;
       $("#queue-count").text(`queue: ${
@@ -359,7 +362,7 @@ $(function() {
         clearNotification();
         return queue;
       } else {
-        confirm.log("Canceled queue delete");
+        console.log("Canceled queue delete");
       }
     } else {
       alert("No items in queue");
@@ -370,7 +373,7 @@ $(function() {
     // continues to the next video in the video queue if user isn't on the last video
     if (queueNumber + 1 !== queue.length) {
       queueNumber++;
-      loadVideo(videoIdExtractor.exec(queue[queueNumber])[2]);
+      loadVideo(urlDissector.exec(queue[queueNumber])[4]);
       $("#thumbnail-" + (queueNumber - 1))
         .removeClass("current-video");
       $("#thumbnail-" + queueNumber)
@@ -397,7 +400,7 @@ $(function() {
     // goals to the previous video in the video queue if user isn't on the first video
     if (queueNumber !== 0) {
       queueNumber--;
-      loadVideo(videoIdExtractor.exec(queue[queueNumber])[2]);
+      loadVideo(urlDissector.exec(queue[queueNumber])[4]);
       $("#thumbnail-" + (queueNumber + 1))
         .removeClass("current-video");
       $("#thumbnail-" + queueNumber)
@@ -536,93 +539,90 @@ $(function() {
   //   rectangle.addClass("rectangle");
   //   rectangle.loading = "lazy";
   //   // with url parameter DO NOT USE
-  //   // rectangle.css("backgroundImage = "url('https://i.ytimg.com/vi/" + videoIdExtractor.exec(url)[2] + "/mqdefault.jpg')";
+  //   // rectangle.css("backgroundImage = "url('https://i.ytimg.com/vi/" + urlDissector.exec(url)[2] + "/mqdefault.jpg')";
 
   //   // maximum resolution thumbnail
-  //   // rectangle.css("backgroundImage = "url('https://i.ytimg.com/vi/" + videoIdExtractor.exec(queue[index])[2] + "/maxresdefault.jpg')";
+  //   // rectangle.css("backgroundImage = "url('https://i.ytimg.com/vi/" + urlDissector.exec(queue[index])[2] + "/maxresdefault.jpg')";
   //   // Default thumbnail
-  //   rectangle.css("backgroundImage = "url('https://i.ytimg.com/vi/" + videoIdExtractor.exec(queue[index])[2] + "/mqdefault.jpg')";
-  //   $("#queue-list").appendChild(rectangle);
+  //   rectangle.css("backgroundImage = "url('https://i.ytimg.com/vi/" + urlDissector.exec(queue[index])[2] + "/mqdefault.jpg')";
+  //   $("#queue-list").append(rectangle);
   // }
 
   // retrieves the thumbnail image of youtube video url in queue
   function getThumbnail(index) {
     // create div as thumbnail wrapper
-    var thumbnail = document.createElement("div");
+    // var thumbnail = document.createElement("div");
+    let thumbnail = $(`
+    <div id="thumbnail-${index}" class="thumbnail" title="${queue[index]}">
+      <div id="delete-queue-item-div-${index}" style="position:relative;">
+        <img id="thumbnail-image-${index}" src="https://i.ytimg.com/vi/${
+      urlDissector.exec(queue[index])[4]}/mqdefault.jpg">
+        <div id="x-${index}" class="x" data-index="${index}" title="remove video from queue" style="position:absolute;">
+          &times;
+        </div>
+      </div>
+      <div id="thumbnail-number-${index}" class="thumbnail-number">${index + 1}</div>
+    </div>
+    `);
     // create div that shows video number
-    var thumbnailNumber = document.createElement("div");
+    // var thumbnailNumber = document.createElement("div");
     // create image which thumbnail will be loaded
-    var thumbnailImage = document.createElement("img");
-    var deleteQueueItemDiv = document.createElement("div");
-    var x = document.createElement("div");
-    thumbnail.addClass("thumbnail");
-    thumbnailNumber.addClass("thumbnail-number");
-    x.addClass("x");
+    // var thumbnailImage = document.createElement("img");
+    // var deleteQueueItemDiv = document.createElement("div");
+    // var x = document.createElement("div");
+    // thumbnail.addClass("thumbnail");
+    // thumbnailNumber.addClass("thumbnail-number");
+    // x.addClass("x");
     // give each thumbnail and its wrapper a numbered id of thumbnail-number
-    thumbnail.id = "thumbnail-" + index;
-    thumbnailImage.id = "thumbnail-image-" + index;
-    thumbnailNumber.id = "thumbnail-number-" + index;
-    deleteQueueItemDiv.id = "delete-queue-item-div-" + index;
-    x.id = "x-" + index;
-    deleteQueueItemDiv.css("position",  "relative");
-    x.css("position",  "absolute");
-    thumbnailImage.draggable = false;
+    // thumbnail.id = "thumbnail-" + index;
+    // thumbnailImage.id = "thumbnail-image-" + index;
+    // thumbnailNumber.id = "thumbnail-number-" + index;
+    // deleteQueueItemDiv.id = "delete-queue-item-div-" + index;
+    // x.id = "x-" + index;
+    // deleteQueueItemDiv.css("position",  "relative");
+    // x.css("position", "absolute");
+    // x.data("index", index);
+    // thumbnailImage.attr("draggable", false);
     // TODO: Make sure that when videos are deleted, current video in player is changed
-    $("#queue-list").appendChild(thumbnail);
-    x.onclick = function () {
+
+    // thumbnailImage.loading = "lazy";
+    // thumbnail.attr("title", queue[index]);
+    // x.attr("title", "remove video from queue");
+    // sets the thumbnail image's source to the url of the thumbnail image
+    // thumbnailImage.attr("src",
+    //   "https://i.ytimg.com/vi/" +
+    //   urlDissector.exec(queue[index])[2] +
+    //   "/mqdefault.jpg");
+    // appends thumbnail image in thumbnail wrapper
+    // thumbnailNumber.text(index + 1);
+    // x.text("&times");
+    // deleteQueueItemDiv.append(thumbnailImage);
+    // deleteQueueItemDiv.append(x);
+    // thumbnail.append(deleteQueueItemDiv);
+    // thumbnail.append(thumbnailNumber);
+    // appends thumbnail image and wrapper into queue list div
+
+    $("#queue-list").append(thumbnail);
+
+    $(".x").on("click", function (event) {
+      let index = $(event.target).data("index");
       if (toggleQueueDeleteWizard) {
         deleteQueueItem(index);
         $("#thumbnail-" + index).remove();
         $("#queue-counter-ui").text((queue.length > 0 ? `queue(${(queue.length)})` : "queue"));
         $("#queue-counter-ui").attr("title", queue.length > 1 ? `${queue.length} items in queue` : `${queue.length} item in queue`);
-        // updateThumbnailNumbers();
-        // alert("change number");
-        // $("#x-" + index).remove();
-        // for (let i = 0; i < $(".thumbnail-number").length; i++) {
-        //   $("#thumbnail-number-" + i).text(i);
-        // }
       } else {
       }
-    };
-
-    // thumbnailImage.loading = "lazy";
-    thumbnail.attr("title", queue[index]);
-    x.attr("title", "remove video from queue");
-    // sets the thumbnail image's source to the url of the thumbnail image
-    thumbnailImage.attr("src",
-      "https://i.ytimg.com/vi/" +
-      videoIdExtractor.exec(queue[index])[2] +
-      "/mqdefault.jpg");
-    // appends thumbnail image in thumbnail wrapper
-    thumbnailNumber.text(index + 1);
-    x.text("&times");
-    deleteQueueItemDiv.appendChild(thumbnailImage);
-    deleteQueueItemDiv.appendChild(x);
-    thumbnail.appendChild(deleteQueueItemDiv);
-    thumbnail.appendChild(thumbnailNumber);
-    // appends thumbnail image and wrapper into queue list div
+    });
   }
 
   function showQueueItemRemovalButtons() {
-    let removalButtons = $(".x");
     if (!toggleQueueDeleteWizard) {
       toggleQueueDeleteWizard = true;
-      for (let i = 0; i < removalButtons.length; i++) {
-        let s = removalButtons[i].style;
-        s.show();
-      }
-      // for (let i = 0; i < document.getElementsByClass("x").length; i++) {
-      //   $("x" + i).show();
-      // }
-      // $(".x").removeClass("hidden");
+      $(".x").show();
     } else {
-      // $(".x").addClass("hidden");
-      // document.querySelectorAll('.x').forEach(el => el.addClass('hidden'));
       toggleQueueDeleteWizard = false;
-      for (let i = 0; i < removalButtons.length; i++) {
-        let s = removalButtons[i].style;
-        s.hide();
-      }
+      $(".x").hide();
     }
     return toggleQueueDeleteWizard;
   }
@@ -733,12 +733,12 @@ $(function() {
   });
 
   // overlay next video button
-  $("button:contains('skip-next')").on("click", function () {
+  $("#next-video").on("click", function () {
     nextVideo();
   });
 
   // overlay previous video button
-  $("button:contains('skip-previous')").on("click", function () {
+  $("#previous-video").on("click", function () {
     previousVideo();
   });
 
@@ -759,17 +759,19 @@ $(function() {
     $("#queue-input").focus();
   });
 
-  $("#").on("click", function () {});
+  $("#expand").on("click", function () {
+    $(this).hide();
+    $overlay.show();
+  });
 
-  $("#").on("click", function () {});
+  // $("#").on("click", function () {});
 
-  $("#").on("click", function () {});
+  // $("#").on("click", function () {});
 
-  $("#").on("click", function () {});
+  // $("#").on("click", function () {});
 
-  $("#").on("click", function () {});
+  // $("#").on("click", function () {});
 
-  $("#").on("click", function () {});
-
+  // $("#").on("click", function () {});
 
 });
