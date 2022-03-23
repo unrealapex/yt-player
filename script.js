@@ -139,7 +139,7 @@ $(function() {
 
   function loadVideo(videoId) {
     $overlay.show();
-    if ($("#private-mode").prop("checked")) {
+    if ($("#private-mode").is(":checked")) {
       // sets the video player iframe's url to a youtube privacy-enhanced url(video doesn't show up on user's youtube search history) if the user has enabled Privacy Mode
       $("#videoPlayer").attr("src",
         "https://www.youtube-nocookie.com/embed/" + videoId);
@@ -149,7 +149,7 @@ $(function() {
         "https://www.youtube.com/embed/" + videoId);
     }
 
-    if ($("#load-fullscreen").prop("checked")) {
+    if ($("#load-fullscreen").is(":checked")) {
       openFullscreen();
     } else {
       return;
@@ -163,7 +163,7 @@ $(function() {
   function openFullscreen() {
     // puts the player in full screen mode
     var player = document.querySelector("iframe");
-    if (player.attr("src").length !== 0 && isLoaded()) {
+    if (player.src.length !== 0 && isLoaded()) {
       if (player.requestFullscreen) {
         player.requestFullscreen();
       } else if (player.webkitRequestFullscreen) {
