@@ -554,7 +554,7 @@ $(function() {
     // create div as thumbnail wrapper
     // var thumbnail = document.createElement("div");
     let thumbnail = $(`
-    <div id="thumbnail-${index}" class="thumbnail" title="${queue[index]}">
+    <div id="thumbnail-${index}" class="thumbnail" title="${queue[index]}" data-url="${queue[index]}">
       <div id="delete-queue-item-div-${index}" style="position:relative;">
         <img id="thumbnail-image-${index}" src="https://i.ytimg.com/vi/${
       urlDissector.exec(queue[index])[4]}/mqdefault.jpg">
@@ -614,6 +614,7 @@ $(function() {
       forcePlaceholderSize: true,
       tolerance: "pointer",
       update: function( event, ui ) {
+        updateQueue();
         updateThumbnailNumbers();
       }
     });
@@ -666,6 +667,13 @@ $(function() {
       $("#queue-modal").hide();
     }
   };
+
+  function updateQueue() {
+    $(".thumbnail").map(function(index) {
+      queue[index] = $(this).data("url");
+      }).get();
+    return queue;
+  }
 
   function updateThumbnailNumbers() {
     $(".thumbnail-number").each(function (index) {
