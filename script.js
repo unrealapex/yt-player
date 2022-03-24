@@ -554,7 +554,7 @@ $(function() {
     // create div as thumbnail wrapper
     // var thumbnail = document.createElement("div");
     let thumbnail = $(`
-    <div id="thumbnail-${index}" class="thumbnail" title="${queue[index]}" data-url="${queue[index]}">
+    <div id="thumbnail-${index}" class="thumbnail" title="${queue[index]}" data-url="${queue[index]}" data-thumbnail-index="${index}">
       <div id="delete-queue-item-div-${index}" style="position:relative;">
         <img id="thumbnail-image-${index}" src="https://i.ytimg.com/vi/${
       urlDissector.exec(queue[index])[4]}/mqdefault.jpg">
@@ -616,6 +616,7 @@ $(function() {
       update: function( event, ui ) {
         updateQueue();
         updateThumbnailNumbers();
+        updateQueueUI();
       }
     });
 
@@ -675,9 +676,21 @@ $(function() {
     return queue;
   }
 
+  function updateQueueUI() {
+    queueNumber = $(".current-video").data("thumbnail-index");
+    $("#queue-count").text(`queue: ${
+      queueNumber + 1
+    } / ${queue.length}`);
+    return queueNumber;
+  }
+
   function updateThumbnailNumbers() {
     $(".thumbnail-number").each(function (index) {
       $(this).text(index + 1);
+    });
+
+    $(".thumbnail").each(function (index) {
+      $(this).data("thumbnail-index", index);
     });
   }
 
