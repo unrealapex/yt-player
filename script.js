@@ -3,7 +3,7 @@ $(function() {
   // TODO: use overlay instead of modal for queue
   // FIXME: make current queue item automatically select the first item in queue a the video to be played
   // TODO: redesign queue layout and functioning
-  // FIXME: fix queue number updating
+  // FIXME: fix queue number ui updating
 
   // globals
     // player URL
@@ -604,6 +604,19 @@ $(function() {
     // appends thumbnail image and wrapper into queue list div
 
     $("#queue-list").append(thumbnail);
+
+    $("#queue-list").sortable({
+      axis: "x",
+      placeholder: "ui-state-highlight",
+      containment: "parent",
+      cursor: "move",
+      helper: "clone",
+      forcePlaceholderSize: true,
+      tolerance: "pointer",
+      update: function( event, ui ) {
+        updateThumbnailNumbers();
+      }
+    });
 
     $(".x").on("click", function (event) {
       let index = $(event.target).data("index");
