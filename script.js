@@ -42,7 +42,7 @@ $(function () {
   /(http(?: s) ?: \/\/(?:m.)?(?:www\.)?)?youtu(?:\.be\/|be\.com\/(?:watch\?(?:feature=youtu\.be\&)?v=|v\/|embed\/|shorts\/|user\/(?:[\w#]+\/)+))([^&#?\n]+)/gm
   // checks if the url is a valid youtube url and is something our player can play
   const urlValidator =
-    /((http?(?:s)?:\/\/)?(www\.)?)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?&v=|shorts\/))((?:\w|-){11})((?:\&|\?)\S*)?/;
+  /((http?(?:s)?:\/\/)?(www\.)?)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?(?:[^&?]*?=[^&?]*)+&v=|shorts\/))((?:\w|-){11})((?:\&|\?)\S*)?/;
 
   // expression to test if there are any whitespaces in our url
   const whiteSpaceRE = /\s/g;
