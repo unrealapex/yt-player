@@ -229,8 +229,8 @@ button {
 }
 
 #videoPlayer {
-  width: 56rem;
-  height: 31.5rem;
+  width: 65vw;
+  height: calc((9/16) * 65vw);
   border-style: hidden;
   border-radius: 0.2em;
 }
