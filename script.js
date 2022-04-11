@@ -41,7 +41,7 @@ $(function () {
   // const urlDissector =
   // /(http(?: s) ?: \/\/(?:m.)?(?:www\.)?)?youtu(?:\.be\/|be\.com\/(?:watch\?(?:feature=youtu\.be\&)?v=|v\/|embed\/|shorts\/|user\/(?:[\w#]+\/)+))([^&#?\n]+)/gm
   // checks if the url is a valid youtube url and is something our player can play
-  const urlDissector  =
+  const urlDissector =
     /((http?(?:s)?:\/\/)?(www\.)?)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|shorts\/|v\/|watch\?v=|watch\?(?:[^&?]*?=[^&?]*)&v=))((?:\w|-){11})((?:\&|\?)\S*)?/;
 
   // expression to test if there are any whitespaces in our url
@@ -122,7 +122,10 @@ $(function () {
       );
     } else {
       // sets the video player iframe's url to a youtube embed url (default)
-      $iframe.attr("src", `https://www.youtube.com/embed/${videoId}?autoplay=1`);
+      $iframe.attr(
+        "src",
+        `https://www.youtube.com/embed/${videoId}?autoplay=1`
+      );
     }
 
     // focus iframe when it has loaded
@@ -464,6 +467,6 @@ $(function () {
     $shortcutsModal.hide();
   });
 
- // validate when the page loads to allow video playing if a url is present
- validate();
+  // validate when the page loads to allow video playing if a url is present
+  validate();
 });

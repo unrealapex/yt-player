@@ -69,13 +69,7 @@
                 minlength="20"
                 maxlength="80"
               />
-              <button
-                id="play"
-                title="play video url"
-                disabled
-              >
-                play
-              </button>
+              <button id="play" title="play video url" disabled>play</button>
             </div>
           </form>
           <!-- <fieldset>
@@ -124,34 +118,43 @@
           </button>
         </div>
 
-
         <progress id="loader" title="loading video..."></progress>
         <iframe id="videoPlayer" loading="eager" allowfullscreen="true">
           <p>Your browser does not support iframes.</p>
         </iframe>
-
       </div>
 
-          <div id="options-div"> 
-            <button id="options-button" class="transparent-button material-icons-round">settings</button>
-            <div id="options-dropdown">
-              <div id="reload" class="options">reload video</div>
+      <div id="options-div">
+        <button
+          id="options-button"
+          class="transparent-button material-icons-round"
+        >
+          settings
+        </button>
+        <div id="options-dropdown">
+          <div id="reload" class="options">reload video</div>
 
-              <!-- <div class="options" title="load video in private mode">
+          <!-- <div class="options" title="load video in private mode">
                 <label
                   ><input type="checkbox" name="" id="private-mode" />private
                   mode</label
                 >
               </div> -->
-              <div id="private-mode" class="options" data-enabled="false" title="private mode is currently disabled(click to enable)">private mode</div>
-              <div id="open-video" class="options">open video on youtube</div>
-              <!-- <div>Link 3</a> -->
-            </div>
+          <div
+            id="private-mode"
+            class="options"
+            data-enabled="false"
+            title="private mode is currently disabled(click to enable)"
+          >
+            private mode
           </div>
-
+          <div id="open-video" class="options">open video on youtube</div>
+          <!-- <div>Link 3</a> -->
+        </div>
+      </div>
     </div>
     <div id="expand-box" class="hidden">
-      <img id="thumbnail" title="click to reopen minimized video">
+      <img id="thumbnail" title="click to reopen minimized video" />
       <div id="expand-hint-text">minimized video</div>
     </div>
     <div id="shortcuts-modal" class="modal">
