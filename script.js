@@ -632,6 +632,9 @@ $(function() {
         $("#thumbnail-" + index).remove();
         $("#queue-counter-ui").text(($(".thumbnail").length > 0 ? `queue(${($(".thumbnail").length)})` : "queue"));
         $("#queue-counter-ui").attr("title", $(".thumbnail").length > 1 ? `${$(".thumbnail").length} items in queue` : `${$(".thumbnail").length} item in queue`);
+         $("#queue-count").text(
+           `queue: ${queueNumber + 1} / ${$(".thumbnail").length}`
+         );
         updateThumbnailNumbers();
       } else {
       }
