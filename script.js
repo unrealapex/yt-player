@@ -321,7 +321,8 @@ $(function() {
           : `${queue.length} item in queue`);
       $("#add-queue").removeClass();
       getThumbnail(queue.length - 1);
-      $("#thumbnail-" + queueNumber)
+      $(`.thumbnail:nth-of-type(${queueNumber + 1})`)
+      // $("#thumbnail-" + queueNumber)
         .addClass("current-video");
 
       if (
@@ -375,9 +376,11 @@ $(function() {
     if (queueNumber + 1 !== queue.length) {
       queueNumber++;
       loadVideo(urlDissector.exec(queue[queueNumber])[4]);
-      $("#thumbnail-" + (queueNumber - 1))
+      $(`.thumbnail:nth-of-type(${queueNumber- 2})`)
+      // $("#thumbnail-" + (queueNumber - 1))
         .removeClass("current-video");
-      $("#thumbnail-" + queueNumber)
+      $(`.thumbnail:nth-of-type(${queueNumber + 1})`)
+      // $("#thumbnail-" + queueNumber)
         .addClass("current-video");
       // removes "current video" from previous video thumbnail title and adds "current video" to current video thumbnail title
       $(
@@ -402,9 +405,11 @@ $(function() {
     if (queueNumber !== 0) {
       queueNumber--;
       loadVideo(urlDissector.exec(queue[queueNumber])[4]);
-      $("#thumbnail-" + (queueNumber + 1))
+      $(`.thumbnail:nth-of-type(${queueNumber + 2})`)
+      // $("#thumbnail-" + (queueNumber + 1))
         .removeClass("current-video");
-      $("#thumbnail-" + queueNumber)
+      $(`.thumbnail:nth-of-type(${queueNumber + 1})`)
+      // $("#thumbnail-" + queueNumber)
         .addClass("current-video");
       // removes "current video" from next video thumbnail title and adds "current video" to current video thumbnail title
       $(
@@ -625,8 +630,8 @@ $(function() {
       if (toggleQueueDeleteWizard) {
         deleteQueueItem(index);
         $("#thumbnail-" + index).remove();
-        $("#queue-counter-ui").text((queue.length > 0 ? `queue(${(queue.length)})` : "queue"));
-        $("#queue-counter-ui").attr("title", queue.length > 1 ? `${queue.length} items in queue` : `${queue.length} item in queue`);
+        $("#queue-counter-ui").text(($(".thumbnail").length > 0 ? `queue(${($(".thumbnail").length)})` : "queue"));
+        $("#queue-counter-ui").attr("title", $(".thumbnail").length > 1 ? `${$(".thumbnail").length} items in queue` : `${$(".thumbnail").length} item in queue`);
         updateThumbnailNumbers();
       } else {
       }
