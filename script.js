@@ -1,9 +1,7 @@
 $(function() {
   // **TO DO LIST**
   // TODO: use overlay instead of modal for queue
-  // FIXME: make current queue item automatically select the first item in queue a the video to be played
   // TODO: redesign queue layout and functioning
-  // FIXME: fix queue number ui updating
 
   // globals
     // player URL
