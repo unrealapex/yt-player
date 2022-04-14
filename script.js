@@ -1,5 +1,6 @@
 $(function() {
   // **TO DO LIST**
+  // TODO: use more variables
   // TODO: use overlay instead of modal for queue
   // TODO: redesign queue layout and functioning
 
@@ -139,11 +140,11 @@ $(function() {
     $overlay.show();
     if ($("#private-mode").is(":checked")) {
       // sets the video player iframe's url to a youtube privacy-enhanced url(video doesn't show up on user's youtube search history) if the user has enabled Privacy Mode
-      $("#videoPlayer").attr("src",
+      $iframe.attr("src",
         "https://www.youtube-nocookie.com/embed/" + videoId);
     } else {
       // sets the video player iframe's url to a youtube embed url (default)
-      $("#videoPlayer").attr("src",
+      $iframe.attr("src",
         "https://www.youtube.com/embed/" + videoId);
     }
 
@@ -154,7 +155,7 @@ $(function() {
     }
     // checks if the iframe content (our video) has loaded
     $iframe.onload = function () {
-      $("#videoPlayer").focus();
+      $iframe.focus();
     };
   }
 
