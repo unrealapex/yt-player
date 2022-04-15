@@ -41,6 +41,8 @@ $(function() {
     const $expand = $("#expand");
     // queue list item container
     const $queueList = $("#queue-list");
+    // queue item delete x buttons
+    const $x = $(".x");
     var queue = [];
     var queueNumber = 0;
     var toggleQueueDeleteWizard = false;
@@ -630,7 +632,7 @@ $(function() {
       }
     });
 
-    $(".x").on("click", function (event) {
+    $x.on("click", function (event) {
       let index = $(event.target).data("index");
       if (toggleQueueDeleteWizard) {
         deleteQueueItem(index);
@@ -649,10 +651,10 @@ $(function() {
   function showQueueItemRemovalButtons() {
     if (!toggleQueueDeleteWizard) {
       toggleQueueDeleteWizard = true;
-      $(".x").show();
+      $x.show();
     } else {
       toggleQueueDeleteWizard = false;
-      $(".x").hide();
+      $x.hide();
     }
     return toggleQueueDeleteWizard;
   }
