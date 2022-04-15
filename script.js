@@ -37,6 +37,7 @@ $(function() {
     const $privateModeButton = $("#private-mode");
     // add video to queue button
     const $addQueue = $("#add-queue");
+    const $expand = $("#expand");
     var queue = [];
     var queueNumber = 0;
     var toggleQueueDeleteWizard = false;
@@ -188,8 +189,8 @@ $(function() {
     // allows the user to reset the player if they entered an invalid url or ran into another problem
     url = "";
     $iframe.attr("src", "");
-    $("#expand").hide();
-    $("#expand").css("cursor",  "default");
+    $expand.hide();
+    $expand.css("cursor",  "default");
     $urlInput.removeClass();
     $playButton.removeClass();
     $playButton.css("color", "#1a1a1a");
@@ -257,7 +258,7 @@ $(function() {
   function closeOverlay() {
     // Closes the video overlay and clears its iframe src
     // TODO: Use hidden class to change visibility of expand button
-    $("#expand").hide();
+    $expand.hide();
     $overlay.hide();
     refresh();
   }
@@ -269,10 +270,10 @@ $(function() {
     // $urlInput.select();
     $overlay.hide();
     if (isLoaded()) {
-      $("#expand").show();
-      $("#expand").focus();
+      $expand.show();
+      $expand.focus();
     } else {
-      $("#expand").hide();
+      $expand.hide();
     }
   }
 
@@ -804,7 +805,7 @@ $(function() {
     $("#queue-input").focus();
   });
 
-  $("#expand").on("click", function () {
+  $expand.on("click", function () {
     $(this).hide();
     $overlay.show();
   });
