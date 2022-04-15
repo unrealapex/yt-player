@@ -169,7 +169,7 @@ $(function() {
 
   function openFullscreen() {
     // puts the player in full screen mode
-    var player = document.querySelector("iframe");
+    let player = document.querySelector("iframe");
     if (player.src.length !== 0 && isLoaded()) {
       if (player.requestFullscreen) {
         player.requestFullscreen();
