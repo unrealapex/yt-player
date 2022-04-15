@@ -37,7 +37,10 @@ $(function() {
     const $privateModeButton = $("#private-mode");
     // add video to queue button
     const $addQueue = $("#add-queue");
+    // video expand button
     const $expand = $("#expand");
+    // queue list item container
+    const $queueList = $("#queue-list");
     var queue = [];
     var queueNumber = 0;
     var toggleQueueDeleteWizard = false;
@@ -308,8 +311,8 @@ $(function() {
       queue[queue.length] = $queueInput.val();
       $queueInput.val("");
       $queueInput.focus();
-      // $("#queue-list").append(linebreak);
-      // $("#queue-list").innerHTML +=
+      // $queueList.append(linebreak);
+      // $queueList.innerHTML +=
       //   queue.length + ". " + queueValue;
       $("#queue-count").text(`queue: ${
         queueNumber + 1
@@ -349,7 +352,7 @@ $(function() {
       let confirmDelete = confirm("Are you sure you want to delete the queue?");
       if (confirmDelete) {
         queue = [];
-        $("#queue-list").text("");
+        $queueList.text("");
         $("#queue-count").text("queue: 0/0");
         $queueInput.val();
         $queueInput.focus();
@@ -553,7 +556,7 @@ $(function() {
   //   // rectangle.css("backgroundImage = "url('https://i.ytimg.com/vi/" + urlDissector.exec(queue[index])[2] + "/maxresdefault.jpg')";
   //   // Default thumbnail
   //   rectangle.css("backgroundImage = "url('https://i.ytimg.com/vi/" + urlDissector.exec(queue[index])[2] + "/mqdefault.jpg')";
-  //   $("#queue-list").append(rectangle);
+  //   $queueList.append(rectangle);
   // }
 
   // retrieves the thumbnail image of youtube video url in queue
@@ -610,9 +613,9 @@ $(function() {
     // thumbnail.append(thumbnailNumber);
     // appends thumbnail image and wrapper into queue list div
 
-    $("#queue-list").append(thumbnail);
+    $queueList.append(thumbnail);
 
-    $("#queue-list").sortable({
+    $queueList.sortable({
       axis: "x",
       placeholder: "ui-state-highlight",
       containment: "parent",
@@ -706,7 +709,7 @@ $(function() {
 
   // // when dragging the queue list, scroll(on the x axis); controls dragging behavior of queue list
   // document.on("DOMContentLoaded", function () {
-  //   const ele = $("#queue-list");
+  //   const ele = $queueList;
   //   ele.css("cursor", "grab");
 
   //   let pos = { top: 0, left: 0, x: 0, y: 0 };
