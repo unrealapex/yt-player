@@ -351,8 +351,7 @@ $(function() {
   function deleteQueue() {
     // deletes queue
     if (queue.length != 0) {
-      let confirmDelete = confirm("Are you sure you want to delete the queue?");
-      if (confirmDelete) {
+      if (confirm("Are you sure you want to delete the queue?")) {
         queue = [];
         $queueList.text("");
         $("#queue-count").text("queue: 0/0");
