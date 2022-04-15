@@ -35,6 +35,8 @@ $(function() {
     const $optionsDiv = $("#options-div");
     // button that toggles private mode
     const $privateModeButton = $("#private-mode");
+    // add video to queue button
+    const $addQueue = $("#add-queue");
     var queue = [];
     var queueNumber = 0;
     var toggleQueueDeleteWizard = false;
@@ -107,24 +109,24 @@ $(function() {
     if ($queueInput.val().length === 0) {
       clearNotification();
       $queueInput.removeClass();
-      $("#add-queue").css("color", "#1a1a1a");
-      $("#add-queue").removeClass();
+      $addQueue.css("color", "#1a1a1a");
+      $addQueue.removeClass();
       return false;
       // $playButton.prop("disabled", true);
     } else if (urlDissector.test($queueInput.val())) {
       clearNotification();
       $queueInput.addClass("correct");
-      $("#add-queue").addClass("valid");
-      $("#add-queue").prop("disabled", false);
-      $("#add-queue").focus();
+      $addQueue.addClass("valid");
+      $addQueue.prop("disabled", false);
+      $addQueue.focus();
       return true;
     } else {
       setNotification("enter a valid url", -1);
       $queueInput.removeClass("correct");
       $queueInput.addClass("wrong");
-      $("#add-queue").removeClass();
-      $("#add-queue").prop("disabled", true);
-      $("#add-queue").css("color", "#c6262e");
+      $addQueue.removeClass();
+      $addQueue.prop("disabled", true);
+      $addQueue.css("color", "#c6262e");
       return false;
     }
   }
@@ -318,7 +320,7 @@ $(function() {
         queue.length > 1
           ? `${queue.length} items in queue`
           : `${queue.length} item in queue`);
-      $("#add-queue").removeClass();
+      $addQueue.removeClass();
       getThumbnail(queue.length - 1);
       $(`.thumbnail:nth-of-type(${queueNumber + 1})`)
       // $("#thumbnail-" + queueNumber)
@@ -785,7 +787,7 @@ $(function() {
     previousVideo();
   });
 
-  $("#add-queue").on("click", function () {
+  $addQueue.on("click", function () {
     addQueue();
   });
 
