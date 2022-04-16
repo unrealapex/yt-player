@@ -469,11 +469,6 @@ img {
 /*   max-width: 65%; */
 }
 
-.dropdown {
-  position: absolute;
-  display: inline-block;
-}
-
 .dropdown-content {
   display: none;
   position: absolute;
@@ -523,11 +518,6 @@ img {
   font-size: 3.5rem !important;
 }
 
-.dropdown {
-  position: relative;
-  display: inline-block;
-}
-
 .dropdown-content {
   display: none;
   display: inline;
@@ -544,8 +534,4 @@ img {
 
 .dropdown-content li:hover {
   background-color: rgba(2, 249, 249, 1);
-}
-
-.dropdown:hover .dropdown-content {
-  display: block;
 }
