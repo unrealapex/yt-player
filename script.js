@@ -346,6 +346,15 @@ $(function () {
       updateThumbnailNumbers();
     }
 
+
+  $("img").on("contextmenu", function () {
+    return false;
+  });
+
+  $(".thumbnail").on("contextmenu", function () {
+    // open context menu
+  });
+
     return queue;
   }
 
@@ -571,8 +580,13 @@ $(function () {
         <img id="thumbnail-image-${index}" src="https://i.ytimg.com/vi/${
       urlDissector.exec(queue[index])[4]
     }/mqdefault.jpg">
-        <div id="x-${index}" class="x" data-index="${index}" title="remove video from queue" style="position:absolute;">
-          &times;
+        <div id="dropdown-${index}" class="dropdown" data-index="${index}" style="position:absolute;">
+          <div class="dropdown-content">
+            <li title="remove video from queue">remove</li>
+            <li title="move video to front of queue">move to front</li>
+            <li title="move video to end of queue">move to end</li>
+            <li title="open video on youtube">open</li>
+          </div>
         </div>
       </div>
       <div id="thumbnail-number-${index}" class="thumbnail-number">${
