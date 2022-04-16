@@ -1,70 +1,70 @@
-$(function() {
+$(function () {
   // **TO DO LIST**
   // TODO: use more variables
   // TODO: use overlay instead of modal for queue
   // TODO: redesign queue layout and functioning
 
   // globals
-    // player URL
-    var url = "";
-    // player video id
-    var videoId = "";
-    // player iframe
-    const $iframe = $("iframe");
-    // input where user enters YouTube url to play
-    const $inputField = $("#input-field");
-    const $urlInput = $("#url-input");
-    const $queueInput = $("#queue-input");
-    const $urlRadio = $("#url-radio");
-    const $queueRadio = $("#queue-radio");
-    // button to play YouTube video url entered
-    const $playButton = $("#play");
-    // overlay that video player iframe is shown
-    const $overlay = $("#overlay");
-    // notification that shows errors and information
-    const $notification = $("#notification");
-    // loading text that displays when video is loading
-    const $loader = $("#loader");
-    // modal that shows all the availible shortcuts in the video player
-    const $shortcutsModal = $("#shortcuts-modal");
-    // url submission form
-    const $form = $("form");
-    // parent for button and video thumbnail that appear when a video is minimized
-    const $expandBox = $("#expand-box");
-    // parent div of options dropdown
-    const $optionsDiv = $("#options-div");
-    // button that toggles private mode
-    const $privateModeButton = $("#private-mode");
-    // add video to queue button
-    const $addQueue = $("#add-queue");
-    // video expand button
-    const $expand = $("#expand");
-    // queue list item container
-    const $queueList = $("#queue-list");
-    // queue item delete x buttons
-    const $x = $(".x");
-    var queue = [];
-    var queueNumber = 0;
-    var toggleQueueDeleteWizard = false;
-    // checks if the video is loaded or not
-    var isLoaded = function () {
-      return $iframe.readyState == "complete" || "interactive" ? true : false;
-    };
-    // determines if the video should be loaded with a YouTube privacy enhanced URL or a regular YouTube embed url
-    var $privateMode = function () {
-      return JSON.parse($("#private-mode").data("enabled"));
-    };
+  // player URL
+  var url = "";
+  // player video id
+  var videoId = "";
+  // player iframe
+  const $iframe = $("iframe");
+  // input where user enters YouTube url to play
+  const $inputField = $("#input-field");
+  const $urlInput = $("#url-input");
+  const $queueInput = $("#queue-input");
+  const $urlRadio = $("#url-radio");
+  const $queueRadio = $("#queue-radio");
+  // button to play YouTube video url entered
+  const $playButton = $("#play");
+  // overlay that video player iframe is shown
+  const $overlay = $("#overlay");
+  // notification that shows errors and information
+  const $notification = $("#notification");
+  // loading text that displays when video is loading
+  const $loader = $("#loader");
+  // modal that shows all the availible shortcuts in the video player
+  const $shortcutsModal = $("#shortcuts-modal");
+  // url submission form
+  const $form = $("form");
+  // parent for button and video thumbnail that appear when a video is minimized
+  const $expandBox = $("#expand-box");
+  // parent div of options dropdown
+  const $optionsDiv = $("#options-div");
+  // button that toggles private mode
+  const $privateModeButton = $("#private-mode");
+  // add video to queue button
+  const $addQueue = $("#add-queue");
+  // video expand button
+  const $expand = $("#expand");
+  // queue list item container
+  const $queueList = $("#queue-list");
+  // queue item delete x buttons
+  const $x = $(".x");
+  var queue = [];
+  var queueNumber = 0;
+  var toggleQueueDeleteWizard = false;
+  // checks if the video is loaded or not
+  var isLoaded = function () {
+    return $iframe.readyState == "complete" || "interactive" ? true : false;
+  };
+  // determines if the video should be loaded with a YouTube privacy enhanced URL or a regular YouTube embed url
+  var $privateMode = function () {
+    return JSON.parse($("#private-mode").data("enabled"));
+  };
 
-    // regex
-    // gets the youtube video id from strings
-    // const videoIdExtractor =
-    //   /(http(?: s) ?: \/\/(?:m.)?(?:www\.)?)?youtu(?:\.be\/|be\.com\/(?:watch\?(?:feature=youtu\.be\&)?v=|v\/|embed\/|user\/(?:[\w#]+\/)+))([^&#?\n]+)/;
-    // main regex we can use to disect parts of a youtube url
-    const urlDissector  =
-      /((http?(?:s)?:\/\/)?(www\.)?)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?&v=))((?:\w|-){11})((?:\&|\?)\S*)?/;
+  // regex
+  // gets the youtube video id from strings
+  // const videoIdExtractor =
+  //   /(http(?: s) ?: \/\/(?:m.)?(?:www\.)?)?youtu(?:\.be\/|be\.com\/(?:watch\?(?:feature=youtu\.be\&)?v=|v\/|embed\/|user\/(?:[\w#]+\/)+))([^&#?\n]+)/;
+  // main regex we can use to disect parts of a youtube url
+  const urlDissector =
+    /((http?(?:s)?:\/\/)?(www\.)?)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?&v=))((?:\w|-){11})((?:\&|\?)\S*)?/;
 
-    // expression to test if there are any whitespaces in our url
-    const whiteSpaceRE = /\s/g;
+  // expression to test if there are any whitespaces in our url
+  const whiteSpaceRE = /\s/g;
 
   function getVideoURL() {
     // ternary operator which determines whether url should come from the main url bar or the queue
@@ -88,7 +88,7 @@ $(function() {
     if ($urlInput.val().length === 0) {
       clearNotification();
       $urlInput.removeClass();
-      $playButton.css("color",  "#1a1a1a");
+      $playButton.css("color", "#1a1a1a");
       $playButton.removeClass();
       return false;
       // $playButton.prop("disabled", true);
@@ -104,7 +104,7 @@ $(function() {
       $urlInput.addClass("wrong");
       $playButton.removeClass();
       // $playButton.prop("disabled", true);
-      $playButton.css("color",  "#c6262e");
+      $playButton.css("color", "#c6262e");
       return false;
     }
   }
@@ -148,12 +148,10 @@ $(function() {
     $overlay.show();
     if ($("#private-mode").is(":checked")) {
       // sets the video player iframe's url to a youtube privacy-enhanced url(video doesn't show up on user's youtube search history) if the user has enabled Privacy Mode
-      $iframe.attr("src",
-        "https://www.youtube-nocookie.com/embed/" + videoId);
+      $iframe.attr("src", "https://www.youtube-nocookie.com/embed/" + videoId);
     } else {
       // sets the video player iframe's url to a youtube embed url (default)
-      $iframe.attr("src",
-        "https://www.youtube.com/embed/" + videoId);
+      $iframe.attr("src", "https://www.youtube.com/embed/" + videoId);
     }
 
     if ($("#load-fullscreen").is(":checked")) {
@@ -195,7 +193,7 @@ $(function() {
     url = "";
     $iframe.attr("src", "");
     $expand.hide();
-    $expand.css("cursor",  "default");
+    $expand.css("cursor", "default");
     $urlInput.removeClass();
     $playButton.removeClass();
     $playButton.css("color", "#1a1a1a");
@@ -247,7 +245,9 @@ $(function() {
           left
       );
     } else {
-      console.log("Error: unable to open video in new tab\nReason: no URL found");
+      console.log(
+        "Error: unable to open video in new tab\nReason: no URL found"
+      );
       alert(
         "We can't open video in new tab because you haven't entered a URL\n Play a video and try again"
       );
@@ -316,33 +316,34 @@ $(function() {
       // $queueList.append(linebreak);
       // $queueList.innerHTML +=
       //   queue.length + ". " + queueValue;
-      $("#queue-count").text(`queue: ${
-        queueNumber + 1
-      } / ${queue.length}`);
-      $(
-        "#queue-counter-ui"
-      ).text(`queue(${queue.length})`);
-      $("#queue-counter-ui").attr("title",
+      $("#queue-count").text(`queue: ${queueNumber + 1} / ${queue.length}`);
+      $("#queue-counter-ui").text(`queue(${queue.length})`);
+      $("#queue-counter-ui").attr(
+        "title",
         queue.length > 1
           ? `${queue.length} items in queue`
-          : `${queue.length} item in queue`);
+          : `${queue.length} item in queue`
+      );
       $addQueue.removeClass();
       getThumbnail(queue.length - 1);
       $(`.thumbnail:nth-of-type(${queueNumber + 1})`)
-      // $("#thumbnail-" + queueNumber)
+        // $("#thumbnail-" + queueNumber)
         .addClass("current-video");
 
       if (
         !$("#thumbnail-" + queueNumber)
-          .attr("title").includes("current video")
+          .attr("title")
+          .includes("current video")
       ) {
-        $(
-          "#thumbnail-" + queueNumber
-        ).attr("title", $("#thumbnail-0")
-          .attr("title").replace(/^/, "current video" + "\n"));
+        $("#thumbnail-" + queueNumber).attr(
+          "title",
+          $("#thumbnail-0")
+            .attr("title")
+            .replace(/^/, "current video" + "\n")
+        );
       } else {
       }
-      updateThumbnailNumbers()
+      updateThumbnailNumbers();
     }
 
     return queue;
@@ -362,10 +363,7 @@ $(function() {
         // delete this later
 
         while ($(".rectangle")[0]) {
-          $("rectangle")[0]
-            .parentNode.removeChild(
-              $(".rectangle")[0]
-            );
+          $("rectangle")[0].parentNode.removeChild($(".rectangle")[0]);
         }
         clearNotification();
         return queue;
@@ -382,24 +380,26 @@ $(function() {
     if (queueNumber + 1 !== queue.length) {
       queueNumber++;
       loadVideo(urlDissector.exec(queue[queueNumber])[4]);
-      $(`.thumbnail:nth-of-type(${queueNumber- 2})`)
-      // $("#thumbnail-" + (queueNumber - 1))
+      $(`.thumbnail:nth-of-type(${queueNumber - 2})`)
+        // $("#thumbnail-" + (queueNumber - 1))
         .removeClass("current-video");
       $(`.thumbnail:nth-of-type(${queueNumber + 1})`)
-      // $("#thumbnail-" + queueNumber)
+        // $("#thumbnail-" + queueNumber)
         .addClass("current-video");
       // removes "current video" from previous video thumbnail title and adds "current video" to current video thumbnail title
-      $(
-        "#thumbnail-" + (queueNumber - 1)
-      ).attr("title", $("#thumbnail-" + queueNumber)
-        .attr("title").replace("current video", ""));
-      $(
-        "#thumbnail-" + queueNumber
-      ).attr("title", $("#thumbnail-" + queueNumber)
-        .attr("title").replace(/^/, "current video" + "\n"));
-      $("#queue-count").text(`queue: ${
-        queueNumber + 1
-      } / ${queue.length}`);
+      $("#thumbnail-" + (queueNumber - 1)).attr(
+        "title",
+        $("#thumbnail-" + queueNumber)
+          .attr("title")
+          .replace("current video", "")
+      );
+      $("#thumbnail-" + queueNumber).attr(
+        "title",
+        $("#thumbnail-" + queueNumber)
+          .attr("title")
+          .replace(/^/, "current video" + "\n")
+      );
+      $("#queue-count").text(`queue: ${queueNumber + 1} / ${queue.length}`);
       return queueNumber;
     } else {
       alert("You are at the end of the queue");
@@ -412,23 +412,25 @@ $(function() {
       queueNumber--;
       loadVideo(urlDissector.exec(queue[queueNumber])[4]);
       $(`.thumbnail:nth-of-type(${queueNumber + 2})`)
-      // $("#thumbnail-" + (queueNumber + 1))
+        // $("#thumbnail-" + (queueNumber + 1))
         .removeClass("current-video");
       $(`.thumbnail:nth-of-type(${queueNumber + 1})`)
-      // $("#thumbnail-" + queueNumber)
+        // $("#thumbnail-" + queueNumber)
         .addClass("current-video");
       // removes "current video" from next video thumbnail title and adds "current video" to current video thumbnail title
-      $(
-        "#thumbnail-" + (queueNumber + 1)
-      ).attr("title", $("#thumbnail-" + queueNumber)
-        .attr("title").replace("current video", ""));
-      $(
-        "#thumbnail-" + queueNumber
-      ).attr("title", $("#thumbnail-" + queueNumber)
-        .attr("title").replace(/^/, "current video" + "\n"));
-      $("#queue-count").text(`queue: ${
-        queueNumber + 1
-      } / ${queue.length}`);
+      $("#thumbnail-" + (queueNumber + 1)).attr(
+        "title",
+        $("#thumbnail-" + queueNumber)
+          .attr("title")
+          .replace("current video", "")
+      );
+      $("#thumbnail-" + queueNumber).attr(
+        "title",
+        $("#thumbnail-" + queueNumber)
+          .attr("title")
+          .replace(/^/, "current video" + "\n")
+      );
+      $("#queue-count").text(`queue: ${queueNumber + 1} / ${queue.length}`);
       return queueNumber;
     } else {
       alert("You are at the start of the queue");
@@ -452,10 +454,7 @@ $(function() {
 
   // keyboard shortcuts
   $(document).on("keydown", function (event) {
-    if (
-      event.key === "r" &&
-      $overlay.css("display") == "block"
-    ) {
+    if (event.key === "r" && $overlay.css("display") == "block") {
       loadVideo(videoId);
     } else if (
       (event.key === "Escape" || event.key === "x") &&
@@ -565,15 +564,20 @@ $(function() {
     // create div as thumbnail wrapper
     // var thumbnail = document.createElement("div");
     let thumbnail = $(`
-    <div id="thumbnail-${index}" class="thumbnail" title="${queue[index]}" data-url="${queue[index]}" data-thumbnail-position="${index}">
+    <div id="thumbnail-${index}" class="thumbnail" title="${
+      queue[index]
+    }" data-url="${queue[index]}" data-thumbnail-position="${index}">
       <div id="delete-queue-item-div-${index}" style="position:relative;">
         <img id="thumbnail-image-${index}" src="https://i.ytimg.com/vi/${
-      urlDissector.exec(queue[index])[4]}/mqdefault.jpg">
+      urlDissector.exec(queue[index])[4]
+    }/mqdefault.jpg">
         <div id="x-${index}" class="x" data-index="${index}" title="remove video from queue" style="position:absolute;">
           &times;
         </div>
       </div>
-      <div id="thumbnail-number-${index}" class="thumbnail-number">${index + 1}</div>
+      <div id="thumbnail-number-${index}" class="thumbnail-number">${
+      index + 1
+    }</div>
     </div>
     `);
     // create div that shows video number
@@ -624,11 +628,11 @@ $(function() {
       helper: "clone",
       forcePlaceholderSize: true,
       tolerance: "pointer",
-      update: function( event, ui ) {
+      update: function (event, ui) {
         updateQueue();
         updateThumbnailNumbers();
         updateQueueUI();
-      }
+      },
     });
 
     $x.on("click", function (event) {
@@ -636,11 +640,20 @@ $(function() {
       if (toggleQueueDeleteWizard) {
         deleteQueueItem(index);
         $("#thumbnail-" + index).remove();
-        $("#queue-counter-ui").text(($(".thumbnail").length > 0 ? `queue(${($(".thumbnail").length)})` : "queue"));
-        $("#queue-counter-ui").attr("title", $(".thumbnail").length > 1 ? `${$(".thumbnail").length} items in queue` : `${$(".thumbnail").length} item in queue`);
-         $("#queue-count").text(
-           `queue: ${queueNumber + 1} / ${$(".thumbnail").length}`
-         );
+        $("#queue-counter-ui").text(
+          $(".thumbnail").length > 0
+            ? `queue(${$(".thumbnail").length})`
+            : "queue"
+        );
+        $("#queue-counter-ui").attr(
+          "title",
+          $(".thumbnail").length > 1
+            ? `${$(".thumbnail").length} items in queue`
+            : `${$(".thumbnail").length} item in queue`
+        );
+        $("#queue-count").text(
+          `queue: ${queueNumber + 1} / ${$(".thumbnail").length}`
+        );
         updateThumbnailNumbers();
       } else {
       }
@@ -684,17 +697,17 @@ $(function() {
   };
 
   function updateQueue() {
-    $(".thumbnail").map(function(index) {
-      queue[index] = $(this).data("url");
-      }).get();
+    $(".thumbnail")
+      .map(function (index) {
+        queue[index] = $(this).data("url");
+      })
+      .get();
     return queue;
   }
 
   function updateQueueUI() {
     queueNumber = $(".current-video").data("thumbnail-position");
-    $("#queue-count").text(`queue: ${
-      queueNumber + 1
-    } / ${queue.length}`);
+    $("#queue-count").text(`queue: ${queueNumber + 1} / ${queue.length}`);
     return queueNumber;
   }
 
@@ -766,5 +779,4 @@ $(function() {
     $(this).hide();
     $overlay.show();
   });
-
 });
