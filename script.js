@@ -1,6 +1,6 @@
 $(function () {
   // **TO DO LIST**
-  // TODO: use more variables
+  // TODO: use jQuery index() function
   // TODO: use overlay instead of modal for queue
   // TODO: redesign queue layout and functioning
 
