@@ -349,11 +349,11 @@ $(function () {
   $("img").on("contextmenu", function (e) {
     // open context menu
     $(".dropdown").hide();
-    $(`#dropdown-${$(event.target).data("position")}`).css("display", "flex");
+    $(`#dropdown-${$(e.target).data("position")}`).css("display", "flex");
     return false;
   });
 
-  $(document).on("click", function (e) {
+  $(document).on("click", function () {
         $(".dropdown").hide();
   });
 
