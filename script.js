@@ -381,10 +381,16 @@ $(function () {
 
   $(".move-to-front").on("click", function (e) {
       $(e.target).closest(".thumbnail").prependTo($queueList);
+      updateQueue();
+      updateThumbnailNumbers();
+      updateQueueUI();
   });
 
   $(".move-to-end").on("click", function (e) {
       $(e.target).closest(".thumbnail").appendTo($queueList);
+      updateQueue();
+      updateThumbnailNumbers();
+      updateQueueUI();
   });
 
     return queue;
