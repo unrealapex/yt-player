@@ -379,6 +379,14 @@ $(function () {
     updateThumbnailNumbers();
   });
 
+  $(".move-to-front").on("click", function (e) {
+      $($(e.target).closest(".thumbnail")).prependTo($queueList);
+  });
+
+  $(".move-to-end").on("click", function (e) {
+      $($(e.target).closest(".thumbnail")).appendTo($queueList);
+  });
+
     return queue;
   }
 
