@@ -393,6 +393,10 @@ $(function () {
       updateQueueUI();
   });
 
+  $(".open-on-yt").on("click", function (e) {
+    window.open($(e.target).closest(".thumbnail").data("url"), "_blank");
+  });
+
     return queue;
   }
 
