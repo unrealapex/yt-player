@@ -354,10 +354,11 @@ $(function () {
   $("img").on("contextmenu", function (e) {
     // open context menu
     // $(".dropdown").css("display", "flex");
-    $(`.dropdown:nth-of-type(${$(event.target).data("position") + 1})`).css(
+    $(`#dropdown-${$(event.target).data("position")}`).css(
       "display",
       "flex"
     );
+
     // alert($(e.target).data("thumbnail-position"));
   });
 
