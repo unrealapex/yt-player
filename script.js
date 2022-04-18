@@ -357,6 +357,28 @@ $(function () {
         $(".dropdown").hide();
   });
 
+
+  $(".remove-video").on("click", function (e) {
+    let index = $(e.target).closest(".thumbnail").data("thumbnail-position");
+    deleteQueueItem(index);
+    $(e.target).closest(".thumbnail").remove();
+    $("#queue-counter-ui").text(
+    $(".thumbnail").length > 0
+        ? `queue(${$(".thumbnail").length})`
+        : "queue"
+    );
+    $("#queue-counter-ui").attr(
+    "title",
+    $(".thumbnail").length > 1
+        ? `${$(".thumbnail").length} items in queue`
+        : `${$(".thumbnail").length} item in queue`
+    );
+    $("#queue-count").text(
+    `queue: ${queueNumber + 1} / ${$(".thumbnail").length}`
+    );
+    updateThumbnailNumbers();
+  });
+
     return queue;
   }
 
@@ -584,10 +606,10 @@ $(function () {
     }/mqdefault.jpg">
         <div id="dropdown-${index}" class="dropdown" data-index="${index}" style="position:absolute;">
           <div class="dropdown-content">
-            <li title="remove video from queue">remove</li>
-            <li title="move video to front of queue">move to front</li>
-            <li title="move video to end of queue">move to end</li>
-            <li title="open video on youtube">open</li>
+            <li class="remove-video" title="remove video from queue">remove</li>
+            <li class="move-to-front" title="move video to front of queue">move to front</li>
+            <li class="move-to-end" title="move video to end of queue">move to end</li>
+            <li class="open-on-yt" title="open video on youtube">open</li>
           </div>
         </div>
       </div>
