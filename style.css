@@ -423,11 +423,10 @@ details,
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  display: block;
-  display: flex;
+  /* display: flex; */
   justify-content: center;
   align-items: center;
-
+  display: none;
 }
 
 /* .x:hover {
