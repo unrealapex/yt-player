@@ -351,8 +351,14 @@ $(function () {
     return false;
   });
 
-  $(".thumbnail").on("contextmenu", function () {
+  $("img").on("contextmenu", function (e) {
     // open context menu
+    // $(".dropdown").css("display", "flex");
+    $(`.dropdown:nth-of-type(${$(event.target).data("position") + 1})`).css(
+      "display",
+      "flex"
+    );
+    // alert($(e.target).data("thumbnail-position"));
   });
 
     return queue;
@@ -577,7 +583,7 @@ $(function () {
       queue[index]
     }" data-url="${queue[index]}" data-thumbnail-position="${index}">
       <div id="delete-queue-item-div-${index}" style="position:relative;">
-        <img id="thumbnail-image-${index}" src="https://i.ytimg.com/vi/${
+        <img id="thumbnail-image-${index}" data-position="${index}" src="https://i.ytimg.com/vi/${
       urlDissector.exec(queue[index])[4]
     }/mqdefault.jpg">
         <div id="dropdown-${index}" class="dropdown" data-index="${index}" style="position:absolute;">
