@@ -354,6 +354,7 @@ $(function () {
   $("img").on("contextmenu", function (e) {
     // open context menu
     // $(".dropdown").css("display", "flex");
+    $(".dropdown").hide();
     $(`#dropdown-${$(event.target).data("position")}`).css(
       "display",
       "flex"
