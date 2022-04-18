@@ -346,21 +346,11 @@ $(function () {
       updateThumbnailNumbers();
     }
 
-
-  $("img").on("contextmenu", function () {
-    return false;
-  });
-
   $("img").on("contextmenu", function (e) {
     // open context menu
-    // $(".dropdown").css("display", "flex");
     $(".dropdown").hide();
-    $(`#dropdown-${$(event.target).data("position")}`).css(
-      "display",
-      "flex"
-    );
-
-    // alert($(e.target).data("thumbnail-position"));
+    $(`#dropdown-${$(event.target).data("position")}`).css("display", "flex");
+    return false;
   });
 
     return queue;
