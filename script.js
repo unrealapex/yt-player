@@ -353,6 +353,10 @@ $(function () {
     return false;
   });
 
+  $(document).on("click", function (e) {
+        $(".dropdown").hide();
+  });
+
     return queue;
   }
 
