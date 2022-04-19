@@ -346,6 +346,57 @@ $(function () {
       updateThumbnailNumbers();
     }
 
+  $("img").on("contextmenu", function (e) {
+    // open context menu
+    $(".dropdown").hide();
+    $(`#dropdown-${$(e.target).data("position")}`).css("display", "flex");
+    return false;
+  });
+
+  $(document).on("click", function () {
+        $(".dropdown").hide();
+  });
+
+
+  $(".remove-video").on("click", function (e) {
+    let index = $(e.target).closest(".thumbnail").data("thumbnail-position");
+    deleteQueueItem(index);
+    $(e.target).closest(".thumbnail").remove();
+    $("#queue-counter-ui").text(
+    $(".thumbnail").length > 0
+        ? `queue(${$(".thumbnail").length})`
+        : "queue"
+    );
+    $("#queue-counter-ui").attr(
+    "title",
+    $(".thumbnail").length > 1
+        ? `${$(".thumbnail").length} items in queue`
+        : `${$(".thumbnail").length} item in queue`
+    );
+    $("#queue-count").text(
+    `queue: ${queueNumber + 1} / ${$(".thumbnail").length}`
+    );
+    updateThumbnailNumbers();
+  });
+
+  $(".move-to-front").on("click", function (e) {
+      $(e.target).closest(".thumbnail").prependTo($queueList);
+      updateQueue();
+      updateThumbnailNumbers();
+      updateQueueUI();
+  });
+
+  $(".move-to-end").on("click", function (e) {
+      $(e.target).closest(".thumbnail").appendTo($queueList);
+      updateQueue();
+      updateThumbnailNumbers();
+      updateQueueUI();
+  });
+
+  $(".open-on-yt").on("click", function (e) {
+    window.open($(e.target).closest(".thumbnail").data("url"), "_blank");
+  });
+
     return queue;
   }
 
@@ -568,11 +619,16 @@ $(function () {
       queue[index]
     }" data-url="${queue[index]}" data-thumbnail-position="${index}">
       <div id="delete-queue-item-div-${index}" style="position:relative;">
-        <img id="thumbnail-image-${index}" src="https://i.ytimg.com/vi/${
+        <img id="thumbnail-image-${index}" data-position="${index}" src="https://i.ytimg.com/vi/${
       urlDissector.exec(queue[index])[4]
     }/mqdefault.jpg">
-        <div id="x-${index}" class="x" data-index="${index}" title="remove video from queue" style="position:absolute;">
-          &times;
+        <div id="dropdown-${index}" class="dropdown" data-index="${index}" style="position:absolute;">
+          <div class="dropdown-content">
+            <li class="remove-video" title="remove video from queue">remove</li>
+            <li class="move-to-front" title="move video to front of queue">move to front</li>
+            <li class="move-to-end" title="move video to end of queue">move to end</li>
+            <li class="open-on-yt" title="open video on youtube">open</li>
+          </div>
         </div>
       </div>
       <div id="thumbnail-number-${index}" class="thumbnail-number">${
