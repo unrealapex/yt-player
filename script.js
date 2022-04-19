@@ -431,9 +431,10 @@ $(function () {
     if (queueNumber + 1 !== queue.length) {
       queueNumber++;
       loadVideo(urlDissector.exec(queue[queueNumber])[4]);
-      $(`.thumbnail:nth-of-type(${queueNumber - 2})`)
-        // $("#thumbnail-" + (queueNumber - 1))
-        .removeClass("current-video");
+    //   $(`.thumbnail:nth-of-type(${queueNumber - 2})`)
+    //     // $("#thumbnail-" + (queueNumber - 1))
+    //     .removeClass("current-video");
+      $(".current-video").removeClass("current-video");
       $(`.thumbnail:nth-of-type(${queueNumber + 1})`)
         // $("#thumbnail-" + queueNumber)
         .addClass("current-video");
@@ -462,9 +463,10 @@ $(function () {
     if (queueNumber !== 0) {
       queueNumber--;
       loadVideo(urlDissector.exec(queue[queueNumber])[4]);
-      $(`.thumbnail:nth-of-type(${queueNumber + 2})`)
-        // $("#thumbnail-" + (queueNumber + 1))
-        .removeClass("current-video");
+    //   $(`.thumbnail:nth-of-type(${queueNumber + 2})`)
+    //     // $("#thumbnail-" + (queueNumber + 1))
+    //     .removeClass("current-video");
+      $(".current-video").removeClass("current-video");
       $(`.thumbnail:nth-of-type(${queueNumber + 1})`)
         // $("#thumbnail-" + queueNumber)
         .addClass("current-video");
