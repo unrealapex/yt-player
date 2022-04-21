@@ -45,6 +45,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/balloon-css@1.2.0/balloon.min.css">
   </head>
 
   <body>
@@ -64,12 +65,13 @@
                 autofocus
                 required
                 placeholder="enter youtube video url"
-                title="enter a youtube video url"
+                aria-label="enter a youtube video url"
+                data-balloon-pos="up"
                 size="22"
                 minlength="20"
                 maxlength="80"
               />
-              <button id="play" title="play video url" disabled>play</button>
+              <button id="play" aria-label="play video url" data-balloon-pos="up" disabled>play</button>
             </div>
           </form>
           <!-- <fieldset>
@@ -100,25 +102,28 @@
         <div>
           <button
             class="overlay-buttons transparent-button material-icons-round"
-            title="close"
+            aria-label="close"
+            data-balloon-pos="up"
           >
             close
           </button>
           <button
             class="overlay-buttons transparent-button material-icons-round"
-            title="maximize"
+            aria-label="maximize"
+            data-balloon-pos="up"
           >
             check_box_outline_blank
           </button>
           <button
             class="overlay-buttons transparent-button material-icons-round"
-            title="minimize"
+            aria-label="minimize"
+            data-balloon-pos="up"
           >
             minimize
           </button>
         </div>
 
-        <progress id="loader" title="loading video..."></progress>
+        <progress id="loader" aria-label="loading video..." data-balloon-pos="up"></progress>
         <iframe id="videoPlayer" loading="eager" allowfullscreen="true">
           <p>Your browser does not support iframes.</p>
         </iframe>
@@ -144,7 +149,10 @@
             id="private-mode"
             class="options"
             data-enabled="false"
-            title="private mode is currently disabled(click to enable)"
+            aria-label="private mode is currently disabled&#10;(click to enable)"
+            data-balloon-pos="left"
+            data-balloon-length="large"
+            data-balloon-break
           >
             private mode
           </div>
@@ -153,8 +161,8 @@
         </div>
       </div>
     </div>
-    <div id="expand-box" class="hidden">
-      <img id="thumbnail" title="click to reopen minimized video" />
+    <div id="expand-box" class="hidden" aria-label="click to reopen minimized video" data-balloon-pos="left">
+      <img id="thumbnail"/>
       <div id="expand-hint-text">minimized video</div>
     </div>
     <div id="shortcuts-modal" class="modal">
