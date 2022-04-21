@@ -222,7 +222,7 @@ button {
 .overlay-buttons {
   color: white;
   transition-duration: 0.5s;
-  padding: 0.25em;
+  padding: 0 0.25em 0.25em 0.25em;
   float: right;
 }
 
