@@ -99,6 +99,7 @@ $(function () {
     ) {
       $expandBox.hide();
       $overlay.show();
+      $playButton.blur();
       // $overlay.css("display", "block");
     } else {
       loadVideo(videoId);
@@ -110,6 +111,7 @@ $(function () {
   // take parameter videoId(string)
   function loadVideo(videoId) {
     $overlay.show();
+    $playButton.blur();
     $expandBox.hide();
     $loader.show();
     // var valuesAtLoad = [document.querySelector("#load-fullscreen").value, document.querySelector("#private-mode").value];
@@ -177,8 +179,8 @@ $(function () {
     // document.querySelector("#private-mode").checked = false;
     $privateModeButton.data("enabled", false);
     $privateModeButton.attr(
-      "title",
-      "private mode is currently disabled(click to enable)"
+      "aria-label",
+      "private mode is currently disabled" + "\n" + "(click to enable)"
     );
     $privateModeButton.css("background-color", "rgb(249, 249, 249)");
     clearNotification();
@@ -340,6 +342,7 @@ $(function () {
       $iframe.attr("src").length != 0
     ) {
       $overlay.show();
+      $playButton.blur();
     } else if (e.key === "?") {
       if ($shortcutsModal.is(":hidden")) {
         $shortcutsModal.show();
@@ -371,6 +374,7 @@ $(function () {
   // show the overlay whe the user clicks on the video expand thumbnail
   $expandBox.on("click", function () {
     $overlay.show();
+    $playButton.blur();
     // expandButton.disabled = "true";
     $expandBox.hide();
     $thumbnail.attr("src", "");
@@ -396,15 +400,15 @@ $(function () {
         if ($privateMode()) {
           $privateModeButton.data("enabled", false);
           $privateModeButton.attr(
-            "title",
-            "private mode is currently disabled(click to enable)"
+            "aria-label",
+            "private mode is currently disabled" + "\n" + "(click to enable)"
           );
           $privateModeButton.css("background-color", "rgb(249, 249, 249)");
         } else {
           $privateModeButton.data("enabled", true);
           $privateModeButton.attr(
-            "title",
-            "private mode is currently enabled(click to disable)"
+            "aria-label",
+            "private mode is currently enabled" + "\n" + "(click to disable)"
           );
           // document.querySelector("#private-mode").style.backgroundColor = "#68b723";
           $privateModeButton.css("background-color", "lightgreen");
