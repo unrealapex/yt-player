@@ -411,11 +411,6 @@ $(function () {
         $queueInput.focus();
         $("#queue-counter-ui").text("queue");
         $("#queue-counter-ui").attr("title", "");
-        // delete this later
-
-        while ($(".rectangle")[0]) {
-          $("rectangle")[0].parentNode.removeChild($(".rectangle")[0]);
-        }
         clearNotification();
         return queue;
       } else {
