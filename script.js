@@ -41,8 +41,6 @@ $(function () {
   const $expand = $("#expand");
   // queue list item container
   const $queueList = $("#queue-list");
-  // queue item delete x buttons
-  const $x = $(".x");
   var queue = [];
   var queueNumber = 0;
   var toggleQueueDeleteWizard = false;
@@ -688,41 +686,6 @@ $(function () {
         updateQueueUI();
       },
     });
-
-    $x.on("click", function (event) {
-      let index = $(event.target).data("index");
-      if (toggleQueueDeleteWizard) {
-        deleteQueueItem(index);
-        $("#thumbnail-" + index).remove();
-        $("#queue-counter-ui").text(
-          $(".thumbnail").length > 0
-            ? `queue(${$(".thumbnail").length})`
-            : "queue"
-        );
-        $("#queue-counter-ui").attr(
-          "title",
-          $(".thumbnail").length > 1
-            ? `${$(".thumbnail").length} items in queue`
-            : `${$(".thumbnail").length} item in queue`
-        );
-        $("#queue-count").text(
-          `queue: ${queueNumber + 1} / ${$(".thumbnail").length}`
-        );
-        updateThumbnailNumbers();
-      } else {
-      }
-    });
-  }
-
-  function showQueueItemRemovalButtons() {
-    if (!toggleQueueDeleteWizard) {
-      toggleQueueDeleteWizard = true;
-      $x.show();
-    } else {
-      toggleQueueDeleteWizard = false;
-      $x.hide();
-    }
-    return toggleQueueDeleteWizard;
   }
 
   // var modal = document.getElementById("queue-modal");
