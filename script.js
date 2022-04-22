@@ -392,9 +392,9 @@ $(function () {
       updateQueueUI();
     });
 
-    $(".open-on-yt").on("click", function (e) {
-      window.open($(e.target).closest(".thumbnail").data("url"), "_blank");
-    });
+    // $(".open-on-yt").on("click", function (e) {
+    //   window.open($(e.target).closest(".thumbnail").data("url"), "_blank");
+    // });
 
     return queue;
   }
@@ -623,7 +623,9 @@ $(function () {
             <li class="remove-video" title="remove video from queue">remove</li>
             <li class="move-to-front" title="move video to front of queue">move to front</li>
             <li class="move-to-end" title="move video to end of queue">move to end</li>
-            <li class="open-on-yt" title="open video on youtube">open</li>
+            <a href="${
+              queue[index]
+            }" target="_blank"><li class="open-on-yt" title="open video on youtube">open</a></li>
           </div>
         </div>
       </div>
