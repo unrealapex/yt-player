@@ -384,14 +384,6 @@ details,
   text-decoration: none;
   cursor: pointer;
 }
-
-/* .rectangle {
-  width: 320px;
-  height: 180px;
-  margin: 0.4rem 20rem 0.4rem 0.4rem;
-  background-color: lightgray;
-} */
-
 .thumbnail {
   margin: 0.4em;
   width: 320px;
