@@ -224,7 +224,7 @@ $(function () {
     );
   }
 
-  function openVideoInNewTab() {
+  function openVideoInNewWindow() {
     // opens a window that takes the user to the video on the youtube site for the purpose of liking or disliking the video
     if (isLoaded()) {
       // TODO: change to responsive size
