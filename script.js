@@ -43,7 +43,6 @@ $(function () {
   const $queueList = $("#queue-list");
   var queue = [];
   var queueNumber = 0;
-  var toggleQueueDeleteWizard = false;
   // checks if the video is loaded or not
   var isLoaded = function () {
     return $iframe.readyState == "complete" || "interactive" ? true : false;
