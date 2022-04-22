@@ -17,12 +17,12 @@ h1 {
 
 input[type="url"] {
   width: 100%;
-/*   border: none; */
+  /*   border: none; */
   border-style: solid;
   font: inherit;
   padding: 0.4rem 2rem;
   margin-right: 0.4rem;
-/*   border-color: black; */
+  /*   border-color: black; */
   border-radius: 0.2rem;
 }
 
@@ -135,7 +135,7 @@ button:disabled:not(.overlay-buttons, #expand) {
 
 .bar {
   display: flex;
-/*   FIXME: fix this */
+  /*   FIXME: fix this */
   justify-content: flex-start;
 }
 
@@ -171,7 +171,7 @@ button:not(#play, .overlay-buttons) {
   border: none;
   font: inherit;
   padding: 0.4rem 1rem;
-/*   margin-right: 0.4rem; */
+  /*   margin-right: 0.4rem; */
   border-radius: 0.2rem;
   font-size: 1.2rem;
   cursor: pointer;
@@ -264,7 +264,8 @@ button:not(#play, .overlay-buttons) {
   display: none;
 }
 
-.hide-when-disabled:disabled, #expand:disabled {
+.hide-when-disabled:disabled,
+#expand:disabled {
   display: none;
 }
 
@@ -295,13 +296,13 @@ details[open] summary {
 
 .queue {
   padding: 0 0.5rem 0.5rem 0.5rem;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   background-color: #f9f9f9;
-/*   animation: rgb-bg 5s linear infinite;  */
-/*   box-sizing: border-box; */
+  /*   animation: rgb-bg 5s linear infinite;  */
+  /*   box-sizing: border-box; */
   border: 2px solid #eee;
   border-radius: 0.2rem;
-/*   padding: 10px 20px; */
+  /*   padding: 10px 20px; */
   color: black;
   text-align: center;
   max-width: 45%;
@@ -340,17 +341,26 @@ details,
 
 /* The Modal (background) */
 #queue-modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  padding-top: 100px; /* Location of the box */
+  display: none;
+  /* Hidden by default */
+  position: fixed;
+  /* Stay in place */
+  z-index: 1;
+  /* Sit on top */
+  padding-top: 100px;
+  /* Location of the box */
   left: 0;
   top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0, 0, 0); /* Fallback color */
-  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+  width: 100%;
+  /* Full width */
+  height: 100%;
+  /* Full height */
+  overflow: auto;
+  /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0);
+  /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4);
+  /* Black w/ opacity */
 }
 
 /* Modal Content */
@@ -358,7 +368,7 @@ details,
   float: right;
   background-color: #fefefe;
   margin: auto;
-/*   margin-bottom: 4rem; */
+  /*   margin-bottom: 4rem; */
   padding: 1rem;
   margin: 1rem 4rem 1rem 1rem;
   /*   padding-bottom: 2rem; */
@@ -384,6 +394,7 @@ details,
   text-decoration: none;
   cursor: pointer;
 }
+
 .thumbnail {
   margin: 0.4em;
   width: 320px;
@@ -410,7 +421,7 @@ details,
 .dropdown {
   /* text-align:center; */
   /* font-size: 1rem; */
-  color: rgba(255,0,0,0.8);
+  color: rgba(255, 0, 0, 0.8);
   cursor: pointer;
   top: 50%;
   left: 50%;
@@ -436,6 +447,7 @@ img {
   width: inherit;
   height: inherit;
 }
+
 /* .video-title {
   margin-left: 20rem !important;
 } */
@@ -455,9 +467,9 @@ img {
   overflow-x: scroll;
   overflow-y: none;
   display: flex;
-/*   justify-content: space-evenly; */
+  /*   justify-content: space-evenly; */
   justify-content: flex-start
-/*   max-width: 65%; */
+    /*   max-width: 65%; */
 }
 
 .dropdown-content {

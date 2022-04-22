@@ -346,56 +346,55 @@ $(function () {
       updateThumbnailNumbers();
     }
 
-  $("img").on("contextmenu", function (e) {
-    // open context menu
-    $(".dropdown").hide();
-    $(`#dropdown-${$(e.target).data("position")}`).css("display", "flex");
-    return false;
-  });
+    $("img").on("contextmenu", function (e) {
+      // open context menu
+      $(".dropdown").hide();
+      $(`#dropdown-${$(e.target).data("position")}`).css("display", "flex");
+      return false;
+    });
 
-  $(document).on("click", function () {
-        $(".dropdown").hide();
-  });
+    $(document).on("click", function () {
+      $(".dropdown").hide();
+    });
 
+    $(".remove-video").on("click", function (e) {
+      let index = $(e.target).closest(".thumbnail").data("thumbnail-position");
+      deleteQueueItem(index);
+      $(e.target).closest(".thumbnail").remove();
+      $("#queue-counter-ui").text(
+        $(".thumbnail").length > 0
+          ? `queue(${$(".thumbnail").length})`
+          : "queue"
+      );
+      $("#queue-counter-ui").attr(
+        "title",
+        $(".thumbnail").length > 1
+          ? `${$(".thumbnail").length} items in queue`
+          : `${$(".thumbnail").length} item in queue`
+      );
+      $("#queue-count").text(
+        `queue: ${queueNumber + 1} / ${$(".thumbnail").length}`
+      );
+      updateThumbnailNumbers();
+    });
 
-  $(".remove-video").on("click", function (e) {
-    let index = $(e.target).closest(".thumbnail").data("thumbnail-position");
-    deleteQueueItem(index);
-    $(e.target).closest(".thumbnail").remove();
-    $("#queue-counter-ui").text(
-    $(".thumbnail").length > 0
-        ? `queue(${$(".thumbnail").length})`
-        : "queue"
-    );
-    $("#queue-counter-ui").attr(
-    "title",
-    $(".thumbnail").length > 1
-        ? `${$(".thumbnail").length} items in queue`
-        : `${$(".thumbnail").length} item in queue`
-    );
-    $("#queue-count").text(
-    `queue: ${queueNumber + 1} / ${$(".thumbnail").length}`
-    );
-    updateThumbnailNumbers();
-  });
-
-  $(".move-to-front").on("click", function (e) {
+    $(".move-to-front").on("click", function (e) {
       $(e.target).closest(".thumbnail").prependTo($queueList);
       updateQueue();
       updateThumbnailNumbers();
       updateQueueUI();
-  });
+    });
 
-  $(".move-to-end").on("click", function (e) {
+    $(".move-to-end").on("click", function (e) {
       $(e.target).closest(".thumbnail").appendTo($queueList);
       updateQueue();
       updateThumbnailNumbers();
       updateQueueUI();
-  });
+    });
 
-  $(".open-on-yt").on("click", function (e) {
-    window.open($(e.target).closest(".thumbnail").data("url"), "_blank");
-  });
+    $(".open-on-yt").on("click", function (e) {
+      window.open($(e.target).closest(".thumbnail").data("url"), "_blank");
+    });
 
     return queue;
   }
@@ -426,9 +425,9 @@ $(function () {
     if (queueNumber + 1 !== queue.length) {
       queueNumber++;
       loadVideo(urlDissector.exec(queue[queueNumber])[4]);
-    //   $(`.thumbnail:nth-of-type(${queueNumber - 2})`)
-    //     // $("#thumbnail-" + (queueNumber - 1))
-    //     .removeClass("current-video");
+      //   $(`.thumbnail:nth-of-type(${queueNumber - 2})`)
+      //     // $("#thumbnail-" + (queueNumber - 1))
+      //     .removeClass("current-video");
       $(".current-video").removeClass("current-video");
       $(`.thumbnail:nth-of-type(${queueNumber + 1})`)
         // $("#thumbnail-" + queueNumber)
@@ -458,9 +457,9 @@ $(function () {
     if (queueNumber !== 0) {
       queueNumber--;
       loadVideo(urlDissector.exec(queue[queueNumber])[4]);
-    //   $(`.thumbnail:nth-of-type(${queueNumber + 2})`)
-    //     // $("#thumbnail-" + (queueNumber + 1))
-    //     .removeClass("current-video");
+      //   $(`.thumbnail:nth-of-type(${queueNumber + 2})`)
+      //     // $("#thumbnail-" + (queueNumber + 1))
+      //     .removeClass("current-video");
       $(".current-video").removeClass("current-video");
       $(`.thumbnail:nth-of-type(${queueNumber + 1})`)
         // $("#thumbnail-" + queueNumber)
