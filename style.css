@@ -421,7 +421,7 @@ details,
 .dropdown {
   /* text-align:center; */
   /* font-size: 1rem; */
-  color: rgba(255, 0, 0, 0.8);
+  color: rgba(255, 0, 0, 1);
   cursor: pointer;
   top: 50%;
   left: 50%;
@@ -525,7 +525,7 @@ img {
   display: none;
   display: inline;
   position: absolute;
-  background-color: rgba(2, 249, 249, 0.7);
+  background-color: rgba(0, 255, 255, 0.6);
   /* min-width: 50px; */
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   /* padding: 12px 16px; */
@@ -536,6 +536,6 @@ img {
 }
 
 .dropdown-content li:hover {
-  background-color: rgba(2, 249, 249, 1);
+  background-color: rgba(2, 255, 255, 0.7);
   padding: 0.55rem;
 }
