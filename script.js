@@ -374,9 +374,12 @@ $(function () {
         `queue: ${queueNumber + 1} / ${$(".thumbnail").length}`
       );
       updateThumbnailNumbers();
-      queueNumber;
-      $(`.thumbnail:nth-of-type(${queueNumber + 1})`).addClass("current-video");
-      return queueNumber;
+      if ($(".thumbnail").length > 1) {
+        $(`.thumbnail:nth-of-type(${queueNumber + 1})`).addClass("current-video");
+      } else {
+          $(".thumbnail").addClass("current-video");
+        }
+      // $(".current-video").attr("title").replace(/^/, "current video" + "\n");
     });
 
     $(".move-to-front").on("click", function (e) {
