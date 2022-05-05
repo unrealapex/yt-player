@@ -1,3 +1,4 @@
+// FIXME: fix handling of current video being removed
 $(function () {
   // **TO DO LIST**
   // TODO: use jQuery index() function
@@ -373,6 +374,9 @@ $(function () {
         `queue: ${queueNumber + 1} / ${$(".thumbnail").length}`
       );
       updateThumbnailNumbers();
+      queueNumber;
+      $(`.thumbnail:nth-of-type(${queueNumber + 1})`).addClass("current-video");
+      return queueNumber;
     });
 
     $(".move-to-front").on("click", function (e) {
