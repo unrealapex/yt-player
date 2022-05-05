@@ -380,7 +380,7 @@ $(function () {
       updateThumbnailNumbers();
       if ($(".thumbnail").length > 1) {
         $(".thumbnail").each(function () {
-          if ($(this).data("url") == queue[queueNumber]) {
+          if ($(this).data("url") == queue[queueNumber] && $(".current-video").length == 0) {
             $(this).addClass("current-video");
           } else {}
         });
