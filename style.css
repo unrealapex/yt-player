@@ -536,6 +536,6 @@ img {
 }
 
 .dropdown-content li:hover {
-  background-color: rgba(2, 255, 255, 0.7);
+  background-color: rgba(0, 255, 255, 0.7);
   padding: 0.55rem;
 }
