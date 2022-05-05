@@ -305,8 +305,12 @@ $(function () {
     // var linebreak = document.createElement("br");
     let queueValue = $queueInput.val();
     if (queueValue === "" || whiteSpaceRE.test(queueValue)) {
-      $queueInput.focus();
       alert("You must write something!");
+      $queueInput.focus();
+    } else if (queue.includes(queueValue)) {
+      alert("Video has already been added to queue, you cannot add it again");
+      $queueInput.val("");
+      $queueInput.focus();
     } else {
       queue[queue.length] = $queueInput.val();
       $queueInput.val("");
@@ -375,7 +379,12 @@ $(function () {
       );
       updateThumbnailNumbers();
       if ($(".thumbnail").length > 1) {
-        $(`.thumbnail:nth-of-type(${queueNumber + 1})`).addClass("current-video");
+        $(".thumbnail").each(function () {
+          if ($(this).data("url") == queue[queueNumber]) {
+            $(this).addClass("current-video");
+          } else {}
+        });
+        // $(`.thumbnail:nth-of-type(${queueNumber + 1})`).addClass("current-video");
       } else {
           $(".thumbnail").addClass("current-video");
         }
