@@ -638,7 +638,9 @@ $(function () {
             <li class="move-to-end" title="move video to end of queue">move to end</li>
             <a href="${
               queue[index]
-            }" target="_blank"><li class="open-on-yt" title="open video on youtube">open</li></a>
+            }" target="_blank">
+              <li class="open-on-yt" title="open video on youtube">open</li>
+            </a>
           </div>
         </div>
       </div>
