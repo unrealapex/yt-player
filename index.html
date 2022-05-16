@@ -10,10 +10,16 @@
     />
     <meta
       name="keywords"
-      content="Youtube Player, Youtube, Youtube Video, Video Player, Ad Free Youtube Videos, No Ads, YT Player, Videos, RGB, Beautiful, Simple, minimalistic"
+      content="Youtube Player, Youtube, Youtube Video, Video Player, YT Player, Videos, RGB, Beautiful, Simple, minimalistic, video, queue, play"
     />
     <meta name="author" content="UnrealApex" />
     <title>yt player</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script src="./script.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -30,15 +36,57 @@
 
   <body>
     <noscript>
-      <h1>
-        To use yt player, please enable JavaScript
-      </h1>
+      <h1>To use yt player, please enable JavaScript</h1>
     </noscript>
-    <h1
-      onclick='about(); window.open("https://github.com/UnrealApex/yt-player"); window.focus();'
-    >
-      yt player
-    </h1>
+    <div class="hidden" id="queue-div">
+      <div class="queue">
+        <h3 id="queue-counter-ui">queue</h3>
+        <div class="bar">
+          <input
+            type="url"
+            id="queue-input"
+            style="margin-bottom: 0.4rem;"
+            placeholder="add video to queue"
+          />
+          <button id="add-queue" disabled>add</button>
+          <button id="delete-queue">clear</button>
+        </div>
+      </div>
+      <div id="queue-list">
+        <!--           test thumbnail -->
+
+        <!--      <div class="thumbnail" id="thumbnail-0">
+            <div id="delete-queue-item-div-0" style="position: relative;">
+            https://www.youtube.com/watch?v=dTzuEcZVsHU
+              <img id="thumbnail-image-0" src="https://i.ytimg.com/vi/dTzuEcZVsHU/mqdefault.jpg">
+              <div class="thumbnail-number" id="thumbnail-number-0"></div>
+            </div>
+            <div class="x" style="position: absolute;">&times;</div>
+          </div>
+           -->
+
+        <!--           <div style="background-color:red;" class="thumbnail">
+            <div class="thumbnail-number">1</div>
+          </div>
+          <div style="background-color:green;" class="thumbnail">
+            <div class="thumbnail-number">2</div>
+          </div>
+          <div style="background-color:blue;" class="thumbnail">
+            <div class="thumbnail-number">3</div>
+          </div>
+
+                    <div style="background-color:black;" class="thumbnail">
+            <div class="thumbnail-number">4</div>
+          </div>
+          <div style="background-color:white;" class="thumbnail">
+            <div class="thumbnail-number">5</div>
+          </div> -->
+      </div>
+    </div>
+
+    <div id="dropdown"><button id="queue-button" disabled>queue</button></div>
+    <br />
+    <h1>yt player</h1>
     <div class="container">
       <div class="child">
         <div id="notification"></div>
@@ -47,18 +95,16 @@
             <input
               id="url-input"
               type="url"
-              oninput="validate()"
               autofocus
               required
-              placeholder="enter youtube video"
+              placeholder="enter youtube video url"
             />
-            <button id="play" onclick="getVideoURL()" title="play video url">
-              play
-            </button>
+
+            <button id="play" title="play video url">play</button>
 
             <!--  onclick same as refresh() with the exception of no changes made to the iframe or expand button, clearing url-input throught onclick instead of refresh() function to prevent whole player from being resetted. -->
-
-<!--             <button
+            <button class="hidden">add to queue</button>
+            <!--             <button
               id="clear"
               title="clear video url"
               onclick='document.querySelector("#url-input").className = "";
@@ -67,7 +113,7 @@
   document.querySelector("#url-input").focus(); clearNotification()'
               title="play video url entered"
             >
-              x
+              clear
             </button> -->
           </div>
           <fieldset>
@@ -115,28 +161,20 @@
     <div id="overlay">
       <div id="overlay-content">
         <div>
-          <button
-            class="overlay-buttons material-icons-round"
-            title="close"
-            onclick="closeOverlay()"
-            >close</button>
-          <button
-            class="overlay-buttons material-icons-round"
-            title="maximize"
-            onclick="openFullscreen()"
-          >
-            check_box_outline_blank</button>
-          <button
-            class="overlay-buttons material-icons-round"
-            title="minimize"
-            onclick="minimizeOverlay()"
-            >minimize</button>
+          <button class="overlay-buttons material-icons-round" title="close">
+            close
+          </button>
+          <button class="overlay-buttons material-icons-round" title="maximize">
+            check_box_outline_blank
+          </button>
+          <button class="overlay-buttons material-icons-round" title="minimize">
+            minimize
+          </button>
           <div id="queue-buttons">
             <button
               class="overlay-buttons material-icons-round"
               id="next-video"
               title="next video"
-              onclick="nextVideo()"
               disabled
             >
               skip_next
@@ -145,7 +183,6 @@
               class="overlay-buttons material-icons-round"
               id="previous-video"
               title="previous video"
-              onclick="previousVideo()"
               disabled
             >
               skip_previous
@@ -162,20 +199,14 @@
       </div>
     </div>
     <div id="expand-box">
-      <button
-        id="expand"
-        title="Open minimized video in overlay"
-        onclick='document.getElementById("overlay").style.display = "block";'
-        disabled
-      >
+      <button id="expand" title="Open minimized video in overlay">
         minimized video
       </button>
     </div>
-    <div id="queue" class="hidden">
+    <!--     <div id="queue" class="hidden">
       <details>
         <summary>queue</summary>
         <div class="queue">
-<!--       TODO: when queue is clicked, focus queue input -->
           <h3 id="queue-counter-ui">queue</h3>
           <div class="bar">
             <input
@@ -194,6 +225,36 @@
         </div>
         <div id="queue-list"></div>
       </details>
-    </div>
+    </div> -->
+    <script>
+      // add event listeners after the elements they are being applied on have been loaded
+      // toggles queue ui elements based on if the queue play option is checked or not
+      document.querySelector("form").addEventListener("click", function () {
+        if (document.querySelector("#queue-radio").checked) {
+          // document.querySelector("#queue").classList.remove("hidden");
+          // document.querySelector("details").open = true;
+          document.querySelector("#queue-div").classList.remove("hidden");
+          document.querySelector("#queue-count").classList.remove("hidden");
+          document.querySelector("#next-video").classList.remove("hidden");
+          document.querySelector("#previous-video").classList.remove("hidden");
+          document.querySelector("#queue-button").disabled = false;
+          document.querySelector("#next-video").disabled = false;
+          document.querySelector("#previous-video").disabled = false;
+          document.querySelector("#queue-input").focus();
+        } else if (document.querySelector("#url-radio").checked) {
+          // document.querySelector("#queue").classList.add("hidden");
+          // document.querySelector("details").open = false;
+          document.querySelector("#url-input").focus();
+          document.querySelector("#queue-div").classList.add("hidden");
+          document.querySelector("#queue-count").classList.add("hidden");
+          document.querySelector("#next-video").classList.add("hidden");
+          document.querySelector("#previous-video").classList.add("hidden");
+          document.querySelector("#queue-button").disabled = true;
+          document.querySelector("#next-video").disabled = true;
+          document.querySelector("#previous-video").disabled = true;
+        } else {
+        }
+      });
+    </script>
   </body>
 </html>
