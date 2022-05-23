@@ -42,7 +42,7 @@ $(function () {
   const $expand = $("#expand");
   // queue list item container
   const $queueList = $("#queue-list");
-  var queue = [];
+  var queue = new Array();
   var queueNumber = 0;
   // checks if the video is loaded or not
   var isLoaded = function () {
