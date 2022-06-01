@@ -98,7 +98,7 @@ $(function () {
       $iframe.attr("src").includes(videoId)
     ) {
       $expandBox.hide();
-      $overlay.show();
+      openOverlay();
       $playButton.blur();
       // $overlay.css("display", "block");
     } else {
@@ -110,7 +110,7 @@ $(function () {
   // loads the youtube video into the player iframe
   // take parameter videoId(string)
   function loadVideo(videoId) {
-    $overlay.show();
+    openOverlay();
     $playButton.blur();
     $expandBox.hide();
     $loader.show();
@@ -317,6 +317,12 @@ $(function () {
     $notification.removeClass();
   }
 
+  // show overlay and hide expand box
+  function openOverlay() {
+    $overlay.show();
+    $expandBox.hide();
+  }
+
   // keyboard shortcuts event listener
   $(document).on("keydown", function (e) {
     if (e.key === "r" && $overlay.is(":visible")) {
@@ -341,7 +347,7 @@ $(function () {
       $overlay.is(":hidden") &&
       $iframe.attr("src").length != 0
     ) {
-      $overlay.show();
+      openOverlay();
       $playButton.blur();
     } else if (e.key === "?") {
       if ($shortcutsModal.is(":hidden")) {
@@ -373,7 +379,7 @@ $(function () {
 
   // show the overlay whe the user clicks on the video expand thumbnail
   $expandBox.on("click", function () {
-    $overlay.show();
+    openOverlay();
     $playButton.blur();
     // expandButton.disabled = "true";
     $expandBox.hide();
