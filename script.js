@@ -261,7 +261,7 @@ $(function () {
     $expandBox.hide();
   }
 
-  // closes player video overlay
+  // close overlay
   function closeOverlay() {
     $overlay.hide();
     $expandBox.hide();
