@@ -255,6 +255,12 @@ $(function () {
     }
   }
 
+  // open overlay
+  function openOverlay() {
+    $overlay.show();
+    $expandBox.hide();
+  }
+
   // closes player video overlay
   function closeOverlay() {
     $overlay.hide();
@@ -315,12 +321,6 @@ $(function () {
   function clearNotification() {
     $notification.text("");
     $notification.removeClass();
-  }
-
-  // show overlay and hide expand box
-  function openOverlay() {
-    $overlay.show();
-    $expandBox.hide();
   }
 
   // keyboard shortcuts event listener
