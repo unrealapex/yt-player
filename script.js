@@ -42,7 +42,7 @@ $(function () {
   // /(http(?: s) ?: \/\/(?:m.)?(?:www\.)?)?youtu(?:\.be\/|be\.com\/(?:watch\?(?:feature=youtu\.be\&)?v=|v\/|embed\/|shorts\/|user\/(?:[\w#]+\/)+))([^&#?\n]+)/gm
   // checks if the url is a valid youtube url and is something our player can play
   const urlDissector =
-    /((http?(?:s)?:\/\/)?(www\.)?)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|shorts\/|v\/|watch\?v=|watch\?(?:[^&?]*?=[^&?]*)&v=))((?:\w|-){11})((?:\&|\?)\S*)?/;
+    /((http?(?:s)?:\/\/)?(www\.)?)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|shorts\/|v\/|watch\?v=|watch\?(?:([^=]+)\=([^&]+))+&v=))((?:\w|-){11})((?:\&|\?)\S*)?/;
 
   // expression to test if there are any whitespaces in our url
   const whiteSpaceRE = /\s/g;
@@ -92,7 +92,7 @@ $(function () {
   // takes parameter url(string)
   function getId(url) {
     // strips the video id from our url
-    videoId = urlDissector.exec(url)[4];
+    videoId = urlDissector.exec(url)[6];
     if (
       $iframe.attr("src") !== undefined &&
       $iframe.attr("src").includes(videoId)
