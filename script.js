@@ -178,10 +178,6 @@ $(function () {
     $inputField.focus();
     // document.querySelector("#private-mode").checked = false;
     $privateModeButton.data("enabled", false);
-    $privateModeButton.attr(
-      "aria-label",
-      "private mode is currently disabled" + "\n" + "(click to enable)"
-    );
     $privateModeButton.css("background-color", "rgb(249, 249, 249)");
     clearNotification();
   }
@@ -405,17 +401,9 @@ $(function () {
       case "private-mode":
         if ($privateMode()) {
           $privateModeButton.data("enabled", false);
-          $privateModeButton.attr(
-            "aria-label",
-            "private mode is currently disabled" + "\n" + "(click to enable)"
-          );
           $privateModeButton.css("background-color", "rgb(249, 249, 249)");
         } else {
           $privateModeButton.data("enabled", true);
-          $privateModeButton.attr(
-            "aria-label",
-            "private mode is currently enabled" + "\n" + "(click to disable)"
-          );
           // document.querySelector("#private-mode").style.backgroundColor = "#68b723";
           $privateModeButton.css("background-color", "lightgreen");
         }
