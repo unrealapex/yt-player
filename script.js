@@ -40,7 +40,7 @@ $(function () {
   // gets the youtube video id from strings
   // checks if the url is a valid youtube url and is something our player can play
   const urlDissector =
-    /((http?(?:s)?:\/\/)?(www\.)?)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|shorts\/|v\/|watch\?v=|watch\?(?:([^=]+)\=([^&]+))+&v=))((?:\w|-){11})((?:\&|\?)\S*)?/;
+    /((http?(?:s)?:\/\/)?(www\.)?)?(?:youtu\.be\/|youtube(?:-nocookie)?\.com\/(?:embed\/|shorts\/|v\/|watch\?v=|watch\?(?:([^=]+)\=([^&]+))+&v=))((?:\w|-){11})((?:\&|\?)\S*)?/;
 
   // expression to test if there are any whitespaces in our url
   const whiteSpaceRE = /\s/g;
