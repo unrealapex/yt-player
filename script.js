@@ -38,8 +38,6 @@ $(function () {
 
   // regex
   // gets the youtube video id from strings
-  // const urlDissector =
-  // /(http(?: s) ?: \/\/(?:m.)?(?:www\.)?)?youtu(?:\.be\/|be\.com\/(?:watch\?(?:feature=youtu\.be\&)?v=|v\/|embed\/|shorts\/|user\/(?:[\w#]+\/)+))([^&#?\n]+)/gm
   // checks if the url is a valid youtube url and is something our player can play
   const urlDissector =
     /((http?(?:s)?:\/\/)?(www\.)?)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|shorts\/|v\/|watch\?v=|watch\?(?:([^=]+)\=([^&]+))+&v=))((?:\w|-){11})((?:\&|\?)\S*)?/;
@@ -56,7 +54,6 @@ $(function () {
     getId(url);
   }
 
-  // TODO: add Vimeo support
   // TODO: add ability to play youtube playlists
 
   // checks if url given is valid
@@ -76,7 +73,6 @@ $(function () {
       $playButton.addClass("valid");
       $playButton.css("color", "#1a1a1a");
       $playButton.prop("disabled", false);
-      // $playButton.focus();
       // if the url in the input field is invalid
     } else {
       setNotification("enter a valid url", -1);
@@ -114,10 +110,8 @@ $(function () {
     $playButton.blur();
     $expandBox.hide();
     $loader.show();
-    // var valuesAtLoad = [document.querySelector("#load-fullscreen").value, document.querySelector("#private-mode").value];
-    // expandButton.disabled = true;
     if ($privateMode()) {
-      // sets the video player iframe's url to a youtube privacy-enhanced url(video doesn't show up on user's youtube search history) if the user has enabled Privacy Mode
+      // sets the video player iframe's url to a youtube privacy-enhanced url
       $iframe.attr(
         "src",
         `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&dnt=1`
@@ -164,19 +158,16 @@ $(function () {
     }
   }
 
-  // resets numerous things for the player
+  // resets player state
   function reset() {
-    // allows the user to reset the player if they entered an invalid url or ran into another problem
     url = "";
     $iframe.attr("src", "");
-    // expandButton.disabled = true;
     $inputField.removeClass();
     $playButton.removeClass();
     $playButton.css("color", "#1a1a1a");
     $playButton.prop("disabled", true);
     $inputField.val("");
     $inputField.focus();
-    // document.querySelector("#private-mode").checked = false;
     $privateModeButton.data("enabled", false);
     $privateModeButton.css("background-color", "rgb(249, 249, 249)");
     clearNotification();
@@ -238,7 +229,6 @@ $(function () {
           "\n" +
           "Play a video and try again"
       );
-      // getVideoURL();
     }
   }
 
@@ -247,7 +237,7 @@ $(function () {
   function sleep(duration) {
     var currentTime = new Date().getTime();
     while (new Date().getTime() < currentTime + duration * 1000) {
-      /* Do nothing */
+      // Do nothing
     }
   }
 
@@ -267,8 +257,6 @@ $(function () {
 
   // Minimizes video overlay
   function minimizeOverlay() {
-    // inputField.focus();
-    // inputField.select();
     $overlay.hide();
     if (isLoaded()) {
       $expandBox.show();
@@ -281,8 +269,6 @@ $(function () {
           `https://i.ytimg.com/vi/${videoId}/mqdefault.jpg`
         );
       }
-      // expandButton.disabled = false;
-      // expandButton.focus();
     } else {
       $expandBox.hide();
       $thumbnail.attr("src", "");
@@ -382,12 +368,6 @@ $(function () {
     $thumbnail.attr("src", "");
   });
 
-  // $(document).on("visibilitychange", function () {
-  //   if (document.visibilityState == "visible") {
-  //     window.focus();
-  //   }
-  // });
-
   // submit URL form when the user presses enter in the input field
   $inputField.on("keydown", function (e) {
     if (e.key === "Enter") {
@@ -465,6 +445,6 @@ $(function () {
     $shortcutsModal.hide();
   });
 
-  // validate when the page loads to allow video playing if a url is present
+  // validate when the page loads; browser might have a url saved in the input
   validate();
 });
