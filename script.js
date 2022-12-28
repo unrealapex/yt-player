@@ -173,27 +173,6 @@ $(function () {
     clearNotification();
   }
 
-  // copies a youtube share url onto user's clipboard
-  function shareVideo() {
-    // copies shortened youtube url to the user's clipboard
-    if (videoId !== undefined) {
-      navigator.clipboard.writeText("https://youtu.be/" + videoId);
-      alert("Link copied to clipboard");
-    } else {
-      console.log(
-        "Error: unable to copy shortened URL to clipboard" +
-          "\n" +
-          "Reason: no URL found"
-      );
-      alert(
-        "You haven't entered a URL to share" +
-          "\n" +
-          "Play a video and try again"
-      );
-      getVideoURL();
-    }
-  }
-
   function about() {
     alert(
       "yt player is a minimalistic video player for youtube videos(more support possibly in the near future). it was created by unrealapex with the aim of being able to watch youtube videos quickly with no interuptions. made with love by unrealapex.\nthank you to all those who helped improve this project!"
@@ -229,15 +208,6 @@ $(function () {
           "\n" +
           "Play a video and try again"
       );
-    }
-  }
-
-  // allows us to sleep for x seconds
-  // takes parameter duration(float)
-  function sleep(duration) {
-    var currentTime = new Date().getTime();
-    while (new Date().getTime() < currentTime + duration * 1000) {
-      // Do nothing
     }
   }
 
