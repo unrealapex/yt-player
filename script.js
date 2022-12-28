@@ -151,7 +151,7 @@ $(function () {
         "Error: unable to toggle full screen" + "\n" + "Reason: no URL found"
       );
       alert(
-        "We are unable to toggle full screen if a video hasn't been loaded" +
+        "Unable to toggle full screen, video hasn't been loaded" +
           "\n" +
           "Please enter a URL first"
       );
@@ -204,7 +204,7 @@ $(function () {
         "Error: unable to open video in new tab" + "\n" + "Reason: no URL found"
       );
       alert(
-        "We can't open video in new tab because you haven't entered a URL" +
+        "Unable to open video in new tab, no URL entered" +
           "\n" +
           "Play a video and try again"
       );
