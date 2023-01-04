@@ -275,6 +275,22 @@ $(function () {
     $notification.removeClass();
   }
 
+  let idleMouseTimer;
+  let forceMouseHide = false;
+    $overlay.mousemove(function (ev) {
+      if (!forceMouseHide) {
+        $overlay.css("cursor", "");
+        clearTimeout(idleMouseTimer);
+        idleMouseTimer = setTimeout(function () {
+          $overlay.css("cursor", "none");
+          forceMouseHide = true;
+          setTimeout(function () {
+            forceMouseHide = false;
+          }, 200);
+        }, 2000);
+      }
+    });
+
   // keyboard shortcuts event listener
   $(document).on("keydown", function (e) {
     if (document.activeElement.id !== "input-field") {
