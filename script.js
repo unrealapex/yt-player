@@ -278,7 +278,9 @@ $(function () {
   // keyboard shortcuts event listener
   $(document).on("keydown", function (e) {
     if (document.activeElement.id !== "input-field") {
-      if (e.key === "r" && $overlay.is(":visible")) {
+      if (e.key === '/' && $overlay.is(":hidden")) {
+        $inputField.focus();
+      } else if (e.key === "r" && $overlay.is(":visible")) {
         loadVideo(videoId);
       } else if (
         (e.key === "Escape" || e.key === "x") &&
