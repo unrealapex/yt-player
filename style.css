@@ -17,22 +17,20 @@ h1 {
 }
 
 kbd {
-  padding: 0.1em 0.6em;
-  border: 1px solid #ccc;
-  font-size: 11px;
-  font-family: Arial, Helvetica, sans-serif;
-  background-color: #f7f7f7;
-  color: #333;
-  -moz-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2), 0 0 0 2px #fff inset;
-  -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2), 0 0 0 2px #fff inset;
-  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2), 0 0 0 2px #fff inset;
-  border-radius: 3px;
-  display: inline-block;
-  margin: 0.1em;
-  text-shadow: 0 1px 0 #fff;
-  line-height: 1.4;
-  white-space: nowrap;
+    background-color: #eee;
+    border-radius: 3px;
+    border: 2.5px solid;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), 0 2px 0 0 rgba(255, 255, 255, 0.7) inset;
+    color: #333;
+    display: inline-block;
+    font-size: 0.85em;
+    font-weight: 700;
+    line-height: 1;
+    padding: 2px 4px;
+    white-space: nowrap;
+    animation: rgb-border 5s infinite linear;
 }
+
 
 #input-field {
   width: 100%;
@@ -420,4 +418,17 @@ button {
 
 #private-mode {
   transition: background-color 1s ease;
+}
+
+#shortcuts {
+  background-color: #fefefe;
+  /* 15% from the top and centered */
+  margin: 5% auto;
+  padding: 10px;
+  border: 1px solid #888;
+  border-radius: 0.2em;
+  /* Could be more or less, depending on screen size */
+  width: 55%;
+  border-width: 3px;
+  animation: rgb-border 5s infinite linear;
 }
