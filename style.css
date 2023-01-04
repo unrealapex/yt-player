@@ -44,6 +44,10 @@ kbd {
   border-radius: 0.2rem;
 }
 
+#input-field:focus {
+  cursor: text;
+}
+
 button:disabled:not(#expand:disabled) {
   opacity: 0.5;
   cursor: not-allowed;
