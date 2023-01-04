@@ -277,35 +277,38 @@ $(function () {
 
   // keyboard shortcuts event listener
   $(document).on("keydown", function (e) {
-    if (e.key === "r" && $overlay.is(":visible")) {
-      loadVideo(videoId);
-    } else if (
-      (e.key === "Escape" || e.key === "x") &&
-      document.fullscreenElement === null &&
-      $overlay.is(":visible")
-    ) {
-      minimizeOverlay();
-      $inputField.select();
-    } else if (
-      e.key === "f" &&
-      document.fullscreenElement === null &&
-      $overlay.is(":visible")
-    ) {
-      openFullscreen();
-    } else if ((e.key === "m" || e.key === "_") && $overlay.is(":visible")) {
-      minimizeOverlay();
-    } else if (
-      (e.key === "o" || e.key === "+") &&
-      $overlay.is(":hidden") &&
-      $iframe.attr("src").length != 0
-    ) {
-      openOverlay();
-      $playButton.blur();
-    } else if (e.key === "?") {
-      if ($shortcutsModal.is(":hidden")) {
-        $shortcutsModal.show();
+    if (document.activeElement.id !== "input-field") {
+      if (e.key === "r" && $overlay.is(":visible")) {
+        loadVideo(videoId);
+      } else if (
+        (e.key === "Escape" || e.key === "x") &&
+        document.fullscreenElement === null &&
+        $overlay.is(":visible")
+      ) {
+        minimizeOverlay();
+        $inputField.select();
+      } else if (
+        e.key === "f" &&
+        document.fullscreenElement === null &&
+        $overlay.is(":visible")
+      ) {
+        openFullscreen();
+      } else if ((e.key === "m" || e.key === "_") && $overlay.is(":visible")) {
+        minimizeOverlay();
+      } else if (
+        (e.key === "o" || e.key === "+") &&
+        $overlay.is(":hidden") &&
+        $iframe.attr("src").length != 0
+      ) {
+        openOverlay();
+        $playButton.blur();
+      } else if (e.key === "?") {
+        if ($shortcutsModal.is(":hidden")) {
+          $shortcutsModal.show();
+        } else {
+          $shortcutsModal.hide();
+        }
       } else {
-        $shortcutsModal.hide();
       }
     } else {
     }
