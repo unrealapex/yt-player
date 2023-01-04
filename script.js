@@ -312,6 +312,7 @@ $(function () {
         }
       } else {
       }
+      e.preventDefault();
     } else {
     }
   });
