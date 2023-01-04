@@ -296,7 +296,8 @@ button {
 }
 
 img {
-  background-color: #d4d4d4;
+  width: 320px;
+  height: 180px;
 }
 
 /* The Modal (background) */
