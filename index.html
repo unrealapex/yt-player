@@ -38,13 +38,15 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap"
-      rel="stylesheet"
+      rel="preload"
+      as="font"
     />
     <link
       href="https://fonts.googleapis.com/icon?family=Material+Icons+Round"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="preload" href="style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="style.css"></noscript>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/balloon-css@1.2.0/balloon.min.css">
   </head>
 
