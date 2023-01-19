@@ -413,7 +413,12 @@ $(function () {
   });
 
   // submit the URL form when the user clicks on the play button
-  $playButton.on("click", function () {
+  $playButton.on("click", function (e) {
+    // enable private mode if the user is holding shift when they click the play button
+    if (e.shiftKey) {
+      $privateModeButton.data("enabled", true);
+      $privateModeButton.css("background-color", "lightgreen");
+    } else {}
     $form.submit();
   });
 
