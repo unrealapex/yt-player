@@ -432,3 +432,18 @@ button {
   border-width: 3px;
   animation: rgb-border 5s infinite linear;
 }
+
+
+/* change button border to magenta */
+.private-mode-button {
+  animation: none !important;
+  border: 3px solid transparent !important;
+  border-color: magenta !important;
+}
+
+
+/* make overlay background magenta with 0.4 opacity */
+
+.private {
+  background-color: rgba(255, 0, 255, 0.4) !important;
+}

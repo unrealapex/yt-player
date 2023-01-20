@@ -116,6 +116,8 @@ $(function () {
         "src",
         `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&dnt=1`
       );
+
+      $overlay.addClass('private-mode-overlay')
     } else {
       // sets the video player iframe's url to a youtube embed url (default)
       $iframe.attr(
@@ -170,6 +172,7 @@ $(function () {
     $inputField.focus();
     $privateModeButton.data("enabled", false);
     $privateModeButton.css("background-color", "rgb(249, 249, 249)");
+    $overlay.removeClass('private-mode-overlay')
     clearNotification();
   }
 
@@ -421,6 +424,27 @@ $(function () {
     } else {}
     $form.submit();
   });
+
+
+  // change play button color when user holds shift on play button
+  $(document).on("keydown", function (e) {
+    if (e.key === "Shift" && $playButton.is(":hover") && $playButton.hasClass('valid')) {
+      $playButton.addClass("private");
+      $playButton.removeClass("valid");
+      // set play button tooltip to "play in private mode"
+      $playButton.attr("aria-label", "play in private mode")
+    }
+  })
+
+  // revert to normal play button color when user releases shift
+  $(document).on("keyup", function () {
+    if ($playButton.hasClass("private")) {
+      $playButton.removeClass("private");
+      $playButton.addClass('valid');
+      $playButton.attr("aria-label", "play video")
+    }
+  })
+
 
   // overlay close overlay button
   $("button:contains('close')").on("click", function () {
