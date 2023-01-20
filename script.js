@@ -231,21 +231,17 @@ $(function () {
   // Minimizes video overlay
   function minimizeOverlay() {
     $overlay.hide();
-    if (isLoaded()) {
-      $expandBox.show();
-      if (
+    $expandBox.show();
+    $thumbnail.attr(
+      "src",
+      (
         $thumbnail.attr("src") !==
         `https://i.ytimg.com/vi/${videoId}/mqdefault.jpg`
-      ) {
-        $thumbnail.attr(
-          "src",
-          `https://i.ytimg.com/vi/${videoId}/mqdefault.jpg`
-        );
-      }
-    } else {
-      $expandBox.hide();
-      $thumbnail.attr("src", "");
-    }
+        ? `https://i.ytimg.com/vi/${videoId}/mqdefault.jpg`
+        : ""
+      )
+    );
+
   }
 
   // sets $notification, levels show different $notification colors, duration determines how long $notification appears on screen
