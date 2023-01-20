@@ -7,6 +7,8 @@
   justify-content: space-between;
   line-height: 1.6rem;
   border-radius: 0.2rem;
+  --highlight: #a56de2;
+  --private-mode-purple: rgba(255, 0, 255, 0.4);
 }
 
 h1 {
@@ -374,7 +376,7 @@ button {
 #options-button {
   color: white;
   transition-duration: 1s;
-  border: 3px solid #a56de2;
+  border: 3px solid var(--highlight);
   border-radius: 0.4rem;
   padding: 0.5rem;
   float: right;
@@ -405,7 +407,7 @@ button {
 }
 
 #options-dropdown .options:hover {
-  border: 3px solid #a56de2;
+  border: 3px solid var(--highlight);
 }
 
 #options-div:hover #options-dropdown {
@@ -438,12 +440,43 @@ button {
 .private-mode-button {
   animation: none !important;
   border: 3px solid transparent !important;
-  border-color: magenta !important;
+  background-color: var(--private-mode-purple) !important;
 }
 
 
 /* make overlay background magenta with 0.4 opacity */
 
-.private {
-  background-color: rgba(255, 0, 255, 0.4) !important;
+.private-mode-overlay {
+  background-color: var(--private-mode-purple) !important;
+}
+
+
+
+#context-menu {
+  width: 14rem;
+  height: 4rem;
+  position: absolute;
+  display: none;
+  background-color: #fefefe;
+  border: 1px solid #888;
+  border-radius: 0.4rem;
+  z-index: 1;
+  user-select: none;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+.menu-item {
+  background-color: #fefefe;
+  color: black;
+  padding: 0.4rem;
+  cursor: default;
+}
+
+.menu-item:hover {
+  background-color: var(--highlight);
+  color: white;
 }

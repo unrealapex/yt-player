@@ -25,16 +25,11 @@ $(function () {
   const $thumbnail = $("#thumbnail");
   // parent div of options dropdown
   const $optionsDiv = $("#options-div");
-  // button that toggles private mode
-  const $privateModeButton = $("#private-mode");
-  // checks if the video is loaded or not
+  const $menu = $("#context-menu");
   var isLoaded = function () {
     return $iframe.readyState == "complete" || "interactive" ? true : false;
   };
-  // determines if the video should be loaded with a YouTube privacy enhanced URL or a regular YouTube embed url
-  var $privateMode = function () {
-    return JSON.parse($("#private-mode").data("enabled"));
-  };
+  var privateMode = false;
 
   // regex
   // gets the youtube video id from strings
@@ -110,7 +105,7 @@ $(function () {
     $playButton.blur();
     $expandBox.hide();
     $loader.show();
-    if ($privateMode()) {
+    if (privateMode) {
       // sets the video player iframe's url to a youtube privacy-enhanced url
       $iframe.attr(
         "src",
@@ -118,12 +113,16 @@ $(function () {
       );
 
       $overlay.addClass('private-mode-overlay')
+      $("#private-mode-context").text('turn private mode off')
     } else {
       // sets the video player iframe's url to a youtube embed url (default)
       $iframe.attr(
         "src",
         `https://www.youtube.com/embed/${videoId}?autoplay=1`
       );
+
+      $overlay.removeClass('private-mode-overlay')
+      $("#private-mode-context").text('turn private mode on')
     }
 
     // focus iframe when it has loaded
@@ -170,9 +169,9 @@ $(function () {
     $playButton.prop("disabled", true);
     $inputField.val("");
     $inputField.focus();
-    $privateModeButton.data("enabled", false);
-    $privateModeButton.css("background-color", "rgb(249, 249, 249)");
+    privateMode = false;
     $overlay.removeClass('private-mode-overlay')
+    $("#private-mode-context").text("turn private mode on");
     clearNotification();
   }
 
@@ -370,25 +369,36 @@ $(function () {
     }
   });
 
-  // option click handler
-  $optionsDiv.on("click", function (e) {
+
+$overlay.on("contextmenu", function(e) {
+  e.preventDefault();
+  $menu.toggle();
+  // make sure that the context menu doesn't go off the screen
+  // FIXME: handle bottom and right edges
+  if (e.clientX + $menu.width() > $(window).width()) {
+    $menu.css("left", e.clientX - $menu.width());
+  } else {
+    $menu.css("left", e.clientX);
+  }
+  if (e.clientY + $menu.height() > $(window).height()) {
+    $menu.css("top", e.clientY - $menu.height());
+  } else {
+    $menu.css("top", e.clientY);
+  }
+})
+
+  // context menu click handler
+ $(document).on("click", function (e) {
     switch (e.target.id) {
-      case "private-mode":
-        if ($privateMode()) {
-          $privateModeButton.data("enabled", false);
-          $privateModeButton.css("background-color", "rgb(249, 249, 249)");
-        } else {
-          $privateModeButton.data("enabled", true);
-          // document.querySelector("#private-mode").style.backgroundColor = "#68b723";
-          $privateModeButton.css("background-color", "lightgreen");
-        }
+      case "private-mode-context":
+        privateMode = (privateMode ? false : true);
         loadVideo(videoId);
         break;
-      case "reload":
+      case "reload-context":
         loadVideo(videoId);
         break;
-      case "open-video":
-        if ($privateMode()) {
+      case "open-video-context":
+        if (privateMode) {
           if (
             confirm(
               "Warning, this video is playing in private mode. If you open the video, it will show up as you viewing it and will not load if restricted mode is enabled for your YouTube account.\nDo you wish to still open the video?"
@@ -400,9 +410,22 @@ $(function () {
           openVideo();
         }
         break;
+      case "copy-url-context":
+        navigator.clipboard.writeText($iframe.attr("src"));
+        break;
+      case "copy-id-context":
+        navigator.clipboard.writeText(videoId);
+        break;
+      case "enter-full-screen-context":
+        openFullscreen();
+        break;
+      case "close-player-context":
+        closeOverlay();
+        break;
       default:
         console.error("error: unknown button clicked in options dropdown");
     }
+    $menu.hide();
   });
 
   // validate user input when they type or paste into the input field
@@ -419,17 +442,17 @@ $(function () {
   $playButton.on("click", function (e) {
     // enable private mode if the user is holding shift when they click the play button
     if (e.shiftKey) {
-      $privateModeButton.data("enabled", true);
-      $privateModeButton.css("background-color", "lightgreen");
+      privateMode = true;
     } else {}
     $form.submit();
+    return privateMode;
   });
 
 
   // change play button color when user holds shift on play button
   $(document).on("keydown", function (e) {
     if (e.key === "Shift" && $playButton.is(":hover") && $playButton.hasClass('valid')) {
-      $playButton.addClass("private");
+      $playButton.addClass("private-mode-button");
       $playButton.removeClass("valid");
       // set play button tooltip to "play in private mode"
       $playButton.attr("aria-label", "play in private mode")
@@ -438,8 +461,8 @@ $(function () {
 
   // revert to normal play button color when user releases shift
   $(document).on("keyup", function () {
-    if ($playButton.hasClass("private")) {
-      $playButton.removeClass("private");
+    if ($playButton.hasClass("private-mode-button")) {
+      $playButton.removeClass("private-mode-button");
       $playButton.addClass('valid');
       $playButton.attr("aria-label", "play video")
     }
