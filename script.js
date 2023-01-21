@@ -422,6 +422,9 @@ $overlay.on("contextmenu", function(e) {
       case "close-player-context":
         closeOverlay();
         break;
+      case "help-context":
+        $shortcutsModal.show();
+        break;
       default:
         console.error("error: unknown button clicked in options dropdown");
     }
