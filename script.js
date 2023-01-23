@@ -14,6 +14,7 @@ $(function () {
   const $overlay = $("#overlay");
   // notification that shows errors and information
   const $notification = $("#notification");
+  const $overlayNotification = $("#overlay-notification");
   // loading text that displays when video is loading
   const $loader = $("#loader");
   // modal that shows all the availible shortcuts in the video player
@@ -112,8 +113,9 @@ $(function () {
         `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&dnt=1`
       );
 
-      $overlay.addClass('private-mode-overlay')
-      $("#private-mode-context").text('turn private mode off')
+      $overlay.addClass('private-mode-overlay');
+      $overlayNotification.text('private mode enabled');
+      $("#private-mode-context").text('turn private mode off');
     } else {
       // sets the video player iframe's url to a youtube embed url (default)
       $iframe.attr(
@@ -121,8 +123,9 @@ $(function () {
         `https://www.youtube.com/embed/${videoId}?autoplay=1`
       );
 
-      $overlay.removeClass('private-mode-overlay')
-      $("#private-mode-context").text('turn private mode on')
+      $overlay.removeClass('private-mode-overlay');
+      $overlayNotification.text("");
+      $("#private-mode-context").text('turn private mode on');
     }
 
     // focus iframe when it has loaded

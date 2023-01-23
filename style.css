@@ -54,7 +54,8 @@ button:disabled:not(#expand:disabled) {
 }
 
 legend,
-#notification {
+#notification,
+#overlay-notification {
   text-align: center;
 }
 
@@ -261,8 +262,6 @@ button {
   position: absolute;
   top: 50%;
   left: 50%;
-  font-size: 50px;
-  color: white;
   transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
 }
@@ -387,14 +386,9 @@ button {
   background-color: var(--private-mode-purple) !important;
 }
 
-
-/* make overlay background magenta with 0.4 opacity */
-
 .private-mode-overlay {
   background-color: var(--private-mode-purple) !important;
 }
-
-
 
 #context-menu {
   width: 14rem;
@@ -423,4 +417,9 @@ ul {
 .menu-item:hover {
   background-color: var(--highlight);
   color: white;
+}
+
+#overlay-notification {
+  color: white;
+  font-size: 1rem;
 }
