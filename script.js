@@ -378,7 +378,7 @@ $(document).on("contextmenu", function(e) {
   if ($overlay.is(":visible")) {
     $menu.append(`
       <li id='reload-context' class="menu-item">reload video</li>
-      <li id='private-mode-context' class="menu-item">turn private mode on</li>
+      <li id='private-mode-context' class="menu-item">turn private mode ${privateMode ? "off" : "on"}</li>
       <li id='open-video-context' class="menu-item">open video on youtube</li>
       <li id='enter-full-screen-context' class="menu-item">full screen</li>
       <li id='copy-url-context' class="menu-item">copy video url</li>
