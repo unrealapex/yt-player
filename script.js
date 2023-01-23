@@ -371,8 +371,41 @@ $(function () {
   });
 
 
-$overlay.on("contextmenu", function(e) {
-  e.preventDefault();
+$(document).on("contextmenu", function(e) {
+  if ($inputField.is(":focus")) {
+    // prevent context menu from showing up when the input field is focused
+    return true;
+  } else {
+    e.preventDefault();
+  }
+
+  // show different menu options based on whether the overlay is visible or not
+  $menu.empty();
+  if ($overlay.is(":visible")) {
+    $menu.append(`
+      <ul>
+        <li id='reload-context' class="menu-item">reload video</li>
+        <li id='private-mode-context' class="menu-item">turn private mode on</li>
+        <li id='open-video-context' class="menu-item">open video on youtube</li>
+        <li id='enter-full-screen-context' class="menu-item">full screen</li>
+        <li id='copy-url-context' class="menu-item">copy video url</li>
+        <li id='copy-id-context' class="menu-item">copy video id</li>
+        <li id='close-player-context' class="menu-item">close player</li>
+        <li id='help-context' class="menu-item">help</li>
+      </ul>
+    `);
+
+  } else {
+    $menu.append(`
+      <ul>
+        <li id="play-context" class="menu-item">play video</li>
+        <li id="private-context" class="menu-item">play video in private mode</li>
+        <li id="delete-url-context" class="menu-item">delete url</li>
+        <li id='help-context' class="menu-item">help</li>
+      </ul>
+    `);
+  }
+
   $menu.toggle();
   // make sure that the context menu doesn't go off the screen
   // FIXME: handle bottom and right edges
@@ -390,7 +423,23 @@ $overlay.on("contextmenu", function(e) {
 
   // context menu click handler
  $(document).on("click", function (e) {
+    $menu.hide();
     switch (e.target.id) {
+      case "play-context":
+        validate();
+        $inputField.focus();
+        $playButton.click();
+        break;
+      case "delete-url-context":
+        $inputField.val("");
+        $inputField.focus();
+        break;
+      case "private-context":
+        privateMode = (privateMode ? false : true);
+        validate();
+        $inputField.focus();
+        $playButton.click();
+        break;
       case "private-mode-context":
         privateMode = (privateMode ? false : true);
         loadVideo(videoId);
@@ -427,9 +476,7 @@ $overlay.on("contextmenu", function(e) {
         $shortcutsModal.show();
         break;
       default:
-        console.error("error: unknown button clicked in context-menu");
     }
-    $menu.hide();
   });
 
   // validate user input when they type or paste into the input field

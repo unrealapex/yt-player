@@ -131,23 +131,6 @@
         </iframe>
       </div>
 
-    <!-- create a context menu that will open up when the user right clicks in the overlay -->
-
-    <div id="context-menu" class="hidden">
-      <ul>
-        <li id='reload-context' class="menu-item">reload video</li>
-        <li id='private-mode-context' class="menu-item">turn private mode on</li>
-        <li id='open-video-context' class="menu-item">open video on youtube</li>
-        <li id='enter-full-screen-context' class="menu-item">full screen</li>
-        <li id='copy-url-context' class="menu-item">copy video url</li>
-        <li id='copy-id-context' class="menu-item">copy video id</li>
-        <li id='close-player-context' class="menu-item">close player</li>
-        <li id='help-context' class="menu-item">help</li>
-      </ul>
-    </div>
-
-
-
     <!-- <div id="expand-box" class="hidden" aria-label="click to reopen minimized video" data-balloon-pos="left"> -->
     <div id="expand-box" aria-label="click to reopen minimized video" data-balloon-pos="left">
     <!-- FIXME: find out why the thumbnail isn't appearing -->
@@ -155,6 +138,11 @@
       <img id="thumbnail" alt="video thumbnail" src="https://i.ytimg.com/vi/vRXQOYgIVzM/mqdefault.jpg"/>
       <div id="expand-hint-text">minimized video</div>
     </div>
+  </div>
+
+    <!-- create a context menu that will open up when the user right clicks in the overlay -->
+    <div id="context-menu" class="hidden"> </div>
+
     <div id="shortcuts-modal" class="modal" onclick="this.style.display='none';">
       <!-- Modal content -->
       <div id="shortcuts">
@@ -181,7 +169,6 @@
           </div>
         </div>
       </div>
-    </div>
     <!-- <div class="center">
       <div class="loader hidden">
         <h3 id="loader-fade-text">loading...</h3>
