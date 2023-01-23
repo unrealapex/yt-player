@@ -407,8 +407,17 @@ button {
 .menu-item {
   background-color: #fefefe;
   color: black;
-  border-radius: 0.4rem;
   cursor: default;
+}
+
+.menu-item:first-child {
+  border-top-left-radius: 0.4rem;
+  border-top-right-radius: 0.4rem;
+}
+
+.menu-item:last-child {
+  border-bottom-left-radius: 0.4rem;
+  border-bottom-right-radius: 0.4rem;
 }
 
 .menu-item:hover {
