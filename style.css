@@ -390,6 +390,8 @@ button {
   background-color: var(--private-mode-purple) !important;
 }
 
+
+/* TODO: make context-menu border more contrastful outside of overlay */
 #context-menu {
   width: 14rem;
   height: 4rem;
