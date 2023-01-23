@@ -386,7 +386,6 @@ $(document).on("contextmenu", function(e) {
       <li id='close-player-context' class="menu-item">close player</li>
       <li id='help-context' class="menu-item">help</li>
     `);
-
   } else {
     $menu.append(`
       <li id="play-context" class="menu-item">play video</li>
@@ -397,8 +396,6 @@ $(document).on("contextmenu", function(e) {
   }
 
   $menu.toggle();
-  // make sure that the context menu doesn't go off the screen
-  // FIXME: handle bottom and right edges
   if (e.clientX + $menu.width() > $(window).width()) {
     $menu.css("left", e.clientX - $menu.width());
   } else {
@@ -508,7 +505,6 @@ $(document).on("contextmenu", function(e) {
       $playButton.attr("aria-label", "play video")
     }
   })
-
 
   // overlay close overlay button
   $("button:contains('close')").on("click", function () {
