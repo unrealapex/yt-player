@@ -24,8 +24,6 @@ $(function () {
   // parent for button and video thumbnail that appear when a video is minimized
   const $expandBox = $("#expand-box");
   const $thumbnail = $("#thumbnail");
-  // parent div of options dropdown
-  const $optionsDiv = $("#options-div");
   const $menu = $("#context-menu");
   var isLoaded = function () {
     return $iframe.readyState == "complete" || "interactive" ? true : false;
@@ -429,7 +427,7 @@ $overlay.on("contextmenu", function(e) {
         $shortcutsModal.show();
         break;
       default:
-        console.error("error: unknown button clicked in options dropdown");
+        console.error("error: unknown button clicked in context-menu");
     }
     $menu.hide();
   });
