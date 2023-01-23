@@ -383,26 +383,22 @@ $(document).on("contextmenu", function(e) {
   $menu.empty();
   if ($overlay.is(":visible")) {
     $menu.append(`
-      <ul>
-        <li id='reload-context' class="menu-item">reload video</li>
-        <li id='private-mode-context' class="menu-item">turn private mode on</li>
-        <li id='open-video-context' class="menu-item">open video on youtube</li>
-        <li id='enter-full-screen-context' class="menu-item">full screen</li>
-        <li id='copy-url-context' class="menu-item">copy video url</li>
-        <li id='copy-id-context' class="menu-item">copy video id</li>
-        <li id='close-player-context' class="menu-item">close player</li>
-        <li id='help-context' class="menu-item">help</li>
-      </ul>
+      <li id='reload-context' class="menu-item">reload video</li>
+      <li id='private-mode-context' class="menu-item">turn private mode on</li>
+      <li id='open-video-context' class="menu-item">open video on youtube</li>
+      <li id='enter-full-screen-context' class="menu-item">full screen</li>
+      <li id='copy-url-context' class="menu-item">copy video url</li>
+      <li id='copy-id-context' class="menu-item">copy video id</li>
+      <li id='close-player-context' class="menu-item">close player</li>
+      <li id='help-context' class="menu-item">help</li>
     `);
 
   } else {
     $menu.append(`
-      <ul>
-        <li id="play-context" class="menu-item">play video</li>
-        <li id="private-context" class="menu-item">play video in private mode</li>
-        <li id="delete-url-context" class="menu-item">delete url</li>
-        <li id='help-context' class="menu-item">help</li>
-      </ul>
+      <li id="play-context" class="menu-item">play video</li>
+      <li id="private-context" class="menu-item">play video in private mode</li>
+      <li id="delete-url-context" class="menu-item">delete url</li>
+      <li id='help-context' class="menu-item">help</li>
     `);
   }
 

@@ -391,28 +391,24 @@ button {
 }
 
 
-/* TODO: make context-menu border more contrastful outside of overlay */
 #context-menu {
-  width: 14rem;
-  height: 4rem;
+  width: 16rem;
+  height: auto;
   position: absolute;
   display: none;
   background-color: #fefefe;
-  border: 1px solid #888;
+  /* border: 1px solid #888; */
   border-radius: 0.4rem;
   z-index: 9999;
   user-select: none;
-}
-
-ul {
   list-style: none;
   padding: 0;
+  border: 3px solid cyan;
 }
 
 .menu-item {
   background-color: #fefefe;
   color: black;
-  padding: 0.4rem;
   cursor: default;
 }
 
