@@ -407,6 +407,7 @@ button {
 .menu-item {
   background-color: #fefefe;
   color: black;
+  border-radius: 0.4rem;
   cursor: default;
 }
 
