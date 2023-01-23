@@ -176,12 +176,6 @@ $(function () {
     clearNotification();
   }
 
-  function about() {
-    alert(
-      "yt player is a minimalistic video player for youtube videos. it was created by unrealapex with the aim of being able to watch youtube videos quickly with no interuptions. made with love by unrealapex.\nthank you to all those who helped improve this project!"
-    );
-  }
-
   // opens youtube video in a window so the user can like, dislike a video, or subscribe to a youtube channel
   function openVideo() {
     if (isLoaded()) {
