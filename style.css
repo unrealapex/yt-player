@@ -7,6 +7,8 @@
   justify-content: space-between;
   line-height: 1.6rem;
   border-radius: 0.2rem;
+  --highlight: #a56de2;
+  --private-mode-purple: rgba(255, 0, 255, 0.4);
 }
 
 h1 {
@@ -52,7 +54,8 @@ button:disabled:not(#expand:disabled) {
 }
 
 legend,
-#notification {
+#notification,
+#overlay-notification {
   text-align: center;
 }
 
@@ -259,8 +262,6 @@ button {
   position: absolute;
   top: 50%;
   left: 50%;
-  font-size: 50px;
-  color: white;
   transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
 }
@@ -364,62 +365,6 @@ button {
   outline: none;
 }
 
-#options-div {
-  margin: 1rem;
-  position: fixed;
-  bottom: 0;
-  right: 0;
-}
-
-#options-button {
-  color: white;
-  transition-duration: 1s;
-  border: 3px solid #a56de2;
-  border-radius: 0.4rem;
-  padding: 0.5rem;
-  float: right;
-}
-
-#options-dropdown {
-  border-radius: 0.2rem;
-  display: none;
-  position: absolute;
-  right: 0;
-  background-color: rgb(249, 249, 249);
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  z-index: 1;
-  bottom: 100%;
-}
-
-.options {
-  cursor: pointer;
-  border-radius: 0.2rem;
-}
-
-#options-dropdown .options {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-}
-
-#options-dropdown .options:hover {
-  border: 3px solid #a56de2;
-}
-
-#options-div:hover #options-dropdown {
-  display: block;
-}
-
-#options-div:hover #options-button {
-  color: black;
-}
-
-#private-mode {
-  transition: background-color 1s ease;
-}
-
 #shortcuts {
   background-color: #fefefe;
   /* 15% from the top and centered */
@@ -433,17 +378,44 @@ button {
   animation: rgb-border 5s infinite linear;
 }
 
-
-/* change button border to magenta */
 .private-mode-button {
   animation: none !important;
   border: 3px solid transparent !important;
-  border-color: magenta !important;
+  background-color: var(--private-mode-purple) !important;
+}
+
+.private-mode-overlay {
+  background-color: var(--private-mode-purple) !important;
 }
 
 
-/* make overlay background magenta with 0.4 opacity */
+#context-menu {
+  width: 16rem;
+  height: auto;
+  position: absolute;
+  display: none;
+  background-color: #fefefe;
+  border: 1px solid var(--highlight);
+  border-radius: 0.4rem;
+  box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.1);
+  z-index: 9999;
+  user-select: none;
+  list-style: none;
+  padding: 0;
+}
 
-.private {
-  background-color: rgba(255, 0, 255, 0.4) !important;
+.menu-item {
+  background-color: #fefefe;
+  color: black;
+  cursor: default;
+}
+
+.menu-item:hover {
+  background-color: var(--highlight);
+  color: white;
+}
+
+#overlay-notification {
+  color: white;
+  font-size: 1rem;
 }

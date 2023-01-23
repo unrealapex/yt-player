@@ -124,43 +124,22 @@
           </button>
         </div>
 
+        <div id="overlay-notification"></div>
         <progress id="loader" aria-label="loading video..." data-balloon-pos="up"></progress>
         <iframe id="videoPlayer" allowfullscreen="true">
           <p>Your browser does not support iframes.</p>
         </iframe>
       </div>
+  </div>
 
-      <div id="options-div">
-        <button
-          id="options-button"
-          class="transparent-button material-icons-round"
-        >
-          settings
-        </button>
-        <div id="options-dropdown">
-          <div id="reload" class="options">reload video</div>
-
-          <!-- <div class="options" title="load video in private mode">
-                <label
-                  ><input type="checkbox" name="" id="private-mode" />private
-                  mode</label
-                >
-              </div> -->
-          <div
-            id="private-mode"
-            class="options"
-            data-enabled="false"
-          >
-            private mode
-          </div>
-          <div id="open-video" class="options">open video on youtube</div>
-        </div>
-      </div>
-    </div>
     <div id="expand-box" class="hidden" aria-label="click to reopen minimized video" data-balloon-pos="left">
       <img id="thumbnail" alt="video thumbnail"/>
       <div id="expand-hint-text">minimized video</div>
     </div>
+
+    <!-- create a context menu that will open up when the user right clicks in the overlay -->
+    <ul id="context-menu" class="hidden"></ul>
+
     <div id="shortcuts-modal" class="modal">
       <!-- Modal content -->
       <div id="shortcuts">
@@ -169,25 +148,64 @@
           class="overlay-buttons transparent-button material-icons-round"
           >close</span
         >
-        <h3>Keyboard Shortcuts</h3>
-        <p>Press <kbd>?</kbd> to toggle this modal.</p>
-        <hr />
-        <div>
-          <p>Focus input box <kbd>/</kbd></p>
-          <p>Full screen <kbd>f</kbd></p>
-          <p>Reload video <kbd>r</kbd></p>
-          <p>Minimize video overlay <kbd>m</kbd> or <kbd>_</kbd></p>
-          <p>Open video overlay <kbd>o</kbd> or <kbd>+</kbd></p>
-          <p>Close video overlay <kbd>Esc</kbd> or <kbd>x</kbd></p>
+        <h3>help</h3>
+        <p>
+          yt player is a simple youtube video player
+          <br>
+          made with love by 
+          <a href="https://www.github.com/unrealapex">unrealapex</a>
+          <br>
+          <p>click the arrows below to reveal help about that specific topic</p>
+        </p>
+        <details open>
+          <summary>basic usage</summary>
+          <p>
+            to use yt player, simply enter a youtube video url in the input box
+            and click the play button. the video will load in the
+            <strong>overlay</strong>. the overlay is where all videos are played.
+            there are controls to maximize(fullscreen), minimize, and close the
+            overlay.  minimizing the video closes the overlay and displays a
+            thumbnail of the video.  if you click the thumbnail, you will return
+            to your video in the overlay. closing the overlay returns you to the
+            main page where you can play another video.
+          </p>
+        </details>
+        <details>
+          <summary>private mode</summary>
+          <p>
+            private mode is a feature that allows you to watch videos without
+            being tracked by youtube. it also allows you watch videos restricted
+            by youtube restricted mode if it is enabled for your google account
+            to enable private mode, press
+            <kbd>shift</kbd> while clicking the play button. this will load the
+            video in private mode. you can also enable private mode in the
+            overlay by clicking its option in the context menu. the context menu
+            is the menu that appears when you right-click.
+          </p>
+        </details>
+        <details>
+          <summary>keyboard shortcuts</summary> 
+          <p>press <kbd>?</kbd> to toggle this modal.</p>
           <div>
-            Pro tip: press
-            <kbd>Shift</kbd>
-            while clicking the play button to
-            enable private mode before the video loads
+            <p>focus input box <kbd>/</kbd></p>
+            <p>full screen <kbd>f</kbd></p>
+            <p>reload video <kbd>r</kbd></p>
+            <p>minimize video overlay <kbd>m</kbd> or <kbd>_</kbd></p>
+            <p>open video overlay <kbd>o</kbd> or <kbd>+</kbd></p>
+            <p>close video overlay <kbd>esc</kbd> or <kbd>x</kbd></p>
           </div>
-        </div>
+        </details>
+        <details>
+          <summary>other</summary>
+          <p>
+            if you have any questions, comments, or concerns, please feel free
+            to make an
+            <a href="https://github.com/UnrealApex/yt-player/issues/new">issue</a>
+            on github. this website is
+            <a href="https://github.com/UnrealApex/yt-player">open source</a>
+            and is lisenced under the <a href="https://github.com/UnrealApex/yt-player/blob/main/LICENSE">apache 2.0 lisence</a>.
+          </p>
       </div>
-    </div>
     <!-- <div class="center">
       <div class="loader hidden">
         <h3 id="loader-fade-text">loading...</h3>
