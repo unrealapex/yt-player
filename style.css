@@ -366,62 +366,6 @@ button {
   outline: none;
 }
 
-#options-div {
-  margin: 1rem;
-  position: fixed;
-  bottom: 0;
-  right: 0;
-}
-
-#options-button {
-  color: white;
-  transition-duration: 1s;
-  border: 3px solid var(--highlight);
-  border-radius: 0.4rem;
-  padding: 0.5rem;
-  float: right;
-}
-
-#options-dropdown {
-  border-radius: 0.2rem;
-  display: none;
-  position: absolute;
-  right: 0;
-  background-color: rgb(249, 249, 249);
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  z-index: 1;
-  bottom: 100%;
-}
-
-.options {
-  cursor: pointer;
-  border-radius: 0.2rem;
-}
-
-#options-dropdown .options {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-}
-
-#options-dropdown .options:hover {
-  border: 3px solid var(--highlight);
-}
-
-#options-div:hover #options-dropdown {
-  display: block;
-}
-
-#options-div:hover #options-button {
-  color: black;
-}
-
-#private-mode {
-  transition: background-color 1s ease;
-}
-
 #shortcuts {
   background-color: #fefefe;
   /* 15% from the top and centered */
