@@ -332,7 +332,7 @@ $(function () {
 
   // When the user clicks anywhere outside of the modal, close it
   window.onclick = (e) => {
-    if (e.target == $shortcutsModal) {
+    if (e.target.id == 'shortcuts-modal') {
       $shortcutsModal.hide();
     }
   };
