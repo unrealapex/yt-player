@@ -397,13 +397,13 @@ button {
   position: absolute;
   display: none;
   background-color: #fefefe;
-  /* border: 1px solid #888; */
+  border: 1px solid var(--highlight);
   border-radius: 0.4rem;
+  box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.1);
   z-index: 9999;
   user-select: none;
   list-style: none;
   padding: 0;
-  border: 3px solid cyan;
 }
 
 .menu-item {
