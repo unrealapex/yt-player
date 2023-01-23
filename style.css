@@ -378,8 +378,6 @@ button {
   animation: rgb-border 5s infinite linear;
 }
 
-
-/* change button border to magenta */
 .private-mode-button {
   animation: none !important;
   border: 3px solid transparent !important;
