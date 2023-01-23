@@ -390,7 +390,7 @@ $(document).on("contextmenu", function(e) {
     $menu.append(`
       <li id="play-context" class="menu-item">play video</li>
       <li id="private-context" class="menu-item">play video in private mode</li>
-      <li id="delete-url-context" class="menu-item">delete url</li>
+      <li id="clear-url-context" class="menu-item">clear url</li>
       <li id='help-context' class="menu-item">help</li>
     `);
   }
@@ -417,7 +417,7 @@ $(document).on("contextmenu", function(e) {
         $inputField.focus();
         $playButton.click();
         break;
-      case "delete-url-context":
+      case "clear-url-context":
         $inputField.val("");
         $inputField.focus();
         break;
