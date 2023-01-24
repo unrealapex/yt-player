@@ -313,11 +313,7 @@ $(function () {
         openOverlay();
         $playButton.blur();
       } else if (e.key === "?") {
-        if ($helpModal.is(":hidden")) {
-          $helpModal.show();
-        } else {
-          $helpModal.hide();
-        }
+        $helpModal.toggle();
       } else {
       }
       e.preventDefault();
