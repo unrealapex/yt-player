@@ -111,9 +111,9 @@ $(function () {
         `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&dnt=1`
       );
 
-      $overlay.addClass('private-mode-overlay');
-      $overlayNotification.text('private mode enabled');
-      $("#private-mode-context").text('turn private mode off');
+      $overlay.addClass("private-mode-overlay");
+      $overlayNotification.text("private mode enabled");
+      $("#private-mode-context").text("turn private mode off");
     } else {
       // sets the video player iframe's url to a youtube embed url (default)
       $iframe.attr(
@@ -121,9 +121,9 @@ $(function () {
         `https://www.youtube.com/embed/${videoId}?autoplay=1`
       );
 
-      $overlay.removeClass('private-mode-overlay');
+      $overlay.removeClass("private-mode-overlay");
       $overlayNotification.text("");
-      $("#private-mode-context").text('turn private mode on');
+      $("#private-mode-context").text("turn private mode on");
     }
 
     // focus iframe when it has loaded
@@ -171,7 +171,7 @@ $(function () {
     $inputField.val("");
     $inputField.focus();
     privateMode = false;
-    $overlay.removeClass('private-mode-overlay')
+    $overlay.removeClass("private-mode-overlay");
     $("#private-mode-context").text("turn private mode on");
     clearNotification();
   }
@@ -228,14 +228,11 @@ $(function () {
     $expandBox.show();
     $thumbnail.attr(
       "src",
-      (
-        $thumbnail.attr("src") !==
+      $thumbnail.attr("src") !==
         `https://i.ytimg.com/vi/${videoId}/mqdefault.jpg`
         ? `https://i.ytimg.com/vi/${videoId}/mqdefault.jpg`
         : ""
-      )
     );
-
   }
 
   // sets $notification, levels show different $notification colors, duration determines how long $notification appears on screen
@@ -270,24 +267,24 @@ $(function () {
 
   let idleMouseTimer;
   let forceMouseHide = false;
-    $overlay.mousemove(function (ev) {
-      if (!forceMouseHide) {
-        $overlay.css("cursor", "");
-        clearTimeout(idleMouseTimer);
-        idleMouseTimer = setTimeout(function () {
-          $overlay.css("cursor", "none");
-          forceMouseHide = true;
-          setTimeout(function () {
-            forceMouseHide = false;
-          }, 200);
-        }, 2000);
-      }
-    });
+  $overlay.mousemove(function (ev) {
+    if (!forceMouseHide) {
+      $overlay.css("cursor", "");
+      clearTimeout(idleMouseTimer);
+      idleMouseTimer = setTimeout(function () {
+        $overlay.css("cursor", "none");
+        forceMouseHide = true;
+        setTimeout(function () {
+          forceMouseHide = false;
+        }, 200);
+      }, 2000);
+    }
+  });
 
   // keyboard shortcuts event listener
   $(document).on("keydown", function (e) {
     if (document.activeElement.id !== "input-field") {
-      if (e.key === '/' && $overlay.is(":hidden")) {
+      if (e.key === "/" && $overlay.is(":hidden")) {
         $inputField.focus();
       } else if (e.key === "r" && $overlay.is(":visible")) {
         loadVideo(videoId);
@@ -328,7 +325,7 @@ $(function () {
 
   // When the user clicks anywhere outside of the modal, close it
   window.onclick = (e) => {
-    if (e.target.id == 'shortcuts-modal') {
+    if (e.target.id == "shortcuts-modal") {
       $shortcutsModal.hide();
     }
   };
@@ -360,21 +357,22 @@ $(function () {
     }
   });
 
+  $(document).on("contextmenu", function (e) {
+    if ($inputField.is(":focus")) {
+      // prevent context menu from showing up when the input field is focused
+      return true;
+    } else {
+      e.preventDefault();
+    }
 
-$(document).on("contextmenu", function(e) {
-  if ($inputField.is(":focus")) {
-    // prevent context menu from showing up when the input field is focused
-    return true;
-  } else {
-    e.preventDefault();
-  }
-
-  // show different menu options based on whether the overlay is visible or not
-  $menu.empty();
-  if ($overlay.is(":visible")) {
-    $menu.append(`
+    // show different menu options based on whether the overlay is visible or not
+    $menu.empty();
+    if ($overlay.is(":visible")) {
+      $menu.append(`
       <li id='reload-context' class="menu-item">reload video</li>
-      <li id='private-mode-context' class="menu-item">turn private mode ${privateMode ? "off" : "on"}</li>
+      <li id='private-mode-context' class="menu-item">turn private mode ${
+        privateMode ? "off" : "on"
+      }</li>
       <li id='open-video-context' class="menu-item">open video on youtube</li>
       <li id='enter-full-screen-context' class="menu-item">full screen</li>
       <li id='copy-url-context' class="menu-item">copy video url</li>
@@ -382,30 +380,30 @@ $(document).on("contextmenu", function(e) {
       <li id='close-player-context' class="menu-item">close player</li>
       <li id='help-context' class="menu-item">help</li>
     `);
-  } else {
-    $menu.append(`
+    } else {
+      $menu.append(`
       <li id="play-context" class="menu-item">play video</li>
       <li id="private-context" class="menu-item">play video in private mode</li>
       <li id="clear-url-context" class="menu-item">clear url</li>
       <li id='help-context' class="menu-item">help</li>
     `);
-  }
+    }
 
-  $menu.toggle();
-  if (e.clientX + $menu.width() > $(window).width()) {
-    $menu.css("left", e.clientX - $menu.width());
-  } else {
-    $menu.css("left", e.clientX);
-  }
-  if (e.clientY + $menu.height() > $(window).height()) {
-    $menu.css("top", e.clientY - $menu.height());
-  } else {
-    $menu.css("top", e.clientY);
-  }
-})
+    $menu.toggle();
+    if (e.clientX + $menu.width() > $(window).width()) {
+      $menu.css("left", e.clientX - $menu.width());
+    } else {
+      $menu.css("left", e.clientX);
+    }
+    if (e.clientY + $menu.height() > $(window).height()) {
+      $menu.css("top", e.clientY - $menu.height());
+    } else {
+      $menu.css("top", e.clientY);
+    }
+  });
 
   // context menu click handler
- $(document).on("click", function (e) {
+  $(document).on("click", function (e) {
     $menu.hide();
     switch (e.target.id) {
       case "play-context":
@@ -418,13 +416,13 @@ $(document).on("contextmenu", function(e) {
         $inputField.focus();
         break;
       case "private-context":
-        privateMode = (privateMode ? false : true);
+        privateMode = privateMode ? false : true;
         validate();
         $inputField.focus();
         $playButton.click();
         break;
       case "private-mode-context":
-        privateMode = (privateMode ? false : true);
+        privateMode = privateMode ? false : true;
         loadVideo(videoId);
         break;
       case "reload-context":
@@ -477,30 +475,34 @@ $(document).on("contextmenu", function(e) {
     // enable private mode if the user is holding shift when they click the play button
     if (e.shiftKey) {
       privateMode = true;
-    } else {}
+    } else {
+    }
     $form.submit();
     return privateMode;
   });
 
-
   // change play button color when user holds shift on play button
   $(document).on("keydown", function (e) {
-    if (e.key === "Shift" && $playButton.is(":hover") && $playButton.hasClass('valid')) {
+    if (
+      e.key === "Shift" &&
+      $playButton.is(":hover") &&
+      $playButton.hasClass("valid")
+    ) {
       $playButton.addClass("private-mode-button");
       $playButton.removeClass("valid");
       // set play button tooltip to "play in private mode"
-      $playButton.attr("aria-label", "play in private mode")
+      $playButton.attr("aria-label", "play in private mode");
     }
-  })
+  });
 
   // revert to normal play button color when user releases shift
   $(document).on("keyup", function () {
     if ($playButton.hasClass("private-mode-button")) {
       $playButton.removeClass("private-mode-button");
-      $playButton.addClass('valid');
-      $playButton.attr("aria-label", "play video")
+      $playButton.addClass("valid");
+      $playButton.attr("aria-label", "play video");
     }
-  })
+  });
 
   // overlay close overlay button
   $("button:contains('close')").on("click", function () {
