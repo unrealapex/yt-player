@@ -237,7 +237,7 @@ button {
   /* border-radius: 25%; */
 }
 
-#videoPlayer {
+iframe {
   width: 65vw;
   height: calc((9/16) * 65vw);
   border-style: hidden;
