@@ -8,7 +8,7 @@ a simple video player for youtube videos
 - fast loading times
 - video queue
 
-## Contributing
-Read the [CONTRIBUTING.md](https://github.com/UnrealApex/yt-player/blob/main/CONTRIBUTING.md) file.
+## contributing
+read the [contributing.md](https://github.com/unrealapex/yt-player/blob/main/contributing.md) file.
 
 ui slightly improved from [typings.gg](https://github.com/briano1905/typings)
