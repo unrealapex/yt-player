@@ -308,7 +308,7 @@ $(function () {
       } else if (
         (e.key === "o") &&
         $overlay.is(":hidden") &&
-        $iframe.attr("src").length != 0
+        $iframe.attr("src").length !== 0
       ) {
         openOverlay();
         $playButton.blur();
