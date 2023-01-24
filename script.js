@@ -345,7 +345,6 @@ $(function () {
   $expandBox.on("click", function () {
     openOverlay();
     $playButton.blur();
-    // expandButton.disabled = "true";
     $expandBox.hide();
     $thumbnail.attr("src", "");
   });
