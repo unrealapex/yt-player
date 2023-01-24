@@ -287,13 +287,10 @@ $(function () {
       if (e.key === "/" && $overlay.is(":hidden")) {
         $inputField.focus();
         // handle shift + enter
-      } else if (e.key === 'Enter' && $overlay.is(":hidden")) {
+      } else if (e.key === 'Enter' && !e.shiftKey && $overlay.is(":hidden")) {
         $form.submit();
       } else if (e.shiftKey && e.key === 'Enter' && $overlay.is(":hidden")) {
-          if (e.shiftKey) {
-            privateMode = true;
-          } else {
-          }
+          privateMode = true;
           $form.submit();
           return privateMode;
       } else if (e.key === "r" && $overlay.is(":visible")) {
@@ -362,8 +359,12 @@ $(function () {
 
   // submit URL form when the user presses enter in the input field
   $inputField.on("keydown", function (e) {
-    if (e.key === "Enter") {
+    if (e.key === "Enter" && !e.shiftKey) {
       $form.submit();
+    } else if (e.key === "Enter" && e.shiftKey) {
+      privateMode = true;
+      $form.submit();
+      return privateMode;
     }
   });
 
