@@ -125,7 +125,6 @@ $(function () {
       $overlayNotification.text("");
       $("#private-mode-context").text("turn private mode on");
     }
-
   }
 
   // toggles fullscreen for the iframe
@@ -283,12 +282,12 @@ $(function () {
       if (e.key === "/" && $overlay.is(":hidden")) {
         $inputField.focus();
         // handle shift + enter
-      } else if (e.key === 'Enter' && !e.shiftKey && $overlay.is(":hidden")) {
+      } else if (e.key === "Enter" && !e.shiftKey && $overlay.is(":hidden")) {
         $form.submit();
-      } else if (e.shiftKey && e.key === 'Enter' && $overlay.is(":hidden")) {
-          privateMode = true;
-          $form.submit();
-          return privateMode;
+      } else if (e.shiftKey && e.key === "Enter" && $overlay.is(":hidden")) {
+        privateMode = true;
+        $form.submit();
+        return privateMode;
       } else if (e.key === "r" && $overlay.is(":visible")) {
         loadVideo(videoId);
       } else if (
@@ -334,7 +333,7 @@ $(function () {
   };
 
   $iframe.on("load", function () {
-  // hide the loader every time a video loads in the iframe
+    // hide the loader every time a video loads in the iframe
     $loader.hide();
     // focus iframe when video has loaded
     $iframe.focus();
@@ -474,7 +473,6 @@ $(function () {
     validate();
   });
 
-
   // submit the URL form when the user clicks on the play button
   $playButton.on("click", function (e) {
     // enable private mode if the user is holding shift when they click the play button
@@ -488,9 +486,7 @@ $(function () {
 
   // change play button color when user holds shift on play button
   $(document).on("keydown", function (e) {
-    if (
-      (e.key === "Shift" && $playButton.hasClass("valid"))
-    ) {
+    if (e.key === "Shift" && $playButton.hasClass("valid")) {
       $playButton.addClass("private-mode-button");
       $playButton.removeClass("valid");
       // set play button tooltip to "play in private mode"
@@ -509,7 +505,6 @@ $(function () {
     }
   });
 
-
   $("#buttons-container").on("click", function (e) {
     switch (e.target.id) {
       case "close-button":
@@ -523,7 +518,7 @@ $(function () {
         break;
       default:
     }
-  })
+  });
 
   // validate when the page loads; browser might have a url saved in the input
   validate();
