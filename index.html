@@ -121,6 +121,10 @@
     <!-- create a context menu that will open up when the user right clicks in the overlay -->
     <ul id="context-menu" class="hidden"></ul>
 
+<!-- help button -->
+  <button id="help"  aria-label="help" data-balloon-pos="left"
+    onclick="document.querySelector('#shortcuts-modal').style.display='block';">?</button>
+
     <div id="shortcuts-modal" class="modal">
       <!-- Modal content -->
       <div id="shortcuts">
