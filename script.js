@@ -50,7 +50,7 @@ $(function () {
 
   // TODO: add ability to play youtube playlists
 
-  // checks if url given is valid
+  // validates the url in the input field
   function validate() {
     // if the input field is blank
     if ($inputField.val().length === 0) {
