@@ -365,7 +365,7 @@ button {
   outline: none;
 }
 
-#shortcuts {
+#help-content {
   background-color: #fefefe;
   /* 15% from the top and centered */
   margin: 5% auto;

@@ -17,8 +17,8 @@ $(function () {
   const $overlayNotification = $("#overlay-notification");
   // loading text that displays when video is loading
   const $loader = $("#loader");
-  // modal that shows all the availible shortcuts in the video player
-  const $shortcutsModal = $("#shortcuts-modal");
+  // explains how to use the player
+  const $helpModal = $("#help-modal");
   // url submission form
   const $form = $("form");
   // parent for button and video thumbnail that appear when a video is minimized
@@ -318,10 +318,10 @@ $(function () {
         openOverlay();
         $playButton.blur();
       } else if (e.key === "?") {
-        if ($shortcutsModal.is(":hidden")) {
-          $shortcutsModal.show();
+        if ($helpModal.is(":hidden")) {
+          $helpModal.show();
         } else {
-          $shortcutsModal.hide();
+          $helpModal.hide();
         }
       } else {
       }
@@ -332,8 +332,8 @@ $(function () {
 
   // When the user clicks anywhere outside of the modal, close it
   window.onclick = (e) => {
-    if (e.target.id == "shortcuts-modal") {
-      $shortcutsModal.hide();
+    if (e.target.id == "help-modal") {
+      $helpModal.hide();
     }
   };
 
@@ -465,7 +465,7 @@ $(function () {
         closeOverlay();
         break;
       case "help-context":
-        $shortcutsModal.show();
+        $helpModal.show();
         break;
       default:
     }
@@ -530,9 +530,9 @@ $(function () {
     minimizeOverlay();
   });
 
-  // close shortcuts modal button
+  // close help modal button
   $("#close").on("click", function () {
-    $shortcutsModal.hide();
+    $helpModal.hide();
   });
 
   // validate when the page loads; browser might have a url saved in the input
