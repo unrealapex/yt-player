@@ -509,20 +509,21 @@ $(function () {
     }
   });
 
-  // overlay close overlay button
-  $("button:contains('close')").on("click", function () {
-    closeOverlay();
-  });
 
-  // overlay fullscreen button
-  $("button:contains('check_box_outline_blank')").on("click", function () {
-    openFullscreen();
-  });
-
-  // overlay minimize video button
-  $("button:contains('minimize')").on("click", function () {
-    minimizeOverlay();
-  });
+  $("#buttons-container").on("click", function (e) {
+    switch (e.target.id) {
+      case "close-button":
+        closeOverlay();
+        break;
+      case "fullscreen-button":
+        openFullscreen();
+        break;
+      case "minimize-button":
+        minimizeOverlay();
+        break;
+      default:
+    }
+  })
 
   // validate when the page loads; browser might have a url saved in the input
   validate();
