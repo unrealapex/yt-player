@@ -286,6 +286,16 @@ $(function () {
     if (document.activeElement.id !== "input-field") {
       if (e.key === "/" && $overlay.is(":hidden")) {
         $inputField.focus();
+        // handle shift + enter
+      } else if (e.key === 'Enter' && $overlay.is(":hidden")) {
+        $form.submit();
+      } else if (e.shiftKey && e.key === 'Enter' && $overlay.is(":hidden")) {
+          if (e.shiftKey) {
+            privateMode = true;
+          } else {
+          }
+          $form.submit();
+          return privateMode;
       } else if (e.key === "r" && $overlay.is(":visible")) {
         loadVideo(videoId);
       } else if (
@@ -484,14 +494,13 @@ $(function () {
   // change play button color when user holds shift on play button
   $(document).on("keydown", function (e) {
     if (
-      e.key === "Shift" &&
-      $playButton.is(":hover") &&
-      $playButton.hasClass("valid")
+      (e.key === "Shift" && $playButton.hasClass("valid"))
     ) {
       $playButton.addClass("private-mode-button");
       $playButton.removeClass("valid");
       // set play button tooltip to "play in private mode"
       $playButton.attr("aria-label", "play in private mode");
+      // $playButton.data("balloon-visible");
     }
   });
 
@@ -501,6 +510,7 @@ $(function () {
       $playButton.removeClass("private-mode-button");
       $playButton.addClass("valid");
       $playButton.attr("aria-label", "play video");
+      // $playButton.removeAttr("data-balloon-visible");
     }
   });
 
