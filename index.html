@@ -71,6 +71,7 @@
                 data-balloon-pos="up"
                 size="22"
                 minlength="20"
+                onclick="this.select();"
               />
               <button id="play" aria-label="play video" data-balloon-pos="up" disabled>play</button>
             </div>
@@ -131,6 +132,7 @@
         <span
           id="close"
           class="overlay-buttons transparent-button material-icons-round"
+          onclick="document.querySelector('#help-modal').style.display='none';"
           >close</span
         >
         <h3>help</h3>

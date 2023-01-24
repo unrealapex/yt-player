@@ -126,10 +126,6 @@ $(function () {
       $("#private-mode-context").text("turn private mode on");
     }
 
-    // focus iframe when it has loaded
-    $iframe.onload = function () {
-      $iframe.focus();
-    };
   }
 
   // toggles fullscreen for the iframe
@@ -337,9 +333,11 @@ $(function () {
     }
   };
 
-  // hide the loader every time a video loads in the iframe
   $iframe.on("load", function () {
+  // hide the loader every time a video loads in the iframe
     $loader.hide();
+    // focus iframe when video has loaded
+    $iframe.focus();
   });
 
   // event listener that listens for successful form submissions
@@ -476,10 +474,6 @@ $(function () {
     validate();
   });
 
-  // select the input field when the user clicks on it
-  $inputField.on("click", function () {
-    $inputField.select();
-  });
 
   // submit the URL form when the user clicks on the play button
   $playButton.on("click", function (e) {
@@ -528,11 +522,6 @@ $(function () {
   // overlay minimize video button
   $("button:contains('minimize')").on("click", function () {
     minimizeOverlay();
-  });
-
-  // close help modal button
-  $("#close").on("click", function () {
-    $helpModal.hide();
   });
 
   // validate when the page loads; browser might have a url saved in the input
