@@ -291,7 +291,7 @@ $(function () {
       } else if (e.key === "r" && $overlay.is(":visible")) {
         loadVideo(videoId);
       } else if (
-        (e.key === "Escape" || e.key === "x") &&
+        (e.key === "Escape") &&
         document.fullscreenElement === null &&
         $overlay.is(":visible")
       ) {
@@ -303,10 +303,10 @@ $(function () {
         $overlay.is(":visible")
       ) {
         openFullscreen();
-      } else if ((e.key === "m" || e.key === "_") && $overlay.is(":visible")) {
+      } else if ((e.key === "m") && $overlay.is(":visible")) {
         minimizeOverlay();
       } else if (
-        (e.key === "o" || e.key === "+") &&
+        (e.key === "o") &&
         $overlay.is(":hidden") &&
         $iframe.attr("src").length != 0
       ) {
