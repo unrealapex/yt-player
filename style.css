@@ -391,7 +391,7 @@ iframe {
 
 
 #context-menu {
-  width: 16rem;
+  width: auto;
   height: auto;
   position: absolute;
   display: none;
@@ -405,6 +405,7 @@ iframe {
 }
 
 .menu-item {
+  padding: 0.4rem 1rem;
   background-color: #fefefe;
   color: black;
   cursor: default;
