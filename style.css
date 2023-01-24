@@ -241,7 +241,7 @@ iframe {
   width: 65vw;
   height: calc((9/16) * 65vw);
   border-style: hidden;
-  border-radius: 0.2em;
+  border-radius: 0.4rem;
 }
 
 #overlay {
