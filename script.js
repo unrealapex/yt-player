@@ -500,7 +500,7 @@ $(function () {
       $playButton.removeClass("valid");
       // set play button tooltip to "play in private mode"
       $playButton.attr("aria-label", "play in private mode");
-      // $playButton.data("balloon-visible");
+      $playButton.attr("data-balloon-visible", "");
     }
   });
 
@@ -510,7 +510,7 @@ $(function () {
       $playButton.removeClass("private-mode-button");
       $playButton.addClass("valid");
       $playButton.attr("aria-label", "play video");
-      // $playButton.removeAttr("data-balloon-visible");
+      $playButton.removeAttr("data-balloon-visible");
     }
   });
 
