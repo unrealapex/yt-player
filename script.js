@@ -1,10 +1,7 @@
 $(function () {
   // globals
-  // player URL
   var url = "";
-  // player video id
   var videoId = "";
-  // player iframe
   const $iframe = $("iframe");
   // input where user enters YouTube url to play
   const $inputField = $("#input-field");
@@ -15,9 +12,7 @@ $(function () {
   // notification that shows errors and information
   const $notification = $("#notification");
   const $overlayNotification = $("#overlay-notification");
-  // loading text that displays when video is loading
   const $loader = $("#loader");
-  // explains how to use the player
   const $helpModal = $("#help-modal");
   // url submission form
   const $form = $("form");
