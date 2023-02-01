@@ -202,11 +202,6 @@ legend,
   justify-content: space-between;
 }
 
-fieldset {
-  border-style: solid;
-  border-radius: 0.2rem;
-}
-
 button {
   border: none;
   font: inherit;
@@ -234,7 +229,6 @@ button {
 .overlay-buttons:hover,
 #close:hover {
   color: black !important;
-  /* border-radius: 25%; */
 }
 
 iframe {
