@@ -35,6 +35,7 @@ kbd {
 
 
 #input-field {
+  cursor: text;
   width: 100%;
   border: none;
   font: inherit;
@@ -42,10 +43,6 @@ kbd {
   margin-right: 0.4rem;
   border-color: black;
   border-radius: 0.2rem;
-}
-
-#input-field:focus {
-  cursor: text;
 }
 
 button:disabled:not(#expand:disabled) {
