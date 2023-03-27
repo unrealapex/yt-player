@@ -277,9 +277,9 @@ $(function () {
       if (e.key === "/" && $overlay.is(":hidden")) {
         $inputField.focus();
         // handle shift + enter
-      } else if (e.key === "Enter" && !e.shiftKey && $overlay.is(":hidden")) {
+      } else if (e.key === "Enter" && !(e.shiftKey || e.altKey) && $overlay.is(":hidden")) {
         $form.submit();
-      } else if (e.shiftKey && e.key === "Enter" && $overlay.is(":hidden")) {
+      } else if ((e.shiftKey || e.altKey) && e.key === "Enter" && $overlay.is(":hidden")) {
         privateMode = true;
         $form.submit();
         return privateMode;
@@ -346,9 +346,9 @@ $(function () {
 
   // submit URL form when the user presses enter in the input field
   $inputField.on("keydown", function (e) {
-    if (e.key === "Enter" && !e.shiftKey) {
+    if (e.key === "Enter" && !(e.shiftKey || e.altKey)) {
       $form.submit();
-    } else if (e.key === "Enter" && e.shiftKey) {
+    } else if (e.key === "Enter" && (e.shiftKey || e.altKey)) {
       privateMode = true;
       $form.submit();
       return privateMode;
@@ -466,7 +466,7 @@ $(function () {
   // submit the URL form when the user clicks on the play button
   $playButton.on("click", function (e) {
     // enable private mode if the user is holding shift when they click the play button
-    if (e.shiftKey) {
+    if (e.shiftKey || e.altKey) {
       privateMode = true;
     } else {
     }
@@ -476,7 +476,7 @@ $(function () {
 
   // change play button color when user holds shift on play button
   $(document).on("keydown", function (e) {
-    if (e.key === "Shift" && $playButton.hasClass("valid")) {
+    if ((e.key === "Shift" || e.key === "Alt") && $playButton.hasClass("valid")) {
       $playButton.addClass("private-mode-button");
       $playButton.removeClass("valid");
       // set play button tooltip to "play in private mode"
