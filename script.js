@@ -255,6 +255,7 @@ $(function () {
     $notification.removeClass();
   }
 
+  // hide cursor when user idles in overlay
   let idleMouseTimer;
   let forceMouseHide = false;
   $overlay.mousemove(function (ev) {
