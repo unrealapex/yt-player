@@ -1,3 +1,4 @@
+name: minify javascript
 on:
   push:
     paths:
