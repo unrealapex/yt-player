@@ -2,6 +2,8 @@ name: minify js
 run-name: Minify production code
 on:
   push:
+    paths:
+      - 'script.js'
     branches:
       - 'main'
 
