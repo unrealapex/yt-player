@@ -1,15 +1,5 @@
-# [yt player](https://unrealapex.github.io/yt-player/)
+### [yt player](https://unrealapex.github.io/yt-player/)
 
-A fast and minimalistic video player for YouTube videos
+the original youtube player
 
-## Features
-- Minimalist Design
-- Simple interface
-- Fast Loading Times
-- Watch videos without them influencing your YouTube or browsing experience
-
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://www.gitpod.io/https://github.com/UnrealApex/yt-player/)
-
-[![Open in Visual Studio Code](https://open.vscode.dev/badges/open-in-vscode.svg)](https://open.vscode.dev/unrealapex/yt-player)
-
-License: [MIT](LICENSE)
+this branch contains the code for yt player's old ui and javascript code. originally it was concieved on jsfiddle because i was tinkering with ways to make youtube videos load faster on my slow chromebook, but now it has grown into a full blown javascript application! this branch served as the foundation for yt player and also helped me learn a lot about javascript. it is hosted on [codepen](https://cdpn.io/pen/debug/eYLXrMe). for the most current version of yt player, check out the main branch.
