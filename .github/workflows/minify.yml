@@ -1,0 +1,12 @@
+on:
+  push:
+    branches:
+    - gh-pages
+jobs:
+  minify_js:
+    name: minify javascript
+    runs-on: ubuntu-18.04
+    steps:
+    - uses: actions/checkout@v1
+    - name: Install terser
+      run: npm install -g terser && terser script.js
