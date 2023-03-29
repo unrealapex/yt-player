@@ -1,12 +1,9 @@
-name: minify js
-run-name: Minify production code
+name: push to gh-pages
+run-name: Update gh-pages branch
 on:
   push:
-    paths:
-      - 'script.js'
     branches:
       - 'main'
-
 jobs:
   checkout-minify-push:
     runs-on: ubuntu-latest
@@ -26,5 +23,5 @@ jobs:
       - run: |
           git config user.name Aaron
           git config user.email 79121360+UnrealApex@users.noreply.github.com
-          git commit -am 'Automated minify of script.js'
+          git commit -am 'Push to deployment branch'
           git push --force -u origin main:gh-pages
