@@ -10,5 +10,3 @@ a simple video player for youtube videos
 
 ## contributing
 read the [contributing.md](https://github.com/unrealapex/yt-player/blob/main/contributing.md) file.
-
-ui slightly improved from [typings.gg](https://github.com/briano1905/typings)

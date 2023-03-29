@@ -37,7 +37,7 @@ $(function () {
   function getVideoURL() {
     // gets our url from the input field
     url = $inputField.val();
-    // checks if there is whitespace in the url, if there is, reassign the url to the string with the whitespace removed
+    // strip whitespace from url
     let hasWhiteSpace = whiteSpaceRE.test(url);
     url = hasWhiteSpace ? url.replace(/\s/g, "") : url;
     getId(url);
@@ -255,6 +255,7 @@ $(function () {
     $notification.removeClass();
   }
 
+  // hide cursor when user idles in overlay
   let idleMouseTimer;
   let forceMouseHide = false;
   $overlay.mousemove(function (ev) {
