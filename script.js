@@ -467,10 +467,7 @@ $(function () {
   // submit the URL form when the user clicks on the play button
   $playButton.on("click", function (e) {
     // enable private mode if the user is holding shift when they click the play button
-    if (e.shiftKey || e.altKey) {
-      privateMode = true;
-    } else {
-    }
+    privateMode = (e.shiftKey || e.altKey) ? true : false;
     $form.submit();
     return privateMode;
   });
