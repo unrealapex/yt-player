@@ -3,11 +3,8 @@ run-name: Update gh-pages branch
 on:
   push:
     paths:
-      - 'index.html'
-      - 'script.js'
-      - 'style.css'
       - '!*.md'
-      - 'LICENSE'
+      - '!LICENSE'
       - '!*.yml'
     branches:
       - 'main'
