@@ -2,6 +2,13 @@ name: push to gh-pages
 run-name: Update gh-pages branch
 on:
   push:
+    paths:
+      - 'index.html'
+      - 'script.js'
+      - 'style.css'
+      - '!*.md'
+      - 'LICENSE'
+      - '!*.yml'
     branches:
       - 'main'
 jobs:
