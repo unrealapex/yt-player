@@ -1,0 +1,21 @@
+# The Docker image that will be used to build your app
+image: node:lts
+# Functions that should be executed before the build script is run
+before_script:
+  - npm install -g terser
+pages:
+  script:
+    - terser --compress --mangle --output script.js script.js
+    - echo "yt-player deployment branch" > README.md
+    - git config user.name Aaron
+    - git config user.email 11531485-UnrealApex@users.noreply.gitlab.com
+    - git commit -am 'Push to deployment branch'
+    - git push --force -u origin master:gh-pages
+  artifacts:
+    paths:
+      # The folder that contains the files to be exposed at the Page URL
+      - public
+  rules:
+    # This ensures that only pushes to the default branch will trigger
+    # a pages deploy
+    - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
