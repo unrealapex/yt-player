@@ -284,6 +284,10 @@ $(function () {
         privateMode = true;
         $form.submit();
         return privateMode;
+      } else if ((e.shiftKey || e.altKey) && e.key === "Enter" && $overlay.is(":visible")) {
+        privateMode = (privateMode ? false : true);
+        loadVideo(videoId);
+        return privateMode; 
       } else if (e.key === "r" && $overlay.is(":visible")) {
         loadVideo(videoId);
       } else if (
