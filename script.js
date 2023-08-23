@@ -171,7 +171,7 @@ $(function () {
     if (isLoaded()) {
       // set popup width to a 16:9 aspect ratio and size it by rem
       let w = (80 * parseFloat(getComputedStyle(document.documentElement).fontSize));
-      let h = (45 * parseFloat(getComputedStyle(document.documentElement).fontSize)) ;
+      let h = (45 * parseFloat(getComputedStyle(document.documentElement).fontSize));
       let left = screen.width / 2 - w / 2;
       let top = screen.height / 2 - h / 2;
       window.open(
