@@ -169,9 +169,8 @@ $(function () {
   // opens youtube video in a window so the user can like, dislike a video, or subscribe to a youtube channel
   function openVideo() {
     if (isLoaded()) {
-      // TODO: change to responsive size
-      let w = 1000;
-      let h = 900;
+      let w = screen.availWidth;
+      let h = screen.availHeight;
       let left = screen.width / 2 - w / 2;
       let top = screen.height / 2 - h / 2;
       window.open(
