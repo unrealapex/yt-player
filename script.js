@@ -258,7 +258,7 @@ $(function () {
   // hide cursor when user idles in overlay
   let idleMouseTimer;
   let forceMouseHide = false;
-  $overlay.mousemove(function (ev) {
+  $overlay.mousemove(function () {
     if (!forceMouseHide) {
       $overlay.css("cursor", "");
       clearTimeout(idleMouseTimer);
