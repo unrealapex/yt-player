@@ -6,6 +6,7 @@ on:
       - '*.html'
       - '*.js'
       - '*.css'
+      - 'favicons/'
     branches:
       - 'main'
 jobs:
