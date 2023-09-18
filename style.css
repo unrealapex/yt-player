@@ -22,7 +22,9 @@ kbd {
   background-color: #eee;
   border-radius: 3px;
   border: 2.5px solid;
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), 0 2px 0 0 rgba(255, 255, 255, 0.7) inset;
+  box-shadow:
+    0 1px 1px rgba(0, 0, 0, 0.2),
+    0 2px 0 0 rgba(255, 255, 255, 0.7) inset;
   color: #333;
   display: inline-block;
   font-size: 0.85em;
@@ -102,7 +104,9 @@ legend,
 }
 
 #loader-fade-text {
-  animation: fade 2s ease-in infinite, rgb 5s linear infinite;
+  animation:
+    fade 2s ease-in infinite,
+    rgb 5s linear infinite;
 }
 
 @keyframes fade {
@@ -229,7 +233,7 @@ button {
 
 iframe {
   width: 65vw;
-  height: calc((9/16) * 65vw);
+  height: calc((9 / 16) * 65vw);
   border-style: hidden;
   border-radius: 0.4rem;
 }
@@ -379,7 +383,6 @@ iframe {
   background-color: var(--private-mode-purple) !important;
 }
 
-
 #context-menu {
   width: auto;
   height: auto;
@@ -421,10 +424,9 @@ iframe {
   width: 3rem;
   height: 3rem;
   margin: 1.5rem;
-
 }
 
 /* hide help button when thumbnail is displayed  */
-#expand-box[style*='display: block'] ~ #help {
+#expand-box[style*="display: block"] ~ #help {
   display: none;
 }

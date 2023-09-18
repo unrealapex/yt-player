@@ -103,7 +103,7 @@ $(function () {
       // sets the video player iframe's url to a youtube privacy-enhanced url
       $iframe.attr(
         "src",
-        `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&dnt=1`
+        `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&dnt=1`,
       );
 
       $overlay.addClass("private-mode-overlay");
@@ -113,7 +113,7 @@ $(function () {
       // sets the video player iframe's url to a youtube embed url (default)
       $iframe.attr(
         "src",
-        `https://www.youtube.com/embed/${videoId}?autoplay=1`
+        `https://www.youtube.com/embed/${videoId}?autoplay=1`,
       );
 
       $overlay.removeClass("private-mode-overlay");
@@ -140,12 +140,12 @@ $(function () {
       }
     } else {
       console.warn(
-        "Error: unable to toggle full screen" + "\n" + "Reason: no URL found"
+        "Error: unable to toggle full screen" + "\n" + "Reason: no URL found",
       );
       alert(
         "Unable to toggle full screen, video hasn't been loaded" +
           "\n" +
-          "Please enter a URL first"
+          "Please enter a URL first",
       );
     }
   }
@@ -170,8 +170,10 @@ $(function () {
   function openVideo() {
     if (isLoaded()) {
       // set popup width to a 16:9 aspect ratio and size it by rem
-      let w = (80 * parseFloat(getComputedStyle(document.documentElement).fontSize));
-      let h = (45 * parseFloat(getComputedStyle(document.documentElement).fontSize));
+      let w =
+        80 * parseFloat(getComputedStyle(document.documentElement).fontSize);
+      let h =
+        45 * parseFloat(getComputedStyle(document.documentElement).fontSize);
       let left = screen.width / 2 - w / 2;
       let top = screen.height / 2 - h / 2;
       window.open(
@@ -184,16 +186,18 @@ $(function () {
           ", top=" +
           top +
           ", left=" +
-          left
+          left,
       );
     } else {
       console.warn(
-        "Error: unable to open video in new tab" + "\n" + "Reason: no URL found"
+        "Error: unable to open video in new tab" +
+          "\n" +
+          "Reason: no URL found",
       );
       alert(
         "Unable to open video in new tab, no URL entered" +
           "\n" +
-          "Play a video and try again"
+          "Play a video and try again",
       );
     }
   }
@@ -221,7 +225,7 @@ $(function () {
       $thumbnail.attr("src") !==
         `https://i.ytimg.com/vi/${videoId}/mqdefault.jpg`
         ? `https://i.ytimg.com/vi/${videoId}/mqdefault.jpg`
-        : ""
+        : "",
     );
   }
 
@@ -278,20 +282,32 @@ $(function () {
       if (e.key === "/" && $overlay.is(":hidden")) {
         $inputField.focus();
         // handle shift + enter
-      } else if (e.key === "Enter" && !(e.shiftKey || e.altKey) && $overlay.is(":hidden")) {
+      } else if (
+        e.key === "Enter" &&
+        !(e.shiftKey || e.altKey) &&
+        $overlay.is(":hidden")
+      ) {
         $form.submit();
-      } else if ((e.shiftKey || e.altKey) && e.key === "Enter" && $overlay.is(":hidden")) {
+      } else if (
+        (e.shiftKey || e.altKey) &&
+        e.key === "Enter" &&
+        $overlay.is(":hidden")
+      ) {
         privateMode = true;
         $form.submit();
         return privateMode;
-      } else if ((e.shiftKey || e.altKey) && e.key === "Enter" && $overlay.is(":visible")) {
-        privateMode = (privateMode ? false : true);
+      } else if (
+        (e.shiftKey || e.altKey) &&
+        e.key === "Enter" &&
+        $overlay.is(":visible")
+      ) {
+        privateMode = privateMode ? false : true;
         loadVideo(videoId);
-        return privateMode; 
+        return privateMode;
       } else if (e.key === "r" && $overlay.is(":visible")) {
         loadVideo(videoId);
       } else if (
-        (e.key === "Escape") &&
+        e.key === "Escape" &&
         document.fullscreenElement === null &&
         $overlay.is(":visible")
       ) {
@@ -303,10 +319,10 @@ $(function () {
         $overlay.is(":visible")
       ) {
         openFullscreen();
-      } else if ((e.key === "m") && $overlay.is(":visible")) {
+      } else if (e.key === "m" && $overlay.is(":visible")) {
         minimizeOverlay();
       } else if (
-        (e.key === "o") &&
+        e.key === "o" &&
         $overlay.is(":hidden") &&
         $iframe.attr("src").length !== 0
       ) {
@@ -435,7 +451,7 @@ $(function () {
         if (privateMode) {
           if (
             confirm(
-              "Warning, this video is playing in private mode. If you open the video, it will show up as you viewing it and will not load if restricted mode is enabled for your YouTube account.\nDo you wish to still open the video?"
+              "Warning, this video is playing in private mode. If you open the video, it will show up as you viewing it and will not load if restricted mode is enabled for your YouTube account.\nDo you wish to still open the video?",
             )
           ) {
             openVideo();
@@ -471,14 +487,17 @@ $(function () {
   // submit the URL form when the user clicks on the play button
   $playButton.on("click", function (e) {
     // enable private mode if the user is holding shift when they click the play button
-    privateMode = (e.shiftKey || e.altKey) ? true : false;
+    privateMode = e.shiftKey || e.altKey ? true : false;
     $form.submit();
     return privateMode;
   });
 
   // change play button color when user holds shift on play button
   $(document).on("keydown", function (e) {
-    if ((e.key === "Shift" || e.key === "Alt") && $playButton.hasClass("valid")) {
+    if (
+      (e.key === "Shift" || e.key === "Alt") &&
+      $playButton.hasClass("valid")
+    ) {
       $playButton.addClass("private-mode-button");
       $playButton.removeClass("valid");
       // set play button tooltip to "play in private mode"
