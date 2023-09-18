@@ -531,6 +531,6 @@ $(function () {
     }
   });
 
-  // validate when the page loads; browser might have a url saved in the input
+  // validate when the page loads; some browsers will save a url entered in an input or form element
   validate();
 });
