@@ -3,9 +3,9 @@ run-name: Update gh-pages branch
 on:
   push:
     paths:
-      - '!*.md'
-      - '!LICENSE'
-      - '!*.yml'
+      - '*.html'
+      - '*.js'
+      - '*.css'
     branches:
       - 'main'
 jobs:
