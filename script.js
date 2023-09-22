@@ -1,4 +1,6 @@
 $(function () {
+  console.log("yt player");
+
   // globals
   var url = "";
   var videoId = "";
