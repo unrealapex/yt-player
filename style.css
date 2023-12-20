@@ -383,6 +383,10 @@ iframe {
   background-color: var(--private-mode-purple) !important;
 }
 
+.private-mode-expand {
+    box-shadow: 0px 0px 10px 10px var(--private-mode-purple);
+}
+
 #context-menu {
   width: auto;
   height: auto;

@@ -110,6 +110,7 @@ $(function () {
 
       $overlay.addClass("private-mode-overlay");
       $overlayNotification.text("private mode enabled");
+      $expandBox.addClass("private-mode-expand");
       $("#private-mode-context").text("turn private mode off");
     } else {
       // sets the video player iframe's url to a youtube embed url (default)
@@ -119,6 +120,7 @@ $(function () {
       );
 
       $overlay.removeClass("private-mode-overlay");
+      $expandBox.removeClass("private-mode-expand");
       $overlayNotification.text("");
       $("#private-mode-context").text("turn private mode on");
     }
