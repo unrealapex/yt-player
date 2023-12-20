@@ -391,7 +391,7 @@ $(function () {
   });
 
   $(document).on("contextmenu", function (e) {
-    if ($inputField.is(":focus")) {
+    if ($inputField.is(":focus") || $(document.activeElement).is("a")) {
       // prevent context menu from showing up when the input field is focused
       return true;
     } else {
