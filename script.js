@@ -283,8 +283,10 @@ $(function () {
   // keyboard shortcuts event listener
   $(document).on("keydown", function (e) {
     if (document.activeElement.id !== "input-field") {
+      // TODO: handle event manipulation more elegantly
       if (e.key === "/" && $overlay.is(":hidden")) {
         $inputField.focus();
+        e.preventDefault();
         // handle shift + enter
       } else if (
         e.key === "Enter" &&
@@ -292,6 +294,7 @@ $(function () {
         $overlay.is(":hidden")
       ) {
         $form.submit();
+        e.preventDefault();
       } else if (
         (e.shiftKey || e.altKey) &&
         e.key === "Enter" &&
@@ -299,6 +302,7 @@ $(function () {
       ) {
         privateMode = true;
         $form.submit();
+        e.preventDefault();
         return privateMode;
       } else if (
         (e.shiftKey || e.altKey) &&
@@ -307,9 +311,11 @@ $(function () {
       ) {
         privateMode = privateMode ? false : true;
         loadVideo(videoId);
+        e.preventDefault();
         return privateMode;
       } else if (e.key === "r" && $overlay.is(":visible")) {
         loadVideo(videoId);
+        e.preventDefault();
       } else if (
         e.key === "Escape" &&
         document.fullscreenElement === null &&
@@ -317,14 +323,17 @@ $(function () {
       ) {
         minimizeOverlay();
         $inputField.select();
+        e.preventDefault();
       } else if (
         e.key === "f" &&
         document.fullscreenElement === null &&
         $overlay.is(":visible")
       ) {
         openFullscreen();
+        e.preventDefault();
       } else if (e.key === "m" && $overlay.is(":visible")) {
         minimizeOverlay();
+        e.preventDefault();
       } else if (
         e.key === "o" &&
         $overlay.is(":hidden") &&
@@ -332,11 +341,12 @@ $(function () {
       ) {
         openOverlay();
         $playButton.blur();
+        e.preventDefault();
       } else if (e.key === "?") {
         $helpModal.toggle();
+        e.preventDefault();
       } else {
       }
-      e.preventDefault();
     } else {
     }
   });
