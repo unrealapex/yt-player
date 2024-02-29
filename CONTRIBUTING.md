@@ -1,31 +1,41 @@
 # Contributing
-### Project Structure
-```
-───yt-player
-    │   android-chrome-192x192.png
-    │   android-chrome-512x512.png
-    │   apple-touch-icon.png
-    │   CONTRIBUTING.md
-    │   favicon-16x16.png
-    │   favicon-32x32.png
-    │   favicon.ico
-    │   index.html
-    │   LICENSE
-    │   README.md
-    │   script.js
-    │   site.webmanifest
-    │   style.css
-    │
-    └───.github
-        ├───ISSUE_TEMPLATE
-        │       bug_report.md
-        │
-        └───workflows
-                codeql-analysis.yml
-                linter.yml
+### Code Structure
+yt player's codebase is primarily written with jQuery.
+
+The code structure of the project is as follows:
+- `player and element variables` - player variables initiallized such as `url`,
+`videoId` dom elements stored for easy manipulation later
+---
+- `helper functions`
+    - `getVideoURL()` - value of URL inputted and passes it to `getId`
+    - `validate()`  - tests the URL inputted against `urlDissector` to see if
+    it is a valid url
+    - `getId()` - takes `url` and returns the video id, the id is then passed
+    to `loadVideo()`
+    - `loadVideo()` - takes `videoId` and opens `$overlay` and sets video
+    player state
+    - `openFullscreen()` - request iframe fullscreen
+    - `reset()` - reset player to inital state
+    - `openVideo()` - open video on youtube.com in popup window
+    - `openOverlay` - open video overlay
+    - `closeOverlay` - close video overlay
+    - `minimizeOverlay()` - hide overlay and show thumbnail of video that can
+    be clicked to reopen the overlay
+    - `setNotification()` - send a player notification, takes `message`,
+    (notification) `level`, and `duration` in seconds.
+    - `clearNotification()` - clears any notifications that are displayed
+- `event listeners`
+---
+- run `validate()` on page load in case the browser has stored a url in the input field
+
+### Development
+```bash
+git clone git@github.com:unrealapex/yt-player.git
+cd yt-player
+xdg-open index.html
 ```
 
-### Code Standards and Formatting
-Follow all standards and norms specific to the language of the file you are modifying. Double quotes are prefered over single quotes and provide adequate spacing for readability. Use camelCase for JavaScript identifiers and [kebab-case](https://stackoverflow.com/questions/11273282/whats-the-name-for-hyphen-separated-case) for HTML ids and classes and CSS selectors.
-### Other Preferences
-If you are contributing multiple changes, please use different branches and pull requests.
+### Formatting and Commits
+Formatting should be done with Prettier. Commits should be formatted with the
+[conventional commits specification](https://www.conventionalcommits.org)
+**PRs that do not meet these standards will be rejected.**
