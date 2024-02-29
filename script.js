@@ -2,8 +2,8 @@ $(function () {
   console.log("yt player");
 
   // globals
-  var url = "";
-  var videoId = "";
+  let url = "";
+  let videoId = "";
   const $iframe = $("iframe");
   // input where user enters YouTube url to play
   const $inputField = $("#input-field");
@@ -22,10 +22,10 @@ $(function () {
   const $expandBox = $("#expand-box");
   const $thumbnail = $("#thumbnail");
   const $menu = $("#context-menu");
-  var isLoaded = function () {
+  let isLoaded = function () {
     return $iframe.readyState == "complete" || "interactive" ? true : false;
   };
-  var privateMode = false;
+  let privateMode = false;
 
   // regex
   // gets the youtube video id from strings
@@ -129,7 +129,7 @@ $(function () {
   // toggles fullscreen for the iframe
   function openFullscreen() {
     // puts the player in full screen mode
-    var player = document.querySelector("iframe");
+    let player = document.querySelector("iframe");
     if (player.src.length !== 0 && isLoaded()) {
       if (player.requestFullscreen) {
         player.requestFullscreen();
