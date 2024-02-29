@@ -345,10 +345,8 @@ $(function () {
       } else if (e.key === "?") {
         $helpModal.toggle();
         e.preventDefault();
-      } else {
-      }
-    } else {
-    }
+      } 
+    } 
   });
 
   // When the user clicks anywhere outside of the modal, close it
