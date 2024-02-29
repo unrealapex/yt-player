@@ -40,8 +40,7 @@ $(function () {
     // gets our url from the input field
     url = $inputField.val();
     // strip whitespace from url
-    let hasWhiteSpace = whiteSpaceRE.test(url);
-    url = hasWhiteSpace ? url.replace(/\s/g, "") : url;
+    url = whiteSpaceRE.test(url) ? url.replace(/\s/g, "") : url;
     getId(url);
   }
 
