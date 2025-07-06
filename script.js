@@ -27,11 +27,9 @@ $(function () {
   };
   let privateMode = false;
 
-  // regex
-  // gets the youtube video id from strings
-  // checks if the url is a valid youtube url and is something our player can play
-  const urlDissector =
-    /(?:((http?(?:s)?:\/\/)?(www\.)?)?(?:youtu\.be\/|youtube(?:-nocookie)?\.com\/(?:embed\/|shorts\/|v\/|watch\?v=|watch\?(?:([^=]+)\=([^&]+))+&v=)))?((?:\w|-){11}|^(?:\w|-){11}$)((?:\&|\?)\S*)?/;
+  // matches whole url and third group matches videoid
+  const ytURLRE =
+    /(?:(?:(?:http?(?:s)?:\/\/)?(?:www\.)?)?(?:youtu\.be\/|youtube(?:-nocookie)?\.com\/(?:embed\/|shorts\/|v\/|watch\?v=|watch\?(?:([^=]+)\=([^&]+))+&v=)))?((?:\w|-){11}|^(?:\w|-){11}$)((?:\&|\?)\S*)?/;
 
   // expression to test if there are any whitespaces in our url
   const whiteSpaceRE = /\s/g;
@@ -56,7 +54,7 @@ $(function () {
       $playButton.css("color", "#1a1a1a");
       $playButton.prop("disabled", true);
       // if the url in the input field is valid
-    } else if (urlDissector.test($inputField.val())) {
+    } else if (ytURLRE.test($inputField.val())) {
       clearNotification();
       $inputField.addClass("correct");
       $inputField.removeClass("wrong");
@@ -78,7 +76,7 @@ $(function () {
   // takes parameter url(string)
   function getId(url) {
     // strips the video id from our url
-    videoId = urlDissector.exec(url)[6];
+    videoId = ytURLRE.exec(url)[3];
     if (
       $iframe.attr("src") !== undefined &&
       $iframe.attr("src").includes(videoId)
