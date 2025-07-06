@@ -4,7 +4,7 @@ yt player's codebase is primarily written with jQuery.
 
 The code structure of the project is as follows:
 - `player and element variables` - player variables initiallized such as `url`,
-`videoId` dom elements stored for easy manipulation later
+`videoId` DOM elements
 ---
 - `helper functions`
     - `getVideoURL()` - value of URL inputted and passes it to `getId`
@@ -27,13 +27,6 @@ The code structure of the project is as follows:
 - `event listeners`
 ---
 - run `validate()` on page load in case the browser has stored a url in the input field
-
-### Development
-```bash
-git clone git@github.com:unrealapex/yt-player.git
-cd yt-player
-xdg-open index.html
-```
 
 ### Formatting and Commits
 Formatting should be done with Prettier. Commits should be formatted with the
