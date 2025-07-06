@@ -1,24 +1,17 @@
 $(function () {
   console.log("yt player");
 
-  // globals
   let url = "";
   let videoId = "";
   const $iframe = $("iframe");
-  // input where user enters YouTube url to play
   const $inputField = $("#input-field");
-  // button to play YouTube video url entered
   const $playButton = $("#play");
-  // overlay that video player iframe is shown
   const $overlay = $("#overlay");
-  // notification that shows errors and information
   const $notification = $("#notification");
   const $overlayNotification = $("#overlay-notification");
   const $loader = $("#loader");
   const $helpModal = $("#help-modal");
-  // url submission form
   const $form = $("form");
-  // parent for button and video thumbnail that appear when a video is minimized
   const $expandBox = $("#expand-box");
   const $thumbnail = $("#thumbnail");
   const $menu = $("#context-menu");
@@ -31,7 +24,6 @@ $(function () {
   const ytURLRE =
     /(?:(?:(?:http?(?:s)?:\/\/)?(?:www\.)?)?(?:youtu\.be\/|youtube(?:-nocookie)?\.com\/(?:embed\/|shorts\/|v\/|watch\?v=|watch\?(?:([^=]+)\=([^&]+))+&v=)))?((?:\w|-){11}|^(?:\w|-){11}$)((?:\&|\?)\S*)?/;
 
-  // expression to test if there are any whitespaces in our url
   const whiteSpaceRE = /\s/g;
 
   function getVideoURL() {
@@ -44,7 +36,6 @@ $(function () {
 
   // TODO: add ability to play youtube playlists
 
-  // validates the url in the input field
   function validate() {
     // if the input field is blank
     if ($inputField.val().length === 0) {
@@ -72,10 +63,8 @@ $(function () {
     }
   }
 
-  // gets youtube video id of given url
   // takes parameter url(string)
   function getId(url) {
-    // strips the video id from our url
     videoId = ytURLRE.exec(url)[3];
     if (
       $iframe.attr("src") !== undefined &&
@@ -91,7 +80,6 @@ $(function () {
     return videoId;
   }
 
-  // loads the youtube video into the player iframe
   // take parameter videoId(string)
   function loadVideo(videoId) {
     openOverlay();
@@ -123,9 +111,7 @@ $(function () {
     }
   }
 
-  // toggles fullscreen for the iframe
   function openFullscreen() {
-    // puts the player in full screen mode
     let player = document.querySelector("iframe");
     if (player.src.length !== 0 && isLoaded()) {
       if (player.requestFullscreen) {
@@ -151,7 +137,6 @@ $(function () {
     }
   }
 
-  // resets player state
   function reset() {
     url = "";
     $iframe.attr("src", "");
@@ -203,13 +188,11 @@ $(function () {
     }
   }
 
-  // open overlay
   function openOverlay() {
     $overlay.show();
     $expandBox.hide();
   }
 
-  // close overlay
   function closeOverlay() {
     $overlay.hide();
     $expandBox.hide();
@@ -217,7 +200,6 @@ $(function () {
     reset();
   }
 
-  // Minimizes video overlay
   function minimizeOverlay() {
     $overlay.hide();
     $expandBox.show();
@@ -254,7 +236,6 @@ $(function () {
     }
   }
 
-  // clears notification
   function clearNotification() {
     $notification.text("");
     $notification.removeClass();
