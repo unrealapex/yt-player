@@ -39,5 +39,5 @@ The code structure of the project is as follows:
 ### Formatting and Commits
 
 Formatting should be done with Prettier. Commits should be formatted with the
-[conventional commits specification](https://www.conventionalcommits.org) **PRs
+[conventional commits specification](https://www.conventionalcommits.org). **PRs
 that do not meet these standards will be rejected.**
