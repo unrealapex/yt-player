@@ -9,4 +9,4 @@ a simple video player for youtube videos
 - video queue
 
 ## contributing
-read the [contributing.md](https://github.com/unrealapex/yt-player/blob/main/CONTRIBUTING.md) file.
+read [CONTRIBUTING.md](https://github.com/unrealapex/yt-player/blob/main/CONTRIBUTING.md).
